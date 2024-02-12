@@ -1,0 +1,151 @@
+.article-entry {
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+    position: relative;
+
+    &:before {
+      content: "";
+      width: 100%;
+      border-bottom: 1px solid var(--color-h2-border);
+      position: absolute;
+      bottom: -15px;
+      box-sizing: unset;
+      transition: all 0.3s ease;
+    }
+
+    &:after {
+      transition: all 0.3s ease;
+      content: "";
+      position: absolute;
+      background: var(--color-h2-after);
+      width: 1em;
+      height: 7px;
+      bottom: -18px;
+      left: 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px var(--color-h2-after-shadow);
+    }
+
+    &:hover:after {
+      width: 3em;
+    }
+  }
+
+  h3 {
+    font-size: 1.3em;
+  }
+
+  h4 {
+    font-size: 1.2em;
+  }
+
+  h5 {
+    font-size: 1em;
+  }
+
+  h6 {
+    font-size: 1em;
+    color: var(--color-grey);
+  }
+
+  hr {
+    margin: 10px 0;
+    opacity: 0.5;
+    height: 3px;
+    background-image: linear-gradient(
+      to left,
+      rgba(255, 0, 0, 0.75) 50%,
+      transparent 0%
+    );
+    background-size: 20px 3px;
+    background-repeat: repeat-x;
+    border: none;
+    filter: drop-shadow(0px 0px 2px red);
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  em,
+  cite {
+    font-style: italic;
+  }
+
+  sup,
+  sub {
+    font-size: 0.75em;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+
+  sup {
+    top: -0.5em;
+  }
+
+  sub {
+    bottom: -0.2em;
+  }
+
+  small {
+    font-size: 0.85em;
+  }
+
+  acronym,
+  abbr {
+    text-decoration: none;
+    border-bottom: 1px dotted;
+  }
+
+  ul,
+  ol,
+  dl {
+    margin: 0 20px;
+    line-height: 1.8em;
+  }
+
+  ul,
+  ol {
+    ul,
+    ol {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  dt {
+    font-weight: bold;
+  }
+
+  pre,
+  code,
+  kbd {
+    font-family: "Ubuntu Mono";
+    font-size: 95%;
+    transition: all 0.3s ease;
+  }
+
+  p {
+    code,
+    kbd {
+      background: var(--color-code-background);
+      padding: 1px 5px;
+      border-radius: 5px;
+      color: var(--color-link);
+    }
+  }
+}
+

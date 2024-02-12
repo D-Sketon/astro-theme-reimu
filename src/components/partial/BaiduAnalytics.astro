@@ -1,0 +1,20 @@
+---
+export interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<script is:inline define:vars={{ id }}>
+  var _hmt = _hmt || [];
+  (() => {
+    var hm = document.createElement("script");
+    hm.src = `https://hm.baidu.com/hm.js?${id}`;
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+    document.addEventListener("astro:after-swap", () => {
+      _hmt.push(["_trackPageview", location.pathname]);
+    });
+  })();
+</script>

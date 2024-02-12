@@ -1,0 +1,33 @@
+---
+import { Icon } from "astro-icon/components";
+const { pubDate } = Astro.props;
+---
+
+<div class="article-date" data-aos="slide-left">
+  <span class="article-date-span">
+    <Icon name="tabler:clock" />
+    <time datetime={pubDate.toISOString()} itemprop="datePublished"
+      >{pubDate.toLocaleDateString().replace(/\//g, "-")}</time
+    >
+  </span>
+</div>
+
+<style>
+  .article-date {
+    display: flex;
+    align-items: center;
+  }
+
+  .article-date-span {
+    font-size: 14px;
+    color: var(--red-1);
+    background: var(--red-5);
+    border-radius: 20px;
+    padding: 10px 18px;
+    margin: 0 12px 1em;
+    box-shadow: 0 0 5px 3px var(--color-meta-shadow);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+  }
+</style>

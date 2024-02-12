@@ -1,0 +1,59 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type Props = HTMLAttributes<"a">;
+
+const { href, ...props } = Astro.props;
+---
+
+<span class="main-nav-link-wrap">
+  <span class="main-nav-icon"></span>
+  <a class="main-nav-link" href={href} {...props}><slot /></a>
+</span>
+
+<style>
+  .main-nav-link-wrap {
+    padding: 0 15px;
+    display: flex;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    line-height: 16px;
+    font-size: 16px;
+
+    @media screen and (max-width: 479px) {
+      padding: 0;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+    &:hover .main-nav-icon {
+      transition: all 1s ease;
+      transform: rotate(360deg);
+    }
+  }
+
+  .main-nav-link {
+    color: var(--red-0);
+    opacity: 0.8;
+    text-decoration: none;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.2s;
+    display: block;
+    padding: 20px 15px;
+    font-weight: 300;
+    letter-spacing: 1px;
+  }
+  .main-nav-icon {
+    color: var(--red-0);
+    opacity: 0.8;
+    text-decoration: none;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    display: block;
+    padding: 20px 15px;
+    background: url("/images/taichi.png") no-repeat center / 80%;
+    transform: rotate(0deg);
+    transition: all 1s ease;
+    cursor: pointer;
+  }
+</style>

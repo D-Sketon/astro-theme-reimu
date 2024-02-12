@@ -1,0 +1,48 @@
+---
+import { type CollectionEntry, getCollection } from "astro:content";
+import MarkdownLayout from "../../layouts/MarkdownLayout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post, index) => ({
+    params: { slug: post.slug },
+    props: {
+      post,
+      prev: posts[index - 1] || null,
+      next: posts[index + 1] || null,
+    },
+  }));
+}
+type Props = {
+  post: CollectionEntry<"blog">;
+  prev: CollectionEntry<"blog"> | null;
+  next: CollectionEntry<"blog"> | null;
+};
+
+const { post, prev, next } = Astro.props;
+const { Content } = await post.render();
+---
+
+<MarkdownLayout post={post.data} nav={{prev, next}}>
+  <Content />
+</MarkdownLayout>
+
+<script>
+  import baguetteBox from "baguettebox.js";
+  document.addEventListener("astro:page-load", () => {
+    document.querySelectorAll(".article-entry").forEach(function (article, i) {
+      article.querySelectorAll("img").forEach(function (img) {
+        if (img.parentElement?.tagName.toLowerCase() === "a") {
+          return;
+        }
+        const alt = img.alt;
+        const anchor = document.createElement("a");
+        anchor.href = img.src;
+        anchor.setAttribute("data-caption", alt || "");
+        img.parentNode && img.parentNode.replaceChild(anchor, img);
+        anchor.appendChild(img);
+      });
+    });
+    baguetteBox.run(".article-entry");
+  });
+</script>

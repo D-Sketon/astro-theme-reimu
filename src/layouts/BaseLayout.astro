@@ -1,0 +1,62 @@
+---
+import "../styles/global.css";
+import "aos/dist/aos.css"; // AOS styles
+import "baguettebox.js/dist/baguetteBox.min.css";
+
+import CommonMeta from "../components/partial/CommonMeta.astro";
+import VendorFont from "../components/partial/VendorFont.astro";
+import VendorScript from "../components/partial/VendorScript.astro";
+import Header from "../components/Header.astro";
+import AfterFooter from "../components/AfterFooter.astro";
+import { ViewTransitions } from "astro:transitions";
+
+import { SITE } from "../utils/config";
+---
+
+<!doctype html>
+<html lang={SITE.language}>
+  <head>
+    <script is:inline>
+      (function () {
+        const storedTheme = JSON.parse(
+          window.localStorage.getItem("theme") ?? '"auto"'
+        );
+        let presetTheme;
+        if (storedTheme === "auto") {
+          presetTheme = window.matchMedia("(prefers-color-scheme: dark)")
+            .matches
+            ? "dark"
+            : "light";
+        } else {
+          presetTheme = storedTheme;
+        }
+        if (presetTheme === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+          document.documentElement.style.colorScheme = "dark";
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+          document.documentElement.style.colorScheme = "light";
+        }
+      })();
+    </script>
+    <CommonMeta title={SITE.title} description={SITE.description} />
+    <VendorFont />
+    <style>
+      main {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+    </style>
+    <VendorScript />
+    
+    <ViewTransitions />
+  </head>
+  <body>
+    <Header>
+      <slot name="header" />
+    </Header>
+    <main><slot /></main>
+    <slot name="footer" />
+    <AfterFooter />
+  </body>
+</html>

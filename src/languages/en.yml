@@ -1,0 +1,49 @@
+categories: Categories
+search: Search
+tags: Tags
+tagcloud: Tag Cloud
+tweets: Tweets
+prev: Prev
+next: Next
+comment: Comments
+reading: Readings
+archive_a: Archives
+archive_b: "Archives: %s"
+page: Page %d
+recent_posts: Recent Posts
+newer: Newer
+older: Older
+share: Share
+powered_by: Powered by
+rss_feed: RSS Feed
+category: Category
+tag: Tag
+toc: Contents
+
+home: Home
+about: About
+friend: Friend
+archives: Archives
+
+sidebar:
+  post: Posts
+  category: Categories
+  tag: Tags
+
+not_found:
+  title: 4 0 4 (ﾟ⊿ﾟ)ﾂ
+  subtitle: NOT FOUND
+
+post:
+  count:
+    one: "%d word"
+    other: "%d words"
+  time:
+    one: "%d min"
+    other: "%d mins"
+
+busuanzi:
+  pv: Number of visits
+  uv: Number of visitors
+
+sticky: Sticky

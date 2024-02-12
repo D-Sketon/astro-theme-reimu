@@ -1,0 +1,104 @@
+---
+import { FOOTER } from "../utils/config";
+---
+
+<!-- busuanzi -->{
+  FOOTER.busuanzi && (
+    <script
+      is:inline
+      data-transition
+      async
+      src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+    />
+  )
+}
+<!-- aos -->
+<script>
+  import AOS from "aos";
+  const aosInit = () => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease",
+      once: true,
+      offset: 50,
+    });
+  };
+  aosInit();
+  document.addEventListener("astro:after-swap", aosInit);
+</script>
+<!-- lozad -->
+<script>
+  import lozad from "lozad";
+  const lozadInit = () => {
+    const observer = lozad(".lazyload");
+    observer.observe();
+  };
+  lozadInit();
+  document.addEventListener("astro:after-swap", lozadInit);
+</script>
+<!-- Transitions -->
+<script is:inline>
+  document.addEventListener("astro:page-load", () => {
+    document
+      .querySelectorAll("script[data-transition]")
+      .forEach(function (element) {
+        const { text, parentNode, id, className, type, src, dataset } = element;
+        const code = text || element.textContent || element.innerHTML || "";
+        parentNode.removeChild(element);
+
+        const script = document.createElement("script");
+
+        if (id) {
+          script.id = id;
+        }
+        if (className) {
+          script.className = className;
+        }
+        if (type) {
+          script.type = type;
+        }
+        if (src) {
+          // Force synchronous loading of peripheral JS.
+          script.src = src;
+          script.async = false;
+        }
+        if (dataset.pjax !== undefined) {
+          script.dataset.pjax = "";
+        }
+        if (code !== "") {
+          script.appendChild(document.createTextNode(code));
+        }
+
+        parentNode.appendChild(script);
+      });
+  });
+</script>
+<!-- ThemeToogle -->
+<script>
+  // prevent flash when using view transitions in astro
+  const initColorMode = () => {
+    const storedTheme = JSON.parse(
+      window.localStorage.getItem("theme") ?? '"auto"'
+    );
+    let presetTheme;
+    if (storedTheme === "auto") {
+      presetTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    } else {
+      presetTheme = storedTheme;
+    }
+    if (presetTheme === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+      document.documentElement.style.colorScheme = "dark";
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+      document.documentElement.style.colorScheme = "light";
+    }
+  };
+
+  // Runs on initial navigation
+  initColorMode();
+  // Runs on view transitions navigation
+  document.addEventListener("astro:after-swap", initColorMode);
+</script>

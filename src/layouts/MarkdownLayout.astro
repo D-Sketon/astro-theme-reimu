@@ -1,0 +1,265 @@
+---
+import "../styles/global.css";
+import "../styles/base.css";
+import "aos/dist/aos.css"; // AOS styles
+import "baguettebox.js/dist/baguetteBox.min.css";
+import "katex/dist/katex.min.css";
+
+import type { CollectionEntry } from "astro:content";
+import CommonMeta from "../components/partial/CommonMeta.astro";
+import VendorFont from "../components/partial/VendorFont.astro";
+import VendorScript from "../components/partial/VendorScript.astro";
+
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import AfterFooter from "../components/AfterFooter.astro";
+import Date from "../components/post/Date.astro";
+import Nav from "../components/post/Nav.astro";
+import { ViewTransitions } from "astro:transitions";
+import { SITE } from "../utils/config";
+
+type Props = {
+  post: CollectionEntry<"blog">["data"];
+  nav?: {
+    prev: CollectionEntry<"blog"> | null;
+    next: CollectionEntry<"blog"> | null;
+  };
+};
+
+const { title, description, pubDate, updatedDate, cover } = Astro.props.post;
+const { nav } = Astro.props;
+---
+
+<!doctype html>
+<html lang={SITE.language}>
+  <head>
+    <script is:inline>
+      (function () {
+        const storedTheme = JSON.parse(
+          window.localStorage.getItem("theme") ?? '"auto"'
+        );
+        let presetTheme;
+        if (storedTheme === "auto") {
+          presetTheme = window.matchMedia("(prefers-color-scheme: dark)")
+            .matches
+            ? "dark"
+            : "light";
+        } else {
+          presetTheme = storedTheme;
+        }
+        if (presetTheme === "dark") {
+          document.documentElement.setAttribute("data-theme", "dark");
+          document.documentElement.style.colorScheme = "dark";
+        } else {
+          document.documentElement.removeAttribute("data-theme");
+          document.documentElement.style.colorScheme = "light";
+        }
+      })();
+    </script>
+    <CommonMeta title={title} description={description} />
+    <VendorFont />
+    <style>
+      main {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      #logo h1 {
+        text-decoration: none;
+        color: #fff;
+        text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+        font-size: 40px;
+        font-weight: 700;
+        line-height: 40px;
+        letter-spacing: 2px;
+        display: inline-block;
+        width: 80%;
+        transform: translateY(-20%);
+        text-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.5);
+
+        @media screen and (max-width: 959px) {
+          width: 90%;
+          font-size: 35px;
+        }
+
+        @media screen and (min-width: 480px) and (max-width: 767px) {
+          width: 95%;
+          font-size: 30px;
+        }
+
+        @media screen and (max-width: 479px) {
+          width: 100%;
+          font-size: 30px;
+        }
+      }
+
+      .hr-line {
+        margin: 10px 20px;
+        opacity: 0.5;
+        height: 3px;
+        background-image: linear-gradient(
+          to left,
+          var(--red-0) 50%,
+          transparent 0%
+        );
+        background-size: 20px 3px;
+        background-repeat: repeat-x;
+        filter: drop-shadow(0px 0px 2px red);
+      }
+
+      .article {
+        width: calc(100% - 20px);
+        margin: 0 auto;
+      }
+
+      .article-inner {
+        background: var(--color-wrap);
+        border-radius: 5px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .article-meta {
+        display: flex;
+        flex-direction: column;
+        padding: 20px 20px 0;
+      }
+
+      .article-entry {
+        color: var(--color-default);
+        padding: 0 35px;
+
+        p,
+        table {
+          line-height: 1.8em;
+          margin: 1.8em 0;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          font-weight: bold;
+          line-height: 1.2em;
+          margin: 1.2em 0;
+        }
+
+        h2 {
+          margin-bottom: 40px;
+        }
+
+        a {
+          color: var(--color-link);
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        ul,
+        ol,
+        dl {
+          margin-top: 1.8em;
+          margin-bottom: 1.8em;
+        }
+
+        li:hover::marker {
+          transition: color 0.2s ease;
+          color: var(--red-1);
+        }
+
+        img,
+        video {
+          max-width: 100%;
+          height: auto;
+          display: block;
+          margin: auto;
+          transition: all 0.3s ease;
+        }
+
+        iframe {
+          border: none;
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          border-spacing: 0;
+        }
+
+        th {
+          font-weight: bold;
+          border-bottom: 3px solid var(--color-border);
+          padding-bottom: 0.5em;
+        }
+
+        td {
+          border-bottom: 1px solid var(--color-border);
+          padding: 10px 0;
+        }
+
+        blockquote {
+          background: var(--red-5-5);
+          border-left: 6px var(--red-4) solid;
+          margin: 1.8em 0;
+          border-radius: 5px;
+          transition: all 0.3s ease;
+          padding: 1px 10px;
+
+          footer {
+            font-size: 16px;
+            margin: 1em 0;
+            cite:before {
+              content: "—";
+              padding: 0 0.5em;
+            }
+          }
+        }
+
+        .expressive-code {
+          margin: 20px 0;
+        }
+      }
+    </style>
+    <VendorScript />
+    <ViewTransitions />
+  </head>
+  <body>
+    <Header title={title}>
+      <div>
+        <a href="/" id="logo">
+          <h1>{title}</h1>
+        </a>
+      </div>
+    </Header>
+    <main>
+      <article
+        class="article"
+        itemprop="blogPost"
+        itemscope
+        itemtype="https://schema.org/BlogPosting"
+      >
+        <div class="article-inner">
+          <div class="article-meta">
+            <Date pubDate={pubDate} />
+          </div>
+          <div class="hr-line"></div>
+          <div class="article-entry" itemprop="articleBody">
+            <slot />
+          </div>
+          {
+            nav && (
+              <footer class="article-footer">
+                <Nav {...nav} />
+              </footer>
+            )
+          }
+        </div>
+      </article>
+    </main>
+    <Footer />
+    <AfterFooter />
+  </body>
+</html>
