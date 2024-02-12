@@ -1,0 +1,26 @@
+---
+import { WALINE } from "../../utils/config";
+---
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.min.css"
+/>
+<div id="comments" class="wcomment"></div>
+<script data-transition is:inline define:vars={{ WALINE }} type="module">
+  import { init } from "https://cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.mjs";
+  init({
+    el: ".wcomment",
+    serverURL: WALINE.serverURL,
+    lang: WALINE.lang,
+    locale: WALINE.locale,
+    emoji: WALINE.emoji,
+    meta: WALINE.meta,
+    requiredMeta: WALINE.requiredMeta,
+    wordLimit: WALINE.wordLimit,
+    comment: true,
+    pageSize: WALINE.pageSize,
+    dark: 'html[data-theme="dark"]',
+    pageview: WALINE.pageview,
+  });
+</script>

@@ -15,6 +15,8 @@ import Footer from "../components/Footer.astro";
 import AfterFooter from "../components/AfterFooter.astro";
 import Date from "../components/post/Date.astro";
 import Nav from "../components/post/Nav.astro";
+import Comment from "../components/post/Comment.astro";
+
 import { ViewTransitions } from "astro:transitions";
 import { SITE } from "../utils/config";
 
@@ -26,7 +28,14 @@ type Props = {
   };
 };
 
-const { title, description, pubDate, updatedDate, cover } = Astro.props.post;
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  cover,
+  comment = true,
+} = Astro.props.post;
 const { nav } = Astro.props;
 ---
 
@@ -258,6 +267,7 @@ const { nav } = Astro.props;
           }
         </div>
       </article>
+      <Comment comment={comment} />
     </main>
     <Footer />
     <AfterFooter />

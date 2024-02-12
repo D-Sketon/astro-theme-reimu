@@ -1,0 +1,28 @@
+---
+import { GITALK } from "../../utils/config";
+---
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"
+/>
+<div id="comments" class="gtcomment"></div>
+
+<script
+  data-transition
+  is:inline
+  src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script data-transition is:inline define:vars={{ GITALK }}>
+  const gitalk = new Gitalk({
+    clientID: GITALK.clientID,
+    clientSecret: GITALK.clientSecret,
+    repo: GITALK.repo,
+    owner: GITALK.owner,
+    admin: GITALK.admin,
+    id: location.pathname,
+    distractionFreeMode: false,
+  });
+
+  gitalk.render("comments");
+</script>

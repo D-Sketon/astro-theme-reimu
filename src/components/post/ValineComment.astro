@@ -1,0 +1,29 @@
+---
+import { VALINE } from "../../utils/config";
+---
+
+<div id="comments" class="vcomment"></div>
+<script
+  data-transition
+  is:inline
+  src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script>
+<script data-transition is:inline define:vars={{ VALINE }}>
+  var GUEST_INFO = ["nick", "mail", "link"];
+  var guest_info = VALINE.guest_info.split(",").filter((item) => {
+    return GUEST_INFO.indexOf(item) > -1;
+  });
+  new Valine({
+    el: ".vcomment",
+    appId: VALINE.appId,
+    appKey: VALINE.appKey,
+    placeholder: VALINE.placeholder,
+    pageSize: VALINE.pageSize,
+    avatar: VALINE.avatar,
+    lang: VALINE.lang,
+    recordIP: VALINE.recordIP,
+    highlight: VALINE.highlight,
+    visitor: VALINE.visitor,
+    requiredFields: guest_info,
+    path: window.location.pathname,
+  });
+</script>
