@@ -9,7 +9,7 @@ import SearchBtn from "./SearchBtn";
 import ThemeBtn from "./ThemeBtn.tsx";
 import SearchBox from "./SearchBox";
 
-const { title = SITE.title } = Astro.props;
+const { title = SITE.title, cover = "/images/banner.jpg" } = Astro.props;
 const posts = await getCollection("blog");
 ---
 
@@ -29,7 +29,7 @@ const posts = await getCollection("blog");
   </nav>
 </div>
 <header id="header">
-  <img fetchpriority="high" src="/images/banner.jpg" alt={title} />
+  <img fetchpriority="high" src={cover} alt={title} />
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <slot />

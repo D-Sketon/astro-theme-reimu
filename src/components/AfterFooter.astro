@@ -38,7 +38,7 @@ import { FOOTER } from "../utils/config";
 </script>
 <!-- Transitions -->
 <script is:inline>
-  document.addEventListener("astro:page-load", () => {
+  document.addEventListener("astro:after-swip", () => {
     document
       .querySelectorAll("script[data-transition]")
       .forEach(function (element) {

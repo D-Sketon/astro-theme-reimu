@@ -5,7 +5,7 @@ export interface SiteConfig {
   title: string;
   subtitle: string;
   description: string;
-  keywords: string;
+  keywords: string | string[];
   author: string;
   language: string;
   timezone: string;

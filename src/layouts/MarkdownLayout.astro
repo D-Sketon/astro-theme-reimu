@@ -16,27 +16,31 @@ import AfterFooter from "../components/AfterFooter.astro";
 import Date from "../components/post/Date.astro";
 import Nav from "../components/post/Nav.astro";
 import Comment from "../components/post/Comment.astro";
+import ReadingCount from "../components/post/ReadingCount.astro";
 
 import { ViewTransitions } from "astro:transitions";
 import { SITE } from "../utils/config";
 
 type Props = {
   post: CollectionEntry<"blog">["data"];
+  url: string;
   nav?: {
     prev: CollectionEntry<"blog"> | null;
     next: CollectionEntry<"blog"> | null;
   };
 };
 
+const { nav, post, url } = Astro.props;
+
 const {
   title,
   description,
+  keywords,
   pubDate,
   updatedDate,
   cover,
   comment = true,
-} = Astro.props.post;
-const { nav } = Astro.props;
+} = post;
 ---
 
 <!doctype html>
@@ -65,7 +69,7 @@ const { nav } = Astro.props;
         }
       })();
     </script>
-    <CommonMeta title={title} description={description} />
+    <CommonMeta title={title} description={description} keywords={keywords} />
     <VendorFont />
     <style>
       main {
@@ -231,12 +235,17 @@ const { nav } = Astro.props;
           margin: 20px 0;
         }
       }
+      .article-footer {
+        font-size: 14px;
+        border-top: 1px solid var(--color-border);
+        margin: 0 20px 20px;
+      }
     </style>
     <VendorScript />
     <ViewTransitions />
   </head>
   <body>
-    <Header title={title}>
+    <Header title={title} cover={cover}>
       <div>
         <a href="/" id="logo">
           <h1>{title}</h1>
@@ -258,14 +267,11 @@ const { nav } = Astro.props;
           <div class="article-entry" itemprop="articleBody">
             <slot />
           </div>
-          {
-            nav && (
-              <footer class="article-footer">
-                <Nav {...nav} />
-              </footer>
-            )
-          }
+          <footer class="article-footer">
+            <ReadingCount url={url} title={title} />
+          </footer>
         </div>
+        {nav && <Nav {...nav} />}
       </article>
       <Comment comment={comment} />
     </main>

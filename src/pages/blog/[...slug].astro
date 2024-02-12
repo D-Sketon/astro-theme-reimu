@@ -23,7 +23,7 @@ const { post, prev, next } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<MarkdownLayout post={post.data} nav={{prev, next}}>
+<MarkdownLayout post={post.data} nav={{prev, next}} url={`/blog/${post.slug}`}>
   <Content />
 </MarkdownLayout>
 
