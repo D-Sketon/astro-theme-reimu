@@ -9,14 +9,27 @@ import stripHTML from "../utils/stripHTML";
 import { Icon } from "astro-icon/components";
 import Footer from "../components/Footer.astro";
 import Pagination from "../components/Pagination.astro";
+import type { CollectionEntry } from "astro:content";
 
-export async function getStaticPaths({ paginate }) {
+type Props = {
+  page: {
+    data: CollectionEntry<"blog">[];
+    url: {
+      prev: string;
+      next: string;
+    };
+    currentPage: number;
+    lastPage: number;
+  };
+};
+
+export async function getStaticPaths({ paginate }: { paginate: Function }) {
   const posts = await getCollection("blog");
   return paginate(posts, {
     pageSize: 20,
   });
 }
-const { page } = Astro.props as any;
+const { page } = Astro.props;
 ---
 
 <BaseLayout>
@@ -37,7 +50,7 @@ const { page } = Astro.props as any;
   }
   <!-- Content -->
   {
-    page.data.map((post, index: number) => (
+    page.data.map((post, index) => (
       <div
         class:list={["post-wrap", { right: index % 2 === 1 }]}
         data-aos="fade-up"
@@ -62,21 +75,21 @@ const { page } = Astro.props as any;
         </div>
         <div class="post-info">
           <div class="post-meta">
-            <a>
+            <span>
               <Icon name="tabler:calendar-month" />
               &nbsp;
               {post.data.pubDate.toLocaleDateString().replace(/\//g, "-")}
-            </a>
-            <a>
+            </span>
+            <span>
               <Icon name="tabler:pencil" />
               &nbsp;
               {_p("post.count", Number(wordCount(post.body)))}
-            </a>
-            <a>
+            </span>
+            <span>
               <Icon name="tabler:hourglass-high" />
               &nbsp;
               {_p("post.time", readingTime(post.body))}
-            </a>
+            </span>
           </div>
           <h2 class="post-title">{post.data.title}</h2>
           <article class="post-article">
@@ -231,7 +244,7 @@ const { page } = Astro.props as any;
     justify-content: flex-end;
     margin: 5px 0;
 
-    a {
+    span {
       font-size: 16px;
       color: #777777;
       margin: 0 8px;

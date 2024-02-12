@@ -3,10 +3,10 @@ import HeaderLink from "./HeaderLink.astro";
 
 import { __ } from "../utils/i18n";
 import { SITE } from "../utils/config";
-import ThemeToggle from "./ThemeToggle.tsx";
-
 import { getCollection } from "astro:content";
+import RssBtn from "./RssBtn";
 import SearchBtn from "./SearchBtn";
+import ThemeBtn from "./ThemeBtn.tsx";
 import SearchBox from "./SearchBox";
 
 const { title = SITE.title } = Astro.props;
@@ -17,11 +17,14 @@ const posts = await getCollection("blog");
   <nav id="main-nav">
     <HeaderLink href="/">{__("home")}</HeaderLink>
     <HeaderLink href="/about">{__("about")}</HeaderLink>
+    <span style="position: absolute; right: 100px;">
+      <RssBtn client:load /></span
+    >
     <span style="position: absolute; right: 60px;"
       ><SearchBtn client:load /></span
     >
     <span style="position: absolute; right: 20px;"
-      ><ThemeToggle client:load /></span
+      ><ThemeBtn client:load /></span
     >
   </nav>
 </div>
@@ -51,12 +54,14 @@ const posts = await getCollection("blog");
     &.header-nav-hidden {
       top: -80px;
     }
+    @media screen and (max-width: 479px) {
+      justify-content: flex-start;
+    }
   }
 
   #main-nav {
     display: flex;
     align-items: center;
-    margin-left: -15px;
   }
 
   #header {

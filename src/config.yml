@@ -5,7 +5,6 @@ site:
   keywords:
   author: D-Sketon
   language: zh-CN
-  timezone: Asia/Shanghai
 
 footer:
   since: 2020 # 2020 - current year
