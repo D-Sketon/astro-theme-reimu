@@ -1,5 +1,15 @@
 ---
 import { FOOTER } from "../utils/config";
+import packageData from "../../package.json";
+
+const copyright = String.raw`
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`
 ---
 
 <!-- busuanzi -->
@@ -107,4 +117,9 @@ import { FOOTER } from "../utils/config";
   initColorMode();
   // Runs on view transitions navigation
   document.addEventListener("astro:after-swap", initColorMode);
+</script>
+<!-- Copyright -->
+<script is:inline define:vars={{ copyright, version: packageData.version }}>
+  console.log(String.raw`%c ${copyright}`,'color: #ff5252;')
+  console.log('%c Theme.Reimu v' + `${version}` + ' %c https://github.com/D-Sketon/astro-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
 </script>
