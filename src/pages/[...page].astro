@@ -259,6 +259,12 @@ const { page } = Astro.props;
       object-fit: cover;
       width: 100%;
       height: 100%;
+      opacity: 0;
+    }
+
+    img.lazyloaded {
+      opacity: 1;
+      animation: blur 0.8s ease forwards;
     }
   }
 

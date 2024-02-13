@@ -86,6 +86,13 @@ export interface GitalkConfig {
   admin: string[];
 }
 
+export interface FriendConfig {
+  name: string;
+  avatar: string;
+  url: string;
+  desc: string;
+}
+
 const config = yaml.load(fs.readFileSync("src/config.yml", "utf8")) as {
   site: SiteConfig;
   footer: FooterConfig;
@@ -94,6 +101,7 @@ const config = yaml.load(fs.readFileSync("src/config.yml", "utf8")) as {
   valine: ValineConfig;
   waline: WalineConfig;
   gitalk: GitalkConfig;
+  friend: FriendConfig[];
 };
 
 export const SITE = config.site;
@@ -103,3 +111,4 @@ export const SOCIAL = config.social;
 export const VALINE = config.valine;
 export const WALINE = config.waline;
 export const GITALK = config.gitalk;
+export const FRIEND = config.friend;

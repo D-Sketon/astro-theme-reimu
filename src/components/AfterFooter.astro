@@ -33,7 +33,11 @@ import { FOOTER } from "../utils/config";
 <script>
   import lozad from "lozad";
   const lozadInit = () => {
-    const observer = lozad(".lazyload");
+    const observer = lozad(".lazyload",  {
+    loaded: (el) => {
+      el.classList.add('lazyloaded');
+    }
+});
     observer.observe();
   };
   lozadInit();

@@ -7,7 +7,7 @@ import "katex/dist/katex.min.css";
 
 import type { CollectionEntry } from "astro:content";
 import { ViewTransitions } from "astro:transitions";
-import { SITE } from "../utils/config";
+import { SITE, VALINE, WALINE } from "../utils/config";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import AfterFooter from "../components/AfterFooter.astro";
@@ -19,6 +19,7 @@ import ReadingCount from "../components/post/ReadingCount.astro";
 import CommonMeta from "../components/partial/CommonMeta.astro";
 import VendorFont from "../components/partial/VendorFont.astro";
 import VendorScript from "../components/partial/VendorScript.astro";
+import HeaderTitle from "../components/HeaderTitle.astro";
 
 type Props = {
   post: CollectionEntry<"blog">["data"];
@@ -38,7 +39,7 @@ const {
   pubDate,
   cover,
   comment = true,
-  tags = []
+  tags = [],
 } = post;
 ---
 
@@ -74,34 +75,6 @@ const {
       main {
         max-width: 1000px;
         margin: 0 auto;
-      }
-      #logo h1 {
-        text-decoration: none;
-        color: #fff;
-        text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-        font-size: 40px;
-        font-weight: 700;
-        line-height: 40px;
-        letter-spacing: 2px;
-        display: inline-block;
-        width: 80%;
-        transform: translateY(-20%);
-        text-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.5);
-
-        @media screen and (max-width: 959px) {
-          width: 90%;
-          font-size: 35px;
-        }
-
-        @media screen and (min-width: 480px) and (max-width: 767px) {
-          width: 95%;
-          font-size: 30px;
-        }
-
-        @media screen and (max-width: 479px) {
-          width: 100%;
-          font-size: 30px;
-        }
       }
 
       .hr-line {
@@ -190,7 +163,7 @@ const {
           margin: auto;
           transition: all 0.3s ease;
         }
-
+        
         iframe {
           border: none;
         }
@@ -249,11 +222,7 @@ const {
   </head>
   <body>
     <Header title={title} cover={cover}>
-      <div>
-        <a href="/" id="logo">
-          <h1>{title}</h1>
-        </a>
-      </div>
+      <HeaderTitle title={title} url="/" />
     </Header>
     <main>
       <article
@@ -270,10 +239,16 @@ const {
           <div class="article-entry" itemprop="articleBody">
             <slot />
           </div>
-          <footer class="article-footer">
-            <Tag tags={tags}/>
-            <ReadingCount url={url} title={title} />
-          </footer>
+          {
+            (tags.length ||
+              (VALINE.enable && VALINE.visitor) ||
+              (WALINE.enable && WALINE.pageview)) && (
+              <footer class="article-footer">
+                <Tag tags={tags} />
+                <ReadingCount url={url} title={title} />
+              </footer>
+            )
+          }
         </div>
         {nav && <Nav {...nav} />}
       </article>

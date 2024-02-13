@@ -1,0 +1,120 @@
+---
+import { FRIEND } from "../utils/config";
+---
+
+<div class="friend-wrap" data-aos="fade-up">
+  {
+    FRIEND.map(({ name, desc, url, avatar }) => {
+      return (
+        <div class="friend-item-wrap">
+          <a href={url} target="_blank" />
+          <div class="friend-icon-wrap">
+            <div class="friend-icon">
+              <img
+                data-src={avatar}
+                data-sizes="auto"
+                alt={name}
+                class="lazyload"
+              />
+            </div>
+          </div>
+          <div class="friend-info-wrap">
+            <div class="friend-name">{name}</div>
+            <div class="friend-desc">{desc}</div>
+          </div>
+        </div>
+      );
+    })
+  }
+</div>
+
+<style>
+  .friend-wrap {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+
+  .friend-item-wrap {
+    width: 48%;
+    height: 100px;
+    background: var(--color-wrap);
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    position: relative;
+    display: flex;
+    margin: 1%;
+    transition: all 0.3s ease;
+
+    @media screen and (max-width: 767px) {
+      width: 98%;
+    }
+
+    &:hover {
+      transform: scale(1.015);
+      box-shadow: 0 0 10px 3px rgba(255, 0, 0, 0.1);
+    }
+
+    a {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .friend-icon-wrap {
+    width: 100px;
+    height: 100%;
+    pointer-events: none;
+
+    .friend-icon {
+      height: 0;
+      width: 100%;
+      padding-bottom: 100%;
+      position: relative;
+
+      img {
+        display: block;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        position: absolute;
+        left: 15%;
+        top: 15%;
+        object-fit: cover;
+        border-radius: 50%;
+        width: 70%;
+        height: 70%;
+      }
+
+      img.lazyloaded {
+        opacity: 1;
+        animation: blur 0.8s ease forwards;
+      }
+    }
+  }
+
+  .friend-info-wrap {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 8px;
+
+    div {
+      padding: 10px 0;
+    }
+
+    .friend-name {
+      color: var(--red-2);
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .friend-desc {
+      color: var(--color-grey);
+      font-size: 14px;
+    }
+  }
+</style>
