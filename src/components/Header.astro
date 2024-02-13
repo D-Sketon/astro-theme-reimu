@@ -13,7 +13,7 @@ type Props = {
   cover?: string;
 };
 
-const { title = SITE.title, cover = "/images/banner.jpg" } = Astro.props;
+const { title = SITE.title, cover = "/images/banner.webp" } = Astro.props;
 const posts = await getCollection("blog");
 ---
 
