@@ -7,16 +7,16 @@
   ❤ Hakurei Reimu ❤
   </p>
 
-  [演示网站](https://d-sketon.github.io/astro-theme-reimu)
+  [Demo](https://d-sketon.github.io/astro-theme-reimu)
 
-  简体中文 | [English](https://github.com/D-Sketon/astro-theme-reimu/blob/main/README.en.md)
+  [简体中文](https://github.com/D-Sketon/astro-theme-reimu/blob/main/README.md) | English
 </div>
 
-基于 [hexo-theme-reimu](https://github.com/D-Sketon/hexo-theme-reimu) 迁移的 [Astro](https://astro.build) 博客主题
+Based on [hexo-theme-reimu](https://github.com/D-Sketon/hexo-theme-reimu) migrated [Astro](https://astro.build) blog theme
 
-**欢迎提交 ISSUE 和 PR！**
+**ISSUE and PR Welcome!**
 
-## 项目结构
+## Project structure
 ```txt
 /
 ├── public/
@@ -44,22 +44,22 @@
 └── package.json
 ```
 
-任何静态资产（如图像）都可以放置在 `public/` 目录中。
-所有博客文章都存储在目录 `src/content/blog` 中，关于页面存储在目录 `src/pages` 中。
+Any static assets (such as images) can be placed in the `public/` directory.
+All blog posts are stored in the directory `src/content/blog` and `about` page are stored in the directory `src/pages`.
 
-## 特性
-- ✅SEO 友好
-- ✅夜间模式
-- ✅模糊搜索
-- ✅标签归档
-- ✅Sitemap && RSS
-- ✅评论系统 (Valine / Waline / Gitalk)
-- ✅支持 LaTeX
-- ✅支持 Mermaid
-- ✅不蒜子 / 阅读统计 (Valine / Waline)
-- ✅友链卡片
-- ✅国际化
+## Feature
+- ✅ SEO-friendly
+- ✅ Night Mode
+- ✅ Fuzzy search
+- ✅ Tag Archives
+- ✅ Sitemap && RSS
+- ✅ Commenting System (Valine / Waline / Gitalk)
+- ✅ LaTeX support
+- ✅ Mermaid support
+- ✅ busuanzi / Reading Statistics (Valine / Waline)
+- ✅ Friendship Cards
+- ✅ Internationalization
 
-## 许可
+## License
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2FD-Sketon%2Fastro-theme-reimu.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2FD-Sketon%2Fastro-theme-reimu?ref=badge_large)
