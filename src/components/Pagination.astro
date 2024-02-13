@@ -1,6 +1,15 @@
 ---
 import { __ } from "../utils/i18n";
-const { prevUrl, nextUrl, currentPage, lastPage } = Astro.props;
+
+type Props = {
+  prevUrl: string | null;
+  nextUrl: string | null;
+  currentPage: number;
+  lastPage: number;
+  url?: string;
+}
+
+const { prevUrl, nextUrl, currentPage, lastPage, url = "" } = Astro.props;
 const lowerBound = currentPage - 2 > 0 ? currentPage - 2 : 1;
 const upperBound = currentPage + 2 < lastPage ? currentPage + 2 : lastPage;
 ---
@@ -15,7 +24,7 @@ const upperBound = currentPage + 2 < lastPage ? currentPage + 2 : lastPage;
   }
   {
     lowerBound > 1 && (
-      <a href="/" class="page-number">
+      <a href={`${url}/`} class="page-number">
         1
       </a>
     )
@@ -27,7 +36,7 @@ const upperBound = currentPage + 2 < lastPage ? currentPage + 2 : lastPage;
       (_, index) => index + lowerBound
     ).map((page) => (
       <a
-        href={page > 1 ? `/${page}` : "/"}
+        href={page > 1 ? `${url}/${page}` : `${url}/`}
         class={`page-number ${page === currentPage ? "current" : ""}`}
       >
         {page}
@@ -37,7 +46,7 @@ const upperBound = currentPage + 2 < lastPage ? currentPage + 2 : lastPage;
   {upperBound < lastPage - 1 && <span class="space">…</span>}
   {
     upperBound < lastPage && (
-      <a href={`/${lastPage}`} class="page-number">
+      <a href={`${url}/${lastPage}`} class="page-number">
         {lastPage}
       </a>
     )

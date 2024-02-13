@@ -1,0 +1,52 @@
+---
+import { Icon } from "astro-icon/components";
+
+type Props = {
+  tags: string[];
+};
+
+const { tags } = Astro.props;
+---
+
+<div class="tag-wrap">
+  {
+    tags.map((tag) => {
+      return (
+        <div class="archives-tag-list-item">
+          <Icon name="tabler:tag"/>
+          <a class="archives-tag-list-link" href={`/tags/${tag}`}>
+            {tag}
+          </a>
+        </div>
+      );
+    })
+  }
+</div>
+
+<style>
+  .tag-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 50px;
+
+    a {
+      text-decoration: none;
+    }
+
+    .archives-tag-list-item {
+      color: var(--red-1);
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      background: var(--red-5);
+      border-radius: 20px;
+      padding: 8px 15px;
+      margin: 5px;
+    }
+    .archives-tag-list-link {
+      color: var(--red-1);
+      font-size: 12px;
+    }
+  }
+</style>

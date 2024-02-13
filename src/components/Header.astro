@@ -16,6 +16,7 @@ const posts = await getCollection("blog");
 <div id="header-nav">
   <nav id="main-nav">
     <HeaderLink href="/">{__("home")}</HeaderLink>
+    <HeaderLink href="/archives">{__("archives")}</HeaderLink>
     <HeaderLink href="/about">{__("about")}</HeaderLink>
     <span style="position: absolute; right: 100px;">
       <RssBtn client:load /></span

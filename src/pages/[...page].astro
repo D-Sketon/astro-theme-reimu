@@ -26,7 +26,7 @@ type Props = {
 export async function getStaticPaths({ paginate }: { paginate: Function }) {
   const posts = await getCollection("blog");
   return paginate(posts, {
-    pageSize: 20,
+    pageSize: 10,
   });
 }
 const { page } = Astro.props;

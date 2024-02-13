@@ -1,8 +1,8 @@
 ---
 title: hexo-theme-reimu效果展示
 pubDate: 2024-01-14 21:15:35
-slug: hexo-theme-reimu-content
-keywords: [hexo, 博客]
+keywords: [Hexo, 博客]
+tags: [Hexo, 博客, AAAAA, BBBB, CCCCC, DDDD, EEEE, FFFF, GGG, HHHH, IIII]
 description: hexo-theme-reimu效果展示
 excerpt: hexo-theme-reimu效果展示
 ---

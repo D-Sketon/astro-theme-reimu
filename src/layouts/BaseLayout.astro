@@ -11,6 +11,8 @@ import AfterFooter from "../components/AfterFooter.astro";
 import { ViewTransitions } from "astro:transitions";
 
 import { SITE } from "../utils/config";
+
+const { title = SITE.title, description = SITE.description, keywords = SITE.keywords } = Astro.props;
 ---
 
 <!doctype html>
@@ -39,7 +41,7 @@ import { SITE } from "../utils/config";
         }
       })();
     </script>
-    <CommonMeta title={SITE.title} description={SITE.description} keywords={SITE.keywords} />
+    <CommonMeta title={title} description={description} keywords={keywords} />
     <VendorFont />
     <style>
       main {
