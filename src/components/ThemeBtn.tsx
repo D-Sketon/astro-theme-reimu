@@ -1,6 +1,6 @@
 import useTheme, { type Theme } from "../hooks/useTheme";
 import { useState, useEffect } from "react";
-import { IconSunFilled, IconMoonFilled, IconSettings } from "@tabler/icons-react";
+import { IconSunFilled, IconMoonFilled, IconBlur } from "@tabler/icons-react";
 
 export default function ThemeToggle() {
   const { colorMode, theme, setTheme } = useTheme();
@@ -33,7 +33,7 @@ export default function ThemeToggle() {
         <IconSunFilled size={20} onClick={() => handleChange("dark")} />
       )}
       {theme === "auto" && (
-        <IconSettings size={20} onClick={() => handleChange("light")} />
+        <IconBlur size={20} onClick={() => handleChange("light")} />
       )}
     </span>
   );

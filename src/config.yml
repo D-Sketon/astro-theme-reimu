@@ -4,7 +4,7 @@ site:
   description: D-Sketon's blog
   keywords: D-Sketon, blog, astro, theme
   author: D-Sketon
-  language: en
+  language: zh-CN
 
 footer:
   since: 2020 # 2020 - current year
@@ -91,10 +91,6 @@ gitalk:
 
 friend:
   - name: D-Sketon
-    url: https://d-sketon.top/
-    desc: Main Site with hexo-theme-shokaX
-    avatar: https://d-sketon.top/assets/avatar.jpg
-  - name: D-Sketon
     url: https://d-sketon.github.io/
     desc: Main Site with hexo-theme-reimu
-    avatar: https://d-sketon.top/assets/avatar.jpg
+    avatar: https://d-sketon.github.io/avatar/avatar.webp
