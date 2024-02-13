@@ -35,14 +35,13 @@ export const _p = (key: string, params: string | number): string => {
   for (let k of keys) {
     result = result[k];
   }
-  if (typeof params === "number") {
+  if (typeof params === "number" || !isNaN(parseInt(params))) {
     if (params === 1) {
       return result?.one?.replace("%d", params) || key;
     } else {
       return result?.other?.replace("%d", params) || key;
     }
-  } else if (typeof params === "string") {
+  } else {
     return result?.replace("%s", params) || key;
   }
-  return key;
 };

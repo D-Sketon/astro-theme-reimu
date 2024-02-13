@@ -4,15 +4,17 @@ import { FOOTER } from "../utils/config";
 
 <!-- busuanzi -->
 {
-  FOOTER.busuanzi && (
-    <script
-      is:inline
-      data-transition
-      async
-      src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
-    />
-  )
+  FOOTER.busuanzi && 
+  <script>
+  document.addEventListener('astro:page-load', () => {
+    let script = document.createElement("script");
+    script.async = true;
+    script.src = "https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
+    document.head.appendChild(script);
+  })
+</script>
 }
+
 <!-- aos -->
 <script>
   import AOS from "aos";
@@ -39,39 +41,38 @@ import { FOOTER } from "../utils/config";
 </script>
 <!-- Transitions -->
 <script is:inline>
-  document.addEventListener("astro:after-swip", () => {
-    document
-      .querySelectorAll("script[data-transition]")
-      .forEach(function (element) {
-        const { text, parentNode, id, className, type, src, dataset } = element;
-        const code = text || element.textContent || element.innerHTML || "";
-        parentNode.removeChild(element);
+  document.addEventListener("astro:after-swap", () => {
+    document.querySelectorAll("script[data-transition]").forEach((element) => {
+      console.log(element);
+      const { text, parentNode, id, className, type, src, dataset } = element;
+      const code = text || element.textContent || element.innerHTML || "";
+      parentNode.removeChild(element);
 
-        const script = document.createElement("script");
+      const script = document.createElement("script");
 
-        if (id) {
-          script.id = id;
-        }
-        if (className) {
-          script.className = className;
-        }
-        if (type) {
-          script.type = type;
-        }
-        if (src) {
-          // Force synchronous loading of peripheral JS.
-          script.src = src;
-          script.async = false;
-        }
-        if (dataset.pjax !== undefined) {
-          script.dataset.pjax = "";
-        }
-        if (code !== "") {
-          script.appendChild(document.createTextNode(code));
-        }
+      if (id) {
+        script.id = id;
+      }
+      if (className) {
+        script.className = className;
+      }
+      if (type) {
+        script.type = type;
+      }
+      if (src) {
+        // Force synchronous loading of peripheral JS.
+        script.src = src;
+        script.async = false;
+      }
+      if (dataset.pjax !== undefined) {
+        script.dataset.pjax = "";
+      }
+      if (code !== "") {
+        script.appendChild(document.createTextNode(code));
+      }
 
-        parentNode.appendChild(script);
-      });
+      parentNode.appendChild(script);
+    });
   });
 </script>
 <!-- ThemeToogle -->

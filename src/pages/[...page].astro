@@ -7,7 +7,6 @@ import { SITE } from "../utils/config";
 import randomCover from "../utils/randomCover";
 import { _p } from "../utils/i18n";
 import { wordCount, readingTime } from "../utils/wordCount";
-import stripHTML from "../utils/stripHTML";
 import Footer from "../components/Footer.astro";
 import Pagination from "../components/Pagination.astro";
 import HeaderTitle from "../components/HeaderTitle.astro";
@@ -81,7 +80,7 @@ const { page } = Astro.props;
             <span>
               <Icon name="tabler:pencil" />
               &nbsp;
-              {_p("post.count", Number(wordCount(post.body)))}
+              {_p("post.count", wordCount(post.body))}
             </span>
             <span>
               <Icon name="tabler:hourglass-high" />
@@ -94,7 +93,7 @@ const { page } = Astro.props;
             {post.data.excerpt ? (
               <p>{post.data.excerpt}</p>
             ) : (
-              <p>{stripHTML(post.body).slice(0, 300)}</p>
+              <p>{post.body.slice(0, 300)}</p>
             )}
           </article>
         </div>

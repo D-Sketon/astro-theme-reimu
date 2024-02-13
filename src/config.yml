@@ -1,10 +1,10 @@
 site:
-  title: 拔剑Sketon
-  subtitle: 东方人的日常
+  title: My Blog
+  subtitle: My Blog Subtitle
   description: D-Sketon's blog
-  keywords:
+  keywords: D-Sketon, blog, astro, theme
   author: D-Sketon
-  language: zh-CN
+  language: en
 
 footer:
   since: 2020 # 2020 - current year

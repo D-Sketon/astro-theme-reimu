@@ -94,6 +94,9 @@ devDependencies:
   js-yaml:
     specifier: ^4.1.0
     version: 4.1.0
+  reading-time:
+    specifier: ^1.5.0
+    version: 1.5.0
 
 packages:
 
@@ -4661,6 +4664,10 @@ packages:
     dependencies:
       picomatch: 2.3.1
     dev: false
+
+  /reading-time@1.5.0:
+    resolution: {integrity: sha512-onYyVhBNr4CmAxFsKS7bz+uTLRakypIe4R+5A824vBSkQy/hB3fZepoVEf8OVAxzLvK+H/jm9TzpI3ETSm64Kg==}
+    dev: true
 
   /rehype-katex@7.0.0:
     resolution: {integrity: sha512-h8FPkGE00r2XKU+/acgqwWUlyzve1IiOKwsEkg4pDL3k48PiE0Pt+/uLtVHDVkN1yA4iurZN6UES8ivHVEQV6Q==}
