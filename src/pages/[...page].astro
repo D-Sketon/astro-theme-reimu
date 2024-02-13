@@ -9,6 +9,8 @@ import stripHTML from "../utils/stripHTML";
 import { Icon } from "astro-icon/components";
 import Footer from "../components/Footer.astro";
 import Pagination from "../components/Pagination.astro";
+import HeaderTitle from "../components/HeaderTitle.astro";
+import HeaderSubTitle from "../components/HeaderSubTitle.astro";
 import type { CollectionEntry } from "astro:content";
 
 type Props = {
@@ -34,18 +36,10 @@ const { page } = Astro.props;
 
 <BaseLayout>
   <!-- Header -->
-  <div slot="header">
-    <a href="/" id="logo">
-      <h1>{SITE.title}</h1>
-    </a>
-  </div>
+  <HeaderTitle title={SITE.title} url="/" slot="header" />
   {
     SITE.subtitle && (
-      <h2 id="subtitle-wrap" slot="header">
-        <a href="/" id="subtitle">
-          {SITE.subtitle}
-        </a>
-      </h2>
+      <HeaderSubTitle subtitle={SITE.subtitle} url="/" slot="header" />
     )
   }
   <!-- Content -->
@@ -55,7 +49,11 @@ const { page } = Astro.props;
         class:list={["post-wrap", { right: index % 2 === 1 }]}
         data-aos="fade-up"
       >
-        <a class="post-link" href={`/blog/${post.slug}`} />
+        <a
+          class="post-link"
+          href={`/blog/${post.slug}`}
+          aria-label={post.slug}
+        />
         <div class:list={["post-cover", { right: index % 2 === 1 }]}>
           {post.data.cover ? (
             <img
@@ -114,63 +112,6 @@ const { page } = Astro.props;
 </BaseLayout>
 
 <style>
-  #logo h1 {
-    text-decoration: none;
-    color: #fff;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    font-size: 40px;
-    font-weight: 700;
-    line-height: 40px;
-    letter-spacing: 2px;
-    display: inline-block;
-    width: 80%;
-    transform: translateY(-20%);
-    text-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.5);
-
-    @media screen and (max-width: 959px) {
-      width: 90%;
-      font-size: 35px;
-    }
-
-    @media screen and (min-width: 480px) and (max-width: 767px) {
-      width: 95%;
-      font-size: 30px;
-    }
-
-    @media screen and (max-width: 479px) {
-      width: 100%;
-      font-size: 30px;
-    }
-  }
-
-  #subtitle-wrap {
-    margin-top: 18px;
-  }
-
-  #subtitle {
-    text-decoration: none;
-    color: #fff;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    font-size: 18px;
-    font-weight: 300;
-    line-height: 18px;
-    letter-spacing: 1px;
-
-    @media screen and (max-width: 959px) {
-      font-size: 15px;
-    }
-
-    @media screen and (min-width: 480px) and (max-width: 767px) {
-      width: 95%;
-      font-size: 14px;
-    }
-
-    @media screen and (max-width: 479px) {
-      width: 100%;
-      font-size: 13px;
-    }
-  }
-
   .post-link {
     position: absolute;
     top: 0;

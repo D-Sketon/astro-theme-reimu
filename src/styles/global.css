@@ -140,6 +140,7 @@ button::-moz-focus-inner {
 body {
   background: var(--color-background);
   -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   font-family: Mulish, -apple-system, "PingFang SC", "Microsoft YaHei",
     sans-serif;
   transition: all 0.3s ease;

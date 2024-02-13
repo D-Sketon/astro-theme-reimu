@@ -1,15 +1,17 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import HeaderTitle from "../components/HeaderTitle.astro";
-import HeaderSubTitle from "../components/HeaderSubTitle.astro";
-import { __ } from "../utils/i18n";
+type Props = {
+  subtitle: string;
+  url: string;
+};
+
+const { subtitle, url } = Astro.props;
 ---
 
-<BaseLayout title={__("not_found.title")}>
-  <!-- Header -->
-  <HeaderTitle title={__("not_found.title")} url="/" slot="header" />
-  <HeaderSubTitle subtitle={__("not_found.subtitle")} url="/" slot="header" />
-</BaseLayout>
+<h2 id="subtitle-wrap" slot="header">
+  <a href={url} id="subtitle">
+    {subtitle}
+  </a>
+</h2>
 
 <style>
   #subtitle-wrap {

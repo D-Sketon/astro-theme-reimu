@@ -10,7 +10,7 @@ export default function RssBtn() {
         alignItems: "center",
       }}
     >
-      <a href="/rss.xml" target="_blank" style={{ color: "var(--red-2)" }}>
+      <a href="/rss.xml" target="_blank" style={{ color: "var(--red-2)" }} aria-label="RSS">
         <IconRss size={20} />
       </a>
     </span>

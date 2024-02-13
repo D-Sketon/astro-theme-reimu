@@ -6,15 +6,13 @@ import Footer from "../../components/Footer.astro";
 import TagList from "../../components/TagList.astro";
 import ArchiveList from "../../components/ArchiveList.astro";
 import Pagination from "../../components/Pagination.astro";
+import HeaderTitle from "../../components/HeaderTitle.astro";
 
 export async function getStaticPaths({ paginate }: { paginate: Function }) {
   const posts = await getCollection("blog");
   posts.sort((a, b) => {
     return b.data.pubDate.getTime() - a.data.pubDate.getTime();
   });
-  console.log(paginate(posts, {
-    pageSize: 5,
-  }))
   return paginate(posts, {
     pageSize: 5,
   });
@@ -57,15 +55,11 @@ posts.forEach((post) => {
 
 <BaseLayout title={__("archive_a")}>
   <!-- Header -->
-  <div slot="header">
-    <a href=`/archives` id="logo">
-      <h1>{__("archive_a")}</h1>
-    </a>
-  </div>
+  <HeaderTitle title={__("archive_a")} url=`/archives` slot="header" />
   <!-- Content -->
   <div class="archives-outer-wrap" data-aos="fade-up">
     <TagList tags={[...tags]} />
-    <ArchiveList page={page} type="archives"/>
+    <ArchiveList page={page} type="archives" />
   </div>
   <Pagination
     prevUrl={page.url.prev}
@@ -79,35 +73,6 @@ posts.forEach((post) => {
 </BaseLayout>
 
 <style>
-  #logo h1 {
-    text-decoration: none;
-    color: #fff;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    font-size: 40px;
-    font-weight: 700;
-    line-height: 40px;
-    letter-spacing: 2px;
-    display: inline-block;
-    width: 80%;
-    transform: translateY(-20%);
-    text-shadow: 0 0.2rem 0.3rem rgba(0, 0, 0, 0.5);
-
-    @media screen and (max-width: 959px) {
-      width: 90%;
-      font-size: 35px;
-    }
-
-    @media screen and (min-width: 480px) and (max-width: 767px) {
-      width: 95%;
-      font-size: 30px;
-    }
-
-    @media screen and (max-width: 479px) {
-      width: 100%;
-      font-size: 30px;
-    }
-  }
-
   .archives-outer-wrap {
     background: var(--color-wrap);
     border-radius: 5px;
