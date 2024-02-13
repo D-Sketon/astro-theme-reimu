@@ -1,0 +1,55 @@
+---
+import { Icon } from "astro-icon/components";
+import { SOCIAL } from "../utils/config";
+
+const socialFilledList = [
+  "github",
+  "google",
+  "twitter",
+  "facebook",
+  "youtube",
+  "dribbble",
+  "discord",
+];
+---
+
+<div class="footer-social">
+  {
+    SOCIAL &&
+      Object.keys(SOCIAL).map((social) => {
+        let name;
+        if (socialFilledList.includes(social)) {
+          name = `tabler:brand-${social}-filled`;
+        } else {
+          name = `tabler:brand-${social}`;
+        }
+        return (
+          <a href={(SOCIAL as any)[social]}>
+            <Icon name={name} />
+          </a>
+        );
+      })
+  }
+</div>
+
+<style>
+  .footer-social {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+
+    svg {
+      color: var(--color-grey);
+      width: 2rem;
+      height: 2rem;
+      opacity: 0.6;
+      transition: opacity 0.3s ease;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+</style>

@@ -45,6 +45,23 @@ const posts = await getCollection("blog");
 </header>
 <SearchBox client:load searchList={posts} />
 
+<script>
+  let oldScrollTop = 0;
+  window.addEventListener("scroll", () => {
+    let scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop;
+    let diffY = scrollTop - oldScrollTop;
+    oldScrollTop = scrollTop;
+    if (diffY < 0) {
+      document
+        .getElementById("header-nav")!
+        .classList.remove("header-nav-hidden");
+    } else {
+      document.getElementById("header-nav")!.classList.add("header-nav-hidden");
+    }
+  });
+</script>
+
 <style>
   #header-nav {
     position: fixed;

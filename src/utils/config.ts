@@ -23,6 +23,33 @@ export interface AnalyticsConfig {
   google_analytics: string | false;
 }
 
+export interface SocialConfig {
+  github?: string;
+  google?: string;
+  twitter?: string;
+  facebook?: string;
+  instagram?: string;
+  linkedin?: string;
+  pinterest?: string;
+  youtube?: string;
+  vimeo?: string;
+  flickr?: string;
+  dribbble?: string;
+  behance?: string;
+  bilibili?: string;
+  weibo?: string;
+  zhihu?: string;
+  douban?: string;
+  reddit?: string;
+  tumblr?: string;
+  medium?: string;
+  deviantart?: string;
+  stackoverflow?: string;
+  telegram?: string;
+  discord?: string;
+  steam?: string;
+}
+
 export interface ValineConfig {
   enable: boolean;
   appId: string;
@@ -63,6 +90,7 @@ const config = yaml.load(fs.readFileSync("src/config.yml", "utf8")) as {
   site: SiteConfig;
   footer: FooterConfig;
   analytics: AnalyticsConfig;
+  social: SocialConfig;
   valine: ValineConfig;
   waline: WalineConfig;
   gitalk: GitalkConfig;
@@ -71,6 +99,7 @@ const config = yaml.load(fs.readFileSync("src/config.yml", "utf8")) as {
 export const SITE = config.site;
 export const FOOTER = config.footer;
 export const ANALYTICS = config.analytics;
+export const SOCIAL = config.social;
 export const VALINE = config.valine;
 export const WALINE = config.waline;
 export const GITALK = config.gitalk;

@@ -17,10 +17,10 @@ analytics:
   google_analytics: false
 
 social:
-  # github: https://github.com/yourname
-  # google: https://plus.google.com/yourname
-  # twitter: https://twitter.com/yourname
-  # facebook: https://www.facebook.com/yourname
+  github: https://github.com/yourname
+  google: https://plus.google.com/yourname
+  twitter: https://twitter.com/yourname
+  facebook: https://www.facebook.com/yourname
   # instagram: https://www.instagram.com/yourname
   # linkedin: https://www.linkedin.com/in/yourname
   # pinterest: https://www.pinterest.com/yourname
@@ -38,7 +38,6 @@ social:
   # medium: https://medium.com/@yourname
   # deviantart: https://yourname.deviantart.com
   # stackoverflow: https://stackoverflow.com/users/yourname
-  # keybase: https://keybase.io/yourname
   # telegram: https://t.me/yourname
   # discord: https://discordapp.com/users/yourname
   # steam: https://steamcommunity.com/id/yourname
