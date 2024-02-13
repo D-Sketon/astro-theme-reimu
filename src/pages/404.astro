@@ -1,8 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { __ } from "../utils/i18n";
 import HeaderTitle from "../components/HeaderTitle.astro";
 import HeaderSubTitle from "../components/HeaderSubTitle.astro";
-import { __ } from "../utils/i18n";
 ---
 
 <BaseLayout title={__("not_found.title")}>
@@ -10,33 +10,3 @@ import { __ } from "../utils/i18n";
   <HeaderTitle title={__("not_found.title")} url="/" slot="header" />
   <HeaderSubTitle subtitle={__("not_found.subtitle")} url="/" slot="header" />
 </BaseLayout>
-
-<style>
-  #subtitle-wrap {
-    margin-top: 18px;
-  }
-
-  #subtitle {
-    text-decoration: none;
-    color: #fff;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-    font-size: 18px;
-    font-weight: 300;
-    line-height: 18px;
-    letter-spacing: 1px;
-
-    @media screen and (max-width: 959px) {
-      font-size: 15px;
-    }
-
-    @media screen and (min-width: 480px) and (max-width: 767px) {
-      width: 95%;
-      font-size: 14px;
-    }
-
-    @media screen and (max-width: 479px) {
-      width: 100%;
-      font-size: 13px;
-    }
-  }
-</style>

@@ -1,8 +1,10 @@
 ---
-import { SITE, FOOTER } from "../utils/config";
-import { __ } from '../utils/i18n';
+
 import { Icon } from "astro-icon/components";
 import { totalCount, totalReadingTime } from "../utils/wordCount";
+import { SITE, FOOTER } from "../utils/config";
+import { __ } from '../utils/i18n';
+
 const totalcount = await totalCount();
 const totalmin2read = await totalReadingTime();
 ---

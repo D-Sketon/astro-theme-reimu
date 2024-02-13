@@ -3,14 +3,19 @@ import "../styles/global.css";
 import "aos/dist/aos.css"; // AOS styles
 import "baguettebox.js/dist/baguetteBox.min.css";
 
+import { ViewTransitions } from "astro:transitions";
+import { SITE } from "../utils/config";
 import CommonMeta from "../components/partial/CommonMeta.astro";
 import VendorFont from "../components/partial/VendorFont.astro";
 import VendorScript from "../components/partial/VendorScript.astro";
 import Header from "../components/Header.astro";
 import AfterFooter from "../components/AfterFooter.astro";
-import { ViewTransitions } from "astro:transitions";
 
-import { SITE } from "../utils/config";
+type Props = {
+  title?: string;
+  description?: string;
+  keywords?: string;
+};
 
 const { title = SITE.title, description = SITE.description, keywords = SITE.keywords } = Astro.props;
 ---
@@ -50,7 +55,6 @@ const { title = SITE.title, description = SITE.description, keywords = SITE.keyw
       }
     </style>
     <VendorScript />
-    
     <ViewTransitions />
   </head>
   <body>

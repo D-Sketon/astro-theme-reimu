@@ -6,10 +6,8 @@ import "baguettebox.js/dist/baguetteBox.min.css";
 import "katex/dist/katex.min.css";
 
 import type { CollectionEntry } from "astro:content";
-import CommonMeta from "../components/partial/CommonMeta.astro";
-import VendorFont from "../components/partial/VendorFont.astro";
-import VendorScript from "../components/partial/VendorScript.astro";
-
+import { ViewTransitions } from "astro:transitions";
+import { SITE } from "../utils/config";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import AfterFooter from "../components/AfterFooter.astro";
@@ -18,9 +16,9 @@ import Tag from "../components/post/Tag.astro";
 import Nav from "../components/post/Nav.astro";
 import Comment from "../components/post/Comment.astro";
 import ReadingCount from "../components/post/ReadingCount.astro";
-
-import { ViewTransitions } from "astro:transitions";
-import { SITE } from "../utils/config";
+import CommonMeta from "../components/partial/CommonMeta.astro";
+import VendorFont from "../components/partial/VendorFont.astro";
+import VendorScript from "../components/partial/VendorScript.astro";
 
 type Props = {
   post: CollectionEntry<"blog">["data"];
