@@ -20,7 +20,7 @@ Based on [hexo-theme-reimu](https://github.com/D-Sketon/hexo-theme-reimu) migrat
 
 <p align="center">
   <a href="https://pagespeed.web.dev/analysis/https-d-sketon-github-io-astro-theme-reimu/l2ptsmftie?form_factor=desktop">
-    <img width="710" alt="astro-theme-reimu Lighthouse Score" src="psi.svg">
+    <img width="710" alt="astro-theme-reimu Lighthouse Score" src="https://fastly.jsdelivr.net/gh/D-Sketon/astro-theme-reimu/psi.svg">
   <a>
 </p>
 
