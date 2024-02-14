@@ -13,10 +13,9 @@ type Props = {
   cover?: string;
 };
 
-
-const { title = SITE.title, cover = `${BASE_URL}/images/banner.webp` } = Astro.props;
+const { title = SITE.title, cover = `${BASE_URL}/images/banner.webp` } =
+  Astro.props;
 const posts = await getCollection("blog");
-
 ---
 
 <div id="header-nav">
@@ -25,9 +24,11 @@ const posts = await getCollection("blog");
     <HeaderLink href=`${BASE_URL}/archives` aria-label="Archives">
       {__("archives")}
     </HeaderLink>
-    <HeaderLink href=`${BASE_URL}/about` aria-label="About">{__("about")}</HeaderLink>
+    <HeaderLink href=`${BASE_URL}/about` aria-label="About">
+      {__("about")}
+    </HeaderLink>
     <span style="position: absolute; right: 100px;">
-      <RssBtn client:load url={BASE_URL}/></span
+      <RssBtn client:load url={BASE_URL} /></span
     >
     <span style="position: absolute; right: 60px;"
       ><SearchBtn client:load /></span
@@ -38,7 +39,26 @@ const posts = await getCollection("blog");
   </nav>
 </div>
 <header id="header">
-  <img fetchpriority="high" src={cover} alt={title} />
+  {
+    cover === `${BASE_URL}/images/banner.webp` ? (
+      <>
+        <picture>
+          <source
+            media="(max-width: 479px)"
+            srcset={`${BASE_URL}/images/banner-600w.webp`}
+          />
+          <source
+            media="(max-width: 799px)"
+            srcset={`${BASE_URL}/images/banner-800w.webp`}
+          />
+          <source media="(min-width: 800px)" srcset={cover} />
+          <img src={cover} alt={title} />
+        </picture>
+      </>
+    ) : (
+      <img src={cover} alt={title} />
+    )
+  }
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <slot />

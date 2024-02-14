@@ -22,6 +22,8 @@ Based on [hexo-theme-reimu](https://github.com/D-Sketon/hexo-theme-reimu) migrat
 ├── public/
 │   ├── images/
 │   │   └── banner.webp
+│   │   └── banner-800w.webp
+│   │   └── banner-600w.webp
 │   │   └── favicon.ico
 │   │   └── taichi.webp
 │   └── robots.txt
