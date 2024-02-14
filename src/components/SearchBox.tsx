@@ -12,7 +12,13 @@ const options = {
   threshold: 0.5,
 };
 
-export default function SearchBox({ searchList, url }: { searchList: any[], url: string }) {
+export default function SearchBox({
+  searchList,
+  url,
+}: {
+  searchList: any[];
+  url: string;
+}) {
   // User's input
   const [query, setQuery] = useState("");
 
@@ -33,7 +39,7 @@ export default function SearchBox({ searchList, url }: { searchList: any[], url:
     const popup = document.querySelector(".popup")! as HTMLDivElement;
     popup.style.display = "none";
     const popoverlayElements = document.querySelectorAll(".popoverlay");
-    popoverlayElements.forEach(function (element) {
+    popoverlayElements.forEach((element) => {
       element.parentNode?.removeChild(element);
     });
     document.body.style.overflow = "";
