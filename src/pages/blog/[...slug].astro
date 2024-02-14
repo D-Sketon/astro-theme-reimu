@@ -1,6 +1,6 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
-import MarkdownLayout from "../../layouts/MarkdownLayout.astro";
+import BlogLayout from "../../layouts/BlogLayout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
@@ -23,9 +23,9 @@ const { post, prev, next } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<MarkdownLayout post={post.data} nav={{prev, next}} url={`/blog/${post.slug}`}>
+<BlogLayout post={post.data} nav={{prev, next}} url={`/blog/${post.slug}`}>
   <Content />
-</MarkdownLayout>
+</BlogLayout>
 
 <script>
   import baguetteBox from "baguettebox.js";

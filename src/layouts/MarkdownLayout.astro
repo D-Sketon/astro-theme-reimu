@@ -5,42 +5,25 @@ import "aos/dist/aos.css"; // AOS styles
 import "baguettebox.js/dist/baguetteBox.min.css";
 import "katex/dist/katex.min.css";
 
-import type { CollectionEntry } from "astro:content";
 import { ViewTransitions } from "astro:transitions";
-import { BASE_URL, SITE, VALINE, WALINE } from "../utils/config";
+import { BASE_URL, SITE } from "../utils/config";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import AfterFooter from "../components/AfterFooter.astro";
 import Date from "../components/post/Date.astro";
-import Tag from "../components/post/Tag.astro";
-import Nav from "../components/post/Nav.astro";
 import Comment from "../components/post/Comment.astro";
-import ReadingCount from "../components/post/ReadingCount.astro";
 import CommonMeta from "../components/partial/CommonMeta.astro";
 import VendorFont from "../components/partial/VendorFont.astro";
 import VendorScript from "../components/partial/VendorScript.astro";
 import HeaderTitle from "../components/HeaderTitle.astro";
 
 type Props = {
-  post: CollectionEntry<"blog">["data"];
-  url: string;
-  nav?: {
-    prev: CollectionEntry<"blog"> | null;
-    next: CollectionEntry<"blog"> | null;
-  };
-};
+  frontmatter: Record<string, any>;
+}
 
-const { nav, post, url } = Astro.props;
+const { frontmatter } = Astro.props;
 
-const {
-  title,
-  description,
-  keywords,
-  pubDate,
-  cover,
-  comment = true,
-  tags = [],
-} = post;
+const { title, description = '', keywords = '', pubDate, cover= `${BASE_URL}/images/banner.webp`, comment = true, tags = [] } = frontmatter;
 ---
 
 <!doctype html>
@@ -207,15 +190,6 @@ const {
           margin: 20px 0;
         }
       }
-      .article-footer {
-        font-size: 14px;
-        border-top: 1px solid var(--color-border);
-        margin: 0 20px 10px;
-        padding-top: 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
     </style>
     <VendorScript />
     <ViewTransitions />
@@ -233,24 +207,15 @@ const {
       >
         <div class="article-inner">
           <div class="article-meta">
-            <Date pubDate={pubDate} />
+            <Date pubDate={typeof pubDate === 'string' ? new globalThis.Date(pubDate as any) : pubDate as Date} />
           </div>
           <div class="hr-line"></div>
           <div class="article-entry" itemprop="articleBody">
             <slot />
           </div>
-          {
-            (tags.length ||
-              (VALINE.enable && VALINE.visitor) ||
-              (WALINE.enable && WALINE.pageview)) && (
-              <footer class="article-footer">
-                <Tag tags={tags} />
-                <ReadingCount url={url} title={title} />
-              </footer>
-            )
-          }
+          <slot name="footer"/>
         </div>
-        {nav && <Nav {...nav} />}
+        <slot name="nav" />
       </article>
       <Comment comment={comment} />
     </main>
