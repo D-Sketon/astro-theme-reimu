@@ -16,6 +16,14 @@ Based on [hexo-theme-reimu](https://github.com/D-Sketon/hexo-theme-reimu) migrat
 
 **ISSUE and PR Welcome!**
 
+## Lighthouse
+
+<p align="center">
+  <a href="https://pagespeed.web.dev/analysis/https-d-sketon-github-io-astro-theme-reimu/l2ptsmftie?form_factor=desktop">
+    <img width="710" alt="astro-theme-reimu Lighthouse Score" src="psi.svg">
+  <a>
+</p>
+
 ## Project structure
 ```txt
 /

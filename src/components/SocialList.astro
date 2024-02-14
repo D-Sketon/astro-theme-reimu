@@ -24,7 +24,7 @@ const socialFilledList = [
           name = `tabler:brand-${social}`;
         }
         return (
-          <a href={(SOCIAL as any)[social]}>
+          <a href={(SOCIAL as any)[social]} aria-label={social}>
             <Icon name={name} />
           </a>
         );
