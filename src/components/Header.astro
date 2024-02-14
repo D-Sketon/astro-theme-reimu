@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import HeaderLink from "./HeaderLink.astro";
 import { __ } from "../utils/i18n";
-import { SITE } from "../utils/config";
+import { SITE, BASE_URL } from "../utils/config";
 import RssBtn from "./RssBtn";
 import SearchBtn from "./SearchBtn";
 import ThemeBtn from "./ThemeBtn";
@@ -13,19 +13,21 @@ type Props = {
   cover?: string;
 };
 
-const { title = SITE.title, cover = "/images/banner.webp" } = Astro.props;
+
+const { title = SITE.title, cover = `${BASE_URL}/images/banner.webp` } = Astro.props;
 const posts = await getCollection("blog");
+
 ---
 
 <div id="header-nav">
   <nav id="main-nav">
-    <HeaderLink href="/" aria-label="Home">{__("home")}</HeaderLink>
-    <HeaderLink href="/archives" aria-label="Archives">
+    <HeaderLink href=`${BASE_URL}/` aria-label="Home">{__("home")}</HeaderLink>
+    <HeaderLink href=`${BASE_URL}/archives` aria-label="Archives">
       {__("archives")}
     </HeaderLink>
-    <HeaderLink href="/about" aria-label="About">{__("about")}</HeaderLink>
+    <HeaderLink href=`${BASE_URL}/about` aria-label="About">{__("about")}</HeaderLink>
     <span style="position: absolute; right: 100px;">
-      <RssBtn client:load /></span
+      <RssBtn client:load url={BASE_URL}/></span
     >
     <span style="position: absolute; right: 60px;"
       ><SearchBtn client:load /></span
@@ -43,7 +45,7 @@ const posts = await getCollection("blog");
     </div>
   </div>
 </header>
-<SearchBox client:load searchList={posts} />
+<SearchBox client:load searchList={posts} url={BASE_URL} />
 
 <script>
   let oldScrollTop = 0;

@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import { BASE_URL } from "../../utils/config";
 
 type Props = {
   tags: string[];
@@ -13,8 +14,12 @@ const { tags } = Astro.props;
     tags.map((tag) => {
       return (
         <li class="article-tag-list-item">
-          <Icon name="tabler:tag"/>
-          <a class="article-tag-list-link" href={`/tags/${tag}`} rel="tag">
+          <Icon name="tabler:tag" />
+          <a
+            class="article-tag-list-link"
+            href={`${BASE_URL}/tags/${tag}`}
+            rel="tag"
+          >
             {tag}
           </a>
         </li>

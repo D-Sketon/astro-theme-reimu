@@ -12,7 +12,7 @@ const options = {
   threshold: 0.5,
 };
 
-export default function SearchBox({ searchList }: { searchList: any[] }) {
+export default function SearchBox({ searchList, url }: { searchList: any[], url: string }) {
   // User's input
   const [query, setQuery] = useState("");
 
@@ -75,7 +75,7 @@ export default function SearchBox({ searchList }: { searchList: any[] }) {
                     <li className="reimu-hit-item">
                       <a
                         className="reimu-hit-item-link"
-                        href={`/blog/${post.slug}`}
+                        href={`${url}/blog/${post.slug}`}
                       >
                         {post.data.title}
                       </a>

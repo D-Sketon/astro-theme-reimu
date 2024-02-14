@@ -3,10 +3,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { __ } from "../utils/i18n";
 import HeaderTitle from "../components/HeaderTitle.astro";
 import HeaderSubTitle from "../components/HeaderSubTitle.astro";
+import { BASE_URL } from "../utils/config";
 ---
 
 <BaseLayout title={__("not_found.title")}>
   <!-- Header -->
-  <HeaderTitle title={__("not_found.title")} url="/" slot="header" />
-  <HeaderSubTitle subtitle={__("not_found.subtitle")} url="/" slot="header" />
+  <HeaderTitle title={__("not_found.title")} url=`${BASE_URL}/` slot="header" />
+  <HeaderSubTitle subtitle={__("not_found.subtitle")} url=`${BASE_URL}/` slot="header" />
 </BaseLayout>

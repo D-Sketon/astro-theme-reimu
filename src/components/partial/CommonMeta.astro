@@ -1,4 +1,5 @@
 ---
+import { BASE_URL } from "../../utils/config";
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 type Props = {
@@ -6,14 +7,23 @@ type Props = {
   description: string;
   keywords?: string | string[];
   image?: string;
-}
+};
 
-const { title, description, keywords = title, image = '/images/banner.webp' } = Astro.props;
+const {
+  title,
+  description,
+  keywords = title,
+  image = `${BASE_URL}/images/banner.webp`,
+} = Astro.props;
 ---
+
 <!-- Global Metadata -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="shortcut icon" href="/images/favicon.ico" />
+<meta charset="utf-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/>
+<link rel="shortcut icon" href=`${BASE_URL}/images/favicon.ico` />
 <meta name="generator" content={Astro.generator} />
 
 <!-- Canonical URL -->
@@ -23,7 +33,10 @@ const { title, description, keywords = title, image = '/images/banner.webp' } = 
 <title>{title}</title>
 <meta name="title" content={title} />
 <meta name="description" content={description} />
-<meta name="keywords" content={Array.isArray(keywords) ? keywords.join(',') : keywords}/> 
+<meta
+  name="keywords"
+  content={Array.isArray(keywords) ? keywords.join(",") : keywords}
+/>
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />

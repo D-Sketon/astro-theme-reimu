@@ -7,7 +7,7 @@ import "katex/dist/katex.min.css";
 
 import type { CollectionEntry } from "astro:content";
 import { ViewTransitions } from "astro:transitions";
-import { SITE, VALINE, WALINE } from "../utils/config";
+import { BASE_URL, SITE, VALINE, WALINE } from "../utils/config";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import AfterFooter from "../components/AfterFooter.astro";
@@ -222,7 +222,7 @@ const {
   </head>
   <body>
     <Header title={title} cover={cover}>
-      <HeaderTitle title={title} url="/" />
+      <HeaderTitle title={title} url=`${BASE_URL}/` />
     </Header>
     <main>
       <article

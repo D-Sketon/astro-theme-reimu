@@ -1,5 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
+import { BASE_URL } from '../utils/config';
 
 type Props = {
   tags: string[];
@@ -14,7 +15,7 @@ const { tags } = Astro.props;
       return (
         <div class="archives-tag-list-item">
           <Icon name="tabler:tag"/>
-          <a class="archives-tag-list-link" href={`/tags/${tag}`}>
+          <a class="archives-tag-list-link" href={`${BASE_URL}/tags/${tag}`}>
             {tag}
           </a>
         </div>

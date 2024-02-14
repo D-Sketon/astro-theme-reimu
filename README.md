@@ -9,7 +9,7 @@
 
   [演示网站](https://d-sketon.github.io/astro-theme-reimu)
 
-  简体中文 | [English](https://github.com/D-Sketon/astro-theme-reimu/blob/main/README.en.md)
+  简体中文 │ [English](https://github.com/D-Sketon/astro-theme-reimu/blob/main/README.en.md)
 </div>
 
 基于 [hexo-theme-reimu](https://github.com/D-Sketon/hexo-theme-reimu) 迁移的 [Astro](https://astro.build) 博客主题
@@ -21,25 +21,25 @@
 /
 ├── public/
 │   ├── images/
-|   |   └── banner.webp
+│   │   └── banner.webp
 │   │   └── favicon.ico
 │   │   └── taichi.webp
 │   └── robots.txt
 ├── src/
 │   ├── components/
 │   ├── content/
-│   │   |  blog/
-│   │   |    └── some-blog-posts.md
+│   │   │  blog/
+│   │   │    └── some-blog-posts.md
 │   │   └── config.ts
-|   ├── hooks/
-|   ├── languages/
+│   ├── hooks/
+│   ├── languages/
 │   ├── layouts/
 │   └── pages/
-|   |   └── about.mdx
+│   │   └── about.mdx
 │   └── styles/
 │   └── utils/
 │   └── config.yml
-|   └── covers.yml
+│   └── covers.yml
 │   └── env.d.ts
 └── package.json
 ```

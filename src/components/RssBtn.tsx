@@ -1,6 +1,7 @@
 import { IconRss } from "@tabler/icons-react";
 
-export default function RssBtn() {
+
+export default function RssBtn({ url }: { url: string}) {
   return (
     <span
       style={{
@@ -10,7 +11,7 @@ export default function RssBtn() {
         alignItems: "center",
       }}
     >
-      <a href="/rss.xml" target="_blank" style={{ color: "var(--red-2)" }} aria-label="RSS">
+      <a href={`${url}/rss.xml`} target="_blank" style={{ color: "var(--red-2)" }} aria-label="RSS">
         <IconRss size={20} />
       </a>
     </span>

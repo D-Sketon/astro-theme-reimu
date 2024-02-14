@@ -112,3 +112,6 @@ export const VALINE = config.valine;
 export const WALINE = config.waline;
 export const GITALK = config.gitalk;
 export const FRIEND = config.friend;
+export const BASE_URL = import.meta.env.BASE_URL.endsWith("/")
+  ? ""
+  : import.meta.env.BASE_URL;

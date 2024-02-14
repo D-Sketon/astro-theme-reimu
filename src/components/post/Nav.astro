@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import randomCover from "../../utils/randomCover";
 import { __ } from "../../utils/i18n";
+import { BASE_URL } from "../../utils/config";
 
 type Props = {
   prev: CollectionEntry<"blog"> | null;
@@ -30,7 +31,7 @@ const { prev, next } = Astro.props;
               alt={prev.data.title}
             />
           )}
-          <a href={`/blog/${prev.slug}`} aria-label="Previos Post" />
+          <a href={`${BASE_URL}/blog/${prev.slug}`} aria-label="Previos Post" />
           <div class="article-nav-caption">{__("newer")}</div>
           <h3 class="article-nav-title">{prev.data.title || "(no title)"}</h3>
         </div>
@@ -52,7 +53,7 @@ const { prev, next } = Astro.props;
               alt={next.data.title}
             />
           )}
-          <a href={`/blog/${next.slug}`} aria-label="Next Post"/>
+          <a href={`${BASE_URL}/blog/${next.slug}`} aria-label="Next Post" />
           <div class="article-nav-caption">{__("older")}</div>
           <h3 class="article-nav-title">{next.data.title || "(no title)"}</h3>
         </div>
