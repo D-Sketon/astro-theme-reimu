@@ -15,6 +15,7 @@ footer:
 analytics:
   baidu_analytics: false
   google_analytics: false
+  clarity: false
 
 social:
   github: https://github.com/yourname

@@ -2,6 +2,7 @@
 import { ANALYTICS } from "../../utils/config";
 import BaiduAnalytics from "./BaiduAnalytics.astro";
 import GoogleAnalytics from "./GoogleAnalytics.astro";
+import Clarity from "./Clarity.astro";
 ---
 
 {ANALYTICS.baidu_analytics && <BaiduAnalytics id={ANALYTICS.baidu_analytics} />}
@@ -10,3 +11,4 @@ import GoogleAnalytics from "./GoogleAnalytics.astro";
     <GoogleAnalytics id={ANALYTICS.google_analytics} />
   )
 }
+{ANALYTICS.clarity && <Clarity id={ANALYTICS.clarity} />}

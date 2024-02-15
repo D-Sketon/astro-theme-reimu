@@ -21,6 +21,7 @@ export interface FooterConfig {
 export interface AnalyticsConfig {
   baidu_analytics: string | false;
   google_analytics: string | false;
+  clarity: string | false;
 }
 
 export interface SocialConfig {
