@@ -69,6 +69,7 @@ All blog posts are stored in the directory `src/content/blog` and `about` page a
 - ✅ busuanzi / Reading Statistics (Valine / Waline)
 - ✅ Friendship Cards
 - ✅ Internationalization
+- ✅ Baidu Analytics/Google Analytics/Microsoft Clarity
 
 ## License
 
