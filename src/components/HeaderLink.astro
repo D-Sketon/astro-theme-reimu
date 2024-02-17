@@ -12,7 +12,7 @@ const { href, ...props } = Astro.props;
   <a class="main-nav-link" href={href} {...props}><slot /></a>
 </span>
 
-<style define:vars={{ imageUrl: 'url('+`${BASE_URL}/images/taichi.webp`+')' }}>
+<style lang="stylus" define:vars={{ imageUrl: 'url('+`${BASE_URL}/images/taichi.webp`+')' }}>
   .main-nav-link-wrap {
     padding: 0 15px;
     display: flex;

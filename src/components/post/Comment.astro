@@ -14,7 +14,7 @@ const { comment } = Astro.props;
 {comment && VALINE.enable && <ValineComment />}
 {comment && WALINE.enable && <WalineComment />}
 {comment && GITALK.enable && <GitalkComment />}
-<style is:global>
+<style lang="stylus" is:global>
   #comments {
     width: calc(100% - 20px);
     margin: 10px auto;

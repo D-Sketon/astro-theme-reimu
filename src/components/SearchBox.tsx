@@ -1,4 +1,4 @@
-import "../styles/search.css";
+import "../styles/search.stylus";
 import Fuse from "fuse.js";
 import { useState } from "react";
 import { IconSearch, IconCircleXFilled } from "@tabler/icons-react";
@@ -77,8 +77,8 @@ export default function SearchBox({
             <div id="reimu-hits">
               <ul>
                 {posts &&
-                  posts.map((post) => (
-                    <li className="reimu-hit-item">
+                  posts.map((post, index) => (
+                    <li className="reimu-hit-item" key={index}>
                       <a
                         className="reimu-hit-item-link"
                         href={`${url}/blog/${post.slug}`}
