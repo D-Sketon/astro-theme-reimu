@@ -9,13 +9,13 @@ importers:
   .:
     dependencies:
       '@astrojs/mdx':
-        specifier: ^2.1.1
+        specifier: ^2.3.1
         version: 2.3.1(astro@4.13.1(@types/node@22.1.0)(stylus@0.62.0)(typescript@5.5.4))
       '@astrojs/react':
-        specifier: ^3.0.10
+        specifier: ^3.6.1
         version: 3.6.1(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vite@5.3.5(@types/node@22.1.0)(stylus@0.62.0))
       '@astrojs/rss':
-        specifier: ^4.0.5
+        specifier: ^4.0.7
         version: 4.0.7
       '@astrojs/sitemap':
         specifier: ^3.1.6
@@ -27,16 +27,16 @@ importers:
         specifier: ^2.47.0
         version: 2.47.0(react@18.3.1)
       '@types/react':
-        specifier: ^18.2.55
+        specifier: ^18.3.3
         version: 18.3.3
       '@types/react-dom':
-        specifier: ^18.2.19
+        specifier: ^18.3.0
         version: 18.3.0
       aos:
         specifier: ^2.3.4
         version: 2.3.4
       astro:
-        specifier: ^4.3.5
+        specifier: ^4.13.1
         version: 4.13.1(@types/node@22.1.0)(stylus@0.62.0)(typescript@5.5.4)
       astro-expressive-code:
         specifier: ^0.32.4
@@ -51,7 +51,7 @@ importers:
         specifier: ^7.0.0
         version: 7.0.0
       katex:
-        specifier: ^0.16.9
+        specifier: ^0.16.11
         version: 0.16.11
       lozad:
         specifier: ^1.16.0
@@ -60,10 +60,10 @@ importers:
         specifier: ^10.9.1
         version: 10.9.1
       react:
-        specifier: ^18.2.0
+        specifier: ^18.3.1
         version: 18.3.1
       react-dom:
-        specifier: ^18.2.0
+        specifier: ^18.3.1
         version: 18.3.1(react@18.3.1)
       rehype-katex:
         specifier: ^7.0.0
@@ -75,10 +75,10 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
       typescript:
-        specifier: ^5.3.3
+        specifier: ^5.5.4
         version: 5.5.4
       usehooks-ts:
-        specifier: ^2.14.0
+        specifier: ^2.16.0
         version: 2.16.0(react@18.3.1)
     devDependencies:
       '@iconify-json/tabler':
@@ -97,13 +97,13 @@ importers:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.40)
       cssnano:
-        specifier: ^6.0.3
+        specifier: ^6.1.2
         version: 6.1.2(postcss@8.4.40)
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
       postcss-preset-env:
-        specifier: ^9.3.0
+        specifier: ^9.6.0
         version: 9.6.0(postcss@8.4.40)
       reading-time:
         specifier: ^1.5.0
