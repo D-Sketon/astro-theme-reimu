@@ -57,6 +57,17 @@ Based on [hexo-theme-reimu](https://github.com/D-Sketon/hexo-theme-reimu) migrat
 Any static assets (such as images) can be placed in the `public/` directory.
 All blog posts are stored in the directory `src/content/blog` and `about` page are stored in the directory `src/pages`.
 
+## Usage
+```bash
+git clone https://github.com/D-Sketon/astro-theme-reimu.git
+cd ./astro-theme-reimu
+
+pnpm i
+pnpm npx playwright install
+
+pnpm run dev
+```
+
 ## Feature
 - ✅ SEO-friendly
 - ✅ Night Mode

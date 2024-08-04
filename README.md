@@ -57,6 +57,17 @@
 任何静态资产（如图像）都可以放置在 `public/` 目录中。
 所有博客文章都存储在目录 `src/content/blog` 中，关于页面存储在目录 `src/pages` 中。
 
+## 使用
+```bash
+git clone https://github.com/D-Sketon/astro-theme-reimu.git
+cd ./astro-theme-reimu
+
+pnpm i
+pnpm npx playwright install
+
+pnpm run dev
+```
+
 ## 特性
 - ✅SEO 友好
 - ✅夜间模式
