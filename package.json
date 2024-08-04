@@ -16,13 +16,13 @@
     "@astrojs/react": "^3.6.1",
     "@astrojs/rss": "^4.0.7",
     "@astrojs/sitemap": "^3.1.6",
-    "@expressive-code/plugin-collapsible-sections": "^0.32.4",
-    "@tabler/icons-react": "^2.47.0",
+    "@expressive-code/plugin-collapsible-sections": "^0.35.6",
+    "@tabler/icons-react": "^3.11.0",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "aos": "^2.3.4",
     "astro": "^4.13.1",
-    "astro-expressive-code": "^0.32.4",
+    "astro-expressive-code": "^0.35.6",
     "astro-icon": "^1.1.0",
     "baguettebox.js": "^1.12.0",
     "fuse.js": "^7.0.0",
@@ -35,19 +35,18 @@
     "remark-math": "^6.0.0",
     "remark-mermaidjs": "^6.0.0",
     "typescript": "^5.5.4",
-    "usehooks-ts": "^2.16.0"
+    "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {
-    "@iconify-json/tabler": "^1.1.105",
+    "@iconify-json/tabler": "^1.1.118",
     "@types/aos": "^3.0.7",
     "@types/js-yaml": "^4.0.9",
     "@types/lozad": "^1.16.4",
     "autoprefixer": "^10.4.20",
-    "cssnano": "^6.1.2",
+    "cssnano": "^7.0.4",
     "js-yaml": "^4.1.0",
     "postcss-preset-env": "^9.6.0",
     "reading-time": "^1.5.0",
-    "stylus": "^0.62.0"
-  },
-  "packageManager": "pnpm@9.6.0+sha512.38dc6fba8dba35b39340b9700112c2fe1e12f10b17134715a4aa98ccf7bb035e76fd981cf0bb384dfa98f8d6af5481c2bef2f4266a24bfa20c34eb7147ce0b5e"
+    "stylus": "^0.63.0"
+  }
 }
