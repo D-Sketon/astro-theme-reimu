@@ -28,7 +28,7 @@
     "fuse.js": "^7.0.0",
     "katex": "^0.16.9",
     "lozad": "^1.16.0",
-    "mermaid": "^10.8.0",
+    "mermaid": "^10.9.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "rehype-katex": "^7.0.0",
