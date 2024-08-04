@@ -26,6 +26,7 @@ const { title, tags = [] } = post;
     (tags.length ||
       (VALINE.enable && VALINE.visitor) ||
       (WALINE.enable && WALINE.pageview)) && (
+      <div class="article-footer-line"></div>
       <footer class="article-footer" slot="footer">
         <Tag tags={tags} />
         <ReadingCount url={url} title={title} />
@@ -36,13 +37,21 @@ const { title, tags = [] } = post;
 </MarkdownLayout>
 
 <style>
+  .article-footer-line {
+    margin: 10px 35px 0;
+    opacity: 0.3;
+    height: 2px;
+    background-image: linear-gradient(to right, var(--red-0) 50%, transparent 0%);
+    background-size: 25px 2px;
+    background-repeat: repeat-x;
+    filter: drop-shadow(0px 0px 2px red);
+  }
   .article-footer {
     font-size: 14px;
-    border-top: 1px solid var(--color-border);
-    margin: 0 20px 10px;
     padding-top: 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0 35px 20px;
   }
 </style>

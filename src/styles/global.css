@@ -20,7 +20,7 @@
   --color-wrap: #fff;
 
   --color-h2-border: #eee;
-  --color-meta-shadow: --var(--red-6);
+  --color-meta-shadow: var(--red-6);
   --color-hover-shadow: rgba(150, 150, 150, 0.1);
   --color-h2-after: rgba(255, 0, 0, 0.6);
   --color-h2-after-shadow: rgba(255, 78, 106, 0.7);

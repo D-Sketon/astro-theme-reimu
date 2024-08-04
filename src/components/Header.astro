@@ -125,6 +125,7 @@ const posts = await getCollection("blog");
       display: block;
       object-fit: cover;
       transition: 0.3s;
+      -webkit-mask: linear-gradient(to top, transparent, #fff 50%);
       mask: linear-gradient(to top, transparent, #fff 50%);
 
       @media screen and (max-width: 959px) {
