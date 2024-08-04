@@ -17,7 +17,7 @@ const { href, ...props } = Astro.props;
     padding: 0 15px;
     display: flex;
     opacity: 0.8;
-    transition: all 0.3s ease;
+    transition: 0.3s;
     line-height: 16px;
     font-size: 16px;
 
@@ -35,7 +35,7 @@ const { href, ...props } = Astro.props;
       opacity: 1;
     }
     &:hover .main-nav-icon {
-      transition: all 1s ease;
+      transition: all 1s;
       transform: rotate(360deg);
     }
   }
@@ -60,7 +60,7 @@ const { href, ...props } = Astro.props;
     padding: 20px 15px;
     background: var(--imageUrl) no-repeat center / 80%;
     transform: rotate(0deg);
-    transition: all 1s ease;
+    transition: all 1s;
     cursor: pointer;
   }
 </style>

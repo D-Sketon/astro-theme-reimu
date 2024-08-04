@@ -1,6 +1,5 @@
 ---
 const fontDisplay = "&display=swap";
-const fontSubset = "&subset=latin,latin-ext";
 const fontStyles = ":400,400italic,700,700italic";
 const fontHost = "https://fonts.googleapis.com";
 
@@ -15,9 +14,15 @@ fontFamilies = [...new Set(fontFamilies)];
 fontFamilies = fontFamilies.join("|");
 ---
 
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
   rel="preload"
-  href={`${fontHost}/css?family=${fontFamilies.concat(fontDisplay, fontSubset)}`}
+  href={`${fontHost}/css?family=${fontFamilies.concat(fontDisplay)}`}
   as="style"
-  onload="this.onload=null;this.rel='stylesheet'"
+/>
+<link
+  rel="stylesheet"
+  href={`${fontHost}/css?family=${fontFamilies.concat(fontDisplay)}`}
+  media="print"
+  onload="this.media='all'"
 />

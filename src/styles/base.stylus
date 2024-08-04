@@ -14,11 +14,11 @@
       position: absolute;
       bottom: -15px;
       box-sizing: unset;
-      transition: all 0.3s ease;
+      transition: 0.3s;
     }
 
     &:after {
-      transition: all 0.3s ease;
+      transition: 0.3s;
       content: "";
       position: absolute;
       background: var(--color-h2-after);
@@ -135,7 +135,7 @@
   kbd {
     font-family: "Ubuntu Mono";
     font-size: 95%;
-    transition: all 0.3s ease;
+    transition: 0.3s;
   }
 
   p {

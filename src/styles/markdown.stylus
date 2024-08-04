@@ -40,7 +40,7 @@
   }
 
   li:hover::marker {
-    transition: color 0.2s ease;
+    transition: color 0.2s;
     color: var(--red-1);
   }
 
@@ -50,7 +50,7 @@
     height: auto;
     display: block;
     margin: auto;
-    transition: all 0.3s ease;
+    transition: 0.3s;
   }
 
   iframe {
@@ -79,7 +79,7 @@
     border-left: 6px var(--red-4) solid;
     margin: 1.8em 0;
     border-radius: 5px;
-    transition: all 0.3s ease;
+    transition: 0.3s;
     padding: 1px 10px;
 
     footer {

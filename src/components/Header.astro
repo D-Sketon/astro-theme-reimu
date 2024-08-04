@@ -95,7 +95,7 @@ const posts = await getCollection("blog");
     overflow: hidden;
     background: var(--color-header-background);
     box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    transition: 0.3s;
     z-index: 200;
     &.header-nav-hidden {
       top: -80px;
@@ -124,7 +124,7 @@ const posts = await getCollection("blog");
 
       display: block;
       object-fit: cover;
-      transition: all 0.3s ease;
+      transition: 0.3s;
       mask: linear-gradient(to top, transparent, #fff 50%);
 
       @media screen and (max-width: 959px) {

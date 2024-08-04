@@ -99,7 +99,7 @@ hr {
     margin-left: -25px;
     box-shadow: 0 2px 12px var(--color-h2-after-shadow);
     opacity: 0.5;
-    transition: all 0.2s ease;
+    transition: 0.2s;
   }
 
   &:hover:before {

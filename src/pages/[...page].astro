@@ -128,7 +128,7 @@ const { page } = Astro.props;
     background: var(--color-wrap);
     display: flex;
     flex-direction: row;
-    transition: all 0.3s ease;
+    transition: 0.3s;
 
     @media screen and (min-width: 768px) {
       &:hover {
@@ -139,7 +139,7 @@ const { page } = Astro.props;
         }
 
         img {
-          transition: all 0.3s ease;
+          transition: 0.3s;
           transform: scale(1.05);
         }
       }
@@ -154,7 +154,7 @@ const { page } = Astro.props;
         border-radius: 5px;
         box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
         opacity: 0;
-        transition: all 0.3s ease;
+        transition: 0.3s;
       }
     }
 
@@ -252,7 +252,7 @@ const { page } = Astro.props;
 
     img {
       display: block;
-      transition: all 0.2s ease;
+      transition: 0.2s;
       position: absolute;
       left: 0;
       top: 0;

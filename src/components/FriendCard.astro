@@ -40,12 +40,12 @@ import { FRIEND } from "../utils/config";
     width: 48%;
     height: 100px;
     background: var(--color-wrap);
-    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.05);
     border-radius: 5px;
     position: relative;
     display: flex;
     margin: 1%;
-    transition: all 0.3s ease;
+    transition: 0.3s;
 
     @media screen and (max-width: 767px) {
       width: 98%;
@@ -53,7 +53,7 @@ import { FRIEND } from "../utils/config";
 
     &:hover {
       transform: scale(1.015);
-      box-shadow: 0 0 10px 3px rgba(255, 0, 0, 0.1);
+      box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
     }
 
     a {
@@ -69,30 +69,31 @@ import { FRIEND } from "../utils/config";
     width: 100px;
     height: 100%;
     pointer-events: none;
+    flex-shrink: 0;
+  }
 
-    .friend-icon {
-      height: 0;
-      width: 100%;
-      padding-bottom: 100%;
-      position: relative;
+  .friend-icon {
+    height: 0;
+    width: 100%;
+    padding-bottom: 100%;
+    position: relative;
 
-      img {
-        display: block;
-        opacity: 0;
-        transition: opacity 0.2s ease;
-        position: absolute;
-        left: 15%;
-        top: 15%;
-        object-fit: cover;
-        border-radius: 50%;
-        width: 70%;
-        height: 70%;
-      }
+    img {
+      display: block;
+      opacity: 0;
+      transition: opacity 0.2s;
+      position: absolute;
+      left: 15%;
+      top: 15%;
+      object-fit: cover;
+      border-radius: 50%;
+      width: 70%;
+      height: 70%;
+    }
 
-      img.lazyloaded {
-        opacity: 1;
-        animation: blur 0.8s ease forwards;
-      }
+    img.lazyloaded {
+      opacity: 1;
+      animation: blur 0.8s forwards;
     }
   }
 
@@ -100,21 +101,32 @@ import { FRIEND } from "../utils/config";
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding-left: 8px;
+    padding: 0 8px;
+    overflow: hidden;
 
     div {
-      padding: 10px 0;
+      margin: 10px 0;
     }
+  }
 
-    .friend-name {
-      color: var(--red-2);
-      font-size: 18px;
-      font-weight: bold;
-    }
+  .friend-name {
+    color: var(--red-2);
+    font-size: 18px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+  }
 
-    .friend-desc {
-      color: var(--color-grey);
-      font-size: 14px;
-    }
+  .friend-desc {
+    color: var(--color-grey);
+    font-size: 14px;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    width: 100%;
   }
 </style>
