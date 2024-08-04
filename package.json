@@ -42,7 +42,7 @@
     "@types/aos": "^3.0.7",
     "@types/js-yaml": "^4.0.9",
     "@types/lozad": "^1.16.4",
-    "autoprefixer": "^10.4.17",
+    "autoprefixer": "^10.4.20",
     "cssnano": "^6.0.3",
     "js-yaml": "^4.1.0",
     "postcss-preset-env": "^9.3.0",
