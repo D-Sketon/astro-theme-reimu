@@ -85,8 +85,8 @@ importers:
         version: 3.1.0(react@18.3.1)
     devDependencies:
       '@iconify-json/tabler':
-        specifier: ^1.1.118
-        version: 1.1.118
+        specifier: ^1.1.119
+        version: 1.1.119
       '@types/aos':
         specifier: ^3.0.7
         version: 3.0.7
@@ -681,8 +681,8 @@ packages:
     resolution: {integrity: sha512-60G28ke/sXdtS9KZCpZSHHkCbdsOGEhIUGlwq6yhY74UpTiToIh8np7A8yphhM4BWsvNFtIvLpi4co+h9Mr9Ow==}
     engines: {node: '>=6'}
 
-  '@iconify-json/tabler@1.1.118':
-    resolution: {integrity: sha512-nDOjYG75BlagOe4e+V3K4qVFujdPOeYzi6ZB3sYz0xbdIkpSF/4YvKGdLDr4tmkwGUTV8fhlHVfMpRoDoBnnnA==}
+  '@iconify-json/tabler@1.1.119':
+    resolution: {integrity: sha512-UdbEO3WGcEg022GKTT2mR1mN8oUjSGrBccWbhH8sSqVAAzDmMR+6yERloiQtVN0/yHRwqQY9RIdtrzmDFR6n0g==}
 
   '@iconify/tools@3.0.7':
     resolution: {integrity: sha512-DxfhFLMnooS34dHelpGUnnYrxLZHs0czC1CgrBhAbuL8ddVzBb2VEQm8kh9qGh7A34qeXAB5iSHH3A72rAaFrg==}
@@ -4011,7 +4011,7 @@ snapshots:
 
   '@fortawesome/fontawesome-free@6.6.0': {}
 
-  '@iconify-json/tabler@1.1.118':
+  '@iconify-json/tabler@1.1.119':
     dependencies:
       '@iconify/types': 2.0.0
 
