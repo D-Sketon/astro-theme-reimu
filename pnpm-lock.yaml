@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@astrojs/mdx':
         specifier: ^3.1.3
-        version: 3.1.3(astro@4.13.1(@types/node@22.1.0)(stylus@0.63.0)(typescript@5.5.4))
+        version: 3.1.3(astro@4.13.3(@types/node@22.1.0)(stylus@0.63.0)(typescript@5.5.4))
       '@astrojs/react':
         specifier: ^3.6.1
         version: 3.6.1(@types/react-dom@18.3.0)(@types/react@18.3.3)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vite@5.3.5(@types/node@22.1.0)(stylus@0.63.0))
@@ -36,11 +36,11 @@ importers:
         specifier: ^2.3.4
         version: 2.3.4
       astro:
-        specifier: ^4.13.1
-        version: 4.13.1(@types/node@22.1.0)(stylus@0.63.0)(typescript@5.5.4)
+        specifier: ^4.13.3
+        version: 4.13.3(@types/node@22.1.0)(stylus@0.63.0)(typescript@5.5.4)
       astro-expressive-code:
         specifier: ^0.35.6
-        version: 0.35.6(astro@4.13.1(@types/node@22.1.0)(stylus@0.63.0)(typescript@5.5.4))
+        version: 0.35.6(astro@4.13.3(@types/node@22.1.0)(stylus@0.63.0)(typescript@5.5.4))
       astro-icon:
         specifier: ^1.1.0
         version: 1.1.0
@@ -1098,8 +1098,8 @@ packages:
   astro-icon@1.1.0:
     resolution: {integrity: sha512-Nksc09p7UuHeMcPNS9w1pKqRw3+wEmmh0A3FJW+FNXvqaeWI4RLvD1MCWErpY3Z5Cvad317rvLdik/Hg8GEk8Q==}
 
-  astro@4.13.1:
-    resolution: {integrity: sha512-VnMjAc+ykFsIVjgbu9Mt/EA1fMIcPMXbU89h3ATwGOzSIKDsQH72bDgfJkWiwk6u0OE90GeP5EPhAT28Twf9oA==}
+  astro@4.13.3:
+    resolution: {integrity: sha512-MyhmM0v5sphiVwxAm5jjKxWeuPZijWPJ8Ajdign9QzEmLWSH8vUYIJWx/dWRQ6vF1I0jXrksoj3wtw5nzXt9nw==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0, npm: '>=9.6.5', pnpm: '>=7.1.0'}
     hasBin: true
 
@@ -3378,12 +3378,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@3.1.3(astro@4.13.1(@types/node@22.1.0)(stylus@0.63.0)(typescript@5.5.4))':
+  '@astrojs/mdx@3.1.3(astro@4.13.3(@types/node@22.1.0)(stylus@0.63.0)(typescript@5.5.4))':
     dependencies:
       '@astrojs/markdown-remark': 5.2.0
       '@mdx-js/mdx': 3.0.1
       acorn: 8.12.1
-      astro: 4.13.1(@types/node@22.1.0)(stylus@0.63.0)(typescript@5.5.4)
+      astro: 4.13.3(@types/node@22.1.0)(stylus@0.63.0)(typescript@5.5.4)
       es-module-lexer: 1.5.4
       estree-util-visit: 2.0.0
       github-slugger: 2.0.0
@@ -4322,9 +4322,9 @@ snapshots:
 
   astring@1.8.6: {}
 
-  astro-expressive-code@0.35.6(astro@4.13.1(@types/node@22.1.0)(stylus@0.63.0)(typescript@5.5.4)):
+  astro-expressive-code@0.35.6(astro@4.13.3(@types/node@22.1.0)(stylus@0.63.0)(typescript@5.5.4)):
     dependencies:
-      astro: 4.13.1(@types/node@22.1.0)(stylus@0.63.0)(typescript@5.5.4)
+      astro: 4.13.3(@types/node@22.1.0)(stylus@0.63.0)(typescript@5.5.4)
       rehype-expressive-code: 0.35.6
 
   astro-icon@1.1.0:
@@ -4335,7 +4335,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  astro@4.13.1(@types/node@22.1.0)(stylus@0.63.0)(typescript@5.5.4):
+  astro@4.13.3(@types/node@22.1.0)(stylus@0.63.0)(typescript@5.5.4):
     dependencies:
       '@astrojs/compiler': 2.10.1
       '@astrojs/internal-helpers': 0.4.1
