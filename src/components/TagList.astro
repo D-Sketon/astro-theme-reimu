@@ -14,7 +14,7 @@ const { tags } = Astro.props;
     tags.map((tag) => {
       return (
         <div class="archives-tag-list-item">
-          <Icon name="tabler:tag"/>
+          <Icon name="tabler:tag-filled" style="margin-right: 10px"/>
           <a class="archives-tag-list-link" href={`${BASE_URL}/tags/${tag}`}>
             {tag}
           </a>
@@ -43,7 +43,7 @@ const { tags } = Astro.props;
       background: var(--red-5);
       border-radius: 20px;
       padding: 8px 15px;
-      margin: 5px;
+      margin: 5px 10px 5px 0;
     }
     .archives-tag-list-link {
       color: var(--red-1);
