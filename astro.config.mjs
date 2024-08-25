@@ -11,7 +11,7 @@ import remarkMermaid from 'remark-mermaidjs';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://example.com', // should be same as `site.url` in src/config.yml
   markdown: {
     remarkPlugins: [remarkMath, remarkMermaid],
     rehypePlugins: [rehypeKatex],

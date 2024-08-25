@@ -2,6 +2,7 @@ import fs from "fs";
 import yaml from "js-yaml";
 
 export interface SiteConfig {
+  url: string;
   title: string;
   subtitle: string;
   description: string;

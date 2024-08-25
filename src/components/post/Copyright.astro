@@ -3,11 +3,9 @@ import type { CollectionEntry } from "astro:content";
 import dayjs from "dayjs";
 import { Icon } from "astro-icon/components";
 import { COPYRIGHT, SITE, BASE_URL } from "../../utils/config";
-import astroConfig from "../../../astro.config.mjs";
 
 const { content, enable } = COPYRIGHT;
 const { author, link, title, date, updated, license } = content;
-const { site } = astroConfig;
 
 type Props = {
   post: CollectionEntry<"blog">["data"];
@@ -29,7 +27,9 @@ const { post, url } = Astro.props;
       {link && (
         <p>
           <strong>本文链接：</strong>
-          <a href={`${site}${BASE_URL}${url}/`}>{`${site}${BASE_URL}${url}/`}</a>
+          <a
+            href={`${SITE.url}${BASE_URL}${url}/`}
+          >{`${SITE.url}${BASE_URL}${url}/`}</a>
         </p>
       )}
       {title && (
@@ -54,7 +54,7 @@ const { post, url } = Astro.props;
         <p>
           <strong>本文版权：</strong>本博客所有文章除特别声明外，均采用{" "}
           <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">
-            <Icon name="tabler:creative-commons"/>
+            <Icon name="tabler:creative-commons" />
             BY-NC-SA
           </a>{" "}
           许可协议。转载请注明出处！

@@ -1,4 +1,5 @@
 site:
+  url: https://example.com # same as `site` in astro.config.mjs
   title: My Blog
   subtitle: My Blog Subtitle
   description: D-Sketon's blog
