@@ -5,6 +5,7 @@ import Tag from "../components/post/Tag.astro";
 import Nav from "../components/post/Nav.astro";
 import ReadingCount from "../components/post/ReadingCount.astro";
 import MarkdownLayout from "./MarkdownLayout.astro";
+import Copyright from "../components/post/Copyright.astro";
 
 type Props = {
   post: CollectionEntry<"blog">["data"];
@@ -27,6 +28,7 @@ const { title, tags = [] } = post;
       (VALINE.enable && VALINE.visitor) ||
       (WALINE.enable && WALINE.pageview)) && (
       <div class="article-footer-line"></div>
+      <Copyright post={post} url={url} />
       <footer class="article-footer" slot="footer">
         <Tag tags={tags} />
         <ReadingCount url={url} title={title} />

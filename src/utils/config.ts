@@ -94,6 +94,18 @@ export interface FriendConfig {
   desc: string;
 }
 
+export interface CopyrightConfig {
+  enable: boolean;
+  content: {
+    author: boolean;
+    link: boolean;
+    title: boolean;
+    date: boolean;
+    updated: boolean;
+    license: boolean;
+  }
+}
+
 const config = yaml.load(fs.readFileSync("src/config.yml", "utf8")) as {
   site: SiteConfig;
   footer: FooterConfig;
@@ -103,6 +115,7 @@ const config = yaml.load(fs.readFileSync("src/config.yml", "utf8")) as {
   waline: WalineConfig;
   gitalk: GitalkConfig;
   friend: FriendConfig[];
+  copyright: CopyrightConfig;
 };
 
 export const SITE = config.site;
@@ -113,6 +126,7 @@ export const VALINE = config.valine;
 export const WALINE = config.waline;
 export const GITALK = config.gitalk;
 export const FRIEND = config.friend;
+export const COPYRIGHT = config.copyright;
 export const BASE_URL = import.meta.env.BASE_URL.endsWith("/")
   ? ""
   : import.meta.env.BASE_URL;

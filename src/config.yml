@@ -95,3 +95,13 @@ friend:
     url: https://d-sketon.github.io/
     desc: Main Site with hexo-theme-reimu
     avatar: https://d-sketon.github.io/avatar/avatar.webp
+
+copyright:
+  enable: true
+  content:
+    author: true
+    link: true
+    title: true
+    date: false
+    updated: false
+    license: true
