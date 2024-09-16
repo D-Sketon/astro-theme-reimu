@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@astrojs/mdx':
         specifier: ^3.1.4
-        version: 3.1.4(astro@4.14.5(@types/node@22.1.0)(rollup@4.20.0)(stylus@0.63.0)(typescript@5.5.4))
+        version: 3.1.4(astro@4.14.5(@types/node@22.1.0)(rollup@4.20.0)(stylus@0.63.0)(typescript@5.6.2))
       '@astrojs/react':
         specifier: ^3.6.2
         version: 3.6.2(@types/react-dom@18.3.0)(@types/react@18.3.4)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(vite@5.4.2(@types/node@22.1.0)(stylus@0.63.0))
@@ -37,10 +37,10 @@ importers:
         version: 2.3.4
       astro:
         specifier: ^4.14.5
-        version: 4.14.5(@types/node@22.1.0)(rollup@4.20.0)(stylus@0.63.0)(typescript@5.5.4)
+        version: 4.14.5(@types/node@22.1.0)(rollup@4.20.0)(stylus@0.63.0)(typescript@5.6.2)
       astro-expressive-code:
         specifier: ^0.36.1
-        version: 0.36.1(astro@4.14.5(@types/node@22.1.0)(rollup@4.20.0)(stylus@0.63.0)(typescript@5.5.4))
+        version: 0.36.1(astro@4.14.5(@types/node@22.1.0)(rollup@4.20.0)(stylus@0.63.0)(typescript@5.6.2))
       astro-icon:
         specifier: ^1.1.0
         version: 1.1.0
@@ -81,8 +81,8 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
       typescript:
-        specifier: ^5.5.4
-        version: 5.5.4
+        specifier: ^5.6.2
+        version: 5.6.2
       usehooks-ts:
         specifier: ^3.1.0
         version: 3.1.0(react@18.3.1)
@@ -3192,8 +3192,8 @@ packages:
     resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
     engines: {node: '>=12.20'}
 
-  typescript@5.5.4:
-    resolution: {integrity: sha512-Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==}
+  typescript@5.6.2:
+    resolution: {integrity: sha512-NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -3428,12 +3428,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@3.1.4(astro@4.14.5(@types/node@22.1.0)(rollup@4.20.0)(stylus@0.63.0)(typescript@5.5.4))':
+  '@astrojs/mdx@3.1.4(astro@4.14.5(@types/node@22.1.0)(rollup@4.20.0)(stylus@0.63.0)(typescript@5.6.2))':
     dependencies:
       '@astrojs/markdown-remark': 5.2.0
       '@mdx-js/mdx': 3.0.1
       acorn: 8.12.1
-      astro: 4.14.5(@types/node@22.1.0)(rollup@4.20.0)(stylus@0.63.0)(typescript@5.5.4)
+      astro: 4.14.5(@types/node@22.1.0)(rollup@4.20.0)(stylus@0.63.0)(typescript@5.6.2)
       es-module-lexer: 1.5.4
       estree-util-visit: 2.0.0
       gray-matter: 4.0.3
@@ -4393,9 +4393,9 @@ snapshots:
 
   astring@1.8.6: {}
 
-  astro-expressive-code@0.36.1(astro@4.14.5(@types/node@22.1.0)(rollup@4.20.0)(stylus@0.63.0)(typescript@5.5.4)):
+  astro-expressive-code@0.36.1(astro@4.14.5(@types/node@22.1.0)(rollup@4.20.0)(stylus@0.63.0)(typescript@5.6.2)):
     dependencies:
-      astro: 4.14.5(@types/node@22.1.0)(rollup@4.20.0)(stylus@0.63.0)(typescript@5.5.4)
+      astro: 4.14.5(@types/node@22.1.0)(rollup@4.20.0)(stylus@0.63.0)(typescript@5.6.2)
       rehype-expressive-code: 0.36.1
 
   astro-icon@1.1.0:
@@ -4406,7 +4406,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  astro@4.14.5(@types/node@22.1.0)(rollup@4.20.0)(stylus@0.63.0)(typescript@5.5.4):
+  astro@4.14.5(@types/node@22.1.0)(rollup@4.20.0)(stylus@0.63.0)(typescript@5.6.2):
     dependencies:
       '@astrojs/compiler': 2.10.3
       '@astrojs/internal-helpers': 0.4.1
@@ -4464,7 +4464,7 @@ snapshots:
       shiki: 1.14.1
       string-width: 7.2.0
       strip-ansi: 7.1.0
-      tsconfck: 3.1.1(typescript@5.5.4)
+      tsconfck: 3.1.1(typescript@5.6.2)
       unist-util-visit: 5.0.0
       vfile: 6.0.2
       vite: 5.4.2(@types/node@22.1.0)(stylus@0.63.0)
@@ -4474,7 +4474,7 @@ snapshots:
       yargs-parser: 21.1.1
       zod: 3.23.8
       zod-to-json-schema: 3.23.2(zod@3.23.8)
-      zod-to-ts: 1.2.0(typescript@5.5.4)(zod@3.23.8)
+      zod-to-ts: 1.2.0(typescript@5.6.2)(zod@3.23.8)
     optionalDependencies:
       sharp: 0.33.4
     transitivePeerDependencies:
@@ -7233,16 +7233,16 @@ snapshots:
 
   ts-dedent@2.2.0: {}
 
-  tsconfck@3.1.1(typescript@5.5.4):
+  tsconfck@3.1.1(typescript@5.6.2):
     optionalDependencies:
-      typescript: 5.5.4
+      typescript: 5.6.2
 
   tslib@2.6.3:
     optional: true
 
   type-fest@2.19.0: {}
 
-  typescript@5.5.4: {}
+  typescript@5.6.2: {}
 
   ufo@1.5.4: {}
 
@@ -7409,9 +7409,9 @@ snapshots:
     dependencies:
       zod: 3.23.8
 
-  zod-to-ts@1.2.0(typescript@5.5.4)(zod@3.23.8):
+  zod-to-ts@1.2.0(typescript@5.6.2)(zod@3.23.8):
     dependencies:
-      typescript: 5.5.4
+      typescript: 5.6.2
       zod: 3.23.8
 
   zod@3.23.8: {}
