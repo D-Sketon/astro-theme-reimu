@@ -1,4 +1,4 @@
-<img src="https://fastly.jsdelivr.net/gh/D-Sketon/astro-theme-reimu/screenshot.png"/>
+<img src="https://fastly.jsdelivr.net/gh/D-Sketon/astro-theme-reimu@main/screenshot.png"/>
 <div align = center>
   <h1>astro-theme-reimu</h1>
   <img alt="GitHub License" src="https://img.shields.io/github/license/D-Sketon/astro-theme-reimu">
