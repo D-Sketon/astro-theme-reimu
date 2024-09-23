@@ -40,7 +40,7 @@
     "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {
-    "@iconify-json/tabler": "^1.1.120",
+    "@iconify-json/tabler": "^1.2.3",
     "@types/aos": "^3.0.7",
     "@types/js-yaml": "^4.0.9",
     "@types/lozad": "^1.16.4",
