@@ -29,7 +29,7 @@
     "fuse.js": "^7.0.0",
     "katex": "^0.16.11",
     "lozad": "^1.16.0",
-    "mermaid": "^10.9.1",
+    "mermaid": "^11.2.1",
     "playwright": "^1.47.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
