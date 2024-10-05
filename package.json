@@ -12,17 +12,17 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^3.1.6",
+    "@astrojs/mdx": "^3.1.7",
     "@astrojs/react": "^3.6.2",
     "@astrojs/rss": "^4.0.7",
     "@astrojs/sitemap": "^3.1.6",
-    "@expressive-code/plugin-collapsible-sections": "^0.36.0",
+    "@expressive-code/plugin-collapsible-sections": "^0.37.0",
     "@tabler/icons-react": "^3.15.0",
     "@types/react": "^18.3.4",
     "@types/react-dom": "^18.3.0",
     "aos": "^2.3.4",
     "astro": "^4.15.6",
-    "astro-expressive-code": "^0.36.1",
+    "astro-expressive-code": "^0.37.0",
     "astro-icon": "^1.1.0",
     "baguettebox.js": "^1.12.0",
     "dayjs": "^1.11.13",
@@ -40,7 +40,7 @@
     "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {
-    "@iconify-json/tabler": "^1.1.120",
+    "@iconify-json/tabler": "^1.2.4",
     "@types/aos": "^3.0.7",
     "@types/js-yaml": "^4.0.9",
     "@types/lozad": "^1.16.4",
