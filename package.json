@@ -14,7 +14,7 @@
   "dependencies": {
     "@astrojs/mdx": "^3.1.7",
     "@astrojs/react": "^3.6.2",
-    "@astrojs/rss": "^4.0.7",
+    "@astrojs/rss": "^4.0.8",
     "@astrojs/sitemap": "^3.2.0",
     "@expressive-code/plugin-collapsible-sections": "^0.37.0",
     "@reimujs/aos": "^0.1.0",
