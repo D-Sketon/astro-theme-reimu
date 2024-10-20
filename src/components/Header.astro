@@ -42,7 +42,7 @@ const posts = await getCollection("blog");
   {
     cover === `${BASE_URL}/images/banner.webp` ? (
       <>
-        <picture>
+        <picture style="user-select: none;">
           <source
             media="(max-width: 479px)"
             srcset={`${BASE_URL}/images/banner-600w.webp`}

@@ -7,7 +7,7 @@ type Props = {
 const { subtitle, url } = Astro.props;
 ---
 
-<h2 id="subtitle-wrap" slot="header">
+<h2 id="subtitle-wrap" slot="header" data-aos="slide-down">
   <a href={url} id="subtitle">
     {subtitle}
   </a>

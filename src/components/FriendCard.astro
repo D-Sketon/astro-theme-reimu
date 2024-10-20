@@ -2,11 +2,11 @@
 import { FRIEND } from "../utils/config";
 ---
 
-<div class="friend-wrap" data-aos="fade-up">
+<div class="friend-wrap">
   {
     FRIEND.map(({ name, desc, url, avatar }) => {
       return (
-        <div class="friend-item-wrap">
+        <div class="friend-item-wrap" data-aos="zoom-in">
           <a href={url} target="_blank" />
           <div class="friend-icon-wrap">
             <div class="friend-icon">

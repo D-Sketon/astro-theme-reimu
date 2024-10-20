@@ -8,8 +8,8 @@ type Props = {
 const { pubDate } = Astro.props;
 ---
 
-<div class="article-date" data-aos="fade-left">
-  <span class="article-date-span">
+<div class="article-date">
+  <span class="article-date-span" data-aos="zoom-in">
     <Icon name="tabler:clock" />
     <time datetime={pubDate.toISOString()} itemprop="datePublished"
       >{pubDate.toLocaleDateString().replace(/\//g, "-")}</time

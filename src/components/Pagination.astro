@@ -15,7 +15,7 @@ const lowerBound = currentPage - 2 > 0 ? currentPage - 2 : 1;
 const upperBound = currentPage + 2 < lastPage ? currentPage + 2 : lastPage;
 ---
 
-<nav id="page-nav">
+<nav id="page-nav" data-aos="fade-up">
   {
     prevUrl && (
       <a href={`${BASE_URL}${prevUrl}`} class="extend prev" rel="prev">
@@ -70,7 +70,7 @@ const upperBound = currentPage + 2 < lastPage ? currentPage + 2 : lastPage;
     text-align: center;
     color: var(--color-grey);
     overflow: hidden;
-    transition: 0.3s;
+    transition: 1s;
 
     &:hover {
       box-shadow: 0 0 10px 3px var(--color-hover-shadow);
