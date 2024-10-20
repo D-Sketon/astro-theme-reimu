@@ -13,8 +13,15 @@ export default function ThemeToggle() {
     return <></>;
   }
 
-  const handleChange = (e: Theme) => {
-    setTheme(e);
+  const handleChange = (theme: Theme) => {
+    setTheme(theme);
+    document.body.dispatchEvent(
+      new CustomEvent("theme-set", {
+        detail: {
+          theme,
+        },
+      })
+    );
   };
   return (
     <span

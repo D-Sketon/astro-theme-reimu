@@ -19,7 +19,7 @@ Based on [hexo-theme-reimu](https://github.com/D-Sketon/hexo-theme-reimu) migrat
 ## Lighthouse
 
 <p align="center">
-  <a href="https://pagespeed.web.dev/analysis/https-d-sketon-github-io-astro-theme-reimu/l2ptsmftie?form_factor=desktop">
+  <a href="https://pagespeed.web.dev/analysis/https-d-sketon-github-io-astro-theme-reimu/ur4yncrgnm?form_factor=desktop">
     <img width="710" alt="astro-theme-reimu Lighthouse Score" src="https://fastly.jsdelivr.net/gh/D-Sketon/astro-theme-reimu/psi.svg">
   <a>
 </p>
@@ -33,6 +33,7 @@ Based on [hexo-theme-reimu](https://github.com/D-Sketon/hexo-theme-reimu) migrat
 │   │   └── banner-800w.webp
 │   │   └── banner-600w.webp
 │   │   └── favicon.ico
+│   │   └── reimu.png
 │   │   └── taichi.png
 │   └── robots.txt
 ├── src/
@@ -63,8 +64,6 @@ git clone https://github.com/D-Sketon/astro-theme-reimu.git
 cd ./astro-theme-reimu
 
 pnpm i
-pnpm npx playwright install
-
 pnpm run dev
 ```
 

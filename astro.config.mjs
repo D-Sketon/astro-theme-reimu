@@ -7,13 +7,13 @@ import icon from "astro-icon";
 import react from "@astrojs/react";
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
-import remarkMermaid from 'remark-mermaidjs';
+import remarkMermaidToHtml from './src/plugins/remarkMermaidToHtml.mjs';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://example.com', // should be same as `site.url` in src/config.yml
   markdown: {
-    remarkPlugins: [remarkMath, remarkMermaid],
+    remarkPlugins: [remarkMath, remarkMermaidToHtml],
     rehypePlugins: [rehypeKatex],
     syntaxHighlight: false
   },

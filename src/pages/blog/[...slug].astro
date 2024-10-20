@@ -23,7 +23,7 @@ const { post, prev, next } = Astro.props;
 const { Content } = await post.render();
 ---
 
-<BlogLayout post={post.data} nav={{prev, next}} url={`/blog/${post.slug}`}>
+<BlogLayout post={post.data} nav={{ prev, next }} url={`/blog/${post.slug}`}>
   <Content />
 </BlogLayout>
 
@@ -45,4 +45,106 @@ const { Content } = await post.render();
     });
     baguetteBox.run(".article-entry");
   });
+</script>
+
+<script>
+  import mermaid from "mermaid";
+
+  const saveOriginalData = () => {
+    return new Promise<void>((resolve, reject) => {
+      try {
+        const els = document.querySelectorAll(".language-mermaid");
+        let count = els.length;
+        els.forEach((element) => {
+          if (element.getAttribute("data-original-code") == null) {
+            element.setAttribute("data-original-code", element.innerHTML);
+          }
+          count--;
+          if (count == 0) {
+            resolve();
+          }
+        });
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+
+  const resetProcessed = () => {
+    return new Promise<void>((resolve, reject) => {
+      try {
+        const els = document.querySelectorAll(".language-mermaid");
+        let count = els.length;
+        els.forEach((element) => {
+          if (element.getAttribute("data-original-code") != null) {
+            element.removeAttribute("data-processed");
+            element.innerHTML =
+              element.getAttribute("data-original-code") ?? "";
+          }
+          count--;
+          if (count == 0) {
+            resolve();
+          }
+        });
+      } catch (error) {
+        reject(error);
+      }
+    });
+  };
+  const loadMermaid = async (theme: string) => {
+    mermaid.initialize({
+      startOnLoad: false,
+      theme,
+    });
+    await mermaid.run({
+      querySelector: ".language-mermaid",
+    });
+  };
+  const themeSetHandler = (e: any) => {
+    let theme = e.detail.theme;
+    if (e.detail.theme === "light") {
+      theme = "default";
+    } else if (e.detail.theme === "auto") {
+      theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "default";
+    }
+    saveOriginalData()
+      .then(() => {
+        resetProcessed();
+      })
+      .then(() => {
+        loadMermaid(theme);
+      })
+      .catch(console.error);
+  };
+  const mermaidInit = () => {
+    document.body.removeEventListener("theme-set", themeSetHandler);
+    document.body.addEventListener("theme-set", themeSetHandler);
+
+    let theme = localStorage.getItem("theme");
+    if (theme === '"light"') {
+      theme = "default";
+    } else if (theme === '"auto"') {
+      theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "default";
+    } else if (theme === '"dark"') {
+      theme = "dark";
+    } else {
+      theme = "default";
+    }
+    if (theme === "dark" || theme === "default") {
+      saveOriginalData()
+        .then(() => {
+          resetProcessed();
+        })
+        .then(() => {
+          loadMermaid(theme);
+        })
+        .catch(console.error);
+    }
+  };
+  document.addEventListener("astro:after-swap", mermaidInit);
+  mermaidInit();
 </script>
