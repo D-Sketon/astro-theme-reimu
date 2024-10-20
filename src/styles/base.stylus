@@ -134,7 +134,7 @@
   pre,
   code,
   kbd {
-    font-family: "Ubuntu Mono";
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,'Liberation Mono','Courier New', monospace;
     font-size: 95%;
     transition: 0.3s;
   }

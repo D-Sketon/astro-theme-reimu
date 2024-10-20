@@ -154,7 +154,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Mulish, Noto Serif SC, Noto Serif JP, -apple-system, PingFang SC,
+  font-family: Mulish, Noto Serif SC, -apple-system, PingFang SC,
     Microsoft YaHei, sans-serif;
   font-weight: 700;
 }
@@ -180,7 +180,7 @@ body {
   background: var(--color-background);
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  font-family: Mulish, Noto Serif SC, Noto Serif JP, -apple-system, PingFang SC,
+  font-family: Mulish, Noto Serif SC, -apple-system, PingFang SC,
     Microsoft YaHei, sans-serif;
   transition: 0.3s;
   line-height: 1;

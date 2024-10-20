@@ -59,6 +59,7 @@ const { post, url } = Astro.props;
           </a>{" "}
           许可协议。转载请注明出处！
         </p>
+        <Icon class="article-copyright-bg" name="tabler:creative-commons" />
       )}
     </blockquote>
   )
@@ -73,6 +74,11 @@ const { post, url } = Astro.props;
     border-radius: 5px;
     transition: all .3s ease;
     padding: 5px 10px;
+
+    box-shadow: 0 0 5px 2px var(--color-meta-shadow);
+    position: relative;
+    overflow: hidden;
+    word-break: break-all;
 
     p {
       font-size: 14px;
@@ -92,5 +98,14 @@ const { post, url } = Astro.props;
         text-decoration: underline;
       }
     }
+  }
+
+  .article-copyright-bg {
+    font-size: 120px;
+    color: var(--red-3);
+    opacity: .2;
+    position: absolute;
+    right: -15px;
+    bottom: -40px;
   }
 </style>
