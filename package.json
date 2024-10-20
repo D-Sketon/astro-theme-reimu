@@ -33,7 +33,7 @@
     "react-dom": "^18.3.1",
     "rehype-katex": "^7.0.1",
     "remark-math": "^6.0.0",
-    "remark-mermaidjs": "^6.0.0",
+    "remark-mermaidjs": "^7.0.0",
     "typescript": "^5.6.3",
     "usehooks-ts": "^3.1.0"
   },
