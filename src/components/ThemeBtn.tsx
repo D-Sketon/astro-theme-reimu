@@ -24,6 +24,7 @@ export default function ThemeToggle() {
         height: "100%",
         display: "flex",
         alignItems: "center",
+        cursor: "pointer",
       }}
     >
       {theme === "dark" && (

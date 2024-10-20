@@ -95,7 +95,7 @@ const posts = await getCollection("blog");
     overflow: hidden;
     background: var(--color-header-background);
     box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.1);
-    transition: 0.3s;
+    transition: background .3s, top .3s, opacity .3s;
     z-index: 200;
     &.header-nav-hidden {
       top: -80px;
@@ -149,7 +149,6 @@ const posts = await getCollection("blog");
     font-family:
       Mulish,
       "Noto Serif SC",
-      "Noto Serif JP",
       Mulish,
       -apple-system,
       "PingFang SC",

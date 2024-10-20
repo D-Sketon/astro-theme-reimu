@@ -37,12 +37,14 @@ export default function SearchBox({
 
   function handleClose() {
     const popup = document.querySelector(".popup")! as HTMLDivElement;
-    popup.style.display = "none";
+    popup.classList.remove("show");
     const popoverlayElements = document.querySelectorAll(".popoverlay");
     popoverlayElements.forEach((element) => {
       element.parentNode?.removeChild(element);
     });
     document.body.style.overflow = "";
+    document.documentElement.style.marginRight = "";
+    document.querySelector<HTMLElement>("#header-nav")!.style.marginRight = "";
   }
 
   return (
@@ -59,7 +61,10 @@ export default function SearchBox({
                 placeholder="Search"
                 className=""
               />
-              <IconCircleXFilled color="red" onClick={handleClose} />
+              <IconCircleXFilled
+                className="popup-btn-close"
+                onClick={handleClose}
+              />
             </div>
           </div>
           <div className="reimu-results">
@@ -91,7 +96,7 @@ export default function SearchBox({
               </ul>
             </div>
           </div>
-          <span className="popup-btn-close"></span>
+          <img className="reimu-bg" src={`${url}/images/reimu.png`} />
         </div>
       </div>
     </>

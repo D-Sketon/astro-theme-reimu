@@ -12,7 +12,7 @@ const { href, ...props } = Astro.props;
   <a class="main-nav-link" href={href} {...props}><slot /></a>
 </span>
 
-<style lang="stylus" define:vars={{ imageUrl: 'url('+`${BASE_URL}/images/taichi.webp`+')' }}>
+<style lang="stylus" define:vars={{ imageUrl: 'url('+`${BASE_URL}/images/taichi.png`+')' }}>
   .main-nav-link-wrap {
     padding: 0 15px;
     display: flex;
@@ -44,7 +44,6 @@ const { href, ...props } = Astro.props;
     color: var(--red-0);
     opacity: 0.8;
     text-decoration: none;
-    text-shadow: 0 1px rgba(0, 0, 0, 0.2);
     transition: opacity 0.2s;
     display: block;
     padding: 20px 15px;
@@ -53,9 +52,7 @@ const { href, ...props } = Astro.props;
   }
   .main-nav-icon {
     color: var(--red-0);
-    opacity: 0.8;
     text-decoration: none;
-    text-shadow: 0 1px rgba(0, 0, 0, 0.2);
     display: block;
     padding: 20px 15px;
     background: var(--imageUrl) no-repeat center / 80%;
