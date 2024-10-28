@@ -40,7 +40,7 @@
     "@iconify-json/tabler": "^1.2.5",
     "@types/js-yaml": "^4.0.9",
     "@types/lozad": "^1.16.4",
-    "@types/react": "^18.3.11",
+    "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "autoprefixer": "^10.4.20",
     "cssnano": "^7.0.6",
