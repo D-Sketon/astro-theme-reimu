@@ -17,6 +17,7 @@ import CommonMeta from "../components/partial/CommonMeta.astro";
 import VendorFont from "../components/partial/VendorFont.astro";
 import VendorScript from "../components/partial/VendorScript.astro";
 import HeaderTitle from "../components/HeaderTitle.astro";
+import ToTop from "../components/ToTop";
 
 type Props = {
   frontmatter: Record<string, any>;
@@ -141,5 +142,6 @@ const {
     </main>
     <Footer />
     <AfterFooter />
+    <ToTop client:load url={BASE_URL} />
   </body>
 </html>

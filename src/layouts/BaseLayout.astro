@@ -4,12 +4,13 @@ import "@reimujs/aos/dist/aos.css";
 import "baguettebox.js/dist/baguetteBox.min.css";
 
 import { ViewTransitions } from "astro:transitions";
-import { SITE } from "../utils/config";
+import { SITE, BASE_URL } from "../utils/config";
 import CommonMeta from "../components/partial/CommonMeta.astro";
 import VendorFont from "../components/partial/VendorFont.astro";
 import VendorScript from "../components/partial/VendorScript.astro";
 import Header from "../components/Header.astro";
 import AfterFooter from "../components/AfterFooter.astro";
+import ToTop from "../components/ToTop";
 
 type Props = {
   title?: string;
@@ -64,5 +65,6 @@ const { title = SITE.title, description = SITE.description, keywords = SITE.keyw
     <main><slot /></main>
     <slot name="footer" />
     <AfterFooter />
+    <ToTop client:load url={BASE_URL} />
   </body>
 </html>
