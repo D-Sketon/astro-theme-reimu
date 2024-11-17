@@ -1,9 +1,8 @@
 ---
-
 import { Icon } from "astro-icon/components";
 import { totalCount, totalReadingTime } from "../utils/wordCount";
 import { SITE, FOOTER, BASE_URL } from "../utils/config";
-import { __ } from '../utils/i18n';
+import { __ } from "../utils/i18n";
 import SocialList from "./SocialList.astro";
 
 const totalcount = await totalCount();
@@ -27,12 +26,17 @@ const totalmin2read = await totalReadingTime();
         FOOTER.powered && (
           <div>
             {__("powered_by")}&nbsp;
-            <a href="https://astro.build/" target="_blank">
+            <a
+              href="https://astro.build/"
+              rel="noopener external nofollow noreferrer"
+              target="_blank"
+            >
               Astro
             </a>
             &nbsp; Theme.
             <a
               href="https://github.com/D-Sketon/astro-theme-reimu"
+              rel="noopener external nofollow noreferrer"
               target="_blank"
             >
               Reimu
@@ -43,23 +47,33 @@ const totalmin2read = await totalReadingTime();
       {
         FOOTER.count && (
           <div>
-            <Icon name="tabler:brush" />&nbsp;
+            <Icon name="tabler:brush" />
+            &nbsp;
             {totalcount}
             &nbsp;|&nbsp;
-            <Icon name="tabler:coffee" />&nbsp;
+            <Icon name="tabler:coffee" />
+            &nbsp;
             {totalmin2read}
           </div>
         )
       }
       {
         FOOTER.busuanzi && (
-        <div>
-          <Icon name="tabler:eye-filled" />&nbsp;
-          <span id="busuanzi_container_site_pv">{__('busuanzi.pv')}&nbsp;<span id="busuanzi_value_site_pv"></span></span>
-          &nbsp;|&nbsp;
-          <Icon name="tabler:user-filled" />&nbsp;
-          <span id="busuanzi_container_site_uv">{__('busuanzi.uv')}&nbsp;<span id="busuanzi_value_site_uv"></span></span>
-        </div>
+          <div>
+            <Icon name="tabler:eye-filled" />
+            &nbsp;
+            <span id="busuanzi_container_site_pv">
+              {__("busuanzi.pv")}&nbsp;
+              <span id="busuanzi_value_site_pv" />
+            </span>
+            &nbsp;|&nbsp;
+            <Icon name="tabler:user-filled" />
+            &nbsp;
+            <span id="busuanzi_container_site_uv">
+              {__("busuanzi.uv")}&nbsp;
+              <span id="busuanzi_value_site_uv" />
+            </span>
+          </div>
         )
       }
     </div>

@@ -24,7 +24,12 @@ const socialFilledList = [
           name = `tabler:brand-${social}`;
         }
         return (
-          <a href={(SOCIAL as any)[social]} aria-label={social}>
+          <a
+            href={(SOCIAL as any)[social]}
+            aria-label={social}
+            rel="noopener external nofollow noreferrer"
+            target="_blank"
+          >
             <Icon name={name} />
           </a>
         );
