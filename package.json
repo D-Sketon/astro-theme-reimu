@@ -19,7 +19,7 @@
     "@expressive-code/plugin-collapsible-sections": "^0.38.3",
     "@reimujs/aos": "^0.1.0",
     "@tabler/icons-react": "^3.22.0",
-    "astro": "^4.16.13",
+    "astro": "^4.16.14",
     "astro-expressive-code": "^0.38.3",
     "astro-icon": "^1.1.2",
     "baguettebox.js": "^1.12.0",
