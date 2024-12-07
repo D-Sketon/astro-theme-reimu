@@ -249,3 +249,8 @@ body {
     filter: blur(0);
   }
 }
+
+[data-aos^="fade"],
+[data-aos^="zoom"] {
+  transition-property: all !important;
+}
