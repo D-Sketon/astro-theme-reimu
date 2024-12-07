@@ -10,7 +10,7 @@ const { pubDate } = Astro.props;
 
 <div class="article-date">
   <span class="article-date-span" data-aos="zoom-in">
-    <Icon name="fa6-solid:clock" />
+    <Icon name="fa6-solid:clock" style="margin-right: 10px;"/>
     <time datetime={pubDate.toISOString()} itemprop="datePublished"
       >{pubDate.toLocaleDateString().replace(/\//g, "-")}</time
     >
