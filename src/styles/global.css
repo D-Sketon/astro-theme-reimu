@@ -53,6 +53,18 @@
   }
 }
 
+// fix astro bug https://github.com/withastro/astro/issues/9521
+svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
+  overflow: visible;
+  box-sizing: content-box;
+}
+.svg-inline--fa {
+  display: var(--fa-display, inline-block);
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+
 html,
 body,
 div,
@@ -187,7 +199,7 @@ body {
   color: #fff;
 }
 
-.popoverlay {
+#mask {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -195,6 +207,15 @@ body {
   left: 0;
   z-index: 2080;
   background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  opacity: 1;
+  transition: 0.3s;
+
+  &.hide {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
 
 [data-theme="dark"] {

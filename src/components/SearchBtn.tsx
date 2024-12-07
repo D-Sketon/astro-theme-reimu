@@ -5,9 +5,7 @@ export default function SearchBtn() {
   function handleSearch() {
     const scrollWidth =
       window.innerWidth - document.documentElement.offsetWidth;
-    const overlay = document.createElement("div");
-    overlay.className = "popoverlay";
-    document.body.appendChild(overlay);
+    document.querySelector("#mask")?.classList.remove("hide");
     document.body.style.overflow = "hidden";
 
     const popup = document.querySelector(".popup")! as HTMLDivElement;

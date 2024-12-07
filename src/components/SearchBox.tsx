@@ -39,10 +39,7 @@ export default function SearchBox({
   function handleClose() {
     const popup = document.querySelector(".popup")! as HTMLDivElement;
     popup.classList.remove("show");
-    const popoverlayElements = document.querySelectorAll(".popoverlay");
-    popoverlayElements.forEach((element) => {
-      element.parentNode?.removeChild(element);
-    });
+    document.querySelector("#mask")?.classList.add("hide");
     document.body.style.overflow = "";
     document.documentElement.style.marginRight = "";
     document.querySelector<HTMLElement>("#header-nav")!.style.marginRight = "";
