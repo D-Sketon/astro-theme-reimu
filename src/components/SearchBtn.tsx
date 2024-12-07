@@ -1,4 +1,5 @@
-import { IconSearch } from "@tabler/icons-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export default function SearchBtn() {
   function handleSearch() {
@@ -22,7 +23,7 @@ export default function SearchBtn() {
   return (
     <span
       style={{
-        color: "var(--red-2)",
+        color: "var(--red-1)",
         opacity: "0.8",
         height: "100%",
         display: "flex",
@@ -30,7 +31,7 @@ export default function SearchBtn() {
         cursor: "pointer",
       }}
     >
-      <IconSearch size={20} onClick={handleSearch} />
+      <FontAwesomeIcon icon={faSearch} scale={20} onClick={handleSearch} />
     </span>
   );
 }

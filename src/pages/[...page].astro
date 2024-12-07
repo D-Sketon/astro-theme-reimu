@@ -38,7 +38,11 @@ const { page } = Astro.props;
   <HeaderTitle title={SITE.title} url=`${BASE_URL}/` slot="header" />
   {
     SITE.subtitle && (
-      <HeaderSubTitle subtitle={SITE.subtitle} url={`${BASE_URL}/`} slot="header" />
+      <HeaderSubTitle
+        subtitle={SITE.subtitle}
+        url={`${BASE_URL}/`}
+        slot="header"
+      />
     )
   }
   <!-- Content -->
@@ -73,17 +77,17 @@ const { page } = Astro.props;
         <div class="post-info">
           <div class="post-meta">
             <span>
-              <Icon name="tabler:calendar-month" />
+              <Icon name="fa6-solid:calendar" size={15} />
               &nbsp;
               {post.data.pubDate.toLocaleDateString().replace(/\//g, "-")}
             </span>
             <span>
-              <Icon name="tabler:pencil" />
+              <Icon name="fa6-solid:pen-nib" size={15} />
               &nbsp;
               {_p("post.count", wordCount(post.body))}
             </span>
             <span>
-              <Icon name="tabler:hourglass-high" />
+              <Icon name="fa6-solid:hourglass-half" size={15} />
               &nbsp;
               {_p("post.time", readingTime(post.body))}
             </span>
@@ -185,7 +189,7 @@ const { page } = Astro.props;
     margin: 5px 0;
 
     span {
-      font-size: 16px;
+      font-size: 14px;
       color: var(--grey-7);
       margin: 0 8px;
       white-space: nowrap;

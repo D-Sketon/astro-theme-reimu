@@ -1,28 +1,17 @@
 ---
 import { Icon } from "astro-icon/components";
 import { SOCIAL } from "../utils/config";
-
-const socialFilledList = [
-  "github",
-  "google",
-  "twitter",
-  "facebook",
-  "youtube",
-  "dribbble",
-  "discord",
-];
 ---
 
 <div class="footer-social">
   {
     SOCIAL &&
       Object.keys(SOCIAL).map((social) => {
-        let name;
-        if (socialFilledList.includes(social)) {
-          name = `tabler:brand-${social}-filled`;
-        } else {
-          name = `tabler:brand-${social}`;
+        let name = `fa6-brands:${social}`;
+        if (social === "email") {
+          name = "fa6-solid:envelope";
         }
+
         return (
           <a
             href={(SOCIAL as any)[social]}
@@ -30,7 +19,7 @@ const socialFilledList = [
             rel="noopener external nofollow noreferrer"
             target="_blank"
           >
-            <Icon name={name} />
+            <Icon name={name} scale={16} />
           </a>
         );
       })

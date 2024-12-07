@@ -1,9 +1,10 @@
 import useTheme, { type Theme } from "../hooks/useTheme";
 import { useState, useEffect } from "react";
-import { IconSunFilled, IconMoonFilled, IconBlur } from "@tabler/icons-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoon, faSun, faCircleHalfStroke } from "@fortawesome/free-solid-svg-icons";
 
 export default function ThemeToggle() {
-  const { colorMode, theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -26,7 +27,7 @@ export default function ThemeToggle() {
   return (
     <span
       style={{
-        color: "var(--red-2)",
+        color: "var(--red-1)",
         opacity: "0.8",
         height: "100%",
         display: "flex",
@@ -35,13 +36,13 @@ export default function ThemeToggle() {
       }}
     >
       {theme === "dark" && (
-        <IconMoonFilled size={20} onClick={() => handleChange("auto")} />
+        <FontAwesomeIcon icon={faMoon} scale={20} onClick={() => handleChange("light")} />
       )}
       {theme === "light" && (
-        <IconSunFilled size={20} onClick={() => handleChange("dark")} />
+        <FontAwesomeIcon icon={faSun} scale={20} onClick={() => handleChange("dark")} />
       )}
       {theme === "auto" && (
-        <IconBlur size={20} onClick={() => handleChange("light")} />
+        <FontAwesomeIcon icon={faCircleHalfStroke} scale={20} onClick={() => handleChange("light")} />
       )}
     </span>
   );

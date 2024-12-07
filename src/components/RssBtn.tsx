@@ -1,5 +1,5 @@
-import { IconRss } from "@tabler/icons-react";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRss } from '@fortawesome/free-solid-svg-icons'
 
 export default function RssBtn({ url }: { url: string}) {
   return (
@@ -11,8 +11,8 @@ export default function RssBtn({ url }: { url: string}) {
         alignItems: "center",
       }}
     >
-      <a href={`${url}/rss.xml`} target="_blank" style={{ color: "var(--red-2)" }} aria-label="RSS">
-        <IconRss size={20} />
+      <a href={`${url}/rss.xml`} target="_blank" style={{ color: "var(--red-1)" }} aria-label="RSS">
+        <FontAwesomeIcon icon={faRss} scale={20} />
       </a>
     </span>
   );

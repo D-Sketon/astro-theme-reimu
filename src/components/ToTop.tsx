@@ -1,5 +1,6 @@
-import { IconArrowUp } from "@tabler/icons-react";
 import { useCallback, useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
 import "../styles/top.stylus";
 
@@ -46,7 +47,7 @@ export default function ToTop({ url }: { url: string }) {
         width={50}
         alt="backtop"
       />
-      <IconArrowUp className="arrow-up" />
+      <FontAwesomeIcon icon={faArrowUp} className="arrow-up" />
     </div>
   );
 }

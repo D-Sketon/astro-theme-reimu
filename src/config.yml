@@ -19,6 +19,7 @@ analytics:
   clarity: false
 
 social:
+  # email: mailto:xxx@gmail.com
   github: https://github.com/yourname
   google: https://plus.google.com/yourname
   twitter: https://twitter.com/yourname
@@ -34,12 +35,12 @@ social:
   # bilibili: https://space.bilibili.com/yourname
   # weibo: https://weibo.com/yourname
   # zhihu: https://www.zhihu.com/people/yourname
-  # douban: https://www.douban.com/people/yourname
   # reddit: https://www.reddit.com/user/yourname
   # tumblr: https://yourname.tumblr.com
   # medium: https://medium.com/@yourname
   # deviantart: https://yourname.deviantart.com
   # stackoverflow: https://stackoverflow.com/users/yourname
+  # keybase: https://keybase.io/yourname
   # telegram: https://t.me/yourname
   # discord: https://discordapp.com/users/yourname
   # steam: https://steamcommunity.com/id/yourname

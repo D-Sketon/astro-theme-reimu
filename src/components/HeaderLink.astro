@@ -1,6 +1,7 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 import { BASE_URL } from '../utils/config';
+import { Icon } from "astro-icon/components";
 
 type Props = HTMLAttributes<"a">;
 
@@ -8,7 +9,7 @@ const { href, ...props } = Astro.props;
 ---
 
 <span class="main-nav-link-wrap">
-  <span class="main-nav-icon"></span>
+   <Icon name="fa6-solid:yin-yang" class="main-nav-icon" size={24} />
   <a class="main-nav-link" href={href} {...props}><slot /></a>
 </span>
 
@@ -35,8 +36,7 @@ const { href, ...props } = Astro.props;
       opacity: 1;
     }
     &:hover .main-nav-icon {
-      transition: all 1s;
-      transform: rotate(360deg);
+      transform: rotate(90deg) scale(1.1);
     }
   }
 
@@ -52,13 +52,13 @@ const { href, ...props } = Astro.props;
     font-weight: 700;
   }
   .main-nav-icon {
+    opacity: 0.8;
     color: var(--red-0);
     text-decoration: none;
     display: block;
-    padding: 20px 15px;
-    background: var(--imageUrl) no-repeat center / 80%;
-    transform: rotate(0deg);
-    transition: all 1s;
+    padding: 16px 10px;
+    transform: rotate(90deg);
+    transition: all 0.3s;
     cursor: pointer;
     will-change: transform;
   }

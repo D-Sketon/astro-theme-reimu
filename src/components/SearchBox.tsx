@@ -1,7 +1,8 @@
 import "../styles/search.stylus";
 import Fuse from "fuse.js";
 import { useState } from "react";
-import { IconSearch, IconCircleXFilled } from "@tabler/icons-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSearch, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
 // Configs fuse.js
 // https://fusejs.io/api/options.html
@@ -53,7 +54,7 @@ export default function SearchBox({
         <div className="reimu-popup popup">
           <div className="reimu-search">
             <div className="reimu-search-input" id="reimu-search-input">
-              <IconSearch size={20} />
+              <FontAwesomeIcon icon={faSearch} scale={20} />
               <input
                 type="text"
                 value={query}
@@ -61,9 +62,11 @@ export default function SearchBox({
                 placeholder="Search"
                 className=""
               />
-              <IconCircleXFilled
-                className="popup-btn-close"
+              <FontAwesomeIcon
+                icon={faTimesCircle}
+                scale={20}
                 onClick={handleClose}
+                className="popup-btn-close"
               />
             </div>
           </div>

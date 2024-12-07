@@ -17,7 +17,7 @@ const totalmin2read = await totalReadingTime();
     <div id="footer-info" class="inner">
       <SocialList />
       <div>
-        <Icon name="tabler:copyright" />
+        <Icon name="fa6-regular:copyright" />
         {FOOTER.since}-{new Date().getFullYear()}
         <span class="footer-info-sep"></span>
         {SITE.author || SITE.title}
@@ -47,11 +47,11 @@ const totalmin2read = await totalReadingTime();
       {
         FOOTER.count && (
           <div>
-            <Icon name="tabler:brush" />
+            <Icon name="fa6-solid:paintbrush" />
             &nbsp;
             {totalcount}
             &nbsp;|&nbsp;
-            <Icon name="tabler:coffee" />
+            <Icon name="fa6-solid:mug-saucer" />
             &nbsp;
             {totalmin2read}
           </div>
@@ -60,14 +60,14 @@ const totalmin2read = await totalReadingTime();
       {
         FOOTER.busuanzi && (
           <div>
-            <Icon name="tabler:eye-filled" />
+            <Icon name="fa6-solid:eye" />
             &nbsp;
             <span id="busuanzi_container_site_pv">
               {__("busuanzi.pv")}&nbsp;
               <span id="busuanzi_value_site_pv" />
             </span>
             &nbsp;|&nbsp;
-            <Icon name="tabler:user-filled" />
+            <Icon name="fa6-solid:user" />
             &nbsp;
             <span id="busuanzi_container_site_uv">
               {__("busuanzi.uv")}&nbsp;
@@ -144,7 +144,7 @@ const totalmin2read = await totalReadingTime();
   .footer-info-sep {
     width: 25px;
     height: 25px;
-    opacity: 0.6;
+    opacity: 0.8;
     background: var(--imageUrl) no-repeat center / 80%;
     animation: rotate-all 3s infinite;
     animation-timing-function: linear;

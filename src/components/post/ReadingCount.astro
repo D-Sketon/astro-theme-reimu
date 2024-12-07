@@ -18,7 +18,7 @@ const { url, title } = Astro.props;
       class="leancloud_visitors article-visitor-link"
       data-flag-title={title}
     >
-      <Icon name="tabler:book" />
+      <Icon name="fa6-solid:book-open" />
       <span class="leancloud-visitors-count">0</span>
       <em class="post-meta-item-text">{__("reading")}</em>
     </span>
@@ -27,7 +27,7 @@ const { url, title } = Astro.props;
 {
   WALINE.enable && WALINE.pageview && (
     <span class="article-visitor-link">
-      <Icon name="tabler:book" />
+      <Icon name="fa6-solid:book-open" />
       <span class="waline-pageview-count" data-path={`${BASE_URL}${url}/`}>
         0
       </span>
