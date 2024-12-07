@@ -27,7 +27,7 @@
       bottom: -18px;
       left: 0;
       border-radius: 10px;
-      box-shadow: 0 2px 12px var(--color-h2-after-shadow);
+      box-shadow: 0 2px 12px var(--color-red-6-shadow);
     }
 
     &:hover:after {
@@ -49,18 +49,18 @@
 
   h6 {
     font-size: 1em;
-    color: var(--color-grey);
+    color: var(--grey-9);
   }
 
   hr {
     margin: 10px 0;
     opacity: 0.3;
-    height: 2px;
+    height: 4px;
     background-image: linear-gradient(to right, var(--red-0) 50%, transparent 0%);
-    background-size: 25px 2px;
+    background-size: 50px 4px;
     background-repeat: repeat-x;
     border: none;
-    filter: drop-shadow(0px 0px 2px red);
+    filter: drop-shadow(0px 0px 2px var(--red-1));
     transition: opacity .3s;
 
     &:hover {
@@ -134,7 +134,7 @@
   pre,
   code,
   kbd {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,'Liberation Mono','Courier New', monospace;
+    font-family: Menlo, Monaco, Consolas, 'Liberation Mono','Courier New', monospace;
     font-size: 95%;
     transition: 0.3s;
   }

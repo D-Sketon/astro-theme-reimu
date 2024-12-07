@@ -68,7 +68,7 @@ const upperBound = currentPage + 2 < lastPage ? currentPage + 2 : lastPage;
     background: var(--color-wrap);
     border-radius: 5px;
     text-align: center;
-    color: var(--color-grey);
+    color: var(--grey-9);
     overflow: hidden;
     transition: 1s;
 
@@ -82,7 +82,7 @@ const upperBound = currentPage + 2 < lastPage ? currentPage + 2 : lastPage;
     }
 
     a {
-      color: var(--color-grey);
+      color: var(--grey-9);
       text-decoration: none;
       transition: background 0.2s;
 
@@ -116,7 +116,7 @@ const upperBound = currentPage + 2 < lastPage ? currentPage + 2 : lastPage;
       background: var(--red-1);
       color: white;
       font-weight: bold;
-      box-shadow: 0 2px 12px rgba(255, 78, 106, 0.55);
+      box-shadow: 0 2px 12px var(--color-red-6-shadow);
 
       @media screen and (max-width: 479px) {
         display: none;

@@ -8,9 +8,11 @@
   --red-5-5: #ffecec;
   --red-6: #fff3f3;
 
-  --color-default-font: black;
+  --grey-9: #999;
+  --grey-7: #777;
+
+  --color-archive-year: black;
   --color-default: #555;
-  --color-grey: #999;
   --color-border: var(--red-3);
   --color-link: var(--red-1);
   --color-background: #eee;
@@ -22,25 +24,20 @@
   --color-h2-border: #eee;
   --color-meta-shadow: var(--red-6);
   --color-hover-shadow: rgba(150, 150, 150, 0.1);
-  --color-h2-after: rgba(255, 0, 0, 0.6);
-  --color-h2-after-shadow: rgba(255, 78, 106, 0.7);
+  --color-h2-after: var(--red-1);
+  --color-red-6-shadow: rgba(255, 78, 78, 0.6);
 }
 
 [data-theme="dark"]:root {
-  --red-0: #ff5252;
-  --red-1: #ff5252;
-  --red-2: #ff7c7c;
-  --red-3: #ffafaf;
+  --red-0: var(--red-1);
   --red-4: rgba(255, 208, 208, 0.5);
   --red-5: rgba(255, 228, 228, 0.2);
   --red-5-5: rgba(255, 236, 236, 0.1);
   --red-6: rgba(255, 243, 243, 0.2);
 
-  --color-default-font: #999;
+  --color-archive-year: #999;
   --color-default: #999;
-  --color-grey: #999;
   --color-border: var(--red-5);
-  --color-link: var(--red-1);
   --color-background: #21252b;
   --color-code-background: rgba(232, 232, 232, 0.2);
   --color-header-background: #222222;
@@ -50,8 +47,7 @@
   --color-h2-border: #47474a;
   --color-meta-shadow: rgba(0, 0, 0, 0.2);
   --color-hover-shadow: rgba(0, 0, 0, 0.2);
-  --color-h2-after: #ff5252;
-  --color-h2-after-shadow: rgba(255, 78, 106, 0.7);
+
   img {
     filter: brightness(70%);
   }
