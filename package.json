@@ -12,7 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^3.1.9",
+    "@astrojs/mdx": "^4.0.2",
     "@astrojs/react": "^3.6.3",
     "@astrojs/rss": "^4.0.10",
     "@astrojs/sitemap": "^3.2.1",
@@ -23,7 +23,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.1",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@reimujs/aos": "^0.1.0",
-    "astro": "^4.16.17",
+    "astro": "^5.0.5",
     "astro-expressive-code": "^0.38.3",
     "astro-icon": "^1.1.4",
     "baguettebox.js": "^1.12.0",
