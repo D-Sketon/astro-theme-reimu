@@ -10,16 +10,16 @@ importers:
     dependencies:
       '@astrojs/mdx':
         specifier: ^4.3.0
-        version: 4.3.0(astro@5.8.1(@types/node@22.1.0)(rollup@4.41.1)(stylus@0.64.0)(typescript@5.8.3))
+        version: 4.3.0(astro@5.8.1(@types/node@24.3.3)(rollup@4.41.1)(stylus@0.64.0)(typescript@5.8.3))
       '@astrojs/react':
         specifier: ^4.3.0
-        version: 4.3.0(@types/node@22.1.0)(@types/react-dom@19.1.5(@types/react@19.1.6))(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(stylus@0.64.0)
+        version: 4.3.0(@types/node@24.3.3)(@types/react-dom@19.1.5(@types/react@19.1.6))(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(stylus@0.64.0)
       '@astrojs/rss':
         specifier: ^4.0.12
         version: 4.0.12
       '@astrojs/sitemap':
-        specifier: ^3.4.0
-        version: 3.4.0
+        specifier: ^3.5.1
+        version: 3.5.1
       '@expressive-code/plugin-collapsible-sections':
         specifier: ^0.41.2
         version: 0.41.2
@@ -43,10 +43,10 @@ importers:
         version: 0.1.1
       astro:
         specifier: ^5.8.1
-        version: 5.8.1(@types/node@22.1.0)(rollup@4.41.1)(stylus@0.64.0)(typescript@5.8.3)
+        version: 5.8.1(@types/node@24.3.3)(rollup@4.41.1)(stylus@0.64.0)(typescript@5.8.3)
       astro-expressive-code:
         specifier: ^0.41.2
-        version: 0.41.2(astro@5.8.1(@types/node@22.1.0)(rollup@4.41.1)(stylus@0.64.0)(typescript@5.8.3))
+        version: 0.41.2(astro@5.8.1(@types/node@24.3.3)(rollup@4.41.1)(stylus@0.64.0)(typescript@5.8.3))
       astro-icon:
         specifier: ^1.1.5
         version: 1.1.5
@@ -182,8 +182,8 @@ packages:
   '@astrojs/rss@4.0.12':
     resolution: {integrity: sha512-O5yyxHuDVb6DQ6VLOrbUVFSm+NpObulPxjs6XT9q3tC+RoKbN4HXMZLpv0LvXd1qdAjzVgJ1NFD+zKHJNDXikw==}
 
-  '@astrojs/sitemap@3.4.0':
-    resolution: {integrity: sha512-C5m/xsKvRSILKM3hy47n5wKtTQtJXn8epoYuUmCCstaE9XBt20yInym3Bz2uNbEiNfv11bokoW0MqeXPIvjFIQ==}
+  '@astrojs/sitemap@3.5.1':
+    resolution: {integrity: sha512-uX5z52GLtQTgOe8r3jeGmFRYrFe52mdpLYJzqjvL1cdy5Kg3MLOZEvaZ/OCH0fSq0t7e50uJQ6oBMZG0ffszBg==}
 
   '@astrojs/telemetry@3.3.0':
     resolution: {integrity: sha512-UFBgfeldP06qu6khs/yY+q1cDAaArM2/7AEIqQ9Cuvf7B1hNLq0xDrZkct+QoIGyjq56y8IaE2I3CTvG99mlhQ==}
@@ -1236,8 +1236,8 @@ packages:
   '@types/node@17.0.45':
     resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
 
-  '@types/node@22.1.0':
-    resolution: {integrity: sha512-AOmuRF0R2/5j1knA3c6G3HOk523Ga+l+ZXltX8SF1+5oqcXijjfTd8fY3XRZqSihEu9XhtQnKYLmkFaoxgsJHw==}
+  '@types/node@24.3.3':
+    resolution: {integrity: sha512-GKBNHjoNw3Kra1Qg5UXttsY5kiWMEfoHq2TmXb+b1rcm6N7B3wTrFYIf/oSZ1xNQ+hVVijgLkiDZh7jRRsh+Gw==}
 
   '@types/react-dom@19.1.5':
     resolution: {integrity: sha512-CMCjrWucUBZvohgZxkjd6S9h0nZxXjzus6yDfUb+xLxYM7VvjKNH1tQrE9GWLql1XoOP4/Ds3bwFqShHUYraGg==}
@@ -3310,8 +3310,8 @@ packages:
   uncrypto@0.1.3:
     resolution: {integrity: sha512-Ql87qFHB3s/De2ClA9e0gsnS6zXG27SkTiSJwjCc9MebbfapQfuPzumMIUMi38ezPZVNFcHI9sUIepeQfw8J8Q==}
 
-  undici-types@6.13.0:
-    resolution: {integrity: sha512-xtFJHudx8S2DSoujjMd1WeWvn7KKWFRESZTMeL1RptAYERu29D6jphMjjY+vn96jvN3kVPDNxU/E13VTaXj6jg==}
+  undici-types@7.10.0:
+    resolution: {integrity: sha512-t5Fy/nfn+14LuOc2KNYg75vZqClpAiqscVvMygNnlsHBFpSXdJaYtXMcdNLpl/Qvc3P2cB3s6lOV51nqsFq4ag==}
 
   undici@6.19.8:
     resolution: {integrity: sha512-U8uCCl2x9TK3WANvmBavymRzxbfFYG+tAu+fgx3zxQy3qdagQqBLwJVrdyO1TBfUXvfKveMKJZhpvUYoOjM+4g==}
@@ -3601,6 +3601,9 @@ packages:
   zod@3.25.45:
     resolution: {integrity: sha512-kv1swJBZqv98NQibL0oVvkQE8rXT+6qGNM1FpZkFcJG2jnz4vbtu48bgaitp85CaBPLSKXibrEsU7MzJoVoZAA==}
 
+  zod@3.25.76:
+    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
+
   zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
 
@@ -3650,12 +3653,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@4.3.0(astro@5.8.1(@types/node@22.1.0)(rollup@4.41.1)(stylus@0.64.0)(typescript@5.8.3))':
+  '@astrojs/mdx@4.3.0(astro@5.8.1(@types/node@24.3.3)(rollup@4.41.1)(stylus@0.64.0)(typescript@5.8.3))':
     dependencies:
       '@astrojs/markdown-remark': 6.3.2
       '@mdx-js/mdx': 3.1.0(acorn@8.14.1)
       acorn: 8.14.1
-      astro: 5.8.1(@types/node@22.1.0)(rollup@4.41.1)(stylus@0.64.0)(typescript@5.8.3)
+      astro: 5.8.1(@types/node@24.3.3)(rollup@4.41.1)(stylus@0.64.0)(typescript@5.8.3)
       es-module-lexer: 1.7.0
       estree-util-visit: 2.0.0
       hast-util-to-html: 9.0.5
@@ -3673,15 +3676,15 @@ snapshots:
     dependencies:
       prismjs: 1.30.0
 
-  '@astrojs/react@4.3.0(@types/node@22.1.0)(@types/react-dom@19.1.5(@types/react@19.1.6))(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(stylus@0.64.0)':
+  '@astrojs/react@4.3.0(@types/node@24.3.3)(@types/react-dom@19.1.5(@types/react@19.1.6))(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(stylus@0.64.0)':
     dependencies:
       '@types/react': 19.1.6
       '@types/react-dom': 19.1.5(@types/react@19.1.6)
-      '@vitejs/plugin-react': 4.5.0(vite@6.3.5(@types/node@22.1.0)(stylus@0.64.0))
+      '@vitejs/plugin-react': 4.5.0(vite@6.3.5(@types/node@24.3.3)(stylus@0.64.0))
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
       ultrahtml: 1.6.0
-      vite: 6.3.5(@types/node@22.1.0)(stylus@0.64.0)
+      vite: 6.3.5(@types/node@24.3.3)(stylus@0.64.0)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -3701,11 +3704,11 @@ snapshots:
       fast-xml-parser: 5.2.5
       kleur: 4.1.5
 
-  '@astrojs/sitemap@3.4.0':
+  '@astrojs/sitemap@3.5.1':
     dependencies:
       sitemap: 8.0.0
       stream-replace-string: 2.0.0
-      zod: 3.25.45
+      zod: 3.25.76
 
   '@astrojs/telemetry@3.3.0':
     dependencies:
@@ -4733,7 +4736,7 @@ snapshots:
 
   '@types/fontkit@2.0.8':
     dependencies:
-      '@types/node': 22.1.0
+      '@types/node': 24.3.3
 
   '@types/geojson@7946.0.14': {}
 
@@ -4761,9 +4764,9 @@ snapshots:
 
   '@types/node@17.0.45': {}
 
-  '@types/node@22.1.0':
+  '@types/node@24.3.3':
     dependencies:
-      undici-types: 6.13.0
+      undici-types: 7.10.0
 
   '@types/react-dom@19.1.5(@types/react@19.1.6)':
     dependencies:
@@ -4775,11 +4778,11 @@ snapshots:
 
   '@types/sax@1.2.7':
     dependencies:
-      '@types/node': 22.1.0
+      '@types/node': 24.3.3
 
   '@types/tar@6.1.13':
     dependencies:
-      '@types/node': 22.1.0
+      '@types/node': 24.3.3
       minipass: 4.2.8
 
   '@types/trusted-types@2.0.7':
@@ -4791,12 +4794,12 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 22.1.0
+      '@types/node': 24.3.3
     optional: true
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@vitejs/plugin-react@4.5.0(vite@6.3.5(@types/node@22.1.0)(stylus@0.64.0))':
+  '@vitejs/plugin-react@4.5.0(vite@6.3.5(@types/node@24.3.3)(stylus@0.64.0))':
     dependencies:
       '@babel/core': 7.27.4
       '@babel/plugin-transform-react-jsx-self': 7.25.9(@babel/core@7.27.4)
@@ -4804,7 +4807,7 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-beta.9
       '@types/babel__core': 7.20.5
       react-refresh: 0.17.0
-      vite: 6.3.5(@types/node@22.1.0)(stylus@0.64.0)
+      vite: 6.3.5(@types/node@24.3.3)(stylus@0.64.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -4843,9 +4846,9 @@ snapshots:
 
   astring@1.8.6: {}
 
-  astro-expressive-code@0.41.2(astro@5.8.1(@types/node@22.1.0)(rollup@4.41.1)(stylus@0.64.0)(typescript@5.8.3)):
+  astro-expressive-code@0.41.2(astro@5.8.1(@types/node@24.3.3)(rollup@4.41.1)(stylus@0.64.0)(typescript@5.8.3)):
     dependencies:
-      astro: 5.8.1(@types/node@22.1.0)(rollup@4.41.1)(stylus@0.64.0)(typescript@5.8.3)
+      astro: 5.8.1(@types/node@24.3.3)(rollup@4.41.1)(stylus@0.64.0)(typescript@5.8.3)
       rehype-expressive-code: 0.41.2
 
   astro-icon@1.1.5:
@@ -4857,7 +4860,7 @@ snapshots:
       - debug
       - supports-color
 
-  astro@5.8.1(@types/node@22.1.0)(rollup@4.41.1)(stylus@0.64.0)(typescript@5.8.3):
+  astro@5.8.1(@types/node@24.3.3)(rollup@4.41.1)(stylus@0.64.0)(typescript@5.8.3):
     dependencies:
       '@astrojs/compiler': 2.12.0
       '@astrojs/internal-helpers': 0.6.1
@@ -4912,8 +4915,8 @@ snapshots:
       unist-util-visit: 5.0.0
       unstorage: 1.16.0
       vfile: 6.0.3
-      vite: 6.3.5(@types/node@22.1.0)(stylus@0.64.0)
-      vitefu: 1.0.6(vite@6.3.5(@types/node@22.1.0)(stylus@0.64.0))
+      vite: 6.3.5(@types/node@24.3.3)(stylus@0.64.0)
+      vitefu: 1.0.6(vite@6.3.5(@types/node@24.3.3)(stylus@0.64.0))
       xxhash-wasm: 1.1.0
       yargs-parser: 21.1.1
       yocto-spinner: 0.2.3
@@ -7587,7 +7590,7 @@ snapshots:
 
   uncrypto@0.1.3: {}
 
-  undici-types@6.13.0: {}
+  undici-types@7.10.0: {}
 
   undici@6.19.8: {}
 
@@ -7709,7 +7712,7 @@ snapshots:
       '@types/unist': 3.0.2
       vfile-message: 4.0.2
 
-  vite@6.3.5(@types/node@22.1.0)(stylus@0.64.0):
+  vite@6.3.5(@types/node@24.3.3)(stylus@0.64.0):
     dependencies:
       esbuild: 0.25.5
       fdir: 6.4.5(picomatch@4.0.2)
@@ -7718,13 +7721,13 @@ snapshots:
       rollup: 4.41.1
       tinyglobby: 0.2.14
     optionalDependencies:
-      '@types/node': 22.1.0
+      '@types/node': 24.3.3
       fsevents: 2.3.3
       stylus: 0.64.0
 
-  vitefu@1.0.6(vite@6.3.5(@types/node@22.1.0)(stylus@0.64.0)):
+  vitefu@1.0.6(vite@6.3.5(@types/node@24.3.3)(stylus@0.64.0)):
     optionalDependencies:
-      vite: 6.3.5(@types/node@22.1.0)(stylus@0.64.0)
+      vite: 6.3.5(@types/node@24.3.3)(stylus@0.64.0)
 
   vscode-jsonrpc@8.2.0: {}
 
@@ -7819,5 +7822,7 @@ snapshots:
       zod: 3.25.45
 
   zod@3.25.45: {}
+
+  zod@3.25.76: {}
 
   zwitch@2.0.4: {}
