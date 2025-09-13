@@ -13,7 +13,7 @@ importers:
         version: 4.3.0(astro@5.8.1(@types/node@22.1.0)(rollup@4.41.1)(stylus@0.64.0)(typescript@5.8.3))
       '@astrojs/react':
         specifier: ^4.3.0
-        version: 4.3.0(@types/node@22.1.0)(@types/react-dom@19.1.5(@types/react@19.1.6))(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(stylus@0.64.0)
+        version: 4.3.0(@types/node@22.1.0)(@types/react-dom@19.1.5(@types/react@19.1.13))(@types/react@19.1.13)(react-dom@19.1.0(react@19.1.1))(react@19.1.1)(stylus@0.64.0)
       '@astrojs/rss':
         specifier: ^4.0.12
         version: 4.0.12
@@ -37,7 +37,7 @@ importers:
         version: 6.7.2
       '@fortawesome/react-fontawesome':
         specifier: ^0.2.2
-        version: 0.2.2(@fortawesome/fontawesome-svg-core@6.7.2)(react@19.1.0)
+        version: 0.2.2(@fortawesome/fontawesome-svg-core@6.7.2)(react@19.1.1)
       '@reimujs/aos':
         specifier: ^0.1.1
         version: 0.1.1
@@ -72,11 +72,11 @@ importers:
         specifier: ^11.6.0
         version: 11.6.0
       react:
-        specifier: ^19.1.0
-        version: 19.1.0
+        specifier: ^19.1.1
+        version: 19.1.1
       react-dom:
         specifier: ^19.1.0
-        version: 19.1.0(react@19.1.0)
+        version: 19.1.0(react@19.1.1)
       rehype-katex:
         specifier: ^7.0.1
         version: 7.0.1
@@ -88,7 +88,7 @@ importers:
         version: 5.8.3
       usehooks-ts:
         specifier: ^3.1.1
-        version: 3.1.1(react@19.1.0)
+        version: 3.1.1(react@19.1.1)
     devDependencies:
       '@iconify-json/fa6-brands':
         specifier: ^1.2.5
@@ -106,11 +106,11 @@ importers:
         specifier: ^1.16.4
         version: 1.16.4
       '@types/react':
-        specifier: ^19.1.6
-        version: 19.1.6
+        specifier: ^19.1.13
+        version: 19.1.13
       '@types/react-dom':
         specifier: ^19.1.5
-        version: 19.1.5(@types/react@19.1.6)
+        version: 19.1.5(@types/react@19.1.13)
       autoprefixer:
         specifier: ^10.4.21
         version: 10.4.21(postcss@8.4.47)
@@ -1244,8 +1244,8 @@ packages:
     peerDependencies:
       '@types/react': ^19.0.0
 
-  '@types/react@19.1.6':
-    resolution: {integrity: sha512-JeG0rEWak0N6Itr6QUx+X60uQmN+5t3j9r/OVDtWzFXKaj6kD1BwJzOksD0FF6iWxZlbE1kB0q9vtnU2ekqa1Q==}
+  '@types/react@19.1.13':
+    resolution: {integrity: sha512-hHkbU/eoO3EG5/MZkuFSKmYqPbSVk5byPFa3e7y/8TybHiLMACgI8seVYlicwk7H5K/rI2px9xrQp/C+AUDTiQ==}
 
   '@types/sax@1.2.7':
     resolution: {integrity: sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A==}
@@ -3025,8 +3025,8 @@ packages:
     resolution: {integrity: sha512-z6F7K9bV85EfseRCp2bzrpyQ0Gkw1uLoCel9XBVWPg/TjRj94SkJzUTGfOa4bs7iJvBWtQG0Wq7wnI0syw3EBQ==}
     engines: {node: '>=0.10.0'}
 
-  react@19.1.0:
-    resolution: {integrity: sha512-FS+XFBNvn3GTAWq26joslQgWNoFu08F4kl0J4CgdNKADkdSGXQyTCnKteIAJy96Br6YbpEU1LSzV5dYtjMkMDg==}
+  react@19.1.1:
+    resolution: {integrity: sha512-w8nqGImo45dmMIfljjMwOGtbmC/mk4CMYhWIicdSflH91J9TyCyczcPFXJzrZ/ZXcgGRFeP6BU0BEJTw6tZdfQ==}
     engines: {node: '>=0.10.0'}
 
   readdirp@4.1.2:
@@ -3673,13 +3673,13 @@ snapshots:
     dependencies:
       prismjs: 1.30.0
 
-  '@astrojs/react@4.3.0(@types/node@22.1.0)(@types/react-dom@19.1.5(@types/react@19.1.6))(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(stylus@0.64.0)':
+  '@astrojs/react@4.3.0(@types/node@22.1.0)(@types/react-dom@19.1.5(@types/react@19.1.13))(@types/react@19.1.13)(react-dom@19.1.0(react@19.1.1))(react@19.1.1)(stylus@0.64.0)':
     dependencies:
-      '@types/react': 19.1.6
-      '@types/react-dom': 19.1.5(@types/react@19.1.6)
+      '@types/react': 19.1.13
+      '@types/react-dom': 19.1.5(@types/react@19.1.13)
       '@vitejs/plugin-react': 4.5.0(vite@6.3.5(@types/node@22.1.0)(stylus@0.64.0))
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
+      react: 19.1.1
+      react-dom: 19.1.0(react@19.1.1)
       ultrahtml: 1.6.0
       vite: 6.3.5(@types/node@22.1.0)(stylus@0.64.0)
     transitivePeerDependencies:
@@ -4277,11 +4277,11 @@ snapshots:
     dependencies:
       '@fortawesome/fontawesome-common-types': 6.7.2
 
-  '@fortawesome/react-fontawesome@0.2.2(@fortawesome/fontawesome-svg-core@6.7.2)(react@19.1.0)':
+  '@fortawesome/react-fontawesome@0.2.2(@fortawesome/fontawesome-svg-core@6.7.2)(react@19.1.1)':
     dependencies:
       '@fortawesome/fontawesome-svg-core': 6.7.2
       prop-types: 15.8.1
-      react: 19.1.0
+      react: 19.1.1
 
   '@iconify-json/fa6-brands@1.2.5':
     dependencies:
@@ -4765,11 +4765,11 @@ snapshots:
     dependencies:
       undici-types: 6.13.0
 
-  '@types/react-dom@19.1.5(@types/react@19.1.6)':
+  '@types/react-dom@19.1.5(@types/react@19.1.13)':
     dependencies:
-      '@types/react': 19.1.6
+      '@types/react': 19.1.13
 
-  '@types/react@19.1.6':
+  '@types/react@19.1.13':
     dependencies:
       csstype: 3.1.3
 
@@ -7162,16 +7162,16 @@ snapshots:
 
   radix3@1.1.2: {}
 
-  react-dom@19.1.0(react@19.1.0):
+  react-dom@19.1.0(react@19.1.1):
     dependencies:
-      react: 19.1.0
+      react: 19.1.1
       scheduler: 0.26.0
 
   react-is@16.13.1: {}
 
   react-refresh@0.17.0: {}
 
-  react@19.1.0: {}
+  react@19.1.1: {}
 
   readdirp@4.1.2: {}
 
@@ -7685,10 +7685,10 @@ snapshots:
       escalade: 3.2.0
       picocolors: 1.1.1
 
-  usehooks-ts@3.1.1(react@19.1.0):
+  usehooks-ts@3.1.1(react@19.1.1):
     dependencies:
       lodash.debounce: 4.0.8
-      react: 19.1.0
+      react: 19.1.1
 
   util-deprecate@1.0.2: {}
 
