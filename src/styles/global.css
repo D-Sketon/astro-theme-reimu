@@ -58,6 +58,11 @@
   img {
     filter: brightness(70%);
   }
+
+  img.lazyloaded {
+    opacity: 1;
+    animation: blur-darken 0.8s ease-in-out forwards !important;
+  }
 }
 
 // fix astro bug https://github.com/withastro/astro/issues/9521
@@ -273,6 +278,16 @@ body {
   }
   to {
     filter: blur(0);
+  }
+}
+
+@keyframes blur-darken {
+  0% {
+    filter: blur(10px) brightness(70%);
+  }
+
+  to {
+    filter: blur(0) brightness(70%);
   }
 }
 

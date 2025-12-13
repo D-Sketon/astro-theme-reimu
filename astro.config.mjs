@@ -8,13 +8,14 @@ import react from "@astrojs/react";
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import remarkMermaidToHtml from './src/plugins/remarkMermaidToHtml.mjs';
+import rehypeAddImageClasses from './src/plugins/rehypeAddImageClasses.mjs';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com', // should be same as `site.url` in src/config.yml
+  site: 'https://example.com',
   markdown: {
     remarkPlugins: [remarkMath, remarkMermaidToHtml],
-    rehypePlugins: [rehypeKatex],
+    rehypePlugins: [rehypeKatex, rehypeAddImageClasses],
     syntaxHighlight: false
   },
   integrations: [astroExpressiveCode({
