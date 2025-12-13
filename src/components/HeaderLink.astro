@@ -1,6 +1,5 @@
 ---
 import type { HTMLAttributes } from "astro/types";
-import { BASE_URL } from '../utils/config';
 import { Icon } from "astro-icon/components";
 
 type Props = HTMLAttributes<"a">;
@@ -13,17 +12,17 @@ const { href, ...props } = Astro.props;
   <a class="main-nav-link" href={href} {...props}><slot /></a>
 </span>
 
-<style lang="stylus" define:vars={{ imageUrl: 'url('+`${BASE_URL}/images/taichi.png`+')' }}>
+<style lang="stylus">
   .main-nav-link-wrap {
+    color: var(--red-0);
+    opacity: 0.8;
+    text-decoration: none;
     padding: 0 15px;
     display: flex;
-    opacity: 0.8;
-    transition: 0.3s;
-    line-height: 16px;
-    font-size: 16px;
+    transition: .3s;
 
     @media screen and (max-width: 767px) {
-      padding: 0;
+      padding: 0 10px;
     }
 
     @media screen and (max-width: 479px) {
@@ -42,12 +41,10 @@ const { href, ...props } = Astro.props;
 
   .main-nav-link {
     color: var(--red-0);
-    opacity: 0.8;
+    opacity: 0.7;
     text-decoration: none;
     transition: opacity 0.2s;
-    display: block;
     padding: 20px 15px;
-    font-weight: 400;
     letter-spacing: 1px;
     font-weight: 700;
   }
@@ -56,9 +53,13 @@ const { href, ...props } = Astro.props;
     color: var(--red-0);
     text-decoration: none;
     display: block;
-    padding: 16px 10px;
+    padding: 15px 5px;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 400;
     transform: rotate(90deg);
-    transition: all 0.3s;
+    transition: transform 0.3s, color 0.3s;
     cursor: pointer;
     will-change: transform;
   }

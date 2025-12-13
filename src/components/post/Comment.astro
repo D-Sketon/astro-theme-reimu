@@ -16,10 +16,14 @@ const { comment } = Astro.props;
 {comment && GITALK.enable && <GitalkComment />}
 <style lang="stylus" is:global>
   #comments {
-    width: calc(100% - 20px);
-    margin: 10px auto;
     background: var(--color-wrap);
-    border-radius: 5px;
+    padding: 20px 36px;
+    border-radius: 12px;
+    margin: 12px 0;
+
+    @media screen and (max-width: 767px) {
+      padding: 20px 16px;
+    }
 
     a {
       color: var(--color-link);

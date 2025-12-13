@@ -10,7 +10,7 @@ const { pubDate } = Astro.props;
 
 <div class="article-date">
   <span class="article-date-span" data-aos="zoom-in">
-    <Icon name="fa6-solid:clock" style="margin-right: 10px;"/>
+    <Icon name="fa6-solid:clock" style="margin-right: 8px;"/>
     <time datetime={pubDate.toISOString()} itemprop="datePublished"
       >{pubDate.toLocaleDateString().replace(/\//g, "-")}</time
     >
@@ -27,10 +27,10 @@ const { pubDate } = Astro.props;
     font-size: 14px;
     color: var(--red-1);
     background: var(--red-5);
-    border-radius: 20px;
-    padding: 10px 18px;
-    margin: 0 12px 1em 0;
-    box-shadow: 0 0 5px 3px var(--color-meta-shadow);
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin: 0 12px 16px 0;
+    box-shadow: var(--shadow-meta);
     transition: 0.3s;
     display: flex;
     align-items: center;

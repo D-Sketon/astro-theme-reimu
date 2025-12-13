@@ -46,70 +46,74 @@ const { page } = Astro.props;
     )
   }
   <!-- Content -->
-  {
-    page.data.map((post, index) => (
-      <div
-        class:list={["post-wrap", { right: index % 2 === 1 }]}
-        data-aos="fade-up"
-      >
-        <a
-          class="post-link"
-          href={`${BASE_URL}/blog/${post.slug}`}
-          aria-label={post.slug}
-        />
-        <div class:list={["post-cover", { right: index % 2 === 1 }]}>
-          {post.data.cover ? (
-            <img
-              class="lazyload"
-              data-sizes="auto"
-              data-src={post.data.cover}
-              alt={post.data.title}
+  <section id="main" aria-label="Main content">
+    {
+      page.data.map((post, index) => (
+        <div class="post-wrapper">
+          <div
+            class:list={["post-wrap", { right: index % 2 === 1 }]}
+            data-aos="fade-up"
+          >
+            <a
+              class="post-link"
+              href={`${BASE_URL}/blog/${post.slug}`}
+              aria-label={post.slug}
             />
-          ) : (
-            <img
-              class="lazyload"
-              data-sizes="auto"
-              data-src={randomCover()}
-              alt={post.data.title}
-            />
-          )}
-        </div>
-        <div class="post-info">
-          <div class="post-meta">
-            <span>
-              <Icon name="fa6-solid:calendar" size={15} />
-              &nbsp;
-              {post.data.pubDate.toLocaleDateString().replace(/\//g, "-")}
-            </span>
-            <span>
-              <Icon name="fa6-solid:pen-nib" size={15} />
-              &nbsp;
-              {_p("post.count", wordCount(post.body))}
-            </span>
-            <span>
-              <Icon name="fa6-solid:hourglass-half" size={15} />
-              &nbsp;
-              {_p("post.time", readingTime(post.body))}
-            </span>
+            <div class:list={["post-cover", { right: index % 2 === 1 }]}>
+              {post.data.cover ? (
+                <img
+                  class="lazyload"
+                  data-sizes="auto"
+                  data-src={post.data.cover}
+                  alt={post.data.title}
+                />
+              ) : (
+                <img
+                  class="lazyload"
+                  data-sizes="auto"
+                  data-src={randomCover()}
+                  alt={post.data.title}
+                />
+              )}
+            </div>
+            <div class="post-info">
+              <div class="post-meta">
+                <span>
+                  <Icon name="fa6-solid:calendar" size={14} />
+                  &nbsp;
+                  {post.data.pubDate.toLocaleDateString().replace(/\//g, "-")}
+                </span>
+                <span>
+                  <Icon name="fa6-solid:pen-nib" size={14} />
+                  &nbsp;
+                  {_p("post.count", wordCount(post.body))}
+                </span>
+                <span>
+                  <Icon name="fa6-solid:hourglass-half" size={14} />
+                  &nbsp;
+                  {_p("post.time", readingTime(post.body))}
+                </span>
+              </div>
+              <h2 class="post-title">{post.data.title}</h2>
+              <article class="post-article">
+                {post.data.excerpt ? (
+                  <p>{post.data.excerpt}</p>
+                ) : (
+                  <p>{post.body.slice(0, 300)}</p>
+                )}
+              </article>
+            </div>
           </div>
-          <h2 class="post-title">{post.data.title}</h2>
-          <article class="post-article">
-            {post.data.excerpt ? (
-              <p>{post.data.excerpt}</p>
-            ) : (
-              <p>{post.body.slice(0, 300)}</p>
-            )}
-          </article>
         </div>
-      </div>
-    ))
-  }
-  <Pagination
-    prevUrl={page.url.prev}
-    nextUrl={page.url.next}
-    currentPage={page.currentPage}
-    lastPage={page.lastPage}
-  />
+      ))
+    }
+    <Pagination
+      prevUrl={page.url.prev}
+      nextUrl={page.url.next}
+      currentPage={page.currentPage}
+      lastPage={page.lastPage}
+    />
+  </section>
   <!-- Footer -->
   <Footer slot="footer" />
 </BaseLayout>
@@ -124,43 +128,15 @@ const { page } = Astro.props;
   }
 
   .post-wrap {
-    width: calc(100% - 20px);
-    height: 230px;
-    margin: 0 auto 40px;
+    width: 100%;
+    height: 232px;
+    margin-bottom: 32px;
     position: relative;
-    border-radius: 5px;
+    border-radius: 12px;
     background: var(--color-wrap);
     display: flex;
     flex-direction: row;
     transition: 0.3s;
-
-    @media screen and (min-width: 768px) {
-      &:hover {
-        transform: scale(1.015) !important;
-
-        &:before {
-          opacity: 0.8;
-        }
-
-        img {
-          transition: 0.3s;
-          transform: scale(1.05);
-        }
-      }
-
-      &:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 5px;
-        box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.1);
-        opacity: 0;
-        transition: 0.3s;
-      }
-    }
 
     &.right {
       flex-direction: row-reverse;
@@ -169,8 +145,44 @@ const { page } = Astro.props;
     @media screen and (max-width: 767px) {
       flex-direction: column;
       height: 400px;
+      margin-bottom: 20px;
       &.right {
         flex-direction: column;
+      }
+    }
+  }
+
+  :global([data-theme='dark'])  {
+    .post-wrap.left, .post-wrap.right {
+      box-shadow: var(--shadow-card);
+    }
+  }
+
+  .post-wrapper {
+    border-radius: 12px;
+    transition: 0.3s;
+
+    .aos-animate {
+      transition-property: initial !important;
+
+      @media screen and (min-width: 768px) {
+        &:hover {
+          box-shadow: var(--shadow-card-hover);
+        }
+      }
+    }
+
+    img {
+      will-change: transform;
+    }
+
+    @media screen and (min-width: 768px) {
+      &:hover {
+        transform: scale(1.01);
+
+        img {
+          transform: scale(1.05);
+        }
       }
     }
   }
@@ -186,32 +198,30 @@ const { page } = Astro.props;
   .post-meta {
     display: flex;
     justify-content: flex-end;
-    margin: 5px 0;
+    margin: 4px 0;
 
     span {
       font-size: 14px;
       color: var(--grey-7);
-      margin: 0 8px;
+      margin: 0 12px;
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
       display: flex;
       align-items: center;
-    }
 
-    a:before,
-    span:before {
-      margin: 0 10px;
+      @media screen and (max-width: 767px) {
+        margin: 0 8px;
+      }
     }
   }
 
   .post-article {
-    width: 100%;
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
-    line-height: 30px;
+    line-height: 32px;
     font-size: 15px;
     color: var(--grey-7);
 
@@ -235,22 +245,22 @@ const { page } = Astro.props;
     }
 
     @media screen and (min-width: 768px) {
-      border-radius: 5px 0 0 5px;
+      border-radius: 12px 0 0 12px;
       -webkit-clip-path: polygon(0 0, 92% 0%, 100% 100%, 0% 100%);
       clip-path: polygon(0 0, 92% 0%, 100% 100%, 0% 100%);
 
       &.right {
-        border-radius: 0 5px 5px 0;
+        border-radius: 0 12px 12px 0;
         -webkit-clip-path: polygon(0 0, 100% 0%, 100% 100%, 8% 100%);
         clip-path: polygon(0 0, 100% 0%, 100% 100%, 8% 100%);
       }
     }
 
     @media screen and (max-width: 767px) {
-      border-radius: 5px 5px 0 0;
+      border-radius: 12px 12px 0 0;
 
       &.right {
-        border-radius: 5px 5px 0 0;
+        border-radius: 12px 12px 0 0;
       }
     }
 
@@ -276,12 +286,10 @@ const { page } = Astro.props;
     padding: 20px 0;
     color: var(--color-link);
     font-size: 25px;
-    font-weight: bold;
-    text-decoration: none;
-    text-shadow: 0 1px rgba(0, 0, 0, 0.2);
     letter-spacing: 1px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    transition: color 0.3s;
   }
 </style>

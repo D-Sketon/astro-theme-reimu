@@ -4,17 +4,16 @@
   top: 10%;
   left: 50%;
   width: 700px;
-  height: 80%;
+  max-height: 80%;
   margin-left: -350px;
-  padding: 3px 0 0 10px;
   background: var(--color-wrap);
   color: var(--grey-9);
   z-index: 9999;
-  border-radius: 5px;
+  border-radius: 12px;
   opacity: 0;
   transform: scale(0.5);
   transition: 0.3s;
-  box-shadow: 0 0 15px var(--color-meta-shadow);
+  box-shadow: 0 0 10px var(--color-meta-shadow);
 
   &.show {
     visibility: visible;
@@ -30,23 +29,37 @@
     width: 100%;
     height: 100%;
     border-radius: 0;
+    max-height: 100%;
+  }
+
+  @media screen and (min-width: 768px) {
+    min-height: 350px;
   }
 }
 
 .reimu-popup {
   overflow: hidden;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+}
 
-  .popup-btn-close {
-    cursor: pointer;
-    color: var(--red-1);
+.popup-btn-close {
+  color: var(--red-1);
+  padding-left: 8px;
+  font-size: 20px;
+  transition: 0.3s;
+  margin: 4px 0;
+
+  &:hover {
     opacity: 0.8;
-    transition: .3s;
-
-    &:hover {
-      opacity: 1;
-    }
   }
+}
+
+.popup-search-icon {
+  padding-right: 8px;
+  font-size: 20px;
+  margin: 4px 0;
 }
 
 .reimu-stats {
@@ -58,13 +71,11 @@
 }
 
 .reimu-search {
-  padding: 10px;
-  max-height: 50px;
-  border-bottom: 1px solid #ccc;
-  background: #f5f5f5;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  background: var(--color-wrap);
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--grey-9);
+  flex-shrink: 0;
 }
 
 .reimu-search-input {
@@ -73,25 +84,27 @@
   align-items: center;
 
   input {
-    margin: 0 10px;
     width: 100%;
     outline: none;
     border: none;
     background: transparent;
+    color: var(--grey-9);
     font-size: 16px;
+    vertical-align: middle;
+  }
+  input[type=search]::-webkit-search-cancel-button {
+    -webkit-appearance: none;
   }
 }
 
 .reimu-results {
   position: relative;
   overflow: auto;
-  padding: 10px 30px;
+  padding: 16px 32px;
   box-sizing: border-box;
-  height: calc(100% - 50px);
 }
 #reimu-hits {
-  margin-top: 10px;
-  margin-left: 10px;
+  margin-top: 12px;
 }
 
 .reimu-bg {
@@ -103,33 +116,35 @@
 }
 
 hr {
-  margin: 10px 0;
+  margin: 16px 0 8px 0;
+  border: none;
+  height: 1px;
+  background: var(--grey-9);
 }
 
 .reimu-hit-item-link {
   display: block;
   text-decoration: none;
   color: var(--red-2);
-  margin-left: 15px;
-  padding: 12px 0;
+  padding: 12px 0 12px 24px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 
   &:before {
-    content: "";
+    content: '';
     width: 6px;
-    height: 14px;
+    height: 12px;
     background: var(--color-h2-after);
     display: inline-block;
     vertical-align: middle;
-    margin-top: -2px;
-    margin-right: 11px;
-    margin-left: -25px;
-    box-shadow: 0 2px 12px var(--color-red-6-shadow);
+    margin: -2px 12px 0 -24px;
+    box-shadow: var(--shadow-red-6-shadow);
     opacity: 0.5;
     transition: 0.2s;
   }
 
-  &:hover:before {
-    width: 6px;
+  &:hover:before, &:focus:before {
     height: 6px;
     border-radius: 50%;
     opacity: 1;

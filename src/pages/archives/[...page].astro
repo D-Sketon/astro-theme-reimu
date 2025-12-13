@@ -56,19 +56,25 @@ posts.forEach((post) => {
 
 <BaseLayout title={__("archive_a")}>
   <!-- Header -->
-  <HeaderTitle title={__("archive_a")} url=`${BASE_URL}/archives` slot="header" />
-  <!-- Content -->
-  <div class="archives-outer-wrap" data-aos="fade-up">
-    <TagList tags={[...tags]} />
-    <ArchiveList page={page} type="archives" />
-  </div>
-  <Pagination
-    prevUrl={page.url.prev}
-    nextUrl={page.url.next}
-    currentPage={page.currentPage}
-    lastPage={page.lastPage}
-    url="/archives"
+  <HeaderTitle
+    title={__("archive_a")}
+    url=`${BASE_URL}/archives`
+    slot="header"
   />
+  <!-- Content -->
+  <section id="main" aria-label="Main content">
+    <div class="archives-outer-wrap" data-aos="fade-up">
+      <TagList tags={[...tags]} />
+      <ArchiveList page={page} type="archives" />
+    </div>
+    <Pagination
+      prevUrl={page.url.prev}
+      nextUrl={page.url.next}
+      currentPage={page.currentPage}
+      lastPage={page.lastPage}
+      url="/archives"
+    />
+  </section>
   <!-- Footer -->
   <Footer slot="footer" />
 </BaseLayout>
@@ -76,9 +82,7 @@ posts.forEach((post) => {
 <style>
   .archives-outer-wrap {
     background: var(--color-wrap);
-    border-radius: 5px;
-    padding: 15px 0;
-    width: calc(100% - 20px);
-    margin: 0 auto;
+    border-radius: 12px;
+    padding: 16px 0;
   }
 </style>

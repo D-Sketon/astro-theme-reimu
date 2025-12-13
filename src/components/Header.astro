@@ -92,13 +92,15 @@ const posts = await getCollection("blog");
     right: 0;
     display: flex;
     justify-content: center;
-    overflow: hidden;
     background: var(--color-header-background);
-    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.1);
-    transition: background .3s, top .3s, opacity .3s;
+    box-shadow: var(--shadow-card);
+    transition: background 1s, top 0.3s;
     z-index: 200;
     &.header-nav-hidden {
       top: -80px;
+    }
+    &:hover {
+      background: rgba(255, 255, 255, 0.95);
     }
     @media screen and (max-width: 574px) {
       justify-content: flex-start;
@@ -111,7 +113,8 @@ const posts = await getCollection("blog");
   }
 
   #header {
-    height: 400px;
+    min-height: 400px;
+    height: 35vh;
     position: relative;
 
     img {
@@ -119,9 +122,9 @@ const posts = await getCollection("blog");
       top: 0;
       left: 0;
       width: 100%;
-      height: 150%;
+      height: 180%;
       z-index: -2;
-
+      user-select: none;
       display: block;
       object-fit: cover;
       transition: 0.3s;
@@ -142,7 +145,12 @@ const posts = await getCollection("blog");
     height: 100%;
     position: relative;
     max-width: 100%;
-    margin: 0;
+  }
+
+  :global([data-theme='dark']) {
+    #header-nav:hover {
+      background: var(--color-header-background);
+    }
   }
 
   #header-title {
@@ -155,13 +163,25 @@ const posts = await getCollection("blog");
       sans-serif;
     font-weight: 700;
     text-align: center;
-    height: 40px;
     position: absolute;
     top: 50%;
-    left: 0;
-    margin-top: -20px;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+    margin: 40px * -0.5 2.5% 0;
+    width: 95%;
+    opacity: 0;
+    filter: blur(8px);
+    will-change: transform, opacity, filter;
+    animation: fade-in-blur 800ms ease-out 200ms forwards;
+  }
+
+  @keyframes fade-in-blur {
+    0% {
+      opacity: 0;
+      filter: blur(10px);
+    }
+
+    100% {
+      opacity: 1;
+      filter: blur(0);
+    }
   }
 </style>

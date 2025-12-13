@@ -65,10 +65,12 @@ const { tag } = Astro.params;
     slot="header"
   />
   <!-- Content -->
-  <div class="archives-outer-wrap" data-aos="fade-up">
-    <TagList tags={[...tags]} />
-    <ArchiveList page={page} type="archives" />
-  </div>
+  <section id="main" aria-label="Main content">
+    <div class="archives-outer-wrap" data-aos="fade-up">
+      <TagList tags={[...tags]} />
+      <ArchiveList page={page} type="archives" />
+    </div>
+  </section>
   <!-- Footer -->
   <Footer slot="footer" />
 </BaseLayout>
@@ -76,9 +78,7 @@ const { tag } = Astro.params;
 <style>
   .archives-outer-wrap {
     background: var(--color-wrap);
-    border-radius: 5px;
-    padding: 15px 0;
-    width: calc(100% - 20px);
-    margin: 0 auto;
+    border-radius: 12px;
+    padding: 16px 0;
   }
 </style>

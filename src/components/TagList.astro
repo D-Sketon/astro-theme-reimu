@@ -14,7 +14,7 @@ const { tags } = Astro.props;
     tags.map((tag) => {
       return (
         <div class="archives-tag-list-item">
-          <Icon name="fa6-solid:tag" style="margin-right: 10px"/>
+          <Icon name="fa6-solid:tag" style="margin-right: 8px"/>
           <a class="archives-tag-list-link" href={`${BASE_URL}/tags/${tag}`}>
             {tag}
           </a>
@@ -28,7 +28,7 @@ const { tags } = Astro.props;
   .tag-wrap {
     display: flex;
     flex-wrap: wrap;
-    padding: 10px 50px;
+    padding: 10px 36px;
 
     a {
       text-decoration: none;
@@ -41,10 +41,10 @@ const { tags } = Astro.props;
       text-decoration: none;
       text-transform: uppercase;
       background: var(--red-5);
-      border-radius: 20px;
-      padding: 8px 15px;
-      margin: 5px 10px 5px 0;
-      box-shadow: 0 0 5px 3px var(--color-meta-shadow);
+      border-radius: 8px;
+      padding: 8px 16px;
+      margin: 6px;
+      box-shadow: var(--shadow-meta);
     }
     .archives-tag-list-link {
       color: var(--red-1);

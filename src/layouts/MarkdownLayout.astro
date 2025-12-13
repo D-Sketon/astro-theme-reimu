@@ -6,7 +6,7 @@ import "baguettebox.js/dist/baguetteBox.min.css";
 import "katex/dist/katex.min.css";
 import "../styles/markdown.stylus";
 
-import { ViewTransitions } from "astro:transitions";
+import { ClientRouter } from "astro:transitions";
 import { BASE_URL, SITE } from "../utils/config";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -18,6 +18,7 @@ import VendorFont from "../components/partial/VendorFont.astro";
 import VendorScript from "../components/partial/VendorScript.astro";
 import HeaderTitle from "../components/HeaderTitle.astro";
 import ToTop from "../components/ToTop";
+import Loader from "../components/partial/Loader.astro";
 
 type Props = {
   frontmatter: Record<string, any>;
@@ -67,78 +68,82 @@ const {
     <VendorScript />
     <style>
       main {
-        max-width: 1000px;
+        position: relative;
+        display: flex;
+        padding-top: 8px;
+        align-items: stretch;
+        max-width: 1550px;
         margin: 0 auto;
+        overflow: visible;
       }
 
       .hr-line {
-        margin: 10px 35px;
+        margin: 12px 36px;
         opacity: 0.3;
         height: 4px;
-        background-image: linear-gradient(
-          to right,
-          var(--red-0) 50%,
-          transparent 0%
-        );
+        background-image: linear-gradient(to right, var(--red-0) 50%, transparent 0%);
         background-size: 50px 4px;
         background-repeat: repeat-x;
-        filter: drop-shadow(0px 0px 2px red);
-        transition: opacity 0.3s;
+        filter: drop-shadow(0px 0px 2px var(--red-1));
+        transition: opacity 0.3s, color 0.3s;
 
         &:hover {
           opacity: 0.5;
         }
       }
 
-      .article {
-        width: calc(100% - 20px);
-        margin: 0 auto;
-      }
-
       .article-inner {
         background: var(--color-wrap);
-        border-radius: 5px;
-        overflow: hidden;
+        border-radius: 12px;
+        display: flow-root;
         transition: 0.3s;
       }
 
       .article-meta {
         display: flex;
         flex-direction: column;
-        padding: 20px 35px 0;
+        padding: 20px 36px 0;
+
+        @media screen and (max-width: 767px) {
+          padding: 20px 16px 0;
+        }
       }
     </style>
-    <ViewTransitions />
+    <ClientRouter />
   </head>
   <body>
+    <Loader />
     <Header title={title} cover={cover}>
       <HeaderTitle title={title} url=`${BASE_URL}/` />
     </Header>
     <main>
-      <article
-        class="article"
-        itemprop="blogPost"
-        itemscope
-        itemtype="https://schema.org/BlogPosting"
-        data-aos="fade-up"
-      >
-        <div class="article-inner">
-          <div class="article-meta">
-            <Date
-              pubDate={typeof pubDate === "string"
-                ? new globalThis.Date(pubDate as any)
-                : (pubDate as Date)}
-            />
+      <section id="main" aria-label="Main content">
+        <article
+          class="article"
+          itemprop="blogPost"
+          itemscope
+          itemtype="https://schema.org/BlogPosting"
+          data-aos="fade-up"
+        >
+          <div class="article-inner">
+            <div class="article-meta">
+              <Date
+                pubDate={typeof pubDate === "string"
+                  ? new globalThis.Date(pubDate as any)
+                  : (pubDate as Date)}
+              />
+            </div>
+            <div class="hr-line"></div>
+            <div class="article-entry" itemprop="articleBody">
+              <slot />
+            </div>
+            <slot name="footer" />
           </div>
-          <div class="hr-line"></div>
-          <div class="article-entry" itemprop="articleBody">
-            <slot />
-          </div>
-          <slot name="footer" />
-        </div>
-        <slot name="nav" />
-      </article>
-      <Comment comment={comment} />
+          <slot name="nav" />
+        </article>
+
+        <Comment comment={comment} />
+      </section>
     </main>
     <Footer />
     <AfterFooter />

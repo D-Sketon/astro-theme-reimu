@@ -51,7 +51,7 @@ export default function SearchBox({
         <div className="reimu-popup popup">
           <div className="reimu-search">
             <div className="reimu-search-input" id="reimu-search-input">
-              <FontAwesomeIcon icon={faSearch} scale={20} />
+              <FontAwesomeIcon icon={faSearch} scale={20} className="popup-search-icon" />
               <input
                 type="text"
                 value={query}

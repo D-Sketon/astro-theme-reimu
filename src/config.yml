@@ -1,5 +1,4 @@
 site:
-  url: https://example.com # same as `site` in astro.config.mjs
   title: My Blog
   subtitle: My Blog Subtitle
   description: D-Sketon's blog
@@ -107,3 +106,8 @@ copyright:
     date: false
     updated: false
     license: true
+
+preloader:
+  enable: true
+  text: 少女祈祷中...
+  rotate: true # whether to rotate the icon

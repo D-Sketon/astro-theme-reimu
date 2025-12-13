@@ -1,0 +1,116 @@
+---
+import { PRELOADER } from "../../utils/config";
+---
+
+<div id="loader">
+  <div class="loading-left-bg loading-bg"></div>
+  <div class="loading-right-bg loading-bg"></div>
+  <div class="spinner-box">
+    <div class={PRELOADER.rotate ? "loading-taichi rotate" : "loading-taichi"}>
+      <svg
+        width="150"
+        height="150"
+        viewBox="0 0 1024 1024"
+        class="icon"
+        version="1.1"
+        xmlns="https://www.w3.org/2000/svg"
+        shape-rendering="geometricPrecision"
+      >
+        <path
+          d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z"
+          fill="var(--red-1, #ff5252)"></path>
+        <path
+          d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z 
+       M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95z"
+          fill="var(--red-1, #ff5252)"></path>
+      </svg>
+    </div>
+    <div class="loading-word">{PRELOADER.text}</div>
+  </div>
+</div>
+
+<script is:inline> 
+  var time = null;
+  var endLoading = () => {
+    if (!time) {
+      document.body.style.overflow = "auto";
+      document.getElementById("loader").classList.add("loading");
+    } else {
+      if (Date.now() - time > 500) {
+        time = null;
+        document.body.style.overflow = "auto";
+        document.getElementById("loader").classList.add("loading");
+      } else {
+        setTimeout(endLoading, 500 - (Date.now() - time));
+        time = null;
+      }
+    }
+  };
+  window.addEventListener("DOMContentLoaded", endLoading);
+  document.addEventListener("astro:page-load", endLoading);
+  document.getElementById("loader").addEventListener("click", endLoading);
+</script>
+
+<style lang="stylus">
+:global([data-theme="dark"])
+  #loader 
+    .loading-bg
+      background-color: rgba(37, 37, 37, .9)
+
+    .spinner-box .loading-word
+      color: var(--red-1, #ff5252)
+
+#loader
+  .loading-bg
+    position: fixed
+    z-index: 1000
+    width: 50%
+    height: 100%
+    background-color: rgba(255, 255, 255, .9)
+    transition: .8s
+
+  .loading-right-bg
+    right: 0
+
+  .spinner-box
+    position: fixed
+    z-index: 1001
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 100%
+    height: 100vh
+    opacity: 1
+    transition: .5s
+
+    .loading-taichi
+      opacity: .8
+      
+    .rotate
+      animation: rotate-all 2s linear infinite
+
+    .loading-word
+      position: absolute
+      color: var(--red-1, #ff5252)
+      top: calc(50% + 110px)
+      left: 50%
+      transform: translate(-50%, -50%)
+      font: 700 1.2rem Mulish, Noto Serif SC, -apple-system, PingFang SC,
+      Microsoft YaHei, sans-serif;
+
+#loader.loading 
+  .loading-left-bg
+	  transform: translate(-100%, 0)
+
+  .loading-right-bg
+	  transform: translate(100%, 0)
+
+#loader.loading 
+  .spinner-box
+    opacity: 0
+    visibility: hidden
+
+@keyframes rotate-all
+  100%
+    transform: rotate(360deg)
+</style>

@@ -87,12 +87,9 @@ const totalmin2read = await totalReadingTime();
       var(--color-footer-background) 50%,
       transparent
     );
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin-top: auto;
-    padding: 40px 0 20px 0;
+    padding: 40px 0 20px;
     color: var(--grey-9);
+    transition: 1s;
 
     &:hover {
       .footer-line {
@@ -112,38 +109,31 @@ const totalmin2read = await totalReadingTime();
   }
 
   .footer-line {
-    margin-top: 20px;
+    margin: 20px 0 40px;
     opacity: 0.3;
     width: 200%;
     height: 10px;
     background: linear-gradient(to left, var(--red-1) 50%, transparent 0%) repeat-x 0 0 / 100px 10px;
-    background-size: 100px 10px;
-    background-repeat: repeat-x;
     transition: opacity 0.3s;
-    margin-bottom: 20px;
-    animation: transform-all 3s infinite;
-    animation-timing-function: linear;
+    animation: transform-all 3s linear infinite;
     filter: drop-shadow(0px 0px 2px var(--red-1));
   }
 
   #footer-info {
-    line-height: line-height;
+    line-height: 1.67;
     font-size: 0.85em;
-    width: 100%;
-    margin: 0;
 
     div {
-      margin: 5px 0;
+      margin: 8px 0;
       display: flex;
       justify-content: center;
       align-items: center;
-      line-height: 24px;
     }
   }
 
   .footer-info-sep {
-    width: 25px;
-    height: 25px;
+    width: 24px;
+    height: 24px;
     opacity: 0.8;
     background: var(--imageUrl) no-repeat center / 80%;
     animation: rotate-all 3s infinite;

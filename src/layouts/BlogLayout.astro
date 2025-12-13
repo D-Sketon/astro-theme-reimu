@@ -27,9 +27,8 @@ const { title, tags = [] } = post;
     (tags.length ||
       (VALINE.enable && VALINE.visitor) ||
       (WALINE.enable && WALINE.pageview)) && (
-      <div class="article-footer-line"></div>
-      <Copyright post={post} url={url} />
       <footer class="article-footer" slot="footer">
+        <Copyright post={post} url={url} />
         <Tag tags={tags} />
         <ReadingCount url={url} title={title} />
       </footer>
@@ -39,21 +38,37 @@ const { title, tags = [] } = post;
 </MarkdownLayout>
 
 <style>
-  .article-footer-line {
-    margin: 10px 35px 0;
-    opacity: 0.3;
-    height: 4px;
-    background-image: linear-gradient(to right, var(--red-0) 50%, transparent 0%);
-    background-size: 50px 4px;
-    background-repeat: repeat-x;
-    filter: drop-shadow(0px 0px 2px red);
-  }
   .article-footer {
     font-size: 14px;
-    padding-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 35px 20px;
+    margin: 0 36px 20px;
+
+    @media screen and (max-width: 767px) {
+      margin: 0 16px 20px;
+    }
+
+    &:before {
+      content: '';
+      display: block;
+      margin-top: 12px;
+      opacity: 0.3;
+      height: 4px;
+      background-image: linear-gradient(to right, var(--red-0) 50%, transparent 0%);
+      background-size: 50px 4px;
+      background-repeat: repeat-x;
+      filter: drop-shadow(0px 0px 2px var(--red-1));
+      transition: 0.3s;
+    }
+
+    &:after {
+      content: '';
+      display: block;
+      height: 0;
+      clear: both;
+      visibility: hidden;
+    }
+
+    a {
+      text-decoration: none;
+    }
   }
 </style>

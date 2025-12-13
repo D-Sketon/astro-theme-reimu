@@ -2,7 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import dayjs from "dayjs";
 import { Icon } from "astro-icon/components";
-import { COPYRIGHT, SITE, BASE_URL } from "../../utils/config";
+import { COPYRIGHT, SITE, BASE_URL, SITE_URL } from "../../utils/config";
 
 const { content, enable } = COPYRIGHT;
 const { author, link, title, date, updated, license } = content;
@@ -28,8 +28,8 @@ const { post, url } = Astro.props;
         <p>
           <strong>本文链接：</strong>
           <a
-            href={`${SITE.url}${BASE_URL}${url}/`}
-          >{`${SITE.url}${BASE_URL}${url}/`}</a>
+            href={`${SITE_URL}${BASE_URL}${url}/`}
+          >{`${SITE_URL}${BASE_URL}${url}/`}</a>
         </p>
       )}
       {title && (
@@ -69,13 +69,11 @@ const { post, url } = Astro.props;
   .article-copyright {
     background: var(--red-5-5);
     border-left: 6px var(--red-4) solid;
-    margin: 1.8em 35px 0;
-    
-    border-radius: 5px;
-    transition: all .3s ease;
-    padding: 5px 10px;
-
-    box-shadow: 0 0 5px 2px var(--color-meta-shadow);
+    margin: 24px 0;
+    border-radius: 12px;
+    transition: 0.3s;
+    padding: 6px 10px;
+    box-shadow: var(--shadow-meta);
     position: relative;
     overflow: hidden;
     word-break: break-all;

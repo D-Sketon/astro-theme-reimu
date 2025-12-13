@@ -2,7 +2,6 @@ import fs from "fs";
 import yaml from "js-yaml";
 
 export interface SiteConfig {
-  url: string;
   title: string;
   subtitle: string;
   description: string;
@@ -107,6 +106,12 @@ export interface CopyrightConfig {
   }
 }
 
+export interface PreloaderConfig {
+  enable: boolean;
+  text: string;
+  rotate: boolean;
+}
+
 const config = yaml.load(fs.readFileSync("src/config.yml", "utf8")) as {
   site: SiteConfig;
   footer: FooterConfig;
@@ -117,6 +122,7 @@ const config = yaml.load(fs.readFileSync("src/config.yml", "utf8")) as {
   gitalk: GitalkConfig;
   friend: FriendConfig[];
   copyright: CopyrightConfig;
+  preloader: PreloaderConfig;
 };
 
 export const SITE = config.site;
@@ -128,6 +134,10 @@ export const WALINE = config.waline;
 export const GITALK = config.gitalk;
 export const FRIEND = config.friend;
 export const COPYRIGHT = config.copyright;
+export const PRELOADER = config.preloader;
 export const BASE_URL = import.meta.env.BASE_URL.endsWith("/")
-  ? ""
+  ? import.meta.env.BASE_URL.slice(0, -1)
   : import.meta.env.BASE_URL;
+export const SITE_URL = import.meta.env.SITE.endsWith("/")
+  ? import.meta.env.SITE.slice(0, -1)
+  : import.meta.env.SITE;

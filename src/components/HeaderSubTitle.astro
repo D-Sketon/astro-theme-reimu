@@ -21,23 +21,24 @@ const { subtitle, url } = Astro.props;
   #subtitle {
     text-decoration: none;
     color: #fff;
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     font-size: 18px;
     font-weight: 400;
-    line-height: 18px;
     letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    width: 70%;
+    margin: 0 auto;
+    display: block;
+    line-height: 1.5;
 
     @media screen and (max-width: 959px) {
-      font-size: 15px;
+      font-size: 16px;
     }
 
     @media screen and (min-width: 480px) and (max-width: 767px) {
-      width: 95%;
       font-size: 14px;
     }
 
     @media screen and (max-width: 479px) {
-      width: 100%;
       font-size: 13px;
     }
   }

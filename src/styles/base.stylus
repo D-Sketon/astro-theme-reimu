@@ -1,10 +1,10 @@
 .article-entry {
   h1 {
-    font-size: 2em;
+    font-size: 2.25em;
   }
 
   h2 {
-    font-size: 1.5em;
+    font-size: 1.75em;
     position: relative;
 
     &:before {
@@ -14,7 +14,7 @@
       position: absolute;
       bottom: -15px;
       box-sizing: unset;
-      transition: 0.3s;
+      transition: 1s;
     }
 
     &:after {
@@ -26,8 +26,8 @@
       height: 7px;
       bottom: -18px;
       left: 0;
-      border-radius: 10px;
-      box-shadow: 0 2px 12px var(--color-red-6-shadow);
+      border-radius: 8px;
+      box-shadow: var(--shadow-red-6-shadow);
     }
 
     &:hover:after {
@@ -36,11 +36,11 @@
   }
 
   h3 {
-    font-size: 1.3em;
+    font-size: 1.5em;
   }
 
   h4 {
-    font-size: 1.2em;
+    font-size: 1.5em;
   }
 
   h5 {
@@ -53,7 +53,7 @@
   }
 
   hr {
-    margin: 10px 0;
+    margin: 12px 0;
     opacity: 0.3;
     height: 4px;
     background-image: linear-gradient(to right, var(--red-0) 50%, transparent 0%);
@@ -61,7 +61,7 @@
     background-repeat: repeat-x;
     border: none;
     filter: drop-shadow(0px 0px 2px var(--red-1));
-    transition: opacity .3s;
+    transition: opacity 0.3s, color 0.3s;
 
     &:hover {
       opacity: 0.5;
@@ -107,7 +107,7 @@
   ol,
   dl {
     margin: 0 20px;
-    line-height: 1.8em;
+    line-height: 1.67;
   }
 
   ul,
@@ -135,7 +135,7 @@
   code,
   kbd {
     font-family: Menlo, Monaco, Consolas, 'Liberation Mono','Courier New', monospace;
-    font-size: 95%;
+    font-size: 93.75%;
     transition: 0.3s;
   }
 
@@ -143,15 +143,46 @@
     code,
     kbd {
       background: var(--color-code-background);
-      padding: 1px 5px;
-      border-radius: 5px;
+      padding: 1px 4px;
+      border-radius: 6px;
       color: var(--color-link);
     }
+  }
+
+  code.language-mermaid {
+    display: flex;
+    justify-content: center;
   }
 
   .katex-display {
     overflow-x: auto;  
     overflow-y: hidden;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .katex {
+    width: calc(100% - 2px);
+  }
+
+  .katex-html {
+    padding: 4px;
+
+    .base {
+      margin: 0 auto;
+    }
+  }
+
+  .katex-html:has(span.tag) {
+    display: flex !important;
+  }
+
+  .katex-display>.katex>.katex-html>.tag {
+    position: relative !important;
+    float: right;
+    margin-left: 0.25rem;
   }
 }
 
