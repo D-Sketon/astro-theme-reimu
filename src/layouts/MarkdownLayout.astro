@@ -16,6 +16,7 @@ import Comment from "../components/post/Comment.astro";
 import CommonMeta from "../components/partial/CommonMeta.astro";
 import VendorFont from "../components/partial/VendorFont.astro";
 import VendorScript from "../components/partial/VendorScript.astro";
+import ThemeScript from "../components/partial/ThemeScript.astro";
 import HeaderTitle from "../components/HeaderTitle.astro";
 import ToTop from "../components/ToTop";
 import Loader from "../components/partial/Loader.astro";
@@ -40,29 +41,7 @@ const {
 <!doctype html>
 <html lang={SITE.language}>
   <head>
-    <script is:inline>
-      (function () {
-        const storedTheme = JSON.parse(
-          window.localStorage.getItem("theme") ?? '"auto"'
-        );
-        let presetTheme;
-        if (storedTheme === "auto") {
-          presetTheme = window.matchMedia("(prefers-color-scheme: dark)")
-            .matches
-            ? "dark"
-            : "light";
-        } else {
-          presetTheme = storedTheme;
-        }
-        if (presetTheme === "dark") {
-          document.documentElement.setAttribute("data-theme", "dark");
-          document.documentElement.style.colorScheme = "dark";
-        } else {
-          document.documentElement.removeAttribute("data-theme");
-          document.documentElement.style.colorScheme = "light";
-        }
-      })();
-    </script>
+    <ThemeScript />
     <CommonMeta title={title} description={description} keywords={keywords} />
     <VendorFont />
     <VendorScript />

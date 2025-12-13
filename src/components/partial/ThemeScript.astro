@@ -1,0 +1,41 @@
+<script is:inline>
+  function applyTheme() {
+    const storedTheme = JSON.parse(
+      window.localStorage.getItem("theme") ?? '"auto"'
+    );
+    let presetTheme;
+    if (storedTheme === "auto") {
+      presetTheme = window.matchMedia("(prefers-color-scheme: dark)")
+        .matches
+        ? "dark"
+        : "light";
+    } else {
+      presetTheme = storedTheme;
+    }
+    if (presetTheme === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+      document.documentElement.style.colorScheme = "dark";
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+      document.documentElement.style.colorScheme = "light";
+    }
+  }
+  
+  applyTheme();
+
+  document.addEventListener("astro:before-swap", (ev) => {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    const currentColorScheme = document.documentElement.style.colorScheme;
+    
+    if (currentTheme) {
+      ev.newDocument.documentElement.setAttribute("data-theme", currentTheme);
+    } else {
+      ev.newDocument.documentElement.removeAttribute("data-theme");
+    }
+    if (currentColorScheme) {
+      ev.newDocument.documentElement.style.colorScheme = currentColorScheme;
+    }
+  });
+
+  document.addEventListener("astro:page-load", applyTheme);
+</script>

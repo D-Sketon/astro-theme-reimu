@@ -8,6 +8,7 @@ import { SITE, BASE_URL } from "../utils/config";
 import CommonMeta from "../components/partial/CommonMeta.astro";
 import VendorFont from "../components/partial/VendorFont.astro";
 import VendorScript from "../components/partial/VendorScript.astro";
+import ThemeScript from "../components/partial/ThemeScript.astro";
 import Header from "../components/Header.astro";
 import AfterFooter from "../components/AfterFooter.astro";
 import ToTop from "../components/ToTop";
@@ -25,29 +26,7 @@ const { title = SITE.title, description = SITE.description, keywords = SITE.keyw
 <!doctype html>
 <html lang={SITE.language}>
   <head>
-    <script is:inline>
-      (function () {
-        const storedTheme = JSON.parse(
-          window.localStorage.getItem("theme") ?? '"auto"'
-        );
-        let presetTheme;
-        if (storedTheme === "auto") {
-          presetTheme = window.matchMedia("(prefers-color-scheme: dark)")
-            .matches
-            ? "dark"
-            : "light";
-        } else {
-          presetTheme = storedTheme;
-        }
-        if (presetTheme === "dark") {
-          document.documentElement.setAttribute("data-theme", "dark");
-          document.documentElement.style.colorScheme = "dark";
-        } else {
-          document.documentElement.removeAttribute("data-theme");
-          document.documentElement.style.colorScheme = "light";
-        }
-      })();
-    </script>
+    <ThemeScript />
     <CommonMeta title={title} description={description} keywords={keywords} />
     <VendorFont />
     <style>
