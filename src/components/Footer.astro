@@ -3,7 +3,6 @@ import { Icon } from "astro-icon/components";
 import { totalCount, totalReadingTime } from "../utils/wordCount";
 import { SITE, FOOTER, BASE_URL } from "../utils/config";
 import { __ } from "../utils/i18n";
-import SocialList from "./SocialList.astro";
 
 const totalcount = await totalCount();
 const totalmin2read = await totalReadingTime();
@@ -15,7 +14,6 @@ const totalmin2read = await totalReadingTime();
   </div>
   <div class="outer">
     <div id="footer-info" class="inner">
-      <SocialList />
       <div>
         <Icon name="fa6-regular:copyright" />
         {FOOTER.since}-{new Date().getFullYear()}

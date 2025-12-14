@@ -1,0 +1,63 @@
+---
+import SidebarWrapper from "./sidebar/SidebarWrapper.astro";
+
+type Props = {
+  isPost?: boolean;
+  headings?: Array<{
+    depth: number;
+    slug: string;
+    text: string;
+  }>;
+  toc?: boolean;
+};
+
+const { isPost = false, headings = [], toc = true } = Astro.props;
+---
+
+<nav id="mobile-nav" aria-label="Mobile navigation">
+  <SidebarWrapper
+    isPost={isPost}
+    headings={headings}
+    toc={toc}
+  />
+</nav>
+
+<style lang="stylus">
+  @media screen and (min-width: 960px) {
+    #mobile-nav {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 959px) {
+    #mobile-nav {
+      position: fixed;
+      top: 0;
+      left: -280px;
+      width: 280px;
+      height: 100%;
+      background: var(--color-mobile-nav-background);
+      z-index: 1001;
+      transition: 0.3s;
+      overflow: auto;
+
+      &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      :global(.mobile-nav-on &) {
+        left: 0;
+      }
+    }    
+  }
+
+  :global(#mobile-nav .sidebar-wrap) {
+    background: var(--color-mobile-nav-background);
+    max-height: calc(100vh);
+  }
+
+  :global([data-theme='dark'] #mobile-nav .sidebar-wrap) {
+    box-shadow: 0 0 0 0;
+  }
+</style>

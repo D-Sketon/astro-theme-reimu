@@ -10,18 +10,23 @@ import Copyright from "../components/post/Copyright.astro";
 type Props = {
   post: CollectionEntry<"blog">["data"];
   url: string;
+  headings?: Array<{
+    depth: number;
+    slug: string;
+    text: string;
+  }>;
   nav?: {
     prev: CollectionEntry<"blog"> | null;
     next: CollectionEntry<"blog"> | null;
   };
 };
 
-const { nav, post, url } = Astro.props;
+const { nav, post, url, headings = [] } = Astro.props;
 
 const { title, tags = [] } = post;
 ---
 
-<MarkdownLayout frontmatter={post}>
+<MarkdownLayout frontmatter={post} headings={headings}>
   <slot />
   {
     (tags.length ||

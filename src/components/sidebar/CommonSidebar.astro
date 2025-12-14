@@ -1,0 +1,226 @@
+---
+import { Icon } from "astro-icon/components";
+import { SITE, MENU, SIDEBAR, BASE_URL } from "../../utils/config";
+import { __ } from "../../utils/i18n";
+import SocialList from "../SocialList.astro";
+import { getCollection } from "astro:content";
+
+async function getStats() {
+  const posts = await getCollection("blog");
+  const allTags = new Set<string>();
+  posts.forEach((post) => {
+    post.data.tags?.forEach((tag: string) => allTags.add(tag));
+  });
+  return {
+    postCount: posts.length,
+    tagCount: allTags.size,
+  };
+}
+
+const stats = await getStats();
+
+const currentPath = Astro.url.pathname;
+
+const avatarUrl = `${BASE_URL}${SIDEBAR.avatar}`;
+---
+
+<div class="sidebar-author">
+  <img
+    class="lazyload"
+    data-src={avatarUrl}
+    alt={SITE.author}
+  />
+  <div class="sidebar-author-name">{SITE.author}</div>
+  <div class="sidebar-description">{SITE.description}</div>
+</div>
+
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div class="sidebar-state-number">{stats.postCount}</div>
+    <div>{__("sidebar.post")}</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div class="sidebar-state-number">{stats.tagCount}</div>
+    <div>{__("sidebar.tag")}</div>
+  </div>
+</div>
+
+<SocialList />
+
+<div class="sidebar-menu">
+  {MENU.map((item) => {
+    const itemUrl = `${BASE_URL}${item.url}`;
+    const isActive = currentPath === itemUrl;
+    return (
+      <div class={`sidebar-menu-link-wrap ${isActive ? 'link-active' : ''}`}>
+        <a class="sidebar-menu-link-dummy" href={itemUrl}></a>
+        <div class="sidebar-menu-icon">
+          <Icon name="fa6-solid:yin-yang" size={24} />
+        </div>
+        <div class="sidebar-menu-link">{__(item.name)}</div>
+      </div>
+    );
+  })}
+</div>
+
+<style lang="stylus">
+  .sidebar-author {
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      display: block;
+      min-width: 100px;
+      min-height: 100px;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      transition: opacity 0.3s;
+      opacity: 0;
+      object-fit: cover;
+      margin: 20px;
+      box-shadow: 0 0 15px 5px var(--color-red-6-shadow);
+      will-change: transform;
+      transition: 0.3s;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    img.lazyloaded {
+      opacity: 1;
+      animation: blur 0.8s forwards;
+    }
+
+    .sidebar-author-name {
+      font-weight: bold;
+      font-size: 20px;
+      color: var(--red-2);
+      margin: 12px;
+    }
+
+    .sidebar-description {
+      color: var(--grey-7);
+      margin: 0 20px;
+      line-height: 1.2;
+    }
+  }
+
+  .sidebar-state {
+    display: flex;
+    justify-content: center;
+    padding: 24px 0;
+    color: var(--red-0);
+    opacity: 0.8;
+    transition: opacity 0.5s, color 0.5s;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    > div {
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      align-items: center;
+      padding: 0 20px;
+
+      div {
+        margin: 4px 0;
+      }
+    }
+  }
+
+  .sidebar-state-article {
+    border-right: 1px solid var(--red-1);
+  }
+
+  .sidebar-state-tag {
+    border-left: 1px solid var(--red-1);
+  }
+
+  .sidebar-state-number {
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  .sidebar-menu {
+    margin: 20px 0;
+    width: 100%;
+  }
+
+  .sidebar-menu-link-wrap {
+    display: flex;
+    position: relative;
+    width: 70%;
+    max-width: 200px;
+    margin: 8px auto;
+    justify-content: center;
+    border: 10px var(--color-red-3-shadow) double;
+    transition: border 0.5s, background 0.5s, color 0.5s;
+
+    &:hover {
+      border: 10px var(--color-h2-after) double;
+    }
+
+    &:hover .sidebar-menu-icon {
+      transform: rotate(90deg) scale(1.1);
+    }
+  }
+
+  .sidebar-menu-icon {
+    color: var(--color-link);
+    opacity: 0.8;
+    text-decoration: none;
+    transition: opacity 0.2s, color 0.2s, transform 0.3s;
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    pointer-events: none;
+    will-change: transform;
+    transform: rotate(90deg);
+  }
+
+  .sidebar-menu-link-dummy {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+
+  .sidebar-menu-link {
+    color: var(--color-link);
+    opacity: 0.8;
+    text-decoration: none;
+    transition: opacity 0.2s, color 0.2s;
+    display: block;
+    padding: 10px 15px;
+    font-weight: 700;
+    pointer-events: none;
+  }
+
+  .link-active {
+    background: var(--red-0);
+    border: 10px var(--color-wrap) double;
+    box-shadow: var(--shadow-red-6-shadow);
+    opacity: 0.8;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    .sidebar-menu-link {
+      color: #fff;
+      opacity: 1;
+    }
+
+    .sidebar-menu-icon {
+      opacity: 1;
+      color: #fff;
+    }
+  }
+</style>

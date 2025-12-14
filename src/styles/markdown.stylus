@@ -119,5 +119,34 @@
 
   .expressive-code {
     margin: 20px 0;
+
+    figure {
+      border-radius: 12px !important;
+      box-shadow: var(--shadow-meta) !important;
+      border: none !important;
+      overflow hidden;
+    }
+    
+    pre {
+      border-bottom-left-radius: 12px !important;
+      border-bottom-right-radius: 12px !important;
+      border: none !important;
+    }
+
+    .header {
+      border-top-left-radius: 12px !important;
+      border-top-right-radius: 12px !important;
+      border: none !important;
+
+      &:before {
+        border: none !important;
+      }
+    }
+
+    .title {
+      border-top-left-radius: 12px !important;
+      border-top-right-radius: 12px !important;
+      border: none !important;
+    }
   }
 }

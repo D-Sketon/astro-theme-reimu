@@ -1,0 +1,137 @@
+---
+import { Icon } from "astro-icon/components";
+import CommonSidebar from "./CommonSidebar.astro";
+import TocSidebar from "./TocSidebar.astro";
+
+type Props = {
+  isPost?: boolean;
+  headings?: Array<{
+    depth: number;
+    slug: string;
+    text: string;
+  }>;
+  toc?: boolean;
+  aos?: string;
+};
+
+const { isPost = false, headings = [], toc = true, aos } = Astro.props;
+
+const showToc = isPost && toc && headings.length > 0;
+---
+
+<div class="sidebar-wrap" data-aos={aos}>
+  {
+    showToc ? (
+      <>
+        <div class="sidebar-toc-sidebar">
+          <TocSidebar headings={headings} />
+        </div>
+        <div class="sidebar-common-sidebar hidden">
+          <CommonSidebar />
+        </div>
+      </>
+    ) : (
+      <div class="sidebar-common-sidebar">
+        <CommonSidebar />
+      </div>
+    )
+  }
+
+  {
+    showToc && (
+      <div class="sidebar-btn-wrapper" style="position:static">
+        <div class="sidebar-toc-btn current">
+          <Icon name="fa6-solid:sitemap" size={20} />
+        </div>
+        <div class="sidebar-common-btn">
+          <Icon name="fa6-solid:house-chimney" size={20} />
+        </div>
+      </div>
+    )
+  }
+</div>
+
+<style lang="stylus">
+  .sidebar-wrap {
+    width: 100%;
+    border-radius: 12px;
+    background: var(--color-wrap);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    interpolate-size: allow-keywords;
+    flex: 1;
+    min-height: 0;
+
+    .hidden {
+      display: none;
+    }
+  }
+
+  :global([data-theme='dark']) .sidebar-wrap {
+    box-shadow: var(--shadow-card);
+  }
+
+  .sidebar-btn-wrapper {
+    display: flex;
+    justify-content: center;
+
+    .sidebar-toc-btn, .sidebar-common-btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 40px;
+      height: 40px;
+      background: var(--red-3);
+      color: #fff;
+      font-weight: bold;
+      box-shadow: var(--shadow-red-6-shadow);
+      border-radius: 8px;
+      margin: 20px;
+      transition: 0.3s;
+      will-change: transform;
+      cursor: pointer;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    .current {
+      background: var(--red-1);
+    }
+
+    :global([data-theme='dark']) & {
+      .sidebar-toc-btn, .sidebar-common-btn {
+        filter: brightness(0.8);
+      }
+    }
+  }
+
+  .sidebar-common-sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  .sidebar-toc-sidebar {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    padding: 10px 20px 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+  }
+</style>

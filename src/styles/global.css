@@ -49,6 +49,7 @@
   --color-code-background: rgba(232, 232, 232, 0.2);
   --color-header-background: #222222;
   --color-footer-background: #21252b;
+  --color-mobile-nav-background: #21252b;
   --color-wrap: #272b30;
 
   --color-h2-border: #47474a;
@@ -232,6 +233,10 @@ body {
     opacity: 0;
     visibility: hidden;
   }
+}
+
+.mobile-nav-on {
+  overflow: hidden !important;
 }
 
 #main {

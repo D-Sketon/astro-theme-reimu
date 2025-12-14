@@ -1,0 +1,199 @@
+---
+import { __ } from "../../utils/i18n";
+
+type Props = {
+  headings?: Array<{
+    depth: number;
+    slug: string;
+    text: string;
+  }>;
+};
+
+type Heading = {
+  depth: number;
+  slug: string;
+  text: string;
+  children: Heading[];
+};
+
+const { headings = [] } = Astro.props;
+
+function buildTocTree(headings: typeof Astro.props.headings) {
+  if (!headings || headings.length === 0) return [];
+  
+  const tree: Heading[] = [];
+  const stack: Heading[] = [];
+  
+  headings.forEach((heading) => {
+    const item = {
+      ...heading,
+      children: [],
+    };
+    
+    while (stack.length > 0 && stack[stack.length - 1].depth >= heading.depth) {
+      stack.pop();
+    }
+    
+    if (stack.length === 0) {
+      tree.push(item);
+    } else {
+      stack[stack.length - 1].children.push(item);
+    }
+    
+    stack.push(item);
+  });
+  
+  return tree;
+}
+
+const tocTree = buildTocTree(headings);
+---
+
+<div class="sidebar-toc-wrapper">
+  <div class="toc-title">{__("toc")}</div>
+  {tocTree.length > 0 && (
+    <ol class="toc">
+      {tocTree.map((item, index) => (
+        <li class={`toc-item toc-level-${item.depth}`} data-index={index}>
+          <a class="toc-link" href={`#${item.slug}`}>
+            <span class="toc-text">{item.text}</span>
+          </a>
+          {item.children && item.children.length > 0 ? (
+            <ol class="toc-child">
+              {item.children.map((child: any) => (
+                <li class={`toc-item toc-level-${child.depth}`}>
+                  <a class="toc-link" href={`#${child.slug}`}>
+                    <span class="toc-text">{child.text}</span>
+                  </a>
+                  {child.children && child.children.length > 0 ? (
+                    <ol class="toc-child">
+                      {child.children.map((grandchild: any) => (
+                        <li class={`toc-item toc-level-${grandchild.depth}`}>
+                          <a class="toc-link" href={`#${grandchild.slug}`}>
+                            <span class="toc-text">{grandchild.text}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ol>
+                  ) : null}
+                </li>
+              ))}
+            </ol>
+          ) : null}
+        </li>
+      ))}
+    </ol>
+  )}
+</div>
+
+<style lang="stylus">
+  .sidebar-toc-wrapper {
+    color: var(--color-link);
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    width: 100%;
+    padding: 10px 20px 0;
+    box-sizing: border-box;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+
+    a, span {
+      color: var(--color-link);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: 0.3s;
+
+      &:hover {
+        color: var(--red-0);
+      }
+    }
+
+    ol {
+      margin-left: 16px;
+      list-style: none;
+    }
+
+    > ol {
+      margin-left: 0;
+    }
+
+    li {
+      margin: 8px 0;
+      padding: 1px 0;
+
+      &:before {
+        content: '';
+        width: 5px;
+        height: 10px;
+        background: var(--color-h2-after);
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 12px;
+        box-shadow: var(--shadow-red-6-shadow);
+        opacity: 0.5;
+        transition: 0.3s;
+      }
+
+      &:hover:before {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        opacity: 1;
+      }
+    }
+
+    .toc-level-1 {
+      list-style: none;
+
+      &:before {
+        display: none;
+      }
+
+      > a {
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+      }
+    }
+
+    .toc-child {
+      transform: scaleY(0);
+      height: 0;
+      overflow: hidden;
+      transition: 0.3s;
+      transform-origin: top;
+
+      > .toc-item:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    .active > .toc-child, .current > .toc-child {
+      height: auto;
+      transform: scaleY(1);
+    }
+
+    .active > a, .current > a, .active > a > span, .current > a > span {
+      color: var(--red-0);
+      opacity: 1;
+    }
+  }
+
+  .toc-title {
+    letter-spacing: 2px;
+    color: var(--grey-9);
+    line-height: 1em;
+    font-weight: bold;
+    padding: 10px 0 12px;
+  }
+
+  .toc-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+</style>

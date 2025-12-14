@@ -38,7 +38,6 @@ social:
   # tumblr: https://yourname.tumblr.com
   # medium: https://medium.com/@yourname
   # deviantart: https://yourname.deviantart.com
-  # stackoverflow: https://stackoverflow.com/users/yourname
   # keybase: https://keybase.io/yourname
   # telegram: https://t.me/yourname
   # discord: https://discordapp.com/users/yourname
@@ -111,3 +110,15 @@ preloader:
   enable: true
   text: 少女祈祷中...
   rotate: true # whether to rotate the icon
+
+sidebar:
+  avatar: /images/avatar.webp
+  position: right # left or right
+
+menu:
+  - name: home
+    url: /
+  - name: archives
+    url: /archives
+  - name: about
+    url: /about

@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-export default function SearchBtn() {
+export default function SearchBtn({ className }: { className?: string }) {
   function handleSearch() {
     const scrollWidth =
       window.innerWidth - document.documentElement.offsetWidth;
@@ -19,16 +19,7 @@ export default function SearchBtn() {
     document.documentElement.style.marginRight = scrollWidth + "px";
   }
   return (
-    <span
-      style={{
-        color: "var(--red-1)",
-        opacity: "0.8",
-        height: "100%",
-        display: "flex",
-        alignItems: "center",
-        cursor: "pointer",
-      }}
-    >
+    <span className={className}>
       <FontAwesomeIcon icon={faSearch} scale={20} onClick={handleSearch} />
     </span>
   );

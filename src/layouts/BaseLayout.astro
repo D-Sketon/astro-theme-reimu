@@ -4,7 +4,7 @@ import "@reimujs/aos/dist/aos.css";
 import "baguettebox.js/dist/baguetteBox.min.css";
 
 import { ClientRouter } from "astro:transitions";
-import { SITE, BASE_URL } from "../utils/config";
+import { SITE, BASE_URL, SIDEBAR } from "../utils/config";
 import CommonMeta from "../components/partial/CommonMeta.astro";
 import VendorFont from "../components/partial/VendorFont.astro";
 import VendorScript from "../components/partial/VendorScript.astro";
@@ -13,14 +13,33 @@ import Header from "../components/Header.astro";
 import AfterFooter from "../components/AfterFooter.astro";
 import ToTop from "../components/ToTop";
 import Loader from "../components/partial/Loader.astro";
+import Sidebar from "../components/Sidebar.astro";
+import MobileNav from "../components/MobileNav.astro";
+import SidebarScript from "../components/SidebarScript.astro";
 
 type Props = {
   title?: string;
   description?: string;
+  cover?: string;
   keywords?: string;
+  isPost?: boolean;
+  headings?: Array<{
+    depth: number;
+    slug: string;
+    text: string;
+  }>;
+  toc?: boolean;
 };
 
-const { title = SITE.title, description = SITE.description, keywords = SITE.keywords } = Astro.props;
+const {
+  title = SITE.title,
+  description = SITE.description,
+  cover = `${BASE_URL}/images/banner.webp`,
+  keywords = SITE.keywords,
+  isPost = false,
+  headings = [],
+  toc = true,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -45,13 +64,22 @@ const { title = SITE.title, description = SITE.description, keywords = SITE.keyw
   </head>
   <body>
     <Loader />
-    <Header>
+    <Header title={title} cover={cover}>
       <slot name="header" />
     </Header>
-    <main><slot /></main>
+   
+    <main
+      class={SIDEBAR.position === "left" ? "sidebar-left" : SIDEBAR.position === "right" ? "sidebar-right" : "" }
+    >
+      {SIDEBAR.position === "left" && <Sidebar isPost={isPost} headings={headings} toc={toc} />}
+      <slot />
+      {SIDEBAR.position === "right" && <Sidebar isPost={isPost} headings={headings} toc={toc} />}
+    </main>
     <slot name="footer" />
     <AfterFooter />
     <ToTop client:load url={BASE_URL} />
+    <MobileNav isPost={isPost} headings={headings} toc={toc} />
     <div id="mask" class="hide"></div>
+    <SidebarScript />
   </body>
 </html>

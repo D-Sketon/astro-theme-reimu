@@ -1,0 +1,86 @@
+---
+import SidebarWrapper from "./sidebar/SidebarWrapper.astro";
+
+type Props = {
+  isPost?: boolean;
+  headings?: Array<{
+    depth: number;
+    slug: string;
+    text: string;
+  }>;
+  toc?: boolean;
+};
+
+const { isPost = false, headings = [], toc = true } = Astro.props;
+---
+
+<aside id="sidebar" aria-label="Sidebar">
+  <div class={`sidebar-wrapper-container ${isPost ? "sticky" : ""}`}>
+    <div class="sidebar-wrapper">
+      <SidebarWrapper
+        isPost={isPost}
+        headings={headings}
+        toc={toc}
+        aos={"fade-up"}
+      />
+    </div>
+  </div>
+</aside>
+
+<style lang="stylus">
+  #sidebar {
+    display: none;
+  }
+
+  :global(.sidebar-left), :global(.sidebar-right) {
+    #sidebar {
+      display: block;
+
+      @media screen and (max-width: 959px) {
+        display: none;
+      }
+
+      @media screen and (min-width: 960px) {
+        width: 23%;
+        min-width: 268px;
+        margin: 0 16px;
+        height: inherit;
+      }
+    }
+
+    :global(#main) {
+      @media screen and (min-width: 960px) {
+        padding: 0;
+        width: 73%;
+        max-width: calc(100% - 268px - 64px);
+        margin: 0 16px;
+      }
+    }
+  }
+
+  .sidebar-wrapper {
+    transition: 0.3s;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+
+    :global(.aos-animate) {
+      transition-property: initial !important;
+
+      &:hover {
+        box-shadow: var(--shadow-card-hover);
+      }
+    }
+  }
+
+  .sidebar-wrapper-container {
+    display: flex;
+    flex-direction: column;
+
+    &.sticky {
+      max-height: calc(100vh - 40px);
+      position: sticky;
+      top: 20px;
+    }
+  }
+</style>

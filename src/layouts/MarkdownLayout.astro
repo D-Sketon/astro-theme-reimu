@@ -1,31 +1,26 @@
 ---
-import "../styles/global.css";
 import "../styles/base.stylus";
-import "@reimujs/aos/dist/aos.css";
-import "baguettebox.js/dist/baguetteBox.min.css";
 import "katex/dist/katex.min.css";
 import "../styles/markdown.stylus";
 
-import { ClientRouter } from "astro:transitions";
-import { BASE_URL, SITE } from "../utils/config";
+import { BASE_URL } from "../utils/config";
+import BaseLayout from "./BaseLayout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import AfterFooter from "../components/AfterFooter.astro";
 import Date from "../components/post/Date.astro";
 import Comment from "../components/post/Comment.astro";
-import CommonMeta from "../components/partial/CommonMeta.astro";
-import VendorFont from "../components/partial/VendorFont.astro";
-import VendorScript from "../components/partial/VendorScript.astro";
-import ThemeScript from "../components/partial/ThemeScript.astro";
 import HeaderTitle from "../components/HeaderTitle.astro";
-import ToTop from "../components/ToTop";
-import Loader from "../components/partial/Loader.astro";
 
 type Props = {
   frontmatter: Record<string, any>;
+  headings?: Array<{
+    depth: number;
+    slug: string;
+    text: string;
+  }>;
 };
 
-const { frontmatter } = Astro.props;
+const { frontmatter, headings = [] } = Astro.props;
 
 const {
   title,
@@ -35,98 +30,81 @@ const {
   cover = `${BASE_URL}/images/banner.webp`,
   comment = true,
   tags = [],
+  toc = true,
 } = frontmatter;
 ---
 
-<!doctype html>
-<html lang={SITE.language}>
-  <head>
-    <ThemeScript />
-    <CommonMeta title={title} description={description} keywords={keywords} />
-    <VendorFont />
-    <VendorScript />
-    <style>
-      main {
-        position: relative;
-        display: flex;
-        padding-top: 8px;
-        align-items: stretch;
-        max-width: 1550px;
-        margin: 0 auto;
-        overflow: visible;
-      }
+<BaseLayout 
+  title={title} 
+  description={description} 
+  cover={cover}
+  keywords={keywords}
+  isPost={true}
+  headings={headings}
+  toc={toc}
+>
+  <HeaderTitle title={title} url=`${BASE_URL}/` slot="header"  />
+  <section id="main" aria-label="Main content">
+    <article
+      class="article"
+      itemprop="blogPost"
+      itemscope
+      itemtype="https://schema.org/BlogPosting"
+      data-aos="fade-up"
+    >
+      <div class="article-inner">
+        <div class="article-meta">
+          <Date
+            pubDate={typeof pubDate === "string"
+              ? new globalThis.Date(pubDate as any)
+              : (pubDate as Date)}
+          />
+        </div>
+        <div class="hr-line"></div>
+        <div class="article-entry" itemprop="articleBody">
+          <slot />
+        </div>
+        <slot name="footer" />
+      </div>
+      <slot name="nav" />
+    </article>
 
-      .hr-line {
-        margin: 12px 36px;
-        opacity: 0.3;
-        height: 4px;
-        background-image: linear-gradient(to right, var(--red-0) 50%, transparent 0%);
-        background-size: 50px 4px;
-        background-repeat: repeat-x;
-        filter: drop-shadow(0px 0px 2px var(--red-1));
-        transition: opacity 0.3s, color 0.3s;
+    <Comment comment={comment} />
+  </section>
+  
+  <Footer slot="footer" />
+</BaseLayout>
 
-        &:hover {
-          opacity: 0.5;
-        }
-      }
+<style>
+  .hr-line {
+    margin: 12px 36px;
+    opacity: 0.3;
+    height: 4px;
+    background-image: linear-gradient(to right, var(--red-0) 50%, transparent 0%);
+    background-size: 50px 4px;
+    background-repeat: repeat-x;
+    filter: drop-shadow(0px 0px 2px var(--red-1));
+    transition: opacity 0.3s, color 0.3s;
 
-      .article-inner {
-        background: var(--color-wrap);
-        border-radius: 12px;
-        display: flow-root;
-        transition: 0.3s;
-      }
+    &:hover {
+      opacity: 0.5;
+    }
+  }
 
-      .article-meta {
-        display: flex;
-        flex-direction: column;
-        padding: 20px 36px 0;
+  .article-inner {
+    background: var(--color-wrap);
+    border-radius: 12px;
+    display: flow-root;
+    transition: 0.3s;
+  }
 
-        @media screen and (max-width: 767px) {
-          padding: 20px 16px 0;
-        }
-      }
-    </style>
-    <ClientRouter />
-  </head>
-  <body>
-    <Loader />
-    <Header title={title} cover={cover}>
-      <HeaderTitle title={title} url=`${BASE_URL}/` />
-    </Header>
-    <main>
-      <section id="main" aria-label="Main content">
-        <article
-          class="article"
-          itemprop="blogPost"
-          itemscope
-          itemtype="https://schema.org/BlogPosting"
-          data-aos="fade-up"
-        >
-          <div class="article-inner">
-            <div class="article-meta">
-              <Date
-                pubDate={typeof pubDate === "string"
-                  ? new globalThis.Date(pubDate as any)
-                  : (pubDate as Date)}
-              />
-            </div>
-            <div class="hr-line"></div>
-            <div class="article-entry" itemprop="articleBody">
-              <slot />
-            </div>
-            <slot name="footer" />
-          </div>
-          <slot name="nav" />
-        </article>
+  .article-meta {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 36px 0;
 
-        <Comment comment={comment} />
-      </section>
-    </main>
-    <Footer />
-    <AfterFooter />
-    <ToTop client:load url={BASE_URL} />
-    <div id="mask" class="hide"></div>
-  </body>
-</html>
+    @media screen and (max-width: 767px) {
+      padding: 20px 16px 0;
+    }
+  }
+</style>

@@ -112,6 +112,16 @@ export interface PreloaderConfig {
   rotate: boolean;
 }
 
+export interface SidebarConfig {
+  position: "left" | "right";
+  avatar: string;
+}
+
+export interface MenuConfig {
+  name: string;
+  url: string;
+}
+
 const config = yaml.load(fs.readFileSync("src/config.yml", "utf8")) as {
   site: SiteConfig;
   footer: FooterConfig;
@@ -123,6 +133,8 @@ const config = yaml.load(fs.readFileSync("src/config.yml", "utf8")) as {
   friend: FriendConfig[];
   copyright: CopyrightConfig;
   preloader: PreloaderConfig;
+  sidebar: SidebarConfig;
+  menu: MenuConfig[];
 };
 
 export const SITE = config.site;
@@ -135,6 +147,8 @@ export const GITALK = config.gitalk;
 export const FRIEND = config.friend;
 export const COPYRIGHT = config.copyright;
 export const PRELOADER = config.preloader;
+export const SIDEBAR = config.sidebar;
+export const MENU = config.menu;
 export const BASE_URL = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL.slice(0, -1)
   : import.meta.env.BASE_URL;

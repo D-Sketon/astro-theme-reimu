@@ -2,11 +2,12 @@
 import { getCollection } from "astro:content";
 import HeaderLink from "./HeaderLink.astro";
 import { __ } from "../utils/i18n";
-import { SITE, BASE_URL } from "../utils/config";
+import { SITE, BASE_URL, MENU } from "../utils/config";
 import RssBtn from "./RssBtn";
 import SearchBtn from "./SearchBtn";
 import ThemeBtn from "./ThemeBtn";
 import SearchBox from "./SearchBox";
+import { Icon } from "astro-icon/components";
 
 type Props = {
   title?: string;
@@ -20,22 +21,26 @@ const posts = await getCollection("blog");
 
 <div id="header-nav">
   <nav id="main-nav">
-    <HeaderLink href=`${BASE_URL}/` aria-label="Home">{__("home")}</HeaderLink>
-    <HeaderLink href=`${BASE_URL}/archives` aria-label="Archives">
-      {__("archives")}
-    </HeaderLink>
-    <HeaderLink href=`${BASE_URL}/about` aria-label="About">
-      {__("about")}
-    </HeaderLink>
-    <span style="position: absolute; right: 100px;">
-      <RssBtn client:load url={BASE_URL} /></span
+    {
+      MENU.map((item) => (
+        <HeaderLink href={`${BASE_URL}${item.url}`} aria-label={item.name}>
+          {__(item.name)}
+        </HeaderLink>
+      ))
+    }
+    <span
+      id="main-nav-toggle"
+      class="nav-icon"
+      aria-label="Toggle navigation"
+      role="button"
     >
-    <span style="position: absolute; right: 60px;"
-      ><SearchBtn client:load /></span
-    >
-    <span style="position: absolute; right: 20px;"
-      ><ThemeBtn client:load /></span
-    >
+      <Icon name="fa6-solid:bars" size={14} />
+    </span>
+  </nav>
+  <nav id="sub-nav" aria-label="Secondary navigation">
+    <RssBtn client:load url={BASE_URL} className="nav-icon" />
+    <SearchBtn client:load className="nav-icon" />
+    <ThemeBtn client:load className="nav-icon" />
   </nav>
 </div>
 <header id="header">
@@ -73,6 +78,7 @@ const posts = await getCollection("blog");
     let scrollTop =
       document.documentElement.scrollTop || document.body.scrollTop;
     let diffY = scrollTop - oldScrollTop;
+    window.diffY = diffY;
     oldScrollTop = scrollTop;
     if (diffY < 0) {
       document
@@ -101,9 +107,6 @@ const posts = await getCollection("blog");
     }
     &:hover {
       background: rgba(255, 255, 255, 0.95);
-    }
-    @media screen and (max-width: 574px) {
-      justify-content: flex-start;
     }
   }
 
@@ -147,9 +150,40 @@ const posts = await getCollection("blog");
     max-width: 100%;
   }
 
+
+  #main-nav-toggle {
+    display: none;
+
+    @media screen and (max-width: 767px) {
+      display: block;
+    }
+  }
+
+  :global(.nav-icon) {
+    color: var(--red-0);
+    opacity: 0.8;
+    text-decoration: none;
+    transition: 0.2s;
+    padding: 20px 15px;
+    text-align: center;
+    font-size: 14px;
+    width: 14px;
+    height: 14px;
+    will-change: transform;
+
+    &:hover {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+  }
+
   :global([data-theme='dark']) {
     #header-nav:hover {
       background: var(--color-header-background);
+    }
+
+    :global(.nav-icon) {
+      color: var(--red-2);
     }
   }
 
@@ -171,6 +205,11 @@ const posts = await getCollection("blog");
     filter: blur(8px);
     will-change: transform, opacity, filter;
     animation: fade-in-blur 800ms ease-out 200ms forwards;
+  }
+
+  #sub-nav {
+    display: flex;
+    align-items: center;
   }
 
   @keyframes fade-in-blur {

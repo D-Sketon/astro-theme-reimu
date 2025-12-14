@@ -8,7 +8,7 @@ const { href, ...props } = Astro.props;
 ---
 
 <span class="main-nav-link-wrap">
-   <Icon name="fa6-solid:yin-yang" class="main-nav-icon" size={24} />
+  <Icon name="fa6-solid:yin-yang" class="main-nav-icon" size={24} />
   <a class="main-nav-link" href={href} {...props}><slot /></a>
 </span>
 
@@ -21,14 +21,12 @@ const { href, ...props } = Astro.props;
     display: flex;
     transition: .3s;
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 959px) {
       padding: 0 10px;
     }
 
-    @media screen and (max-width: 479px) {
-      .main-nav-icon {
-        display: none;
-      }
+    @media screen and (max-width: 767px) {
+      display: none;
     }
 
     &:hover {
@@ -48,6 +46,13 @@ const { href, ...props } = Astro.props;
     letter-spacing: 1px;
     font-weight: 700;
   }
+
+  :global([data-theme='dark']) {
+    .main-nav-link, .main-nav-link-wrap {
+      color: var(--red-2);
+    }
+  }
+
   .main-nav-icon {
     opacity: 0.8;
     color: var(--red-0);

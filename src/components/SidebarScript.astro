@@ -1,0 +1,288 @@
+<script>
+  declare global {
+    interface Window {
+      diffY: number;
+    }
+  }
+
+  const $ = (selector: string) => document.querySelector(selector);
+  const $$ = (selector: string) => document.querySelectorAll(selector);
+
+  const scrollIntoViewAndWait = (element: Element) => {
+    return new Promise<any>((resolve) => {
+      if ("onscrollend" in window) {
+        document.addEventListener("scrollend", resolve, { once: true });
+        element.scrollIntoView({
+          behavior: "smooth",
+          block: "center",
+          inline: "center",
+        });
+      } else {
+        element.scrollIntoView({ block: "center", inline: "center" });
+        resolve(null);
+      }
+    });
+  };
+
+  let cleanupFunctions: (() => void)[] = [];
+
+  function initSidebarToggle() {
+    const tocBtnHandler = function (this: HTMLElement) {
+      if (this.classList.contains("current")) return;
+      $$(".sidebar-toc-btn").forEach((el) => el.classList.add("current"));
+      $$(".sidebar-common-btn").forEach((el) => el.classList.remove("current"));
+      $$(".sidebar-toc-sidebar").forEach((el) => el.classList.remove("hidden"));
+      $$(".sidebar-common-sidebar").forEach((el) => el.classList.add("hidden"));
+    };
+
+    const commonBtnHandler = function (this: HTMLElement) {
+      if (this.classList.contains("current")) return;
+      $$(".sidebar-common-btn").forEach((el) => el.classList.add("current"));
+      $$(".sidebar-toc-btn").forEach((el) => el.classList.remove("current"));
+      $$(".sidebar-common-sidebar").forEach((el) =>
+        el.classList.remove("hidden")
+      );
+      $$(".sidebar-toc-sidebar").forEach((el) => el.classList.add("hidden"));
+    };
+
+    $$(".sidebar-toc-btn").forEach((btn) => {
+      btn.addEventListener("click", tocBtnHandler);
+      cleanupFunctions.push(() =>
+        btn.removeEventListener("click", tocBtnHandler)
+      );
+    });
+
+    $$(".sidebar-common-btn").forEach((btn) => {
+      btn.addEventListener("click", commonBtnHandler);
+      cleanupFunctions.push(() =>
+        btn.removeEventListener("click", commonBtnHandler)
+      );
+    });
+  }
+
+  let isMobileNavAnim = false;
+  function initMobileNav() {
+    const mainNavToggle = $("#main-nav-toggle");
+    const mask = $("#mask");
+
+    const mainNavToggleHandler = () => {
+      if (isMobileNavAnim) return;
+      isMobileNavAnim = true;
+      document.body.classList.toggle("mobile-nav-on");
+      mask?.classList.remove("hide");
+      setTimeout(() => {
+        isMobileNavAnim = false;
+      }, 300);
+    };
+
+    const maskClickHandler = () => {
+      if (isMobileNavAnim || !document.body.classList.contains("mobile-nav-on"))
+        return;
+      document.body.classList.remove("mobile-nav-on");
+      mask?.classList.add("hide");
+    };
+
+    if (mainNavToggle) {
+      mainNavToggle.addEventListener("click", mainNavToggleHandler);
+      cleanupFunctions.push(() =>
+        mainNavToggle.removeEventListener("click", mainNavToggleHandler)
+      );
+    }
+
+    if (mask) {
+      mask.addEventListener("click", maskClickHandler);
+      cleanupFunctions.push(() =>
+        mask.removeEventListener("click", maskClickHandler)
+      );
+    }
+
+    const tocLinkHandler = () => {
+      if (isMobileNavAnim || !document.body.classList.contains("mobile-nav-on"))
+        return;
+      document.body.classList.remove("mobile-nav-on");
+      mask?.classList.add("hide");
+    };
+
+    $$("#mobile-nav .toc-link").forEach((link) => {
+      link.addEventListener("click", tocLinkHandler);
+      cleanupFunctions.push(() =>
+        link.removeEventListener("click", tocLinkHandler)
+      );
+    });
+
+    const menuLinkHandler = () => {
+      if (isMobileNavAnim || !document.body.classList.contains("mobile-nav-on"))
+        return;
+      setTimeout(() => {
+        document.body.classList.remove("mobile-nav-on");
+        mask?.classList.add("hide");
+      }, 200);
+    };
+
+    $$("#mobile-nav .sidebar-menu-link-dummy").forEach((link) => {
+      link.addEventListener("click", menuLinkHandler);
+      cleanupFunctions.push(() =>
+        link.removeEventListener("click", menuLinkHandler)
+      );
+    });
+  }
+
+  function initTocScroll() {
+    const sidebar = $("#sidebar");
+    if (!sidebar) return;
+
+    const navItems =
+      getComputedStyle(sidebar).display === "block"
+        ? Array.from($$("#sidebar .sidebar-toc-wrapper li"))
+        : Array.from($$("#mobile-nav .sidebar-toc-wrapper li"));
+
+    if (!navItems.length) return;
+
+    let activeLock: number | null = null;
+
+    const anchorScroll = (event: Event, index: number) => {
+      event.preventDefault();
+      const target = document.getElementById(
+        decodeURI(
+          (event.currentTarget as HTMLAnchorElement).getAttribute("href")!
+        ).slice(1)
+      );
+      if (!target) return;
+      activeLock = index;
+      scrollIntoViewAndWait(target).then(() => {
+        activateNavByIndex(index);
+        activeLock = null;
+      });
+    };
+
+    const anchorClickHandlers = new Map<
+      HTMLAnchorElement,
+      (e: Event) => void
+    >();
+
+    const sections = [...navItems]
+      .map((element, index) => {
+        const link = element.querySelector("a.toc-link") as HTMLAnchorElement;
+        const handler = (e: Event) => anchorScroll(e, index);
+        if (link) {
+          link.addEventListener("click", handler);
+          anchorClickHandlers.set(link, handler);
+        }
+        const anchor = document.getElementById(
+          decodeURI(link?.getAttribute("href") || "").slice(1)
+        );
+        if (!anchor) return null;
+        const alink = anchor.querySelector("a") as HTMLAnchorElement;
+        if (alink) {
+          const alinkHandler = (e: Event) => anchorScroll(e, index);
+          alink.addEventListener("click", alinkHandler);
+          anchorClickHandlers.set(alink, alinkHandler);
+        }
+        return anchor;
+      })
+      .filter(Boolean) as HTMLElement[];
+
+    const activateNavByIndex = (index: number) => {
+      const target = navItems[index];
+      if (!target || target.classList.contains("current")) return;
+
+      $$(".sidebar-toc-wrapper .active, .sidebar-toc-wrapper .current").forEach(
+        (el) => {
+          el.classList.remove("active", "current");
+        }
+      );
+
+      sections.forEach((el) => {
+        el.classList.remove("active");
+      });
+
+      target.classList.add("active", "current");
+      sections[index]?.classList.add("active");
+
+      let parent = target.parentNode as HTMLElement | null;
+      while (parent && !parent.matches(".sidebar-toc-sidebar")) {
+        if (parent.matches("li")) {
+          parent.classList.add("active");
+          const parentLink = document.getElementById(
+            decodeURI(
+              parent.querySelector("a.toc-link")!.getAttribute("href")!.slice(1)
+            )
+          );
+          if (parentLink) {
+            parentLink.classList.add("active");
+          }
+        }
+        parent = parent.parentNode as HTMLElement | null;
+      }
+
+      const tocSidebar = $(".sidebar-toc-sidebar:not(.hidden)");
+      if (tocSidebar) {
+        const tocWrapper = $(".sidebar-toc-wrapper");
+        if (!tocWrapper) return;
+        tocWrapper.scrollTo({
+          top:
+            tocWrapper.scrollTop +
+            (target as HTMLElement).offsetTop -
+            (target as HTMLElement).offsetHeight / 2,
+          behavior: "smooth",
+        });
+      }
+    };
+
+    const findIndex = (entries: IntersectionObserverEntry[]) => {
+      let index = 0;
+      let entry = entries[index];
+
+      if (entry.boundingClientRect.top > 0) {
+        return sections.indexOf(entry.target as HTMLElement);
+      }
+      for (; index < entries.length; index++) {
+        if (entries[index].boundingClientRect.top <= 0) {
+          entry = entries[index];
+        } else {
+          break;
+        }
+      }
+      return sections.indexOf(entry.target as HTMLElement);
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const index = findIndex(entries) + (window.diffY > 0 ? 1 : 0);
+        if (activeLock === null) {
+          activateNavByIndex(index);
+        }
+      },
+      {
+        rootMargin: "0px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((element) => {
+      element && observer.observe(element);
+    });
+
+    cleanupFunctions.push(() => {
+      observer.disconnect();
+      anchorClickHandlers.forEach((handler, link) => {
+        link.removeEventListener("click", handler);
+      });
+    });
+  }
+
+  function cleanup() {
+    cleanupFunctions.forEach((fn) => fn());
+    cleanupFunctions = [];
+  }
+
+  function init() {
+    initSidebarToggle();
+    initMobileNav();
+    initTocScroll();
+  }
+
+  init();
+  document.addEventListener("astro:page-load", init);
+  document.addEventListener("astro:before-swap", cleanup);
+</script>
