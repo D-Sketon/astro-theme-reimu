@@ -8,6 +8,7 @@ import ArchiveList from "../../components/ArchiveList.astro";
 import Pagination from "../../components/Pagination.astro";
 import HeaderTitle from "../../components/HeaderTitle.astro";
 import { BASE_URL } from "../../utils/config";
+import CategoryList from "../../components/CategoryList.astro";
 
 export async function getStaticPaths({ paginate }: { paginate: Function }) {
   const posts = await getCollection("blog");
@@ -45,10 +46,16 @@ page.data.forEach((post) => {
 
 const posts = await getCollection("blog");
 const tags = new Set<string>();
+const categories = new Set<string>();
 posts.forEach((post) => {
   if (Array.isArray(post.data.tags)) {
     post.data.tags.forEach((tag) => {
       tags.add(tag);
+    });
+  }
+  if (Array.isArray(post.data.categories)) {
+    post.data.categories.forEach((category) => {
+      categories.add(category);
     });
   }
 });
@@ -65,6 +72,7 @@ posts.forEach((post) => {
   <section id="main" aria-label="Main content">
     <div class="archives-outer-wrap" data-aos="fade-up">
       <TagList tags={[...tags]} />
+      <CategoryList categories={[...categories]} />
       <ArchiveList page={page} type="archives" />
     </div>
     <Pagination

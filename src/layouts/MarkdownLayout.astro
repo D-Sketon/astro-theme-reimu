@@ -10,6 +10,7 @@ import Footer from "../components/Footer.astro";
 import Date from "../components/post/Date.astro";
 import Comment from "../components/post/Comment.astro";
 import HeaderTitle from "../components/HeaderTitle.astro";
+import Category from "../components/post/Category.astro";
 
 type Props = {
   frontmatter: Record<string, any>;
@@ -30,6 +31,7 @@ const {
   cover = `${BASE_URL}/images/banner.webp`,
   comment = true,
   tags = [],
+  categories = [],
   toc = true,
 } = frontmatter;
 ---
@@ -59,6 +61,7 @@ const {
               ? new globalThis.Date(pubDate as any)
               : (pubDate as Date)}
           />
+          <Category categories={categories} />
         </div>
         <div class="hr-line"></div>
         <div class="article-entry" itemprop="articleBody">

@@ -2,6 +2,7 @@
 title: astro-theme-reimu效果展示
 pubDate: 2024-01-14 21:15:35
 keywords: [Hexo, 博客, Astro]
+categories: ['Demo', 'Theme']
 tags: [Hexo, 博客, Astro]
 description: astro-theme-reimu效果展示
 excerpt: astro-theme-reimu效果展示

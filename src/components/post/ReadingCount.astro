@@ -27,7 +27,7 @@ const { url, title } = Astro.props;
 {
   WALINE.enable && WALINE.pageview && (
     <span class="article-visitor-link">
-      <Icon name="fa6-solid:book-open" style="margin-right: 8px;" />
+      <Icon name="fa6-solid:book-open" style="margin-right: 8px; vertical-align: bottom;" />
       <span class="waline-pageview-count" data-path={`${BASE_URL}${url}/`}>
         0
       </span>

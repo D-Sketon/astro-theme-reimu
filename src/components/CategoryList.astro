@@ -1,0 +1,54 @@
+---
+import { Icon } from "astro-icon/components";
+import { BASE_URL } from '../utils/config';
+
+type Props = {
+  categories: string[];
+};
+
+const { categories } = Astro.props;
+---
+
+<div class="category-wrap">
+  {
+    categories.map((category) => {
+      return (
+        <div class="archives-category-list-item">
+          <Icon name="fa6-solid:bookmark" style="margin-right: 8px; vertical-align: bottom;" size={14} />
+          <a class="archives-category-list-link" href={`${BASE_URL}/categories/${category}`}>
+            {category}
+          </a>
+        </div>
+      );
+    })
+  }
+</div>
+
+<style lang="stylus">
+  .category-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 36px;
+
+    a {
+      text-decoration: none;
+    }
+
+    .archives-category-list-item {
+      color: var(--red-1);
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      border-radius: 8px;
+      margin: 6px;
+      box-shadow: var(--shadow-meta);
+      background: var(--red-5-5);
+      padding: 10px 20px;
+    }
+    .archives-category-list-link {
+      color: var(--red-1);
+      font-size: 14px;
+    }
+  }
+</style>

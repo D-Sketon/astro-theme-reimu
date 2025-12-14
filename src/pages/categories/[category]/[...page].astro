@@ -1,0 +1,84 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+import { __ } from "../../../utils/i18n";
+import Footer from "../../../components/Footer.astro";
+import CategoryList from "../../../components/CategoryList.astro";
+import HeaderTitle from "../../../components/HeaderTitle.astro";
+import ArchiveList from "../../../components/ArchiveList.astro";
+import { BASE_URL } from "../../../utils/config";
+
+export async function getStaticPaths({ paginate }: { paginate: Function }) {
+  const posts = await getCollection("blog");
+  const categoriesMap: Map<string, CollectionEntry<"blog">[]> = new Map();
+  posts.forEach((post) => {
+    if (Array.isArray(post.data.categories)) {
+      post.data.categories.forEach((category) => {
+        if (categoriesMap.has(category)) {
+          categoriesMap.get(category)!.push(post);
+        } else {
+          categoriesMap.set(category, [post]);
+        }
+      });
+    }
+  });
+  const categories = [...categoriesMap.keys()];
+  return [...categoriesMap.entries()]
+    .map((categoryMap) => {
+      categoryMap[1].sort((a, b) => {
+        return b.data.pubDate.getTime() - a.data.pubDate.getTime();
+      });
+      return categoryMap;
+    })
+    .flatMap((categoryMap) => {
+      return paginate(categoryMap[1], {
+        params: { category: categoryMap[0] },
+        props: { categories },
+        pageSize: 5,
+      });
+    });
+}
+
+type Props = {
+  page: {
+    data: CollectionEntry<"blog">[];
+    url: {
+      prev: string;
+      next: string;
+    };
+    currentPage: number;
+    lastPage: number;
+  };
+  categories: string[];
+};
+
+const { page, categories } = Astro.props;
+const { category } = Astro.params;
+---
+
+<BaseLayout title={`${__("category")}: ${category}`}>
+  <!-- Header -->
+  <HeaderTitle
+    title={`${__("category")}: ${category}`}
+    url=`${BASE_URL}/categories/${category}`
+    slot="header"
+  />
+  <!-- Content -->
+  <section id="main" aria-label="Main content">
+    <div class="archives-outer-wrap" data-aos="fade-up">
+      <CategoryList categories={[...categories]} />
+      <ArchiveList page={page} type="archives" />
+    </div>
+  </section>
+  <!-- Footer -->
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .archives-outer-wrap {
+    background: var(--color-wrap);
+    border-radius: 12px;
+    padding: 16px 0;
+  }
+</style>
