@@ -53,41 +53,6 @@ const copyright = String.raw`
   lozadInit();
   document.addEventListener("astro:after-swap", lozadInit);
 </script>
-<!-- Transitions -->
-<script is:inline>
-  document.addEventListener("astro:after-swap", () => {
-    document.querySelectorAll("script[data-transition]").forEach((element) => {
-      const { text, parentNode, id, className, type, src, dataset } = element;
-      const code = text || element.textContent || element.innerHTML || "";
-      parentNode.removeChild(element);
-
-      const script = document.createElement("script");
-
-      if (id) {
-        script.id = id;
-      }
-      if (className) {
-        script.className = className;
-      }
-      if (type) {
-        script.type = type;
-      }
-      if (src) {
-        // Force synchronous loading of peripheral JS.
-        script.src = src;
-        script.async = false;
-      }
-      if (dataset.pjax !== undefined) {
-        script.dataset.pjax = "";
-      }
-      if (code !== "") {
-        script.appendChild(document.createTextNode(code));
-      }
-
-      parentNode.appendChild(script);
-    });
-  });
-</script>
 <!-- ThemeToogle -->
 <script>
   // prevent flash when using view transitions in astro

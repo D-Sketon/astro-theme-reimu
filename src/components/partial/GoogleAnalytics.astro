@@ -8,11 +8,10 @@ const { id } = Astro.props;
 
 <script
   is:inline
-  data-transition
   async
   src={`https://www.googletagmanager.com/gtag/js?id=${id}`}></script>
 
-<script is:inline define:vars={{ id }}>
+<script data-astro-rerun is:inline define:vars={{ id }}>
   window.dataLayer = window.dataLayer || [];
   function gtag() {
     window.dataLayer.push(arguments);

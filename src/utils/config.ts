@@ -63,6 +63,7 @@ export interface ValineConfig {
   recordIP: boolean;
   highlight: boolean;
   visitor: boolean;
+  serverURLs: string;
 }
 
 export interface WalineConfig {
