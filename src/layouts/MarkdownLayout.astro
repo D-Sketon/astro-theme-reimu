@@ -5,7 +5,6 @@ import "../styles/markdown.stylus";
 
 import { BASE_URL } from "../utils/config";
 import BaseLayout from "./BaseLayout.astro";
-import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Date from "../components/post/Date.astro";
 import Comment from "../components/post/Comment.astro";
@@ -28,7 +27,7 @@ const {
   description = "",
   keywords = "",
   pubDate,
-  cover = `${BASE_URL}/images/banner.webp`,
+  cover,
   comment = true,
   tags = [],
   categories = [],

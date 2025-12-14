@@ -1,5 +1,5 @@
 ---
-import { BASE_URL } from "../../utils/config";
+import { BANNER, BASE_URL } from "../../utils/config";
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 type Props = {
@@ -13,7 +13,7 @@ const {
   title,
   description,
   keywords = title,
-  image = `${BASE_URL}/images/banner.webp`,
+  image = `${BASE_URL}${BANNER}`,
 } = Astro.props;
 ---
 

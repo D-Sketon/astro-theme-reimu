@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import HeaderLink from "./HeaderLink.astro";
 import { __ } from "../utils/i18n";
-import { SITE, BASE_URL, MENU } from "../utils/config";
+import { SITE, BASE_URL, MENU, BANNER, BANNER_SRCSET } from "../utils/config";
 import RssBtn from "./RssBtn";
 import SearchBtn from "./SearchBtn";
 import ThemeBtn from "./ThemeBtn";
@@ -14,8 +14,15 @@ type Props = {
   cover?: string;
 };
 
-const { title = SITE.title, cover = `${BASE_URL}/images/banner.webp` } =
-  Astro.props;
+const isOuterLink = (url: string) => {
+  return (
+    url.startsWith("http://") ||
+    url.startsWith("https://") ||
+    url.startsWith("//")
+  );
+};
+
+const { title = SITE.title, cover } = Astro.props;
 const posts = await getCollection("blog");
 ---
 
@@ -45,23 +52,34 @@ const posts = await getCollection("blog");
 </div>
 <header id="header">
   {
-    cover === `${BASE_URL}/images/banner.webp` ? (
-      <>
-        <picture style="user-select: none;">
+    cover ? (
+      <img
+        src={isOuterLink(cover) ? cover : `${BASE_URL}${cover}`}
+        alt={title}
+        fetchpriority="high"
+      />
+    ) : BANNER_SRCSET.enable ? (
+      <picture style="user-select: none;">
+        {BANNER_SRCSET.srcset.map((source) => (
           <source
-            media="(max-width: 479px)"
-            srcset={`${BASE_URL}/images/banner-600w.webp`}
+            media={source.media}
+            srcset={
+              isOuterLink(source.src) ? source.src : `${BASE_URL}${source.src}`
+            }
           />
-          <source
-            media="(max-width: 799px)"
-            srcset={`${BASE_URL}/images/banner-800w.webp`}
-          />
-          <source media="(min-width: 800px)" srcset={cover} />
-          <img src={cover} alt={title} />
-        </picture>
-      </>
+        ))}
+        <img
+          src={isOuterLink(BANNER) ? BANNER : `${BASE_URL}${BANNER}`}
+          alt={title}
+          fetchpriority="high"
+        />
+      </picture>
     ) : (
-      <img src={cover} alt={title} />
+      <img
+        src={isOuterLink(BANNER) ? BANNER : `${BASE_URL}${BANNER}`}
+        alt={title}
+        fetchpriority="high"
+      />
     )
   }
   <div id="header-outer" class="outer">

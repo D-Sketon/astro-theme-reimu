@@ -6,6 +6,33 @@ site:
   author: D-Sketon
   language: zh-CN
 
+sidebar:
+  avatar: /images/avatar.webp
+  position: right # left or right
+
+menu:
+  - name: home
+    url: /
+  - name: archives
+    url: /archives
+  - name: about
+    url: /about
+
+banner: "/images/banner.webp" # which means themes/reimu/source/images/banner.webp
+# You can also write it in the form of the following url
+# banner: "https://example.com"
+
+# If you want to use the srcset attribute, please enable it
+banner_srcset:
+  enable: true
+  srcset:
+    - src: "/images/banner-600w.webp"
+      media: "(max-width: 479px)"
+    - src: "/images/banner-800w.webp"
+      media: "(max-width: 799px)"
+    - src: "/images/banner.webp"
+      media: "(min-width: 800px)"
+
 footer:
   since: 2020 # 2020 - current year
   powered: true
@@ -110,15 +137,3 @@ preloader:
   enable: true
   text: 少女祈祷中...
   rotate: true # whether to rotate the icon
-
-sidebar:
-  avatar: /images/avatar.webp
-  position: right # left or right
-
-menu:
-  - name: home
-    url: /
-  - name: archives
-    url: /archives
-  - name: about
-    url: /about

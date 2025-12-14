@@ -25,6 +25,7 @@ export interface AnalyticsConfig {
 }
 
 export interface SocialConfig {
+  email?: string;
   github?: string;
   google?: string;
   twitter?: string;
@@ -45,7 +46,6 @@ export interface SocialConfig {
   tumblr?: string;
   medium?: string;
   deviantart?: string;
-  stackoverflow?: string;
   telegram?: string;
   discord?: string;
   steam?: string;
@@ -122,6 +122,14 @@ export interface MenuConfig {
   url: string;
 }
 
+export interface BannerSrcSetConfig {
+  enable: boolean;
+  srcset: {
+    src: string;
+    media: string;
+  }[];
+}
+
 const config = yaml.load(fs.readFileSync("src/config.yml", "utf8")) as {
   site: SiteConfig;
   footer: FooterConfig;
@@ -135,6 +143,8 @@ const config = yaml.load(fs.readFileSync("src/config.yml", "utf8")) as {
   preloader: PreloaderConfig;
   sidebar: SidebarConfig;
   menu: MenuConfig[];
+  banner: string;
+  banner_srcset: BannerSrcSetConfig;
 };
 
 export const SITE = config.site;
@@ -149,6 +159,8 @@ export const COPYRIGHT = config.copyright;
 export const PRELOADER = config.preloader;
 export const SIDEBAR = config.sidebar;
 export const MENU = config.menu;
+export const BANNER = config.banner;
+export const BANNER_SRCSET = config.banner_srcset;
 export const BASE_URL = import.meta.env.BASE_URL.endsWith("/")
   ? import.meta.env.BASE_URL.slice(0, -1)
   : import.meta.env.BASE_URL;
