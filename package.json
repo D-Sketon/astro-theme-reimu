@@ -48,7 +48,7 @@
     "@types/lozad": "^1.16.4",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
-    "autoprefixer": "^10.4.22",
+    "autoprefixer": "^10.4.23",
     "cssnano": "^7.1.2",
     "hast-util-to-html": "^9.0.5",
     "js-yaml": "^4.1.1",
