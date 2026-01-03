@@ -175,8 +175,6 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Mulish, Noto Serif SC, -apple-system, PingFang SC,
-    Microsoft YaHei, sans-serif;
   font-weight: 700;
 }
 
@@ -205,7 +203,7 @@ body {
   transition: background 1s;
   text-autospace: normal;
   color: var(--color-default);
-  font-family: Mulish, Noto Serif SC, -apple-system, PingFang SC,
+  font-family: 'LXGW WenKai Screen', -apple-system, PingFang SC,
     Microsoft YaHei, sans-serif;
   transition: 0.3s;
   line-height: 1;

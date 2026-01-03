@@ -9,6 +9,7 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import remarkMermaidToHtml from './src/plugins/remarkMermaidToHtml.mjs';
 import rehypeAddImageClasses from './src/plugins/rehypeAddImageClasses.mjs';
+import Font from 'vite-plugin-font';
 
 // https://astro.build/config
 export default defineConfig({
@@ -33,5 +34,11 @@ export default defineConfig({
     },
     plugins: [pluginCollapsibleSections()]
   }), mdx(), sitemap(), icon(), react()],
-
+  vite: {
+    plugins: [
+     Font.vite({
+        scanFiles: ['src/**/*.{ts,tsx,js,jsx,md,mdx,astro,yml}']
+      }),
+    ]
+  }
 });
