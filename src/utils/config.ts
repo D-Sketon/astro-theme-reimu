@@ -1,4 +1,3 @@
-
 export interface SiteConfig {
   title: string;
   subtitle: string;
@@ -127,6 +126,12 @@ export interface BannerSrcSetConfig {
   }[];
 }
 
+export interface FireworkConfig {
+  enable: boolean;
+  disable_on_mobile: boolean;
+  options: Record<string, any>;
+}
+
 import config from "../config";
 
 const typedConfig = config as {
@@ -144,6 +149,7 @@ const typedConfig = config as {
   menu: MenuConfig[];
   banner: string;
   banner_srcset: BannerSrcSetConfig;
+  firework: FireworkConfig;
 };
 
 export const SITE = typedConfig.site;
@@ -160,6 +166,7 @@ export const SIDEBAR = typedConfig.sidebar;
 export const MENU = typedConfig.menu;
 export const BANNER = typedConfig.banner;
 export const BANNER_SRCSET = typedConfig.banner_srcset;
+export const FIREWORK = typedConfig.firework;
 
 let _BASE_URL = import.meta.env.BASE_URL;
 // normalize BASE_URL, make sure it starts with '/' and does not end with '/'

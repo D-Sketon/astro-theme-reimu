@@ -71,6 +71,9 @@ importers:
       mermaid:
         specifier: ^11.12.2
         version: 11.12.2
+      mouse-firework:
+        specifier: ^0.3.0-beta.1
+        version: 0.3.0-beta.1
       react:
         specifier: ^19.2.3
         version: 19.2.3
@@ -2617,6 +2620,9 @@ packages:
 
   mlly@1.8.0:
     resolution: {integrity: sha512-l8D9ODSRWLe2KHJSifWGwBqpTZXIXTeo8mlKjY+E2HAakaTeNpqAyBZ8GSqLzHgw4XmHmC8whvpjJNMbFZN7/g==}
+
+  mouse-firework@0.3.0-beta.1:
+    resolution: {integrity: sha512-XqoXZK1sKbJRjU93Si3xfZQWTUbnLIKUj7Jq9ZHDPkQc4B9tniETpR60NvF6AskzVdCTYFbQZ+kKjW+taqXLhw==}
 
   mrmime@2.0.1:
     resolution: {integrity: sha512-Y3wQdFg2Va6etvQ5I82yUhGdsKrcYox6p7FfL1LbK2J4V01F9TGlepTIhnK24t7koZibmg82KGglhA1XK5IsLQ==}
@@ -6905,6 +6911,8 @@ snapshots:
       pathe: 2.0.3
       pkg-types: 1.3.1
       ufo: 1.6.1
+
+  mouse-firework@0.3.0-beta.1: {}
 
   mrmime@2.0.1: {}
 

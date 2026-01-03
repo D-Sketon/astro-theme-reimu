@@ -146,4 +146,40 @@ export default {
     text: "少女祈祷中...", 
     rotate: true, // whether to rotate the icon
   },
+
+  // see https://github.com/D-Sketon/mouse-firework
+  firework: {
+    enable: true,
+    disable_on_mobile: false,
+    options: {
+      excludeElements: ["a", "button"],
+      particles: [
+        {
+          shape: "circle",
+          move: ["emit"],
+          easing: "easeOutExpo",
+          colors: ["var(--red-1)", "var(--red-2)", "var(--red-3)", "var(--red-4)"],
+          number: 20,
+          duration: [1200, 1800],
+          shapeOptions: {
+            radius: [16, 32],
+            alpha: [0.3, 0.5],
+          },
+        },
+        {
+          shape: "circle",
+          move: ["diffuse"],
+          easing: "easeOutExpo",
+          colors: ["var(--red-0)"],
+          number: 1,
+          duration: [1200, 1800],
+          shapeOptions: {
+            radius: 20,
+            alpha: [0.2, 0.5],
+            lineWidth: 6,
+          },
+        },
+      ],
+    },
+  },
 };

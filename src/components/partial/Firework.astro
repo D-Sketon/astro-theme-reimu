@@ -1,0 +1,44 @@
+---
+import { FIREWORK } from "../../utils/config";
+const firework = FIREWORK;
+---
+
+{firework && firework.enable && (
+  <>
+    <script>
+      import type { FIREWORK } from "../../utils/config";
+      
+      declare global {
+        interface Window {
+          __FIREWORK_CONFIG__?: typeof FIREWORK;
+        }
+      }
+      
+      function initFirework() {
+        const config = window.__FIREWORK_CONFIG__;
+        
+        if (config && config.enable) {
+          if (config.disable_on_mobile && ('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
+            return;
+          }
+          
+          import('mouse-firework').then((mod) => {
+            const fire = mod.default;
+            fire(config.options as Parameters<typeof fire>[0]);
+          }).catch((e) => {
+            console.warn('Failed to load mouse-firework', e);
+          });
+        }
+      }
+      
+      initFirework();
+      
+      document.addEventListener('astro:page-load', () => {
+        initFirework();
+      });
+    </script>
+    <script is:inline define:vars={{ firework }}>
+      window.__FIREWORK_CONFIG__ = firework;
+    </script>
+  </>
+)}

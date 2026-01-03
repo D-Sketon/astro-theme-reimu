@@ -33,6 +33,7 @@
     "lozad": "^1.16.0",
     "mdast-util-to-hast": "^13.2.1",
     "mermaid": "^11.12.2",
+    "mouse-firework": "^0.3.0-beta.1",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
     "rehype-katex": "^7.0.1",
