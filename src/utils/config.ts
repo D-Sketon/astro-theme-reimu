@@ -1,5 +1,3 @@
-import fs from "fs";
-import yaml from "js-yaml";
 
 export interface SiteConfig {
   title: string;
@@ -8,7 +6,6 @@ export interface SiteConfig {
   keywords: string | string[];
   author: string;
   language: string;
-  timezone: string;
 }
 
 export interface FooterConfig {
@@ -75,7 +72,6 @@ export interface WalineConfig {
   meta: string[];
   requiredMeta: string[];
   wordLimit: number;
-  placeholder: number;
   pageview: boolean;
 }
 
@@ -131,7 +127,9 @@ export interface BannerSrcSetConfig {
   }[];
 }
 
-const config = yaml.load(fs.readFileSync("src/config.yml", "utf8")) as {
+import config from "../config";
+
+const typedConfig = config as {
   site: SiteConfig;
   footer: FooterConfig;
   analytics: AnalyticsConfig;
@@ -148,20 +146,20 @@ const config = yaml.load(fs.readFileSync("src/config.yml", "utf8")) as {
   banner_srcset: BannerSrcSetConfig;
 };
 
-export const SITE = config.site;
-export const FOOTER = config.footer;
-export const ANALYTICS = config.analytics;
-export const SOCIAL = config.social;
-export const VALINE = config.valine;
-export const WALINE = config.waline;
-export const GITALK = config.gitalk;
-export const FRIEND = config.friend;
-export const COPYRIGHT = config.copyright;
-export const PRELOADER = config.preloader;
-export const SIDEBAR = config.sidebar;
-export const MENU = config.menu;
-export const BANNER = config.banner;
-export const BANNER_SRCSET = config.banner_srcset;
+export const SITE = typedConfig.site;
+export const FOOTER = typedConfig.footer;
+export const ANALYTICS = typedConfig.analytics;
+export const SOCIAL = typedConfig.social;
+export const VALINE = typedConfig.valine;
+export const WALINE = typedConfig.waline;
+export const GITALK = typedConfig.gitalk;
+export const FRIEND = typedConfig.friend;
+export const COPYRIGHT = typedConfig.copyright;
+export const PRELOADER = typedConfig.preloader;
+export const SIDEBAR = typedConfig.sidebar;
+export const MENU = typedConfig.menu;
+export const BANNER = typedConfig.banner;
+export const BANNER_SRCSET = typedConfig.banner_srcset;
 
 let _BASE_URL = import.meta.env.BASE_URL;
 // normalize BASE_URL, make sure it starts with '/' and does not end with '/'
