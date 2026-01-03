@@ -1,5 +1,6 @@
 ---
 import { __ } from "../../utils/i18n";
+import TocItem from "./TocItem.tsx";
 
 type Props = {
   headings?: Array<{
@@ -54,39 +55,13 @@ const tocTree = buildTocTree(headings);
   {tocTree.length > 0 && (
     <ol class="toc">
       {tocTree.map((item, index) => (
-        <li class={`toc-item toc-level-${item.depth}`} data-index={index}>
-          <a class="toc-link" href={`#${item.slug}`}>
-            <span class="toc-text">{item.text}</span>
-          </a>
-          {item.children && item.children.length > 0 ? (
-            <ol class="toc-child">
-              {item.children.map((child: any) => (
-                <li class={`toc-item toc-level-${child.depth}`}>
-                  <a class="toc-link" href={`#${child.slug}`}>
-                    <span class="toc-text">{child.text}</span>
-                  </a>
-                  {child.children && child.children.length > 0 ? (
-                    <ol class="toc-child">
-                      {child.children.map((grandchild: any) => (
-                        <li class={`toc-item toc-level-${grandchild.depth}`}>
-                          <a class="toc-link" href={`#${grandchild.slug}`}>
-                            <span class="toc-text">{grandchild.text}</span>
-                          </a>
-                        </li>
-                      ))}
-                    </ol>
-                  ) : null}
-                </li>
-              ))}
-            </ol>
-          ) : null}
-        </li>
+        <TocItem key={`${item.slug}-${index}`} item={item} index={index} client:load />
       ))}
     </ol>
   )}
 </div>
 
-<style lang="stylus">
+<style lang="stylus" is:global>
   .sidebar-toc-wrapper {
     color: var(--color-link);
     flex: 1;
