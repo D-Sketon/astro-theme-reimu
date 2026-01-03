@@ -1,7 +1,9 @@
-import fs from "fs";
-import yaml from "js-yaml";
-
 import { SITE } from "./config";
+
+import en from "../languages/en";
+import ja from "../languages/ja";
+import zhCn from "../languages/zh-cn";
+import zhTw from "../languages/zh-tw";
 
 const language = SITE.language.toLowerCase();
 
@@ -9,15 +11,17 @@ const languages = ["en", "ja", "zh-cn", "zh-tw"];
 
 let i18n: Record<string, any> = {};
 
+const langMap: Record<string, any> = {
+  "en": en,
+  "ja": ja,
+  "zh-cn": zhCn,
+  "zh-tw": zhTw,
+};
+
 if (languages.includes(language)) {
-  i18n = yaml.load(
-    fs.readFileSync(`src/languages/${language}.yml`, "utf8")
-  ) as Record<string, any>;
+  i18n = langMap[language] || en;
 } else {
-  i18n = yaml.load(fs.readFileSync(`src/languages/en.yml`, "utf8")) as Record<
-    string,
-    any
-  >;
+  i18n = en;
 }
 
 export const __ = (key: string): string => {
