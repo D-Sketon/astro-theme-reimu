@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 type Heading = {
   depth: number;
@@ -25,7 +25,11 @@ const TocItem: React.FC<TocItemProps> = ({ item, key }) => {
       {hasChildren && (
         <ol className="toc-child">
           {item.children.map((child, childIndex) => (
-            <TocItem key={`${child.slug}-${childIndex}`} item={child} index={childIndex} />
+            <TocItem
+              key={`${child.slug}-${childIndex}`}
+              item={child}
+              index={childIndex}
+            />
           ))}
         </ol>
       )}

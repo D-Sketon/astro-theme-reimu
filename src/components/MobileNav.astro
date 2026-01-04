@@ -15,11 +15,7 @@ const { isPost = false, headings = [], toc = true } = Astro.props;
 ---
 
 <nav id="mobile-nav" aria-label="Mobile navigation">
-  <SidebarWrapper
-    isPost={isPost}
-    headings={headings}
-    toc={toc}
-  />
+  <SidebarWrapper isPost={isPost} headings={headings} toc={toc} />
 </nav>
 
 <style lang="stylus">
