@@ -1,6 +1,7 @@
 ---
-import { FOOTER } from "../utils/config";
+import { FOOTER, FIREWORK } from "../utils/config";
 import packageData from "../../package.json";
+const firework = FIREWORK;
 
 const copyright = String.raw`
  ______     ______     __     __    __     __  __    
@@ -82,6 +83,38 @@ const copyright = String.raw`
   // Runs on view transitions navigation
   document.addEventListener("astro:after-swap", initColorMode);
 </script>
+<!-- Firework -->
+{firework && firework.enable && (
+  <>
+    <script>
+      function initFirework() {
+        const config = window.__FIREWORK_CONFIG__;
+        
+        if (config && config.enable) {
+          if (config.disable_on_mobile && ('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
+            return;
+          }
+          
+          import('mouse-firework').then((mod) => {
+            const fire = mod.default;
+            fire(config.options as Parameters<typeof fire>[0]);
+          }).catch((e) => {
+            console.warn('Failed to load mouse-firework', e);
+          });
+        }
+      }
+      
+      initFirework();
+      
+      document.addEventListener('astro:page-load', () => {
+        initFirework();
+      });
+    </script>
+    <script is:inline define:vars={{ firework }}>
+      window.__FIREWORK_CONFIG__ = firework;
+    </script>
+  </>
+)}
 <!-- Copyright -->
 <script is:inline define:vars={{ copyright, version: packageData.version }}>
   console.log(String.raw`%c ${copyright}`,'color: #ff5252;')

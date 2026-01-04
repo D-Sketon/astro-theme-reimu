@@ -8,7 +8,6 @@ import { SITE, BASE_URL, SIDEBAR } from "../utils/config";
 import CommonMeta from "../components/partial/CommonMeta.astro";
 import VendorScript from "../components/partial/VendorScript.astro";
 import ThemeScript from "../components/partial/ThemeScript.astro";
-import Firework from "../components/partial/Firework.astro";
 import Header from "../components/Header.astro";
 import AfterFooter from "../components/AfterFooter.astro";
 import ToTop from "../components/ToTop";
@@ -80,7 +79,6 @@ const {
     <MobileNav isPost={isPost} headings={headings} toc={toc} />
     <div id="mask" class="hide"></div>
     <SidebarScript />
-    <Firework />
     <script>
       import { css } from '../assets/LXGWWenKaiScreen.ttf?subsets';
       document.body.style.fontFamily = css.family as string;

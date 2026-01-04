@@ -12,3 +12,46 @@ import Clarity from "./Clarity.astro";
   )
 }
 {ANALYTICS.clarity && <Clarity id={ANALYTICS.clarity} />}
+<script>
+  if (!window.loadScript) {
+    window.loadScript = (src: string, id?: string) =>
+      new Promise<void>((resolve, reject) => {
+        if (id) {
+          const existed = document.getElementById(
+            id
+          ) as HTMLScriptElement | null;
+          if (existed) {
+            resolve();
+            return;
+          }
+        }
+        const script = document.createElement("script");
+        if (id) script.id = id;
+        script.src = src;
+        script.async = true;
+        script.onload = () => resolve();
+        script.onerror = (e) => reject(e);
+        document.head.appendChild(script);
+      });
+  }
+
+  if (!window.loadCSS) {
+    window.loadCSS = (src: string, id?: string) =>
+      new Promise<void>((resolve, reject) => {
+        if (id) {
+          const existed = document.getElementById(id) as HTMLLinkElement | null;
+          if (existed) {
+            resolve();
+            return;
+          }
+        }
+        const link = document.createElement("link");
+        if (id) link.id = id;
+        link.rel = "stylesheet";
+        link.href = src;
+        link.onload = () => resolve();
+        link.onerror = (e) => reject(e);
+        document.head.appendChild(link);
+      });
+  }
+</script>
