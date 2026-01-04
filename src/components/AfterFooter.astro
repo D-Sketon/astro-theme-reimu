@@ -18,10 +18,7 @@ const copyright = String.raw`
   FOOTER.busuanzi && 
   <script>
   document.addEventListener('astro:page-load', () => {
-    let script = document.createElement("script");
-    script.async = true;
-    script.src = "https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js";
-    document.head.appendChild(script);
+    window.loadScript("https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js", "busuanzi-script");
   })
 </script>
 }

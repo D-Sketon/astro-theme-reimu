@@ -25,10 +25,12 @@ import { GITALK } from "../../utils/config";
   if (window.Gitalk) {
     setupGitalk();
   } else {
-    const script = document.createElement("script");
-    script.src = "https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js";
-    script.onload = setupGitalk;
-    document.head.appendChild(script);
+    window
+      .loadScript(
+        "https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js",
+        "gitalk-script"
+      )
+      .then(setupGitalk);
   }
 </script>
 

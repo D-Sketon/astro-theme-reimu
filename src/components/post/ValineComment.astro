@@ -29,10 +29,12 @@ import { VALINE } from "../../utils/config";
   if (window.Valine) {
     setupValine();
   } else {
-    const script = document.createElement("script");
-    script.src = "https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js";
-    script.onload = setupValine;
-    document.head.appendChild(script);
+    window
+      .loadScript(
+        "https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js",
+        "valine-script"
+      )
+      .then(setupValine);
   }
 </script>
 
