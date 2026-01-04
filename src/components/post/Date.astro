@@ -3,14 +3,17 @@ import { Icon } from "astro-icon/components";
 
 type Props = {
   pubDate: Date;
-}
+};
 
 const { pubDate } = Astro.props;
 ---
 
 <div class="article-date">
   <span class="article-date-span" data-aos="zoom-in">
-    <Icon name="fa6-solid:calendar" style="margin-right: 8px; vertical-align: bottom;"/>
+    <Icon
+      name="fa6-solid:calendar"
+      style="margin-right: 8px; vertical-align: bottom;"
+    />
     <time datetime={pubDate.toISOString()} itemprop="datePublished"
       >{pubDate.toLocaleDateString().replace(/\//g, "-")}</time
     >

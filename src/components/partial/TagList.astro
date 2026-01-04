@@ -1,0 +1,58 @@
+---
+import { Icon } from "astro-icon/components";
+import { BASE_URL } from "../../utils/config";
+
+type Props = {
+  tags: string[];
+};
+
+const { tags } = Astro.props;
+---
+
+<div class="tag-wrap">
+  {
+    tags.map((tag) => {
+      return (
+        <div class="archives-tag-list-item">
+          <Icon
+            name="fa6-solid:tag"
+            style="margin-right: 8px; vertical-align: bottom;"
+            size={12}
+          />
+          <a class="archives-tag-list-link" href={`${BASE_URL}/tags/${tag}`}>
+            {tag}
+          </a>
+        </div>
+      );
+    })
+  }
+</div>
+
+<style lang="stylus">
+  .tag-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 36px;
+
+    a {
+      text-decoration: none;
+    }
+
+    .archives-tag-list-item {
+      color: var(--red-1);
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      background: var(--red-5);
+      border-radius: 8px;
+      padding: 8px 16px;
+      margin: 6px;
+      box-shadow: var(--shadow-meta);
+    }
+    .archives-tag-list-link {
+      color: var(--red-1);
+      font-size: 12px;
+    }
+  }
+</style>

@@ -1,0 +1,150 @@
+---
+import { Icon } from "astro-icon/components";
+import { SOCIAL } from "../../utils/config";
+---
+
+<div class="sidebar-social">
+  {
+    SOCIAL &&
+      Object.keys(SOCIAL).map((social) => {
+        let name = `fa6-brands:${social}`;
+        if (social === "email") {
+          name = "fa6-solid:envelope";
+        }
+
+        return (
+          <a
+            href={(SOCIAL as any)[social]}
+            aria-label={social}
+            rel="noopener external nofollow noreferrer"
+            target="_blank"
+            class={social}
+          >
+            <Icon name={name} scale={16} />
+          </a>
+        );
+      })
+  }
+</div>
+
+<style lang="stylus">
+  .sidebar-social {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    width: 70%;
+    flex-wrap: wrap;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.2s;
+      will-change: transform;
+      margin: 8px 4px;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+
+    .email svg {
+      color: var(--red-2);
+    }
+
+    .github svg {
+      color: #191717;
+    }
+
+    .google svg {
+      color: #4285F4;
+    }
+
+    .facebook svg {
+      color: #3b5998;
+    }
+
+    .twitter svg {
+      color: #1DA1F2;
+    }
+
+    .instagram svg {
+      color: #e1306c;
+    }
+
+    .linkedin svg {
+      color: #0e76a8;
+    }
+
+    .pinterest svg {
+      color: #bd081c;
+    }
+
+    .youtube svg {
+      color: #ff0000;
+    }
+
+    .vimeo svg {
+      color: #1ab7ea;
+    }
+
+    .flickr svg {
+      color: #ff0084;
+    }
+
+    .dribbble svg {
+      color: #ea4c89;
+    }
+
+    .behance svg {
+      color: #1769ff;
+    }
+
+    .bilibili svg {
+      color: #00a1d6;
+    }
+
+    .weibo svg {
+      color: #e6162d;
+    }
+
+    .zhihu svg {
+      color: #0084ff;
+    }
+
+    .reddit svg {
+      color: #ff4500;
+    }
+
+    .tumblr svg {
+      color: #35465c;
+    }
+
+    .medium svg {
+      color: #00ab6c;
+    }
+
+    .deviantart svg {
+      color: #05cc47;
+    }
+
+    .stackoverflow svg {
+      color: #f48024;
+    }
+
+    .keybase svg {
+      color: #33a0ff;
+    }
+
+    .telegram svg {
+      color: #0088cc;
+    }
+
+    .discord svg {
+      color: #7289da;
+    }
+
+    .steam svg {
+      color: #171a21;
+    }
+  }
+</style>

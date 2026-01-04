@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
-import "../styles/top.stylus";
+import "../../styles/top.stylus";
 
 export default function ToTop({ url }: { url: string }) {
   const [opacity, setOpacity] = useState(0);

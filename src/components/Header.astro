@@ -1,12 +1,12 @@
 ---
 import { getCollection } from "astro:content";
-import HeaderLink from "./HeaderLink.astro";
+import HeaderLink from "./partial/HeaderLink.astro";
 import { __ } from "../utils/i18n";
 import { SITE, BASE_URL, MENU, BANNER, BANNER_SRCSET } from "../utils/config";
-import RssBtn from "./RssBtn";
-import SearchBtn from "./SearchBtn";
-import ThemeBtn from "./ThemeBtn";
-import SearchBox from "./SearchBox";
+import RssBtn from "./partial/RssBtn";
+import SearchBtn from "./partial/SearchBtn";
+import ThemeBtn from "./partial/ThemeBtn";
+import SearchBox from "./partial/SearchBox";
 import { Icon } from "astro-icon/components";
 
 type Props = {

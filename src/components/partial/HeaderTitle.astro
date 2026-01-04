@@ -1,0 +1,40 @@
+---
+type Props = {
+  title: string;
+  url: string;
+};
+
+const { title, url } = Astro.props;
+---
+
+<div>
+  <a href={url} id="logo">
+    <h1 data-aos="slide-up">{title}</h1>
+  </a>
+</div>
+
+<style lang="stylus">
+  h1 {
+    text-decoration: none;
+    color: #fff;
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    display: inline-block;
+    transform: translateY(-20%);
+    text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.7);
+
+
+    @media screen and (max-width: 959px) {
+      font-size: 36px;
+    }
+
+    @media screen and (min-width: 480px) and (max-width: 767px) {
+      font-size: 30px;
+    }
+
+    @media screen and (max-width: 479px) { 
+      font-size: 30px;
+    }
+  }
+</style>

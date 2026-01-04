@@ -1,13 +1,12 @@
 ---
 type Props = {
   id: string;
-}
+};
 
 const { id } = Astro.props;
 ---
 
-<script async is:inline src={`https://hm.baidu.com/hm.js?${id}`}
-></script>
+<script async is:inline src={`https://hm.baidu.com/hm.js?${id}`}></script>
 
 <script is:inline>
   var _hmt = _hmt || [];

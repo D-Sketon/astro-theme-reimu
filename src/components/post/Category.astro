@@ -11,17 +11,20 @@ const { categories } = Astro.props;
 
 <div class="article-category-list">
   {
-    categories.map((category) => 
+    categories.map((category) => (
       <a
         class="article-category-list-item"
         href={`${BASE_URL}/categories/${category}`}
         rel="category"
         data-aos="zoom-in"
       >
-        <Icon name="fa6-solid:bookmark" style="margin-right: 8px; vertical-align: bottom;" />
+        <Icon
+          name="fa6-solid:bookmark"
+          style="margin-right: 8px; vertical-align: bottom;"
+        />
         {category}
       </a>
-    )
+    ))
   }
 </div>
 

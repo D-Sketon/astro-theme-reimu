@@ -1,0 +1,45 @@
+---
+type Props = {
+  subtitle: string;
+  url: string;
+};
+
+const { subtitle, url } = Astro.props;
+---
+
+<h2 id="subtitle-wrap" slot="header" data-aos="slide-down">
+  <a href={url} id="subtitle">
+    {subtitle}
+  </a>
+</h2>
+
+<style lang="stylus">
+  #subtitle-wrap {
+    margin-top: 18px;
+  }
+
+  #subtitle {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+    width: 70%;
+    margin: 0 auto;
+    display: block;
+    line-height: 1.5;
+
+    @media screen and (max-width: 959px) {
+      font-size: 16px;
+    }
+
+    @media screen and (min-width: 480px) and (max-width: 767px) {
+      font-size: 14px;
+    }
+
+    @media screen and (max-width: 479px) {
+      font-size: 13px;
+    }
+  }
+</style>

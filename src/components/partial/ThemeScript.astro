@@ -5,8 +5,7 @@
     );
     let presetTheme;
     if (storedTheme === "auto") {
-      presetTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
+      presetTheme = window.matchMedia("(prefers-color-scheme: dark)").matches
         ? "dark"
         : "light";
     } else {
@@ -20,13 +19,13 @@
       document.documentElement.style.colorScheme = "light";
     }
   }
-  
+
   applyTheme();
 
   document.addEventListener("astro:before-swap", (ev) => {
     const currentTheme = document.documentElement.getAttribute("data-theme");
     const currentColorScheme = document.documentElement.style.colorScheme;
-    
+
     if (currentTheme) {
       ev.newDocument.documentElement.setAttribute("data-theme", currentTheme);
     } else {
