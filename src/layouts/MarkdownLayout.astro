@@ -4,12 +4,13 @@ import "katex/dist/katex.min.css";
 import "../styles/markdown.stylus";
 
 import { BASE_URL } from "../utils/config";
-import BaseLayout from "./BaseLayout.astro";
 import Footer from "../components/Footer.astro";
 import Date from "../components/post/Date.astro";
 import Comment from "../components/post/Comment.astro";
 import HeaderTitle from "../components/partial/HeaderTitle.astro";
 import Category from "../components/post/Category.astro";
+
+import BaseLayout from "./BaseLayout.astro";
 
 type Props = {
   frontmatter: Record<string, any>;
@@ -29,22 +30,21 @@ const {
   pubDate,
   cover,
   comment = true,
-  tags = [],
   categories = [],
   toc = true,
 } = frontmatter;
 ---
 
-<BaseLayout 
-  title={title} 
-  description={description} 
+<BaseLayout
+  title={title}
+  description={description}
   cover={cover}
   keywords={keywords}
   isPost={true}
   headings={headings}
   toc={toc}
 >
-  <HeaderTitle title={title} url=`${BASE_URL}/` slot="header"  />
+  <HeaderTitle title={title} url=`${BASE_URL}/` slot="header" />
   <section id="main" aria-label="Main content">
     <article
       class="article"
@@ -73,7 +73,7 @@ const {
 
     <Comment comment={comment} />
   </section>
-  
+
   <Footer slot="footer" />
 </BaseLayout>
 
@@ -82,11 +82,17 @@ const {
     margin: 12px 36px;
     opacity: 0.3;
     height: 4px;
-    background-image: linear-gradient(to right, var(--red-0) 50%, transparent 0%);
+    background-image: linear-gradient(
+      to right,
+      var(--red-0) 50%,
+      transparent 0%
+    );
     background-size: 50px 4px;
     background-repeat: repeat-x;
     filter: drop-shadow(0px 0px 2px var(--red-1));
-    transition: opacity 0.3s, color 0.3s;
+    transition:
+      opacity 0.3s,
+      color 0.3s;
 
     &:hover {
       opacity: 0.5;

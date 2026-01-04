@@ -1,9 +1,10 @@
-import { SITE } from "./config";
 
 import en from "../languages/en";
 import ja from "../languages/ja";
 import zhCn from "../languages/zh-cn";
 import zhTw from "../languages/zh-tw";
+
+import { SITE } from "./config";
 
 const language = SITE.language.toLowerCase();
 

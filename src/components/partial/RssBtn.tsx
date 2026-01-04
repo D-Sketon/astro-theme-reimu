@@ -10,7 +10,7 @@ export default function RssBtn({
 }) {
   return (
     <span className={className}>
-      <a href={`${url}/rss.xml`} target="_blank" aria-label="RSS" style={{ color: "inherit" }}>
+      <a href={`${url}/rss.xml`} target="_blank" aria-label="RSS" style={{ color: "inherit" }} rel="noreferrer">
         <FontAwesomeIcon icon={faRss} scale={20} />
       </a>
     </span>

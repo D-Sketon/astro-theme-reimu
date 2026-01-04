@@ -13,7 +13,7 @@ interface TocItemProps {
   key?: string;
 }
 
-const TocItem: React.FC<TocItemProps> = ({ item, index, key }) => {
+const TocItem: React.FC<TocItemProps> = ({ item, key }) => {
   const hasChildren = item.children && item.children.length > 0;
   const className = `toc-item toc-level-${item.depth}`;
 

@@ -1,4 +1,3 @@
-import useTheme, { type Theme } from "../../hooks/useTheme";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -6,6 +5,8 @@ import {
   faSun,
   faCircleHalfStroke,
 } from "@fortawesome/free-solid-svg-icons";
+
+import useTheme, { type Theme } from "../../hooks/useTheme";
 
 export default function ThemeToggle({ className }: { className?: string }) {
   const { theme, setTheme } = useTheme();

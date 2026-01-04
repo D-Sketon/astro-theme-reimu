@@ -1,5 +1,6 @@
 ---
 import { type CollectionEntry, getCollection } from "astro:content";
+
 import BlogLayout from "../../layouts/BlogLayout.astro";
 
 export async function getStaticPaths() {
@@ -23,7 +24,12 @@ const { post, prev, next } = Astro.props;
 const { Content, headings } = await post.render();
 ---
 
-<BlogLayout post={post.data} nav={{ prev, next }} url={`/blog/${post.slug}`} headings={headings}>
+<BlogLayout
+  post={post.data}
+  nav={{ prev, next }}
+  url={`/blog/${post.slug}`}
+  headings={headings}
+>
   <Content />
 </BlogLayout>
 

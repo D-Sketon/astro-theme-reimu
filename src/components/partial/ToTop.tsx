@@ -22,16 +22,12 @@ export default function ToTop({ url }: { url: string }) {
   }, []);
 
   useEffect(() => {
-    if (document.documentElement.scrollTop < 10) {
-      setOpacity(0);
-    } else {
-      setOpacity(1);
-    }
+    scrollHandler();
     window.addEventListener("scroll", scrollHandler);
     return () => {
       window.removeEventListener("scroll", scrollHandler);
     };
-  }, []);
+  }, [scrollHandler]);
 
   return (
     <div

@@ -4,6 +4,7 @@ import "@reimujs/aos/dist/aos.css";
 import "baguettebox.js/dist/baguetteBox.min.css";
 
 import { ClientRouter } from "astro:transitions";
+
 import { SITE, BASE_URL, SIDEBAR } from "../utils/config";
 import CommonMeta from "../components/partial/CommonMeta.astro";
 import VendorScript from "../components/partial/VendorScript.astro";
@@ -65,13 +66,25 @@ const {
     <Header title={title} cover={cover}>
       <slot name="header" />
     </Header>
-   
+
     <main
-      class={SIDEBAR.position === "left" ? "sidebar-left" : SIDEBAR.position === "right" ? "sidebar-right" : "" }
+      class={SIDEBAR.position === "left"
+        ? "sidebar-left"
+        : SIDEBAR.position === "right"
+          ? "sidebar-right"
+          : ""}
     >
-      {SIDEBAR.position === "left" && <Sidebar isPost={isPost} headings={headings} toc={toc} />}
+      {
+        SIDEBAR.position === "left" && (
+          <Sidebar isPost={isPost} headings={headings} toc={toc} />
+        )
+      }
       <slot />
-      {SIDEBAR.position === "right" && <Sidebar isPost={isPost} headings={headings} toc={toc} />}
+      {
+        SIDEBAR.position === "right" && (
+          <Sidebar isPost={isPost} headings={headings} toc={toc} />
+        )
+      }
     </main>
     <slot name="footer" />
     <AfterFooter />
@@ -80,7 +93,7 @@ const {
     <div id="mask" class="hide"></div>
     <SidebarScript />
     <script>
-      import { css } from '../assets/LXGWWenKaiScreen.ttf?subsets';
+      import { css } from "../assets/LXGWWenKaiScreen.ttf?subsets";
       document.body.style.fontFamily = css.family as string;
     </script>
   </body>

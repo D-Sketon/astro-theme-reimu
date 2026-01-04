@@ -3,7 +3,7 @@ import { toHast } from "mdast-util-to-hast";
 import { toHtml } from "hast-util-to-html";
 
 const remarkMermaidToHtml = () => {
-  const transformer = async (tree, file) => {
+  const transformer = async (tree) => {
     visit(tree, "code", (code, index, parent) => {
       if (index === null || parent === null) return;
       if (code.lang === "mermaid") {

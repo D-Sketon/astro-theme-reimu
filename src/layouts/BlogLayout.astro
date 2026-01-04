@@ -1,11 +1,13 @@
 ---
 import type { CollectionEntry } from "astro:content";
+
 import { VALINE, WALINE } from "../utils/config";
 import Tag from "../components/post/Tag.astro";
 import Nav from "../components/post/Nav.astro";
 import ReadingCount from "../components/post/ReadingCount.astro";
-import MarkdownLayout from "./MarkdownLayout.astro";
 import Copyright from "../components/post/Copyright.astro";
+
+import MarkdownLayout from "./MarkdownLayout.astro";
 
 type Props = {
   post: CollectionEntry<"blog">["data"];
@@ -52,12 +54,16 @@ const { title, tags = [] } = post;
     }
 
     &:before {
-      content: '';
+      content: "";
       display: block;
       margin-top: 12px;
       opacity: 0.3;
       height: 4px;
-      background-image: linear-gradient(to right, var(--red-0) 50%, transparent 0%);
+      background-image: linear-gradient(
+        to right,
+        var(--red-0) 50%,
+        transparent 0%
+      );
       background-size: 50px 4px;
       background-repeat: repeat-x;
       filter: drop-shadow(0px 0px 2px var(--red-1));
@@ -65,7 +71,7 @@ const { title, tags = [] } = post;
     }
 
     &:after {
-      content: '';
+      content: "";
       display: block;
       height: 0;
       clear: both;

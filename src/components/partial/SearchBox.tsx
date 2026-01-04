@@ -73,7 +73,7 @@ export default function SearchBox({
                 <>
                   <p>
                     Found {posts.length}{" "}
-                    {posts.length === 1 ? "result" : "results"} for '{query}'
+                    {posts.length === 1 ? "result" : "results"} for &apos;{query}&apos;
                   </p>
                   <hr />
                 </>
