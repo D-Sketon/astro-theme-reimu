@@ -132,6 +132,14 @@ export interface FireworkConfig {
   options: Record<string, any>;
 }
 
+export interface HomeCategoriesConfig {
+  enable: boolean;
+  content: {
+    categories: string;
+    cover?: string;
+  }[];
+}
+
 import config from "../config";
 
 const typedConfig = config as {
@@ -150,6 +158,7 @@ const typedConfig = config as {
   banner: string;
   banner_srcset: BannerSrcSetConfig;
   firework: FireworkConfig;
+  home_categories: HomeCategoriesConfig;
   widgets: string[];
 };
 
@@ -169,6 +178,7 @@ export const MENU = typedConfig.menu;
 export const BANNER = typedConfig.banner;
 export const BANNER_SRCSET = typedConfig.banner_srcset;
 export const FIREWORK = typedConfig.firework;
+export const HOME_CATEGORIES = typedConfig.home_categories;
 
 let _BASE_URL = import.meta.env.BASE_URL;
 // normalize BASE_URL, make sure it starts with '/' and does not end with '/'

@@ -189,4 +189,12 @@ export default {
       ],
     },
   },
+  home_categories: {
+    enable: false,
+    content: [
+      {
+        categories: ""
+      },
+    ]
+  },
 };

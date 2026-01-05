@@ -48,6 +48,13 @@ export default {
     },
   },
 
+  home_categories: {
+    count: {
+      one: "%d post",
+      other: "%d posts",
+    }
+  },
+
   busuanzi: {
     pv: "Number of visits",
     uv: "Number of visitors",

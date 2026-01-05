@@ -48,6 +48,13 @@ export default {
     },
   },
 
+  home_categories: {
+    count: {
+      one: "%s 件の記事",
+      other: "%s 件の記事",
+    }
+  },
+
   busuanzi: {
     pv: "総閲覧数",
     uv: "総閲覧者数",

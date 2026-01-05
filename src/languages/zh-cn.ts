@@ -48,6 +48,13 @@ export default {
     },
   },
 
+  home_categories: {
+    count: {
+      one: "%d 篇文章",
+      other: "%d 篇文章",
+    }
+  },
+
   busuanzi: {
     pv: "总访问量",
     uv: "总访客量",

@@ -4,7 +4,7 @@ import type { CollectionEntry } from "astro:content";
 import { Icon } from "astro-icon/components";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { SITE, BASE_URL } from "../utils/config";
+import { SITE, BASE_URL, HOME_CATEGORIES } from "../utils/config";
 import randomCover from "../utils/randomCover";
 import { _p } from "../utils/i18n";
 import { wordCount, readingTime } from "../utils/wordCount";
@@ -12,6 +12,7 @@ import Footer from "../components/Footer.astro";
 import Pagination from "../components/Pagination.astro";
 import HeaderTitle from "../components/partial/HeaderTitle.astro";
 import HeaderSubTitle from "../components/partial/HeaderSubTitle.astro";
+import HomeCategories from "../components/HomeCategories.astro";
 
 type Props = {
   page: {
@@ -48,6 +49,11 @@ const { page } = Astro.props;
   }
   <!-- Content -->
   <section id="main" aria-label="Main content">
+    {
+      HOME_CATEGORIES.enable && (
+        <HomeCategories content={HOME_CATEGORIES.content} />
+      )
+    }
     {
       page.data.map((post, index) => (
         <div class="post-wrapper">
@@ -120,7 +126,7 @@ const { page } = Astro.props;
 </BaseLayout>
 
 <style lang="stylus">
-  .post-link {
+  :global(.post-link) {
     position: absolute;
     top: 0;
     left: 0;

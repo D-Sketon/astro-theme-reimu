@@ -1,0 +1,173 @@
+---
+import { BANNER, BASE_URL } from "../utils/config";
+import randomCover from "../utils/randomCover";
+import { _p } from "../utils/i18n";
+import parseHomeCategories from "../utils/parseHomeCategories";
+
+interface HomeCategory {
+  categories: string;
+  cover?: string;
+}
+
+interface Props {
+  content: HomeCategory[];
+}
+
+const { content } = Astro.props;
+
+// Precompute the parsed categories
+const parsedContent = (
+  await Promise.all(
+    content.map(async (item) => {
+      if (!item.categories) return null;
+      const c = await parseHomeCategories(item.categories);
+      return { item, c };
+    })
+  )
+).filter((i) => i !== null);
+---
+
+<div class="post-categories-wrapper" data-aos="fade-up">
+  {
+    parsedContent.map(({ item, c }) => {
+      if (!c) return null;
+      return (
+        <div class="post-categories-wrap">
+          <a
+            class="post-link"
+            href={`${BASE_URL}${c.url}`}
+            aria-label={c.name}
+            title={c.name}
+          />
+          <div class="post-categories-cover">
+            {item.cover ? (
+              <img
+                data-src={item.cover}
+                data-sizes="auto"
+                alt={c.name}
+                class="lazyload"
+              />
+            ) : (
+              (() => {
+                const cover = randomCover();
+                return (
+                  <img
+                    data-src={cover || BANNER}
+                    data-sizes="auto"
+                    alt={c.name}
+                    class="lazyload"
+                  />
+                );
+              })()
+            )}
+            <h2>{c.name}</h2>
+            <h3>{_p("home_categories.count", c.count)}</h3>
+          </div>
+        </div>
+      );
+    })
+  }
+</div>
+
+<style lang="stylus">
+  .post-categories-wrapper {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+
+    @media screen and (max-width: 767px) {
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    &.aos-animate {
+      transition-property: initial !important;
+    }
+  }
+
+  .post-categories-wrap {
+    width: calc(50% - 20px);
+    flex-grow: 1;
+    height: 230px;
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: 1s;
+
+    @media screen and (max-width: 767px) {
+      width: 100%;
+      height: 180px;
+    }
+
+    @media screen and (min-width: 768px) {
+      &:hover {
+        transform: scale(1.01);
+
+        img {
+          opacity: 0.6 !important;
+          transform: scale(1.05);
+        }
+      }
+    }
+  }
+
+  .post-categories-cover {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    min-height: 95px;
+    flex-shrink: 0;
+    pointer-events: none;
+    transition: 0.6s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+
+    @media screen and (max-width: 767px) {
+      width: 100%;
+    }
+
+    img {
+      display: block;
+      opacity: 0;
+      transition: 0.6s;
+      position: absolute;
+      left: 0;
+      top: 0;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+
+    img.lazyloaded {
+      opacity: 0.7;
+      animation: blur 0.8s forwards;
+    }
+
+    h2, h3 {
+      z-index: 1;
+      color: #fff;
+      text-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.7);
+      margin: 0 8px;
+    }
+
+    h2 {
+      font-size: 36px;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      word-break: break-word;
+    }
+
+    h3 {
+      font-size: 20px;
+      margin-top: 28px;
+    }
+  }
+</style>
