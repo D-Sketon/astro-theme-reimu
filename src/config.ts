@@ -13,6 +13,8 @@ export default {
     position: "right", // left or right
   },
 
+  widgets: ["recent_posts", "category", "tag", "tagcloud"],
+
   menu: [
     { name: "home", url: "/" },
     { name: "archives", url: "/archives" },
@@ -143,7 +145,7 @@ export default {
 
   preloader: {
     enable: true,
-    text: "少女祈祷中...", 
+    text: "少女祈祷中...",
     rotate: true, // whether to rotate the icon
   },
 
@@ -158,7 +160,12 @@ export default {
           shape: "circle",
           move: ["emit"],
           easing: "easeOutExpo",
-          colors: ["var(--red-1)", "var(--red-2)", "var(--red-3)", "var(--red-4)"],
+          colors: [
+            "var(--red-1)",
+            "var(--red-2)",
+            "var(--red-3)",
+            "var(--red-4)",
+          ],
           number: 20,
           duration: [1200, 1800],
           shapeOptions: {

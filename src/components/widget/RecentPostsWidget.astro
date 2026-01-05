@@ -1,0 +1,34 @@
+---
+import { getCollection } from "astro:content";
+
+import { BASE_URL } from "../../utils/config";
+import { __ } from "../../utils/i18n";
+
+async function getRecentPosts(limit = 5) {
+  const posts = await getCollection("blog");
+  return posts
+    .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+    .slice(0, limit);
+}
+
+const recentPosts = await getRecentPosts();
+---
+
+{
+  recentPosts.length > 0 && (
+    <div class="widget-wrapper">
+      <div class="widget-wrap" data-aos="fade-up">
+        <h3 class="widget-title">{__("recent_posts")}</h3>
+        <div class="widget">
+          <ul>
+            {recentPosts.map((post) => (
+              <li>
+                <a href={`${BASE_URL}/blog/${post.slug}`}>{post.data.title}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  )
+}

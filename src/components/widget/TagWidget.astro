@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+
+import { BASE_URL } from "../../utils/config";
+import { __ } from "../../utils/i18n";
+
+async function getTags() {
+  const posts = await getCollection("blog");
+  const tags = new Map<string, number>();
+
+  posts.forEach((post) => {
+    post.data.tags?.forEach((tag: string) => {
+      tags.set(tag, (tags.get(tag) || 0) + 1);
+    });
+  });
+
+  return tags;
+}
+
+const tags = await getTags();
+---
+
+{
+  tags.size > 0 && (
+    <div class="widget-wrapper">
+      <div class="widget-wrap" data-aos="fade-up">
+        <h3 class="widget-title">{__("tags")}</h3>
+        <div class="widget">
+          <ul>
+            {[...tags.entries()]
+              .sort((a, b) => b[1] - a[1])
+              .map(([tag]) => (
+                <li>
+                  <a href={`${BASE_URL}/tags/${encodeURIComponent(tag)}`}>
+                    {tag}
+                  </a>
+                </li>
+              ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  )
+}

@@ -1,0 +1,46 @@
+---
+import { getCollection } from "astro:content";
+
+import { BASE_URL } from "../../utils/config";
+import { __ } from "../../utils/i18n";
+
+async function getCategories() {
+  const posts = await getCollection("blog");
+  const categories = new Map<string, number>();
+
+  posts.forEach((post) => {
+    post.data.categories?.forEach((category: string) => {
+      categories.set(category, (categories.get(category) || 0) + 1);
+    });
+  });
+
+  return categories;
+}
+
+const categories = await getCategories();
+---
+
+{
+  categories.size > 0 && (
+    <div class="widget-wrapper">
+      <div class="widget-wrap" data-aos="fade-up">
+        <h3 class="widget-title">{__("categories")}</h3>
+        <div class="widget">
+          <ul>
+            {[...categories.entries()]
+              .sort((a, b) => b[1] - a[1])
+              .map(([category]) => (
+                <li>
+                  <a
+                    href={`${BASE_URL}/categories/${encodeURIComponent(category)}`}
+                  >
+                    {category}
+                  </a>
+                </li>
+              ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  )
+}

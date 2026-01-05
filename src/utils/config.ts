@@ -150,6 +150,7 @@ const typedConfig = config as {
   banner: string;
   banner_srcset: BannerSrcSetConfig;
   firework: FireworkConfig;
+  widgets: string[];
 };
 
 export const SITE = typedConfig.site;
@@ -163,6 +164,7 @@ export const FRIEND = typedConfig.friend;
 export const COPYRIGHT = typedConfig.copyright;
 export const PRELOADER = typedConfig.preloader;
 export const SIDEBAR = typedConfig.sidebar;
+export const WIDGETS = typedConfig.widgets;
 export const MENU = typedConfig.menu;
 export const BANNER = typedConfig.banner;
 export const BANNER_SRCSET = typedConfig.banner_srcset;
