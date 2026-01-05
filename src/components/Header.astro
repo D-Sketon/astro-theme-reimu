@@ -3,7 +3,14 @@ import { getCollection } from "astro:content";
 import { Icon } from "astro-icon/components";
 
 import { __ } from "../utils/i18n";
-import { SITE, BASE_URL, MENU, BANNER, BANNER_SRCSET } from "../utils/config";
+import {
+  SITE,
+  BASE_URL,
+  MENU,
+  BANNER,
+  BANNER_SRCSET,
+  TRIANGLE_BADGE,
+} from "../utils/config";
 
 import HeaderLink from "./partial/HeaderLink.astro";
 import RssBtn from "./partial/RssBtn";
@@ -51,6 +58,22 @@ const posts = await getCollection("blog");
     <SearchBtn client:load className="nav-icon" />
     <ThemeBtn client:load className="nav-icon" />
   </nav>
+  {
+    TRIANGLE_BADGE.enable && (
+      <a
+        href={TRIANGLE_BADGE.link}
+        class="triangle-badge"
+        title={TRIANGLE_BADGE.type}
+        target="_blank"
+        rel="noopener nofollow noreferrer"
+      >
+        <Icon
+          name={`fa6-brands:${TRIANGLE_BADGE.type}`}
+          class="triangle-badge-icon"
+        />
+      </a>
+    )
+  }
 </div>
 <header id="header">
   {
@@ -235,5 +258,32 @@ const posts = await getCollection("blog");
       opacity: 1;
       filter: blur(0);
     }
+  }
+
+  .triangle-badge {
+    position: absolute;
+    top: -6px;
+    right: -26px;
+    transform: rotate(45deg);
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 40px solid var(--red-2);
+    display: inline-block;
+    transition: 0.3s;
+
+    @media screen and (max-width: 959px) {
+      display: none;
+    }
+  }
+
+  .triangle-badge-icon {
+    position: absolute;
+    top: 12px;
+    left: -13px;
+    color: var(--color-header-background) !important;
+    font-size: 28px;
+    transition: 0.3s;
   }
 </style>

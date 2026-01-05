@@ -148,6 +148,12 @@ export interface HomeCategoriesConfig {
   }[];
 }
 
+export interface TriangleBadgeConfig {
+  enable: boolean;
+  type: string;
+  link: string;
+}
+
 import config from "../config";
 
 const typedConfig = config as {
@@ -168,6 +174,7 @@ const typedConfig = config as {
   firework: FireworkConfig;
   home_categories: HomeCategoriesConfig;
   widgets: string[];
+  triangle_badge: TriangleBadgeConfig;
 };
 
 export const SITE = typedConfig.site;
@@ -187,6 +194,7 @@ export const BANNER = typedConfig.banner;
 export const BANNER_SRCSET = typedConfig.banner_srcset;
 export const FIREWORK = typedConfig.firework;
 export const HOME_CATEGORIES = typedConfig.home_categories;
+export const TRIANGLE_BADGE = typedConfig.triangle_badge;
 
 let _BASE_URL = import.meta.env.BASE_URL;
 // normalize BASE_URL, make sure it starts with '/' and does not end with '/'

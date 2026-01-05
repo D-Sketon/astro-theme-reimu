@@ -205,4 +205,9 @@ export default {
       },
     ]
   },
+  triangle_badge: {
+    enable: false,
+    type: "github",
+    link: "https://github.com/D-Sketon/hexo-theme-reimu",
+  },
 };
