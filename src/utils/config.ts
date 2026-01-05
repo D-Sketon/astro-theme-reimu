@@ -12,6 +12,14 @@ export interface FooterConfig {
   powered: boolean;
   count: boolean;
   busuanzi: boolean;
+  icp?: {
+    icpnumber: string;
+    beian: string;
+    recordcode: string;
+  }
+  moe_icp?: {
+    icpnumber: string;
+  }
 }
 
 export interface AnalyticsConfig {

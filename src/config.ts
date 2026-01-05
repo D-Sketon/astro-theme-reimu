@@ -40,6 +40,14 @@ export default {
     powered: true,
     count: true,
     busuanzi: true,
+    icp: {
+      icpnumber: "",
+      beian: "",
+      recordcode: "",
+    },
+    moe_icp: {
+      icpnumber: "",
+    }
   },
 
   analytics: {
