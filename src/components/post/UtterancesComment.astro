@@ -1,0 +1,53 @@
+---
+import { UTTERANCES } from "../../utils/config";
+---
+
+<div id="comments" class="utterances-comment"></div>
+
+<script data-astro-rerun is:inline define:vars={{ UTTERANCES }}>
+  const container = document.querySelector(".utterances-comment");
+
+  const themeSetHandler = (e) => {
+    let theme = e.detail.theme;
+    if (e.detail.theme === "auto") {
+      theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    }
+    const iframe = document.querySelector("iframe.utterances-frame");
+    if (!iframe || !iframe.contentWindow) {
+      document.body.removeEventListener("theme-set", themeSetHandler);
+      return;
+    }
+    iframe.contentWindow.postMessage(
+      { type: "set-theme", theme: `github-${theme}` },
+      "https://utteranc.es"
+    );
+  };
+  document.body.addEventListener("theme-set", themeSetHandler);
+
+  let theme = UTTERANCES.theme || "github-light";
+  const parsedTheme =
+    theme === "auto"
+      ? document.documentElement.getAttribute("data-theme") === "dark"
+        ? "github-dark"
+        : "github-light"
+      : theme;
+  window.loadScript(
+    "https://utteranc.es/client.js",
+    {
+      id: "utterances-script",
+      repo: UTTERANCES.repo,
+      "issue-term": UTTERANCES.issueTerm || "pathname",
+      theme: parsedTheme,
+      crossorigin: "anonymous",
+    },
+    container
+  );
+</script>
+
+<style lang="stylus" is:global>
+  .utterances {
+    max-width: none !important;
+  }
+</style>

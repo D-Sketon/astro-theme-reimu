@@ -130,6 +130,28 @@ export default {
     admin: [],
   },
 
+  // https://giscus.app/zh-CN
+  giscus: {
+    enable: false,
+    repo: "",
+    repoId: "",
+    category: "",
+    categoryId: "",
+    mapping: "pathname",
+    strict: 0,
+    reactionsEnabled: 1,
+    emitMetadata: 0,
+    inputPosition: "bottom",
+  },
+
+  // https://utteranc.es
+  utterances: {
+    enable: false,
+    repo: "owner/repo", // Change this to "Your GitHub Username/The Repository Name" used for storing blog comments
+    issue_term: "title",
+    theme: "auto", // auto means to automatically adapt to dark and light themes, you can also use specific themes like github-light, github-dark, preferred-color-scheme, etc.
+  },
+
   friend: [
     {
       name: "D-Sketon",

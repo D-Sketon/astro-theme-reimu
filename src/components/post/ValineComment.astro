@@ -2,7 +2,7 @@
 import { VALINE } from "../../utils/config";
 ---
 
-<div id="comments" class="vcomment"></div>
+<div id="comments" class="valine-comment"></div>
 <script data-astro-rerun is:inline define:vars={{ VALINE }}>
   var GUEST_INFO = ["nick", "mail", "link"];
   var guest_info = VALINE.guest_info.split(",").filter((item) => {
@@ -10,7 +10,7 @@ import { VALINE } from "../../utils/config";
   });
   var setupValine = () => {
     new Valine({
-      el: ".vcomment",
+      el: ".valine-comment",
       appId: VALINE.appId,
       appKey: VALINE.appKey,
       placeholder: VALINE.placeholder,
@@ -38,7 +38,7 @@ import { VALINE } from "../../utils/config";
   }
 </script>
 
-<style is:global>
+<style lang="stylus" is:global>
   .vcontent {
     padding-left: 10px;
     padding-right: 10px;

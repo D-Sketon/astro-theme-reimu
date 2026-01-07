@@ -91,6 +91,26 @@ export interface GitalkConfig {
   admin: string[];
 }
 
+export interface GiscusConfig {
+  enable: boolean;
+  repo: string;
+  repoId: string;
+  category: string;
+  categoryId: string;
+  mapping: string;
+  strict: number | string;
+  reactionsEnabled: number | string;
+  emitMetadata: number | string;
+  inputPosition: string;
+}
+
+export interface UtterancesConfig {
+  enable: boolean;
+  repo: string;
+  issue_term: string;
+  theme: string;
+}
+
 export interface FriendConfig {
   name: string;
   avatar: string;
@@ -164,6 +184,8 @@ const typedConfig = config as {
   valine: ValineConfig;
   waline: WalineConfig;
   gitalk: GitalkConfig;
+  giscus: GiscusConfig;
+  utterances: UtterancesConfig;
   friend: FriendConfig[];
   copyright: CopyrightConfig;
   preloader: PreloaderConfig;
@@ -184,6 +206,8 @@ export const SOCIAL = typedConfig.social;
 export const VALINE = typedConfig.valine;
 export const WALINE = typedConfig.waline;
 export const GITALK = typedConfig.gitalk;
+export const GISCUS = typedConfig.giscus;
+export const UTTERANCES = typedConfig.utterances;
 export const FRIEND = typedConfig.friend;
 export const COPYRIGHT = typedConfig.copyright;
 export const PRELOADER = typedConfig.preloader;

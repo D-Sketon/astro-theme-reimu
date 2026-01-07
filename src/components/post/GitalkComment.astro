@@ -6,7 +6,7 @@ import { GITALK } from "../../utils/config";
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"
 />
-<div id="comments" class="gtcomment"></div>
+<div id="comments" class="gitalk-comment"></div>
 
 <script data-astro-rerun is:inline define:vars={{ GITALK }}>
   var setupGitalk = () => {
@@ -34,8 +34,8 @@ import { GITALK } from "../../utils/config";
   }
 </script>
 
-<style is:global>
-  .gtcomment {
+<style lang="stylus" is:global>
+  .gitalk-comment {
     color: var(--color-default);
   }
 

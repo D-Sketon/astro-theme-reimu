@@ -1,0 +1,100 @@
+---
+import { GISCUS } from "../../utils/config";
+---
+
+<div id="comments" class="giscus-comment"></div>
+
+<script data-astro-rerun is:inline define:vars={{ GISCUS }}>
+  const container = document.querySelector(".giscus-comment");
+
+  const themeSetHandler = (e) => {
+    let theme = e.detail.theme;
+    if (e.detail.theme === "auto") {
+      theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+    }
+    const iframe = document.querySelector("iframe.giscus-frame");
+    if (!iframe || !iframe.contentWindow) {
+      document.body.removeEventListener("theme-set", themeSetHandler);
+      return;
+    }
+    iframe.contentWindow.postMessage(
+      { giscus: { setConfig: { theme } } },
+      "https://giscus.app"
+    );
+  };
+  document.body.addEventListener("theme-set", themeSetHandler);
+
+  const domMode = document.documentElement.getAttribute("data-theme");
+  const docLang = document.documentElement.lang || "en";
+  const langBase = docLang.split("-")[0];
+  const supportedLangs = [
+    "ar",
+    "be",
+    "bg",
+    "ca",
+    "cs",
+    "da",
+    "de",
+    "en",
+    "eo",
+    "es",
+    "eu",
+    "fa",
+    "fr",
+    "gr",
+    "hbs",
+    "he",
+    "hu",
+    "id",
+    "it",
+    "ja",
+    "kh",
+    "ko",
+    "nl",
+    "pl",
+    "pt",
+    "ro",
+    "ru",
+    "th",
+    "tr",
+    "uk",
+    "uz",
+    "vi",
+    "zh-CN",
+    "zh-HK",
+    "zh-TW",
+  ];
+  const giscusLang = supportedLangs.includes(docLang)
+    ? docLang
+    : supportedLangs.includes(langBase)
+      ? langBase
+      : "en";
+
+  window.loadScript(
+    "https://giscus.app/client.js",
+    {
+      id: "giscus-script",
+      "data-repo": GISCUS.repo,
+      "data-repo-id": GISCUS.repoId,
+      "data-category": GISCUS.category,
+      "data-category-id": GISCUS.categoryId,
+      "data-mapping": GISCUS.mapping,
+      "data-strict": GISCUS.strict,
+      "data-reactions-enabled": GISCUS.reactionsEnabled,
+      "data-emit-metadata": GISCUS.emitMetadata,
+      "data-input-position": GISCUS.inputPosition,
+      "data-theme": domMode === "dark" ? "dark" : "light",
+      "data-lang": giscusLang,
+      crossorigin: "anonymous",
+    },
+    container
+  );
+</script>
+
+<style lang="stylus" is:global>
+  .giscus-comment {
+    width: auto;
+  }
+</style>
