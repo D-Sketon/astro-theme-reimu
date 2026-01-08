@@ -1,0 +1,53 @@
+---
+import { WALINE } from "../../../utils/config";
+---
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@waline/client@2.15.8/dist/waline.min.css"
+/>
+<div id="comments" class="waline-comment" data-aos="fade-up"></div>
+<script data-astro-rerun is:inline define:vars={{ WALINE }} type="module">
+  import { init } from "https://cdn.jsdelivr.net/npm/@waline/client@2.15.8/dist/waline.mjs";
+  init({
+    el: ".waline-comment",
+    serverURL: WALINE.serverURL,
+    lang: WALINE.lang,
+    locale: WALINE.locale,
+    emoji: WALINE.emoji,
+    meta: WALINE.meta,
+    requiredMeta: WALINE.requiredMeta,
+    wordLimit: WALINE.wordLimit,
+    comment: true,
+    pageSize: WALINE.pageSize,
+    dark: 'html[data-theme="dark"]',
+    pageview: WALINE.pageview,
+  });
+</script>
+
+<style lang="stylus" is:global>
+  .wl-emoji-popup {
+    max-width: calc(100vw - 90px) !important;
+  }
+
+  .wl-count {
+    color: var(--color-default);
+  }
+
+  .wl-header input {
+    font-size: revert !important;
+  }
+
+  .wl-panel {
+    margin: 0.5em 0 !important;
+  }
+
+  .wl-action,
+  .wl-sort li {
+    cursor: var(--cursor-pointer) !important;
+  }
+
+  .wl-header label {
+    cursor: var(--cursor-default) !important;
+  }
+</style>

@@ -1,0 +1,92 @@
+---
+import { GITALK } from "../../../utils/config";
+---
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.css"
+/>
+<div id="comments" class="gitalk-comment" data-aos="fade-up"></div>
+
+<script data-astro-rerun is:inline define:vars={{ GITALK }}>
+  var setupGitalk = () => {
+    const gitalk = new Gitalk({
+      clientID: GITALK.clientID,
+      clientSecret: GITALK.clientSecret,
+      repo: GITALK.repo,
+      owner: GITALK.owner,
+      admin: GITALK.admin,
+      id: location.pathname,
+      distractionFreeMode: false,
+    });
+
+    gitalk.render("comments");
+  };
+  if (window.Gitalk) {
+    setupGitalk();
+  } else {
+    window
+      .loadScript(
+        "https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js",
+        "gitalk-script"
+      )
+      .then(setupGitalk);
+  }
+</script>
+
+<style lang="stylus" is:global>
+  .gitalk-comment {
+    color: var(--color-default);
+  }
+
+  .gt-header-comment .gt-header-preview.markdown-body,
+  .gt-comment-content .gt-comment-body.markdown-body {
+    h2,
+    h1 {
+      border-bottom: none;
+    }
+
+    table {
+      display: table;
+    }
+
+    table tr {
+      background-color: transparent !important;
+      border: none;
+    }
+
+    table th {
+      border: none;
+      border-bottom: 3px solid var(--color-border);
+    }
+
+    table td {
+      border: none;
+      border-bottom: 1px solid var(--color-border);
+    }
+  }
+
+  .gt-header-textarea {
+    background-color: var(--red-6) !important;
+    color: var(--color-default);
+  }
+
+  .gt-container .gt-header-comment {
+    width: 100%;
+  }
+
+  .gt-container .gt-header-preview,
+  .gt-container .gt-comment-content {
+    background-color: var(--color-wrap) !important;
+  }
+
+  .gt-container .gt-comment-content {
+    &:hover {
+      box-shadow: none !important;
+    }
+  }
+
+  .gt-container .gt-popup {
+    background-color: var(--color-wrap) !important;
+  }
+</style>

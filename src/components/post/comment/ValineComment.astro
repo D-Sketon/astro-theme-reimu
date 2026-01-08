@@ -1,0 +1,75 @@
+---
+import { VALINE } from "../../../utils/config";
+---
+
+<div id="comments" class="valine-comment" data-aos="fade-up"></div>
+<script data-astro-rerun is:inline define:vars={{ VALINE }}>
+  var GUEST_INFO = ["nick", "mail", "link"];
+  var guest_info = VALINE.guest_info.split(",").filter((item) => {
+    return GUEST_INFO.indexOf(item) > -1;
+  });
+  var setupValine = () => {
+    new Valine({
+      el: ".valine-comment",
+      appId: VALINE.appId,
+      appKey: VALINE.appKey,
+      placeholder: VALINE.placeholder,
+      pageSize: VALINE.pageSize,
+      avatar: VALINE.avatar,
+      lang: VALINE.lang,
+      recordIP: VALINE.recordIP,
+      highlight: VALINE.highlight,
+      visitor: VALINE.visitor,
+      requiredFields: guest_info,
+      path: window.location.pathname,
+      serverURLs: VALINE.serverURLs,
+    });
+  };
+
+  if (window.Valine) {
+    setupValine();
+  } else {
+    window
+      .loadScript(
+        "https://cdn.jsdelivr.net/npm/valine@1.5.1/dist/Valine.min.js",
+        "valine-script"
+      )
+      .then(setupValine);
+  }
+</script>
+
+<style lang="stylus" is:global>
+  .vcontent {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  [data-theme="dark"] .v[data-class="v"] .vcards .vcard .vcontent.expand::after,
+  .dark .v[data-class="v"] .vcards .vcard .vcontent.expand::after,
+  .theme__dark .v[data-class="v"] .vcards .vcard .vcontent.expand::after,
+  .night .v[data-class="v"] .vcards .vcard .vcontent.expand::after {
+    background: var(--color-wrap) !important;
+  }
+
+  [data-theme="dark"]
+    .v[data-class="v"]
+    .vcards
+    .vcard
+    .vcontent.expand::before,
+  .dark .v[data-class="v"] .vcards .vcard .vcontent.expand::before,
+  .theme__dark .v[data-class="v"] .vcards .vcard .vcontent.expand::before,
+  .night .v[data-class="v"] .vcards .vcard .vcontent.expand::before {
+    --valine-linear-gradient-color: unquote(
+      "color-mix(in srgb, var(--color-wrap) 10%, transparent)"
+    );
+    background: linear-gradient(
+      180deg,
+      var(--valine-linear-gradient-color),
+      var(--color-wrap)
+    ) !important;
+  }
+
+  .v[data-class="v"] .vcards .vcard .vh .vmeta .vat {
+    color: var(--red-1) !important;
+  }
+</style>
