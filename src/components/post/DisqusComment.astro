@@ -1,0 +1,33 @@
+---
+import { DISQUS } from "../../utils/config.js";
+---
+
+<div class="disqus-comment" id="comments" data-aos="fade-up">
+  <div id="disqus_thread"></div>
+</div>
+
+<script data-astro-rerun is:inline define:vars={{ DISQUSConfig: DISQUS }}>
+  if (window.DISQUS) {
+    window.DISQUS.reset({
+      reload: true,
+    });
+  } else {
+    window.loadScript(
+      "https://" + DISQUSConfig.shortname + ".disqus.com/embed.js",
+      {
+        id: "disqus-script",
+        "data-timestamp": +new Date(),
+      }
+    );
+  }
+  if (DISQUSConfig.count) {
+    if (window.DISQUSWIDGETS) {
+      window.DISQUSWIDGETS.getCount({ reset: true });
+    } else {
+      window.loadScript(
+        "https://" + DISQUSConfig.shortname + ".disqus.com/count.js",
+        "dsq-count-scr"
+      );
+    }
+  }
+</script>

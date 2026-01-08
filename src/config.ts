@@ -152,6 +152,20 @@ export default {
     theme: "auto", // auto means to automatically adapt to dark and light themes, you can also use specific themes like github-light, github-dark, preferred-color-scheme, etc.
   },
 
+  // https://twikoo.js.org
+  twikoo: {
+    enable: false,
+    envId: "", // 腾讯云环境填 envId；Vercel 环境填地址（https://xxx.vercel.app）
+    region: "",
+  },
+
+  // https://disqus.com
+  disqus: {
+    enable: false,
+    shortname: "", // your disqus shortname
+    count: true,
+  },
+
   friend: [
     {
       name: "D-Sketon",

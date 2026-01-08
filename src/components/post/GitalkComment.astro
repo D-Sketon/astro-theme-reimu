@@ -4,9 +4,9 @@ import { GITALK } from "../../utils/config";
 
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css"
+  href="https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.css"
 />
-<div id="comments" class="gitalk-comment"></div>
+<div id="comments" class="gitalk-comment" data-aos="fade-up"></div>
 
 <script data-astro-rerun is:inline define:vars={{ GITALK }}>
   var setupGitalk = () => {
@@ -27,7 +27,7 @@ import { GITALK } from "../../utils/config";
   } else {
     window
       .loadScript(
-        "https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js",
+        "https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js",
         "gitalk-script"
       )
       .then(setupGitalk);

@@ -4,11 +4,11 @@ import { WALINE } from "../../utils/config";
 
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.min.css"
+  href="https://cdn.jsdelivr.net/npm/@waline/client@2.15.8/dist/waline.min.css"
 />
-<div id="comments" class="waline-comment"></div>
+<div id="comments" class="waline-comment" data-aos="fade-up"></div>
 <script data-astro-rerun is:inline define:vars={{ WALINE }} type="module">
-  import { init } from "https://cdn.jsdelivr.net/npm/@waline/client@v2/dist/waline.mjs";
+  import { init } from "https://cdn.jsdelivr.net/npm/@waline/client@2.15.8/dist/waline.mjs";
   init({
     el: ".waline-comment",
     serverURL: WALINE.serverURL,

@@ -1,0 +1,101 @@
+---
+import { Icon } from "astro-icon/components";
+
+import { __ } from "../../utils/i18n";
+import { VALINE, WALINE, BASE_URL, TWIKOO, DISQUS } from "../../utils/config";
+
+type Props = {
+  url: string;
+};
+
+const { url } = Astro.props;
+---
+
+{
+  VALINE.enable && VALINE.appId && VALINE.appKey && (
+    <a
+      data-aos="zoom-in"
+      href={`${BASE_URL}${url}#comments`}
+      class="article-comment-link"
+    >
+      <Icon
+        name="fa6-solid:comment"
+        style="margin-right: 8px; vertical-align: bottom;"
+      />
+      <span
+        class="post-comments-count valine-comment-count"
+        data-xid={`${BASE_URL}${url}/`}
+        itemprop="commentCount"
+      />
+      {__("comment")}
+    </a>
+  )
+}
+{
+  WALINE.enable && WALINE.serverURL && WALINE.pageview && (
+    <a
+      data-aos="zoom-in"
+      href={`${BASE_URL}${url}#comments`}
+      class="article-comment-link"
+    >
+      <Icon
+        name="fa6-solid:comment"
+        style="margin-right: 8px; vertical-align: bottom;"
+      />
+      <span
+        class="post-comments-count waline-comment-count"
+        data-path={`${BASE_URL}${url}/`}
+        itemprop="commentCount"
+      />
+      {__("comment")}
+    </a>
+  )
+}
+{
+  TWIKOO.enable && TWIKOO.envId && (
+    <a
+      data-aos="zoom-in"
+      href={`${BASE_URL}${url}#comments`}
+      class="article-comment-link"
+    >
+      <Icon
+        name="fa6-solid:comment"
+        style="margin-right: 8px; vertical-align: bottom;"
+      />
+      <span
+        class="post-comments-count twikoo-comment-count"
+        data-path={`${BASE_URL}${url}/`}
+        itemprop="commentCount"
+      />
+      {__("comment")}
+    </a>
+  )
+}
+{
+  DISQUS.enable && DISQUS.shortname && DISQUS.count && (
+    <a
+      data-aos="zoom-in"
+      href={`${BASE_URL}${url}#disqus_thread`}
+      class="article-comment-link"
+      id="disqus-count"
+    ></a>
+  )
+}
+
+<style lang="stylus">
+  .article-comment-link, .article-visitor-link {
+    color: var(--red-1);
+    margin-top: 20px;
+  }
+  .article-comment-link {
+    float: right;
+    background: var(--red-5);
+    margin-left: 12px;
+    border-radius: 8px;
+    padding: 8px 16px;
+
+    &:before {
+      margin-right: 8px;
+    }
+  }
+</style>

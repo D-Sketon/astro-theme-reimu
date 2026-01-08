@@ -13,11 +13,12 @@ const { url, title } = Astro.props;
 ---
 
 {
-  VALINE.enable && VALINE.visitor && (
+  VALINE.enable && VALINE.appId && VALINE.appKey && VALINE.visitor && (
     <span
       id={`${BASE_URL}${url}/`}
       class="leancloud_visitors article-visitor-link"
       data-flag-title={title}
+      data-aos="zoom-in"
     >
       <Icon
         name="fa6-solid:book-open"
@@ -29,8 +30,8 @@ const { url, title } = Astro.props;
   )
 }
 {
-  WALINE.enable && WALINE.pageview && (
-    <span class="article-visitor-link">
+  WALINE.enable && WALINE.serverURL && WALINE.pageview && (
+    <span class="article-visitor-link" data-aos="zoom-in">
       <Icon
         name="fa6-solid:book-open"
         style="margin-right: 8px; vertical-align: bottom;"

@@ -1,0 +1,40 @@
+---
+import { TWIKOO } from "../../utils/config";
+---
+
+<div id="comments" class="twikoo-comment" data-aos="fade-up"></div>
+
+<script data-astro-rerun is:inline define:vars={{ TWIKOO }}>
+  window
+    .loadScript(
+      "https://cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.all.min.js",
+      "twikoo-script"
+    )
+    .then(() => {
+      window.twikoo.init({
+        envId: TWIKOO.envId,
+        el: ".twikoo-comment",
+        region: TWIKOO.region,
+        lang: document.documentElement.lang || "en",
+      });
+
+      window.twikoo
+        .getCommentCount({
+          envId: TWIKOO.envId,
+          region: TWIKOO.region,
+          urls: [
+            window.location.pathname.endsWith("/")
+              ? window.location.pathname
+              : window.location.pathname + "/",
+          ],
+          includeReply: false,
+        })
+        .then((res) => {
+          document.querySelector(".twikoo-comment-count").innerText =
+            res[0]?.count || "0";
+        })
+        .catch((err) => {
+          console.error("Failed to fetch Twikoo comment count:", err);
+        });
+    });
+</script>

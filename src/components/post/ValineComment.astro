@@ -2,7 +2,7 @@
 import { VALINE } from "../../utils/config";
 ---
 
-<div id="comments" class="valine-comment"></div>
+<div id="comments" class="valine-comment" data-aos="fade-up"></div>
 <script data-astro-rerun is:inline define:vars={{ VALINE }}>
   var GUEST_INFO = ["nick", "mail", "link"];
   var guest_info = VALINE.guest_info.split(",").filter((item) => {

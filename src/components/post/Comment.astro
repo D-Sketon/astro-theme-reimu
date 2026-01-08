@@ -1,11 +1,13 @@
 ---
-import { VALINE, WALINE, GITALK, GISCUS, UTTERANCES } from "../../utils/config";
+import { VALINE, WALINE, GITALK, GISCUS, UTTERANCES, TWIKOO, DISQUS } from "../../utils/config";
 
 import ValineComment from "./ValineComment.astro";
 import WalineComment from "./WalineComment.astro";
 import GitalkComment from "./GitalkComment.astro";
 import GiscusComment from "./GiscusComment.astro";
 import UtterancesComment from "./UtterancesComment.astro";
+import TwikooComment from "./TwikooComment.astro";
+import DisqusComment from "./DisqusComment.astro";
 
 type Props = {
   comment: boolean;
@@ -18,6 +20,8 @@ const { comment } = Astro.props;
 {comment && WALINE.enable && <WalineComment />}
 {comment && GITALK.enable && <GitalkComment />}
 {comment && GISCUS.enable && <GiscusComment />}
+{comment && TWIKOO.enable && <TwikooComment />}
+{comment && DISQUS.enable && <DisqusComment />}
 {comment && UTTERANCES.enable && <UtterancesComment />}
 <style lang="stylus" is:global>
   #comments {
