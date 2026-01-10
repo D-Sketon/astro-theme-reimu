@@ -1,0 +1,118 @@
+---
+interface Props {
+  tags?: string;
+  icon?: string;
+}
+
+const {
+  tags = "点击按钮抽取标签,标签轮盘,带有模糊效果,好想睡觉",
+  icon = "🕹️",
+} = Astro.props;
+---
+
+<div class="roll">
+  <div class="roll-button" id="roll-btn">{icon}</div>
+  <div class="roll-tags"><span class="ready removing"></span></div>
+</div>
+
+<style lang="stylus" is:global>
+  .roll .roll-button {
+    text-align: center;
+    font-size: 30px;
+    user-select: none;
+    width: 40px;
+    margin: 10px auto;
+    transition: transform 0.2s ease;
+    cursor: var(--cursor-pointer);
+  }
+
+  .roll .roll-button:hover {
+    transform: scale(1.1);
+  }
+
+  .roll-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    position: relative;
+  }
+
+  .roll-tags span {
+    position: absolute;
+    color: var(--red-1);
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: var(--red-5);
+    transition:
+      filter 0.3s ease,
+      opacity 0.3s ease;
+  }
+
+  .roll-tags span.blur {
+    filter: blur(2px);
+    opacity: 0.7;
+  }
+
+  .roll-tags span.removing {
+    animation: tag-removing 0.1s ease-in-out;
+  }
+
+  @keyframes tag-removing {
+    0% {
+      transform: translateY(0px);
+      opacity: 1;
+    }
+
+    100% {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+  }
+</style>
+
+<script define:vars={{ tags }} data-astro-rerun>
+  const tagArray = tags.split(",");
+  const tagContainer = document.querySelector(".roll-tags");
+  const rollButton = document.getElementById("roll-btn");
+
+  let spans;
+
+  function rollTagRoulette() {
+    if (!tagContainer) return;
+
+    tagContainer.innerHTML = "";
+
+    const interval = setInterval(function () {
+      const span = document.createElement("span");
+      span.classList.add("ready");
+      span.classList.add("blur");
+      span.innerText = tagArray[Math.floor(Math.random() * tagArray.length)];
+      tagContainer.appendChild(span);
+
+      spans = tagContainer.querySelectorAll("span");
+      for (let i = 0; i < spans.length; i++) {
+        spans[i].classList.add("removing");
+      }
+    }, 200);
+
+    setTimeout(function () {
+      clearInterval(interval);
+      if (spans) {
+        for (let i = 0; i < spans.length - 1; i++) {
+          tagContainer.removeChild(spans[i]);
+        }
+        setTimeout(function () {
+          if (spans && spans[spans.length - 1]) {
+            spans[spans.length - 1].classList.remove("blur");
+          }
+        }, 100);
+      }
+    }, 1000);
+  }
+
+  rollTagRoulette();
+
+  rollButton?.addEventListener("click", rollTagRoulette);
+</script>

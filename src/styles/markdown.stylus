@@ -117,6 +117,48 @@
     }
   }
 
+  details {
+    padding: 16px 12px;
+    border-radius: post-radius;
+    background-color: var(--red-5-5);
+    box-shadow: var(--shadow-meta);
+    transition: 0.3s;
+
+    &:hover {
+      box-shadow: var(--shadow-meta-hover);
+    }
+  }
+
+  summary {
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: var(--cursor-pointer) !important;
+    padding: 8px;
+    border: none;
+    border-radius: 8px;
+    transition: 0.3s;
+  }
+
+  summary:hover {
+    background-color: var(--red-5);
+  }
+
+  details[open] summary {
+    background-color: var(--red-5);
+  }
+
+  details[open] summary:hover {
+    background-color: var(--red-5);
+  }
+
+  details .detail-content {
+    margin: 20px 0 0;
+    padding: 12px;
+    background-color: var(--color-footer-background);
+    border-radius: 8px;
+    transition: 0.3s;
+  }
+
   .expressive-code {
     margin: 20px 0;
 

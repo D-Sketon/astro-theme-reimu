@@ -1,0 +1,16 @@
+---
+import '../../styles/container.stylus';
+
+interface Props {
+  summary: string;
+}
+
+const { summary } = Astro.props;
+---
+
+<details class="details custom-block">
+  <summary>{summary}</summary>
+  <div class="detail-content">
+    <slot />
+  </div>
+</details>
