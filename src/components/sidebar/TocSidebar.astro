@@ -1,7 +1,7 @@
 ---
 import { __ } from "../../utils/i18n";
 
-import TocItem from "./TocItem.tsx";
+import TocItem from "./TocItem.astro";
 
 type Props = {
   headings?: Array<{
@@ -55,8 +55,8 @@ const tocTree = buildTocTree(headings);
   <div class="toc-title">{__("toc")}</div>
   {tocTree.length > 0 && (
     <ol class="toc">
-      {tocTree.map((item, index) => (
-        <TocItem key={`${item.slug}-${index}`} item={item} index={index} client:load />
+      {tocTree.map((item) => (
+        <TocItem item={item} />
       ))}
     </ol>
   )}

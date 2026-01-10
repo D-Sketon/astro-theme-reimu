@@ -43,11 +43,6 @@
   display: flow-root;
   padding: 0 12px;
 
-  .custom-block-title:before {
-    font-weight: normal;
-    margin-right: 8px;
-  }
-
   &.info {
     background: var(--color-info-bg);
     color: var(--color-info-text);

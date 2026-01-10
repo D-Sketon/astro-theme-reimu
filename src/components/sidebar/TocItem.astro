@@ -1,0 +1,29 @@
+---
+type Heading = {
+  depth: number;
+  slug: string;
+  text: string;
+  children: Heading[];
+};
+
+interface Props {
+  item: Heading;
+}
+
+const { item } = Astro.props;
+const hasChildren = item.children && item.children.length > 0;
+const className = `toc-item toc-level-${item.depth}`;
+---
+
+<li class={className}>
+  <a class="toc-link" href={`#${item.slug}`}>
+    <span class="toc-text">{item.text}</span>
+  </a>
+  {hasChildren && (
+    <ol class="toc-child">
+      {item.children.map((child) => (
+        <Astro.self item={child} />
+      ))}
+    </ol>
+  )}
+</li>

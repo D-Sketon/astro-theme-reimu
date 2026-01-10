@@ -1,0 +1,42 @@
+---
+import { Icon } from "astro-icon/components";
+import "../../styles/container.stylus";
+
+interface Props {
+  type?: "info" | "warning" | "danger" | "tip" | "important";
+  title?: string;
+}
+
+const { type = "info", title } = Astro.props;
+
+const displayTitle = title || type.toUpperCase();
+
+let iconName = "";
+switch (type) {
+  case "info":
+    iconName = "fa6-solid:circle-info";
+    break;
+  case "warning":
+    iconName = "fa6-solid:circle-exclamation";
+    break;
+  case "danger":
+    iconName = "fa6-solid:circle-xmark";
+    break;
+  case "tip":
+    iconName = "fa6-solid:circle-check";
+    break;
+  case "important":
+    iconName = "fa6-solid:circle-dot";
+    break;
+  default:
+    iconName = "fa6-solid:circle-info";
+}
+---
+
+<blockquote class=`${type} custom-block`>
+  <p class="custom-block-title">
+    <Icon name={iconName} style="margin-right: 8px;flex-shrink: 0;" />
+    {displayTitle}
+  </p>
+  <slot />
+</blockquote>
