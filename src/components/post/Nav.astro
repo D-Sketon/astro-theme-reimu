@@ -17,19 +17,11 @@ const { prev, next } = Astro.props;
     <nav id="article-nav" class="wow fadeInUp">
       {prev && (
         <div class="article-nav-link-wrap article-nav-link-left">
-          {prev.data.cover ? (
-            <img
-              loading="lazy"
-              src={prev.data.cover}
-              alt={prev.data.title}
-            />
-          ) : (
-            <img
-              loading="lazy"
-              src={randomCover()}
-              alt={prev.data.title}
-            />
-          )}
+          <img
+            loading="lazy"
+            src={prev.data.cover || randomCover()}
+            alt={prev.data.title}
+          />
           <a href={`${BASE_URL}/blog/${prev.slug}`} aria-label="Previos Post" />
           <div class="article-nav-caption">{__("newer")}</div>
           <h3 class="article-nav-title">{prev.data.title || "(no title)"}</h3>
@@ -37,19 +29,11 @@ const { prev, next } = Astro.props;
       )}
       {next && (
         <div class="article-nav-link-wrap article-nav-link-right">
-          {next.data.cover ? (
-            <img
-              loading="lazy"
-              src={next.data.cover}
-              alt={next.data.title}
-            />
-          ) : (
-            <img
-              loading="lazy"
-              src={randomCover()}
-              alt={next.data.title}
-            />
-          )}
+          <img
+            loading="lazy"
+            src={next.data.cover || randomCover()}
+            alt={next.data.title}
+          />
           <a href={`${BASE_URL}/blog/${next.slug}`} aria-label="Next Post" />
           <div class="article-nav-caption">{__("older")}</div>
           <h3 class="article-nav-title">{next.data.title || "(no title)"}</h3>

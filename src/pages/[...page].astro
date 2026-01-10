@@ -68,19 +68,11 @@ const { page } = Astro.props;
               aria-label={post.slug}
             />
             <div class:list={["post-cover", { right: index % 2 === 1 }]}>
-              {post.data.cover ? (
-                <img
-                  loading="lazy"
-                  src={post.data.cover}
-                  alt={post.data.title}
-                />
-              ) : (
-                <img
-                  loading="lazy"
-                  src={randomCover()}
-                  alt={post.data.title}
-                />
-              )}
+              <img
+                loading="lazy"
+                src={post.data.cover || randomCover()}
+                alt={post.data.title}
+              />
             </div>
             <div class="post-info">
               <div class="post-meta">
