@@ -37,20 +37,6 @@ const copyright = String.raw`
   aosInit();
   document.addEventListener("astro:after-swap", aosInit);
 </script>
-<!-- lozad -->
-<script>
-  import lozad from "lozad";
-  const lozadInit = () => {
-    const observer = lozad(".lazyload",  {
-    loaded: (el) => {
-      el.classList.add('lazyloaded');
-    }
-});
-    observer.observe();
-  };
-  lozadInit();
-  document.addEventListener("astro:after-swap", lozadInit);
-</script>
 <!-- ThemeToogle -->
 <script>
   // prevent flash when using view transitions in astro

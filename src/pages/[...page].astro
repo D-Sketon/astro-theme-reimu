@@ -70,16 +70,14 @@ const { page } = Astro.props;
             <div class:list={["post-cover", { right: index % 2 === 1 }]}>
               {post.data.cover ? (
                 <img
-                  class="lazyload"
-                  data-sizes="auto"
-                  data-src={post.data.cover}
+                  loading="lazy"
+                  src={post.data.cover}
                   alt={post.data.title}
                 />
               ) : (
                 <img
-                  class="lazyload"
-                  data-sizes="auto"
-                  data-src={randomCover()}
+                  loading="lazy"
+                  src={randomCover()}
                   alt={post.data.title}
                 />
               )}
@@ -281,11 +279,6 @@ const { page } = Astro.props;
       object-fit: cover;
       width: 100%;
       height: 100%;
-      opacity: 0;
-    }
-
-    img.lazyloaded {
-      opacity: 1;
       animation: blur 0.8s ease forwards;
     }
   }

@@ -19,16 +19,14 @@ const { prev, next } = Astro.props;
         <div class="article-nav-link-wrap article-nav-link-left">
           {prev.data.cover ? (
             <img
-              class="lazyload"
-              data-src={prev.data.cover}
-              data-sizes="auto"
+              loading="lazy"
+              src={prev.data.cover}
               alt={prev.data.title}
             />
           ) : (
             <img
-              class="lazyload"
-              data-src={randomCover()}
-              data-sizes="auto"
+              loading="lazy"
+              src={randomCover()}
               alt={prev.data.title}
             />
           )}
@@ -41,16 +39,14 @@ const { prev, next } = Astro.props;
         <div class="article-nav-link-wrap article-nav-link-right">
           {next.data.cover ? (
             <img
-              class="lazyload"
-              data-src={next.data.cover}
-              data-sizes="auto"
+              loading="lazy"
+              src={next.data.cover}
               alt={next.data.title}
             />
           ) : (
             <img
-              class="lazyload"
-              data-src={randomCover()}
-              data-sizes="auto"
+              loading="lazy"
+              src={randomCover()}
               alt={next.data.title}
             />
           )}
@@ -101,12 +97,8 @@ const { prev, next } = Astro.props;
 
     img {
       display: block;
-      opacity: 0;
       object-fit: cover;
       z-index: -1;
-    }
-    img.lazyloaded {
-      opacity: 1;
     }
 
     &:hover {

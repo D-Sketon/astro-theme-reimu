@@ -4,9 +4,7 @@ const rehypeAddImageClasses = () => {
   return (tree) => {
     visit(tree, 'element', (node) => {
       if (node.tagName === 'img') {
-        node.properties.className = node.properties.className 
-          ? [... node.properties.className, 'lazyload']
-          :  ['lazyload'];
+        node.properties.loading = 'lazy';
       }
     });
   };

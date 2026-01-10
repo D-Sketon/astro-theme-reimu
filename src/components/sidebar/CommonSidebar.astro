@@ -27,8 +27,8 @@ const avatarUrl = `${BASE_URL}${SIDEBAR.avatar}`;
 
 <div class="sidebar-author">
   <img
-    class="lazyload"
-    data-src={avatarUrl}
+    loading="lazy"
+    src={avatarUrl}
     alt={SITE.author}
   />
   <div class="sidebar-author-name">{SITE.author}</div>
@@ -79,21 +79,16 @@ const avatarUrl = `${BASE_URL}${SIDEBAR.avatar}`;
       height: 100px;
       border-radius: 50%;
       transition: opacity 0.3s;
-      opacity: 0;
       object-fit: cover;
       margin: 20px;
       box-shadow: 0 0 15px 5px var(--color-red-6-shadow);
       will-change: transform;
       transition: 0.3s;
+      animation: blur 0.8s forwards;
 
       &:hover {
         transform: scale(1.05);
       }
-    }
-
-    img.lazyloaded {
-      opacity: 1;
-      animation: blur 0.8s forwards;
     }
 
     .sidebar-author-name {

@@ -34,22 +34,45 @@ const { Content, headings } = await post.render();
 </BlogLayout>
 
 <script>
-  import baguetteBox from "baguettebox.js";
+  import PhotoSwipeLightbox from "photoswipe/lightbox";
+  import "photoswipe/style.css";
+
   document.addEventListener("astro:page-load", () => {
-    document.querySelectorAll(".article-entry").forEach(function (article, i) {
-      article.querySelectorAll("img").forEach(function (img) {
-        if (img.parentElement?.tagName.toLowerCase() === "a") {
+    document
+      .querySelectorAll(".article-entry img")
+      // @ts-expect-error - change from Element to HTMLImageElement
+      .forEach((element: HTMLImageElement) => {
+        if (
+          element.parentElement?.tagName === "A" ||
+          element.classList.contains("no-lightbox")
+        )
           return;
+        const a = document.createElement("a");
+        a.href ? (a.href = element.src) : a.setAttribute("href", element.src);
+        if (element.naturalWidth || element.naturalHeight) {
+          a.dataset.pswpWidth = element.naturalWidth + "";
+          a.dataset.pswpHeight = element.naturalHeight + "";
+        } else {
+          console.warn(
+            "Image naturalWidth and naturalHeight cannot be obtained right now, fallback to onload."
+          );
+          element.onload = () => {
+            a.dataset.pswpWidth = element.naturalWidth + "";
+            a.dataset.pswpHeight = element.naturalHeight + "";
+          };
         }
-        const alt = img.alt;
-        const anchor = document.createElement("a");
-        anchor.href = img.src;
-        anchor.setAttribute("data-caption", alt || "");
-        img.parentNode && img.parentNode.replaceChild(anchor, img);
-        anchor.appendChild(img);
+        a.target = "_blank";
+        a.classList.add("article-gallery-item");
+        element.parentNode?.insertBefore(a, element);
+        element.parentNode?.removeChild(element);
+        a.appendChild(element);
       });
-    });
-    baguetteBox.run(".article-entry");
+
+    new PhotoSwipeLightbox({
+      gallery: ".article-entry",
+      children: "a.article-gallery-item",
+      pswpModule: () => import("photoswipe"),
+    }).init();
   });
 </script>
 

@@ -42,20 +42,18 @@ const parsedContent = (
           <div class="post-categories-cover">
             {item.cover ? (
               <img
-                data-src={item.cover}
-                data-sizes="auto"
+                src={item.cover}
                 alt={c.name}
-                class="lazyload"
+                loading="lazy"
               />
             ) : (
               (() => {
                 const cover = randomCover();
                 return (
                   <img
-                    data-src={cover || BANNER}
-                    data-sizes="auto"
+                    src={cover || BANNER}
                     alt={c.name}
-                    class="lazyload"
+                    loading="lazy"
                   />
                 );
               })()
@@ -133,7 +131,6 @@ const parsedContent = (
 
     img {
       display: block;
-      opacity: 0;
       transition: 0.6s;
       position: absolute;
       left: 0;
@@ -141,9 +138,6 @@ const parsedContent = (
       object-fit: cover;
       width: 100%;
       height: 100%;
-    }
-
-    img.lazyloaded {
       opacity: 0.7;
       animation: blur 0.8s forwards;
     }

@@ -15,10 +15,9 @@ import { FRIEND } from "../../utils/config";
           />
           <div class="friend-icon-wrap">
             <img
-              data-src={avatar}
-              data-sizes="auto"
+              src={avatar}
               alt={name}
-              class="lazyload"
+              class="no-lightbox"
             />
           </div>
           <div class="friend-info-wrap">
@@ -84,13 +83,7 @@ import { FRIEND } from "../../utils/config";
       height: 100%;
       border-radius: 8px;
       object-fit: cover;
-      opacity: 0;
-      transition: opacity 0.2s;
       box-shadow: var(--shadow-card);
-    }
-
-    img.lazyloaded {
-      opacity: 1;
       animation: blur 0.8s forwards;
     }
   }
