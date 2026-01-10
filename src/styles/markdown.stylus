@@ -51,7 +51,6 @@
   }
 
   img {
-    animation: blur 0.8s ease-in-out forwards;
     transition: 0.3s;
   }
 

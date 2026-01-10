@@ -1,212 +1,45 @@
 ---
-const galleryId = `photoWall-${Math.random().toString(36).substring(2, 11)}`;
+interface Props {
+  width?: number;
+  col?: number;
+}
+
+const { width = 240, col } = Astro.props;
+
+const gridStyle = col
+  ? `grid-template-columns: repeat(${col}, 1fr);`
+  : `grid-template-columns: repeat(auto-fit, minmax(${width}px, 1fr));`;
 ---
 
-<div class="gallery-wall" id={galleryId}>
+<div class="reimu-grid" style={gridStyle}>
   <slot />
 </div>
 
 <style lang="stylus" is:global>
-.gallery-wall {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  justify-content: center;
-  margin: 16px 0;
+.reimu-grid {
+  display: grid;
+  margin: 20px 0;
+  gap: 16px;
+
+  .grid-cell {
+    min-width: 0;
+
+    .post-link-card {
+      width: 100%;
+    }
+
+    &:has(> *:only-child) {
+      > *:only-child {
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+      }
+    }
+  }
 }
 
-.photo-item {
-  border-radius: 12px;
-  overflow: hidden;
-  transition: 0.3s;
-  background-color: var(--color-wrap);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.photo-item:hover img {
-  transform: scale(1.1);
-}
-
-.photo-item img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+@media screen and (max-width: 479px) {
+  .reimu-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 </style>
-
-<script define:vars={{ galleryId }}>
-  (function () {
-    const wallId = `#${galleryId}`;
-    let images = [];
-    let resizeTimer;
-    let lastWidth = 0;
-
-    function init() {
-      const wall = document.querySelector(wallId);
-      if (!wall) return;
-
-      const imgElements = wall.querySelectorAll("img");
-      if (!imgElements.length) {
-        wall.classList.add("loaded");
-        return;
-      }
-
-      imgElements.forEach((img) => {
-        images.push({
-          width: 800,
-          height: 600,
-          aspectRatio: 4 / 3,
-          url: img.src || img.dataset.src,
-          alt: img.alt || "Gallery Image",
-          loaded: false,
-          element: img,
-        });
-      });
-
-      imgElements.forEach((img) => {
-        const parent = img.parentElement;
-        if (parent && parent.tagName === "P") {
-          parent.style.display = "none";
-        } else {
-          img.style.display = "none";
-        }
-      });
-
-      renderPhotoWall();
-      loadImages();
-
-      if (window.ResizeObserver) {
-        const observer = new ResizeObserver((entries) => {
-          const newWidth = entries[0].contentRect.width;
-          if (Math.abs(newWidth - lastWidth) > 1) {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(renderPhotoWall, 250);
-          }
-        });
-        observer.observe(wall);
-      } else {
-        window.addEventListener("resize", handleResize);
-      }
-    }
-
-    function loadImages() {
-      const wall = document.querySelector(wallId);
-      const loadPromises = images.map((imgData, index) => {
-        return new Promise((resolve) => {
-          const img = new Image();
-          img.onload = () => {
-            if (images[index]) {
-              images[index].width = img.naturalWidth;
-              images[index].height = img.naturalHeight;
-              images[index].aspectRatio = img.naturalWidth / img.naturalHeight;
-              images[index].loaded = true;
-            }
-            resolve();
-          };
-          img.onerror = () => {
-            if (images[index]) {
-              images[index].loaded = true;
-            }
-            resolve();
-          };
-          img.src = imgData.url;
-        });
-      });
-
-      Promise.all(loadPromises)
-        .then(() => {
-          if (wall) {
-            wall.classList.add("loaded");
-          }
-          renderPhotoWall();
-        })
-        .catch((error) => console.error("图片加载失败:", error));
-    }
-
-    function renderPhotoWall() {
-      const wall = document.querySelector(wallId);
-      if (!images.length || !wall) return;
-
-      const screenWidth = wall.offsetWidth || window.innerWidth - 40;
-      lastWidth = screenWidth;
-
-      const hiddenImages = Array.from(wall.children).filter(
-        (child) => child.tagName === "P" && child.style.display === "none"
-      );
-      wall.innerHTML = "";
-      hiddenImages.forEach((img) => wall.appendChild(img));
-
-      const rowHeight = 200;
-      const gap = 10;
-      const maxPerRow = 4;
-
-      let row = [];
-      let rowWidth = 0;
-      const rows = [];
-
-      images.forEach((img) => {
-        const scaledWidth = rowHeight * img.aspectRatio;
-
-        if (rowWidth + scaledWidth <= screenWidth && row.length < maxPerRow) {
-          row.push(img);
-          rowWidth += scaledWidth + gap;
-        } else {
-          if (row.length) rows.push(row);
-          row = [img];
-          rowWidth = scaledWidth + gap;
-        }
-      });
-
-      if (row.length) rows.push(row);
-
-      rows.forEach((row) => {
-        const rowDiv = document.createElement("div");
-        rowDiv.style.cssText = `display: flex; gap: ${gap}px; width: 100%; margin-bottom: ${gap}px;`;
-
-        row.forEach((img) => {
-          const item = document.createElement("div");
-          item.className = "photo-item";
-          const flex = row.length === 1 ? "1" : img.aspectRatio;
-          item.style.cssText = `flex: ${flex}; height: ${rowHeight}px;`;
-
-          const imgEl = document.createElement("img");
-          imgEl.alt = img.alt;
-          imgEl.style.cssText = "width: 100%; height: 100%; object-fit: cover;";
-          imgEl.src = img.url;
-          imgEl.loading = "lazy";
-
-          const link = document.createElement("a");
-          link.href = img.url;
-          link.dataset.pswpWidth = img.width;
-          link.dataset.pswpHeight = img.height;
-          link.target = "_blank";
-          link.className = "article-gallery-item";
-          link.style.cssText = "width: 100%; height: 100%";
-          link.appendChild(imgEl);
-          
-          item.appendChild(link);
-
-          rowDiv.appendChild(item);
-        });
-
-        wall.appendChild(rowDiv);
-      });
-
-      document.dispatchEvent(new Event("reimu:image-updated"));
-    }
-
-    function handleResize() {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(renderPhotoWall, 250);
-    }
-
-    if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", init);
-    } else {
-      init();
-    }
-  })();
-</script>
