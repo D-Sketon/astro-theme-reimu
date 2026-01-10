@@ -10,7 +10,7 @@ export default {
   reading: "閲覧数",
   archive_a: "アーカイブ",
   archive_b: "\"アーカイブ: %s\"",
-  page: "ページ %d",
+  page: "ページ %s",
   recent_posts: "最近の投稿",
   newer: "次の記事",
   older: "前の記事",
@@ -39,12 +39,12 @@ export default {
 
   post: {
     count: {
-      one: "%d word",
-      other: "%d words",
+      one: "%s word",
+      other: "%s words",
     },
     time: {
-      one: "%d min",
-      other: "%d mins",
+      one: "%s min",
+      other: "%s mins",
     },
   },
 
@@ -61,4 +61,8 @@ export default {
   },
 
   sticky: "固定",
+
+  outdate: {
+    notice: "この記事は最終更新日：%s。記載内容が現在有効でない可能性がありますのでご注意ください。",
+  },
 };

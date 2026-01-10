@@ -13,6 +13,7 @@ import Pagination from "../components/Pagination.astro";
 import HeaderTitle from "../components/partial/HeaderTitle.astro";
 import HeaderSubTitle from "../components/partial/HeaderSubTitle.astro";
 import HomeCategories from "../components/HomeCategories.astro";
+import { formatDate } from "../utils/formatDate";
 
 type Props = {
   page: {
@@ -88,7 +89,7 @@ const { page } = Astro.props;
                 <span>
                   <Icon name="fa6-solid:calendar" size={14} />
                   &nbsp;
-                  {post.data.pubDate.toLocaleDateString().replace(/\//g, "-")}
+                  {formatDate(post.data.pubDate)}
                 </span>
                 <span>
                   <Icon name="fa6-solid:pen-nib" size={14} />

@@ -1,0 +1,71 @@
+---
+import { Icon } from "astro-icon/components";
+
+import { formatDate } from "../../utils/formatDate";
+import { OUTDATE } from "../../utils/config";
+import { _p } from "../../utils/i18n";
+
+import '../../styles/container.stylus';
+
+type Props = {
+  outdated?: boolean;
+  updatedDate?: Date;
+  pubDate: Date;
+};
+
+const { outdated, updatedDate, pubDate } = Astro.props;
+
+const template = _p(
+  "outdate.notice",
+  formatDate(updatedDate) || formatDate(pubDate)
+);
+---
+
+{
+  outdated ? (
+    <div class="warning custom-block" id="outdate-blockquote">
+      <p class="custom-block-title">
+        <Icon
+          name="fa6-solid:circle-exclamation"
+          style="margin-right: 8px;flex-shrink: 0;"
+        />
+        WARNING
+      </p>
+      <p>{template}</p>
+    </div>
+  ) : (
+    OUTDATE.enable &&
+    outdated !== false && (
+      <div
+        class="warning custom-block"
+        id="outdate-blockquote"
+        style="display: none;"
+      >
+        <p class="custom-block-title">
+          <Icon
+            name="fa6-solid:circle-exclamation"
+            style="margin-right: 8px;flex-shrink: 0;"
+          />
+          WARNING
+        </p>
+        <p />
+      </div>
+    )
+  )
+}
+
+<script is:inline define:vars={{ updatedDate, pubDate, OUTDATE, template }}>
+  const postDate = updatedDate || pubDate;
+  if (postDate) {
+    const now = new Date();
+    const diffTime = now - new Date(postDate);
+    const diffDays = Math.ceil(diffTime / 86400000);
+    if (diffDays >= OUTDATE.daysAgo) {
+      const outdateBlock = document.getElementById("outdate-blockquote");
+      if (outdateBlock) {
+        outdateBlock.style.display = "flow-root";
+        outdateBlock.querySelector("p:nth-of-type(2)").textContent = template;
+      }
+    }
+  }
+</script>

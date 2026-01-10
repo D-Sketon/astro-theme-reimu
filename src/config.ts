@@ -233,6 +233,7 @@ export default {
       ],
     },
   },
+  // show categories card on home page
   home_categories: {
     enable: false,
     content: [
@@ -245,5 +246,10 @@ export default {
     enable: false,
     type: "github",
     link: "https://github.com/D-Sketon/hexo-theme-reimu",
+  },
+  // whether to display the notification when the article is outdated
+  outdate: {
+    enable: false,
+    daysAgo: 180, // The number of days after which the article is considered outdated
   },
 };

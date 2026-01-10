@@ -10,7 +10,7 @@ export default {
   reading: "閱讀",
   archive_a: "彙整",
   archive_b: "彙整：%s",
-  page: "第 %d 頁",
+  page: "第 %s 頁",
   recent_posts: "最新文章",
   newer: "Newer",
   older: "Older",
@@ -39,19 +39,19 @@ export default {
 
   post: {
     count: {
-      one: "%d 字",
-      other: "%d 字",
+      one: "%s 字",
+      other: "%s 字",
     },
     time: {
-      one: "%d 分鐘",
-      other: "%d 分鐘",
+      one: "%s 分鐘",
+      other: "%s 分鐘",
     },
   },
 
   home_categories: {
     count: {
-      one: "%d 篇文章",
-      other: "%d 篇文章",
+      one: "%s 篇文章",
+      other: "%s 篇文章",
     }
   },
 
@@ -61,4 +61,8 @@ export default {
   },
 
   sticky: "置頂",
+
+  outdate: {
+    notice: "本文最後更新於 %s，請注意文中內容可能已不適用。",
+  },
 };

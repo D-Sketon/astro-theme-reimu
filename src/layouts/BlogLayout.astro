@@ -1,12 +1,19 @@
 ---
 import type { CollectionEntry } from "astro:content";
 
-import { COPYRIGHT, DISQUS, TWIKOO, VALINE, WALINE } from "../utils/config";
+import {
+  COPYRIGHT,
+  DISQUS,
+  TWIKOO,
+  VALINE,
+  WALINE,
+} from "../utils/config";
 import Tag from "../components/post/Tag.astro";
 import Nav from "../components/post/Nav.astro";
 import ReadingCount from "../components/post/ReadingCount.astro";
 import Copyright from "../components/post/Copyright.astro";
 import CommentCount from "../components/post/CommentCount.astro";
+import Outdate from "../components/post/Outdate.astro";
 
 import MarkdownLayout from "./MarkdownLayout.astro";
 
@@ -27,22 +34,28 @@ type Props = {
 const { nav, post, url, headings = [] } = Astro.props;
 
 const { title, tags = [] } = post;
+const hasComment =
+  post.comment &&
+  ((VALINE.enable && VALINE.appId && VALINE.appKey) ||
+    (WALINE.enable && WALINE.serverURL) ||
+    (TWIKOO.enable && TWIKOO.envId) ||
+    (DISQUS.enable && DISQUS.shortname && DISQUS.count));
 ---
 
 <MarkdownLayout frontmatter={post} headings={headings}>
+  <Outdate outdated={post.outdated} updatedDate={post.updatedDate} pubDate={post.pubDate} />
   <slot />
   {
-    (tags.length ||
-      COPYRIGHT.enable ||
-      (VALINE.enable && VALINE.appId && VALINE.appKey) ||
-      (WALINE.enable && WALINE.serverURL) ||
-      (TWIKOO.enable && TWIKOO.envId) ||
-      (DISQUS.enable && DISQUS.shortname && DISQUS.count)) && (
+    (tags.length || COPYRIGHT.enable || hasComment) && (
       <footer class="article-footer" slot="footer">
         <Copyright post={post} url={url} />
         <Tag tags={tags} />
-        <CommentCount url={url} />
-        <ReadingCount url={url} title={title} />
+        {hasComment && (
+          <>
+            <CommentCount url={url} />
+            <ReadingCount url={url} title={title} />
+          </>
+        )}
       </footer>
     )
   }

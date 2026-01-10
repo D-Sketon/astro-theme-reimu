@@ -10,7 +10,7 @@ export default {
   reading: "Readings",
   archive_a: "Archives",
   archive_b: "Archives: %s",
-  page: "Page %d",
+  page: "Page %s",
   recent_posts: "Recent Posts",
   newer: "Newer",
   older: "Older",
@@ -39,19 +39,19 @@ export default {
 
   post: {
     count: {
-      one: "%d word",
-      other: "%d words",
+      one: "%s word",
+      other: "%s words",
     },
     time: {
-      one: "%d min",
-      other: "%d mins",
+      one: "%s min",
+      other: "%s mins",
     },
   },
 
   home_categories: {
     count: {
-      one: "%d post",
-      other: "%d posts",
+      one: "%s post",
+      other: "%s posts",
     }
   },
 
@@ -61,4 +61,8 @@ export default {
   },
 
   sticky: "Sticky",
+
+  outdate: {
+    notice: "This article was last updated on %s. Please note that the content may no longer be applicable.",
+  },
 };

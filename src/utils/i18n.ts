@@ -40,13 +40,21 @@ export const _p = (key: string, params: string | number): string => {
   for (let k of keys) {
     result = result[k];
   }
-  if (typeof params === "number" || !isNaN(parseInt(params))) {
-    if (params === 1) {
-      return result?.one?.replace("%d", params) || key;
+  if (typeof params === "number" || !isNaN(Number(params))) {
+    if (typeof result === "string") {
+      // @ts-expect-error - ignore
+      return result.replace("%s", params) || key;
+    }
+    if (Number(params) <= 1) {
+      return result?.one?.replace("%s", params) || key;
     } else {
-      return result?.other?.replace("%d", params) || key;
+      return result?.other?.replace("%s", params) || key;
     }
   } else {
-    return result?.replace("%s", params) || key;
+    if (typeof result === "string") {
+      // @ts-expect-error - ignore
+      return result.replace("%s", params) || key;
+    }
+    return result?.other?.replace("%s", params) || key;
   }
 };
