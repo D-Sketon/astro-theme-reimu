@@ -25,7 +25,8 @@ const { Content, headings } = await post.render();
 ---
 
 <BlogLayout
-  post={post.data}
+  post={post}
+  frontMatter={post.data}
   nav={{ prev, next }}
   url={`/blog/${post.slug}`}
   headings={headings}

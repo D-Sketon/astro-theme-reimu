@@ -3,6 +3,8 @@ import "../styles/base.stylus";
 import "katex/dist/katex.min.css";
 import "../styles/markdown.stylus";
 
+import type { CollectionEntry } from "astro:content";
+
 import { BASE_URL } from "../utils/config";
 import Footer from "../components/Footer.astro";
 import Date from "../components/post/Date.astro";
@@ -13,7 +15,7 @@ import Category from "../components/post/Category.astro";
 import BaseLayout from "./BaseLayout.astro";
 
 type Props = {
-  frontmatter: Record<string, any>;
+  frontMatter: CollectionEntry<"blog">["data"];
   headings?: Array<{
     depth: number;
     slug: string;
@@ -21,7 +23,7 @@ type Props = {
   }>;
 };
 
-const { frontmatter, headings = [] } = Astro.props;
+const { frontMatter, headings = [] } = Astro.props;
 
 const {
   title,
@@ -32,7 +34,7 @@ const {
   comment = true,
   categories = [],
   toc = true,
-} = frontmatter;
+} = frontMatter;
 ---
 
 <BaseLayout

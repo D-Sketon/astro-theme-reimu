@@ -246,11 +246,21 @@ export default {
   triangle_badge: {
     enable: false,
     type: "github",
-    link: "https://github.com/D-Sketon/hexo-theme-reimu",
+    link: "https://github.com/D-Sketon/astro-theme-reimu",
   },
   // whether to display the notification when the article is outdated
   outdate: {
     enable: false,
     daysAgo: 180, // The number of days after which the article is considered outdated
   },
+
+  share: [
+    "weibo",
+    "twitter",
+    "facebook",
+    "linkedin",
+    "reddit",
+    "qq",
+    "weixin",
+  ]
 };

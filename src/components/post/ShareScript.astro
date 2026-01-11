@@ -1,0 +1,133 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+import { SITE_URL, BASE_URL, BANNER, SITE } from "../../utils/config";
+import { stripHTML } from "../../utils/stripHTML";
+
+type Props = {
+  post: CollectionEntry<"blog">;
+};
+
+const { post } = Astro.props;
+---
+
+<script
+  is:inline
+  define:vars={{
+    title: post.data.title,
+    desc:
+      post.data.excerpt ||
+      post.data.description ||
+      stripHTML(post?.rendered?.html || "").slice(0, 100),
+    cover: post.data.cover || `${SITE_URL}${BASE_URL}${BANNER}`,
+    author: post.data.author || SITE.author,
+    url: `${SITE_URL}${BASE_URL}/blog/${post.slug}`,
+  }}
+>
+  window.__REIMU_POST__ = {
+    title: title,
+    desc: desc,
+    cover: cover,
+    author: author,
+    url: url,
+  };
+</script>
+<script>
+  const loadWeixinShare = () => {
+    const weixinIcon = document.querySelector(".share-icon-weixin");
+    if (!weixinIcon) return;
+    weixinIcon.addEventListener(
+      "click",
+      function (this: HTMLElement, e: Event) {
+        const iconPosition = this.getBoundingClientRect();
+        const shareWeixin = this.querySelector("#share-weixin") as HTMLElement;
+        if (iconPosition.x - 148 < 0) {
+          shareWeixin.style.left = `-${iconPosition.x - 10}px`;
+        } else if (iconPosition.x + 172 > window.innerWidth) {
+          shareWeixin.style.left = `-${310 - window.innerWidth + iconPosition.x}px`;
+        } else {
+          shareWeixin.style.left = "-138px";
+        }
+        console.log(e.target);
+        if (e.target === this) {
+          console.log("click weixin");
+          const el = shareWeixin;
+          if (!el) return;
+          if (!el.classList.contains("active")) {
+            el.style.display = "block";
+            requestAnimationFrame(() => {
+              el.classList.add("active");
+            });
+          } else {
+            el.classList.remove("active");
+            const onEnd = (ev: any) => {
+              if (ev.propertyName === "opacity") {
+                el.style.display = "none";
+                el.removeEventListener("transitionend", onEnd);
+              }
+            };
+            el.addEventListener("transitionend", onEnd);
+          }
+        }
+        // if contains img return
+        if (document.querySelector(".share-weixin-canvas")?.children.length) {
+          return;
+        }
+        const { cover, desc, title, author } = window.__REIMU_POST__!;
+        (
+          document.querySelector("#share-weixin-banner") as HTMLImageElement
+        ).src = cover;
+        (
+          document.querySelector("#share-weixin-title") as HTMLDivElement
+        ).innerText = title;
+        (
+          document.querySelector("#share-weixin-desc") as HTMLDivElement
+        ).innerText = desc;
+        (
+          document.querySelector("#share-weixin-author") as HTMLDivElement
+        ).innerText = "By: " + author;
+        import("qrcode").then((QRCode) => {
+          QRCode.toDataURL(
+            window.__REIMU_POST__!.url,
+            function (error, dataUrl) {
+              if (error) {
+                console.error(error);
+                return;
+              }
+              (
+                document.querySelector("#share-weixin-qr") as HTMLImageElement
+              ).src = dataUrl;
+              import("@zumer/snapdom").then(({ snapdom }) => {
+                snapdom
+                  .toPng(document.querySelector(".share-weixin-dom")!)
+                  .then((img) => {
+                    document
+                      .querySelector(".share-weixin-canvas")
+                      ?.appendChild(img);
+                  })
+                  .catch(() => {
+                    // we assume that the error is caused by the browser's security policy
+                    // so we will remove the banner and try again
+                    document.querySelector("#share-weixin-banner")?.remove();
+                    snapdom
+                      .toPng(document.querySelector(".share-weixin-dom")!)
+                      .then((img) => {
+                        document
+                          .querySelector(".share-weixin-canvas")
+                          ?.appendChild(img);
+                      })
+                      .catch(() => {
+                        console.error("Failed to generate weixin share image.");
+                      });
+                  });
+              });
+            }
+          );
+        });
+      }
+    );
+  };
+
+  loadWeixinShare();
+  document.addEventListener("astro:after-swap", loadWeixinShare);
+</script>

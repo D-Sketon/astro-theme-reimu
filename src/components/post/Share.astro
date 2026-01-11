@@ -1,0 +1,233 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
+
+import { SHARE, BASE_URL, SITE_URL } from "../../utils/config";
+
+import ShareScript from "./ShareScript.astro";
+
+type Props = {
+  post: CollectionEntry<"blog">;
+};
+
+const { post } = Astro.props;
+
+const shareMap = {
+  weibo: (url: string, title: string) =>
+    `https://service.weibo.com/share/share.php?url=${url}&appkey=&title=${title}&pic=&ralateUid=`,
+  facebook: (url: string) =>
+    `https://www.facebook.com/sharer/sharer.php?u=${url}`,
+  twitter: (url: string, title: string, desc: unknown, source: string) =>
+    `https://twitter.com/intent/tweet?url=${url}&text=${title}&via=${source}`,
+  linkedin: (url: string, title: string, desc: string) =>
+    `https://www.linkedin.com/shareArticle?url=${url}&title=${title}&summary=${desc}&mini=true&ro=true`,
+  reddit: (url: string, title: string) =>
+    `https://www.reddit.com/submit?url=${url}&title=${title}`,
+  qq: (url: unknown, title: string, desc: string, source: string) =>
+    `https://connect.qq.com/widget/shareqq/index.html?url=${"www.baidu.com"}&title=${title}&desc=${desc}&source=${source}`,
+  weixin: () => `javascript:;`,
+};
+
+const getShareUrl = (platform: keyof typeof shareMap) => {
+  const url = encodeURIComponent(`${SITE_URL}${BASE_URL}/blog/${post.slug}`);
+  const title = encodeURIComponent(post.data.title);
+  const desc = encodeURIComponent(
+    post.data.excerpt || post.data.description || post.data.title
+  );
+  const source = encodeURIComponent(`${SITE_URL}${BASE_URL}`);
+  const shareFunc = shareMap[platform];
+  return shareFunc(url, title, desc, source);
+};
+---
+
+<div class="share-wrapper">
+  {
+    SHARE.map((platform: any) => (
+      <a
+        href={getShareUrl(platform)}
+        title={post.data.title}
+        target={platform !== "weixin" ? "_blank" : undefined}
+        rel={platform !== "weixin" ? "noopener noreferrer" : undefined}
+      >
+        <div class={`share-icon share-icon-${platform}`}>
+          <Icon name={`fa6-brands:${platform}`} style="pointer-events: none;" />
+          {platform === "weixin" && (
+            <div id="share-weixin">
+              <div class="share-weixin-dom">
+                <div class="share-weixin-content">
+                  <img id="share-weixin-banner" />
+                  <div id="share-weixin-title" />
+                  <div id="share-weixin-desc" />
+                </div>
+                <div class="share-weixin-qrcode">
+                  <div class="share-weixin-info">
+                    <div id="share-weixin-author" />
+                    <div id="share-weixin-theme">
+                      Powered By astro-theme-reimu
+                    </div>
+                  </div>
+                  <img id="share-weixin-qr" />
+                </div>
+              </div>
+              <div class="share-weixin-canvas" />
+            </div>
+          )}
+        </div>
+      </a>
+    ))
+  }
+</div>
+
+{SHARE?.includes("weixin") && <ShareScript post={post} />}
+
+<style lang="stylus">
+  .share-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+
+  .share-icon {
+    margin: 8px;
+    color: var(--color-link) !important;
+    position: relative;
+    transition: all 0.2s;
+
+    svg {
+      display: block;
+      opacity: 0.8;
+      font-size: 24px;
+      transition: all 0.2s;
+      will-change: transform;
+
+      &:hover {
+        opacity: 1;
+        transform: scale(1.2);
+      }
+    }
+  }
+
+  #share-weixin {
+    display: none;
+    position: absolute;
+    top: -440px;
+    left: -138px;
+    background: #fff;
+    user-select: none;
+    width: 300px;
+    height: 420px;
+    overflow: hidden;
+    border-radius: 8px;
+    z-index: 50;
+    box-shadow: var(--shadow-card);
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+    img {
+      filter: none !important;
+    }
+
+    &.active {
+      display: block;
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+    }
+  }
+
+  .share-weixin-dom {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: #fff;
+    height: 100%;
+  }
+
+  .share-weixin-canvas {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+    }
+  }
+
+  #share-weixin-banner {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+  }
+
+  #share-weixin-title {
+    padding: 10px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--color-link);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  #share-weixin-desc {
+    margin: 0 16px 10px;
+    font-size: 14px;
+    color: var(--color-default);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    overflow: hidden;
+    word-break: break-word;
+    line-height: 2;
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      background: linear-gradient(rgba(255, 255, 255, 0), #fff);
+      height: 30px;
+      width: 100%;
+      left: 0;
+      bottom: 5px;
+    }
+  }
+
+  #share-weixin-qr {
+    width: 80px;
+    height: 80px;
+  }
+
+  #share-weixin-author {
+    color: var(--color-default);
+    font-size: 14px;
+    margin: 12px 0;
+  }
+
+  #share-weixin-theme {
+    color: var(--color-default);
+    font-size: 12px;
+  }
+
+  .share-weixin-qrcode {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 16px 16px;
+  }
+
+  .share-weixin-info {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-end;
+    flex: 1;
+  }
+</style>

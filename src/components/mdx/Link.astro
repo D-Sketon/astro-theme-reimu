@@ -4,6 +4,7 @@ import "../../styles/container.stylus";
 import { Icon } from "astro-icon/components";
 
 import { BANNER, BASE_URL } from "../../utils/config";
+import { stripHTML } from "../../utils/stripHTML";
 
 interface Props {
   slug?: string;
@@ -13,10 +14,6 @@ interface Props {
 }
 
 const { slug, url, title, cover } = Astro.props;
-
-const stripHTML = (html: string) => {
-  return html.replace(/<[^>]*>/g, "");
-};
 
 let finalTitle = "";
 let link = "";

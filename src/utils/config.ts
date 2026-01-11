@@ -218,6 +218,7 @@ const typedConfig = config as {
   widgets: string[];
   triangle_badge: TriangleBadgeConfig;
   outdate: OutdateConfig;
+  share: string[];
 };
 
 export const SITE = typedConfig.site;
@@ -243,6 +244,7 @@ export const FIREWORK = typedConfig.firework;
 export const HOME_CATEGORIES = typedConfig.home_categories;
 export const TRIANGLE_BADGE = typedConfig.triangle_badge;
 export const OUTDATE = typedConfig.outdate;
+export const SHARE = typedConfig.share;
 
 let _BASE_URL = import.meta.env.BASE_URL;
 // normalize BASE_URL, make sure it starts with '/' and does not end with '/'

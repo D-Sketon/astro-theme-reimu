@@ -112,7 +112,7 @@
 
   details {
     padding: 16px 12px;
-    border-radius: post-radius;
+    border-radius: 12px;
     background-color: var(--red-5-5);
     box-shadow: var(--shadow-meta);
     transition: 0.3s;

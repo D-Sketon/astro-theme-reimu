@@ -7,6 +7,7 @@ import {
   TWIKOO,
   VALINE,
   WALINE,
+  SHARE,
 } from "../utils/config";
 import Tag from "../components/post/Tag.astro";
 import Nav from "../components/post/Nav.astro";
@@ -14,11 +15,13 @@ import ReadingCount from "../components/post/ReadingCount.astro";
 import Copyright from "../components/post/Copyright.astro";
 import CommentCount from "../components/post/CommentCount.astro";
 import Outdate from "../components/post/Outdate.astro";
+import Share from "../components/post/Share.astro";
 
 import MarkdownLayout from "./MarkdownLayout.astro";
 
 type Props = {
-  post: CollectionEntry<"blog">["data"];
+  post: CollectionEntry<"blog">;
+  frontMatter: CollectionEntry<"blog">["data"];
   url: string;
   headings?: Array<{
     depth: number;
@@ -31,24 +34,29 @@ type Props = {
   };
 };
 
-const { nav, post, url, headings = [] } = Astro.props;
+const { post, nav, frontMatter, url, headings = [] } = Astro.props;
 
-const { title, tags = [] } = post;
+const { title, tags = [] } = frontMatter;
 const hasComment =
-  post.comment !== false &&
+  frontMatter.comment !== false &&
   ((VALINE.enable && VALINE.appId && VALINE.appKey) ||
     (WALINE.enable && WALINE.serverURL) ||
     (TWIKOO.enable && TWIKOO.envId) ||
     (DISQUS.enable && DISQUS.shortname && DISQUS.count));
 ---
 
-<MarkdownLayout frontmatter={post} headings={headings}>
-  <Outdate outdated={post.outdated} updatedDate={post.updatedDate} pubDate={post.pubDate} />
+<MarkdownLayout frontMatter={frontMatter} headings={headings}>
+  <Outdate
+    outdated={frontMatter.outdated}
+    updatedDate={frontMatter.updatedDate}
+    pubDate={frontMatter.pubDate}
+  />
   <slot />
   {
     (tags.length || COPYRIGHT.enable || hasComment) && (
       <footer class="article-footer" slot="footer">
-        <Copyright post={post} url={url} />
+        <Copyright frontMatter={frontMatter} url={url} />
+        {SHARE?.length > 0 && <Share post={post} />}
         <Tag tags={tags} />
         {hasComment && (
           <>
