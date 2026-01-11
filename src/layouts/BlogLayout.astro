@@ -18,6 +18,7 @@ import CommentCount from "../components/post/CommentCount.astro";
 import Outdate from "../components/post/Outdate.astro";
 import Share from "../components/post/Share.astro";
 import Sponsor from "../components/post/Sponsor.astro";
+import Category from "../components/post/Category.astro";
 
 import MarkdownLayout from "./MarkdownLayout.astro";
 
@@ -38,7 +39,7 @@ type Props = {
 
 const { post, nav, frontmatter, url, headings = [] } = Astro.props;
 
-const { title, tags = [] } = frontmatter;
+const { title, tags = [], categories = [] } = frontmatter;
 const hasComment =
   frontmatter.comment !== false &&
   ((VALINE.enable && VALINE.appId && VALINE.appKey) ||
@@ -55,11 +56,12 @@ const hasComment =
   />
   <slot />
   {
-    (tags.length || COPYRIGHT.enable || hasComment) && (
+    (tags.length || categories.length || COPYRIGHT.enable || hasComment) && (
       <footer class="article-footer" slot="footer">
         <Copyright frontmatter={frontmatter} url={url} />
         {SPONSOR?.enable && frontmatter.sponsor !== false && <Sponsor />}
         {SHARE?.length > 0 && <Share post={post} />}
+        <Category categories={categories} />
         <Tag tags={tags} />
         {hasComment && (
           <>

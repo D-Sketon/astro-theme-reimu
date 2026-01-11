@@ -10,7 +10,6 @@ import Footer from "../components/Footer.astro";
 import Date from "../components/post/Date.astro";
 import Comment from "../components/post/Comment.astro";
 import HeaderTitle from "../components/partial/HeaderTitle.astro";
-import Category from "../components/post/Category.astro";
 
 import BaseLayout from "./BaseLayout.astro";
 
@@ -32,7 +31,6 @@ const {
   pubDate,
   cover,
   comment = true,
-  categories = [],
   toc = true,
 } = frontmatter;
 ---
@@ -62,7 +60,6 @@ const {
               ? new globalThis.Date(pubDate as any)
               : (pubDate as Date)}
           />
-          <Category categories={categories} />
         </div>
         <div class="hr-line"></div>
         <div class="article-entry" itemprop="articleBody">
