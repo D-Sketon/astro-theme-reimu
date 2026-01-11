@@ -192,6 +192,11 @@ export interface OutdateConfig {
   daysAgo: number;
 }
 
+export interface SponsorConfig {
+  enable: boolean;
+  qr?: { name: string; src: string }[];
+}
+
 import config from "../config";
 
 const typedConfig = config as {
@@ -219,6 +224,7 @@ const typedConfig = config as {
   triangle_badge: TriangleBadgeConfig;
   outdate: OutdateConfig;
   share: string[];
+  sponsor: SponsorConfig;
 };
 
 export const SITE = typedConfig.site;
@@ -245,6 +251,7 @@ export const HOME_CATEGORIES = typedConfig.home_categories;
 export const TRIANGLE_BADGE = typedConfig.triangle_badge;
 export const OUTDATE = typedConfig.outdate;
 export const SHARE = typedConfig.share;
+export const SPONSOR = typedConfig.sponsor;
 
 let _BASE_URL = import.meta.env.BASE_URL;
 // normalize BASE_URL, make sure it starts with '/' and does not end with '/'

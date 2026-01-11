@@ -88,4 +88,9 @@ export default {
       other: "%s articles",
     },
   },
+
+  sponsor: {
+    title: "Sponsor",
+    tip: "Buy me a coffee"
+  },
 };

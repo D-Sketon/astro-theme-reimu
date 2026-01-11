@@ -5,6 +5,7 @@ import { getCollection } from "astro:content";
 import { SITE, MENU, SIDEBAR, BASE_URL } from "../../utils/config";
 import { __ } from "../../utils/i18n";
 import SocialList from "../sidebar/SocialList.astro";
+import { urlFor } from "../../utils/urlFor";
 
 async function getStats() {
   const posts = await getCollection("blog");
@@ -22,13 +23,12 @@ const stats = await getStats();
 
 const currentPath = Astro.url.pathname;
 
-const avatarUrl = `${BASE_URL}${SIDEBAR.avatar}`;
 ---
 
 <div class="sidebar-author">
   <img
     loading="lazy"
-    src={avatarUrl}
+    src={urlFor(SIDEBAR.avatar)}
     alt={SITE.author}
   />
   <div class="sidebar-author-name">{SITE.author}</div>

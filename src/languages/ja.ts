@@ -9,7 +9,7 @@ export default {
   comment: "コメント",
   reading: "閲覧数",
   archive_a: "アーカイブ",
-  archive_b: "\"アーカイブ: %s\"",
+  archive_b: '"アーカイブ: %s"',
   page: "ページ %s",
   recent_posts: "最近の投稿",
   newer: "次の記事",
@@ -52,7 +52,7 @@ export default {
     count: {
       one: "%s 件の記事",
       other: "%s 件の記事",
-    }
+    },
   },
 
   busuanzi: {
@@ -63,7 +63,8 @@ export default {
   sticky: "固定",
 
   outdate: {
-    notice: "この記事は最終更新日：%s。記載内容が現在有効でない可能性がありますのでご注意ください。",
+    notice:
+      "この記事は最終更新日：%s。記載内容が現在有効でない可能性がありますのでご注意ください。",
   },
 
   article_copyright: {
@@ -73,8 +74,10 @@ export default {
     date: "公開日: ",
     updated: "更新日: ",
     license: "ライセンス: ",
-    license_content_before: "本ブログのすべての文書は、特に指定されていない限り、",
-    license_content_after: " ライセンスに従っています。引用の際は出典を明記してください！",
+    license_content_before:
+      "本ブログのすべての文書は、特に指定されていない限り、",
+    license_content_after:
+      " ライセンスに従っています。引用の際は出典を明記してください！",
   },
 
   heatmap: {
@@ -87,5 +90,10 @@ export default {
       one: "%s 記事",
       other: "%s 記事",
     },
+  },
+
+  sponsor: {
+    title: "スポンサー",
+    tip: "コーヒーを買ってください",
   },
 };

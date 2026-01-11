@@ -16,6 +16,7 @@ const blog = defineCollection({
     outdated: z.boolean().optional(),
     toc: z.boolean().optional(),
     author: z.string().optional(),
+    sponsor: z.boolean().optional(),
 	}),
 });
 

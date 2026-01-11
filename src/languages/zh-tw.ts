@@ -88,4 +88,9 @@ export default {
       other: "共 %s 篇文章",
     },
   },
+
+  sponsor: {
+    title: "贊助",
+    tip: "請作者喝杯咖啡吧"
+  },
 };

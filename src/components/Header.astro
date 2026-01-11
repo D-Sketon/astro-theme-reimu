@@ -11,6 +11,7 @@ import {
   BANNER_SRCSET,
   TRIANGLE_BADGE,
 } from "../utils/config";
+import { urlFor } from "../utils/urlFor";
 
 import HeaderLink from "./partial/HeaderLink.astro";
 import RssBtn from "./partial/RssBtn";
@@ -21,14 +22,6 @@ import SearchBox from "./partial/SearchBox";
 type Props = {
   title?: string;
   cover?: string;
-};
-
-const isOuterLink = (url: string) => {
-  return (
-    url.startsWith("http://") ||
-    url.startsWith("https://") ||
-    url.startsWith("//")
-  );
 };
 
 const { title = SITE.title, cover } = Astro.props;
@@ -78,33 +71,16 @@ const posts = await getCollection("blog");
 <header id="header">
   {
     cover ? (
-      <img
-        src={isOuterLink(cover) ? cover : `${BASE_URL}${cover}`}
-        alt={title}
-        fetchpriority="high"
-      />
+      <img src={urlFor(cover)} alt={title} fetchpriority="high" />
     ) : BANNER_SRCSET.enable ? (
       <picture style="user-select: none;">
         {BANNER_SRCSET.srcset.map((source) => (
-          <source
-            media={source.media}
-            srcset={
-              isOuterLink(source.src) ? source.src : `${BASE_URL}${source.src}`
-            }
-          />
+          <source media={source.media} srcset={urlFor(source.src)} />
         ))}
-        <img
-          src={isOuterLink(BANNER) ? BANNER : `${BASE_URL}${BANNER}`}
-          alt={title}
-          fetchpriority="high"
-        />
+        <img src={urlFor(BANNER)} alt={title} fetchpriority="high" />
       </picture>
     ) : (
-      <img
-        src={isOuterLink(BANNER) ? BANNER : `${BASE_URL}${BANNER}`}
-        alt={title}
-        fetchpriority="high"
-      />
+      <img src={urlFor(BANNER)} alt={title} fetchpriority="high" />
     )
   }
   <div id="header-outer" class="outer">

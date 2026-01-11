@@ -3,6 +3,7 @@ import { BANNER, BASE_URL } from "../utils/config";
 import randomCover from "../utils/randomCover";
 import { _p } from "../utils/i18n";
 import parseHomeCategories from "../utils/parseHomeCategories";
+import { urlFor } from "../utils/urlFor";
 
 interface HomeCategory {
   categories: string;
@@ -40,24 +41,11 @@ const parsedContent = (
             title={c.name}
           />
           <div class="post-categories-cover">
-            {item.cover ? (
-              <img
-                src={item.cover}
-                alt={c.name}
-                loading="lazy"
-              />
-            ) : (
-              (() => {
-                const cover = randomCover();
-                return (
-                  <img
-                    src={cover || BANNER}
-                    alt={c.name}
-                    loading="lazy"
-                  />
-                );
-              })()
-            )}
+            <img
+              src={urlFor(item.cover || randomCover() || BANNER)}
+              alt={c.name}
+              loading="lazy"
+            />
             <h2>{c.name}</h2>
             <h3>{_p("home_categories.count", c.count)}</h3>
           </div>

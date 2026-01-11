@@ -3,7 +3,8 @@ import type { CollectionEntry } from "astro:content";
 
 import randomCover from "../../utils/randomCover";
 import { __ } from "../../utils/i18n";
-import { BASE_URL } from "../../utils/config";
+import { BANNER, BASE_URL } from "../../utils/config";
+import { urlFor } from "../../utils/urlFor";
 
 type Props = {
   prev: CollectionEntry<"blog"> | null;
@@ -19,7 +20,7 @@ const { prev, next } = Astro.props;
         <div class="article-nav-link-wrap article-nav-link-left">
           <img
             loading="lazy"
-            src={prev.data.cover || randomCover()}
+            src={urlFor(prev.data.cover || randomCover() || BANNER)}
             alt={prev.data.title}
           />
           <a href={`${BASE_URL}/blog/${prev.slug}`} aria-label="Previos Post" />
@@ -31,7 +32,7 @@ const { prev, next } = Astro.props;
         <div class="article-nav-link-wrap article-nav-link-right">
           <img
             loading="lazy"
-            src={next.data.cover || randomCover()}
+            src={urlFor(next.data.cover || randomCover() || BANNER)}
             alt={next.data.title}
           />
           <a href={`${BASE_URL}/blog/${next.slug}`} aria-label="Next Post" />

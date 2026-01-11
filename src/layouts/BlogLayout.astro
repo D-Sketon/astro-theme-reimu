@@ -8,6 +8,7 @@ import {
   VALINE,
   WALINE,
   SHARE,
+  SPONSOR,
 } from "../utils/config";
 import Tag from "../components/post/Tag.astro";
 import Nav from "../components/post/Nav.astro";
@@ -16,6 +17,7 @@ import Copyright from "../components/post/Copyright.astro";
 import CommentCount from "../components/post/CommentCount.astro";
 import Outdate from "../components/post/Outdate.astro";
 import Share from "../components/post/Share.astro";
+import Sponsor from "../components/post/Sponsor.astro";
 
 import MarkdownLayout from "./MarkdownLayout.astro";
 
@@ -56,6 +58,7 @@ const hasComment =
     (tags.length || COPYRIGHT.enable || hasComment) && (
       <footer class="article-footer" slot="footer">
         <Copyright frontMatter={frontMatter} url={url} />
+        {SPONSOR?.enable && frontMatter.sponsor !== false && <Sponsor />}
         {SHARE?.length > 0 && <Share post={post} />}
         <Tag tags={tags} />
         {hasComment && (

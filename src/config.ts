@@ -262,5 +262,13 @@ export default {
     "reddit",
     "qq",
     "weixin",
-  ]
+  ],
+
+  sponsor: {
+    enable: false,
+    qr: [
+      // { name: "支付宝", src: "/sponsor/alipay.jpg" },
+      // { name: "微信", src: "/sponsor/wechat.png" },
+    ],
+  },
 };

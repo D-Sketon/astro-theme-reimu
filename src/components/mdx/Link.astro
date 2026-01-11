@@ -5,6 +5,7 @@ import { Icon } from "astro-icon/components";
 
 import { BANNER, BASE_URL } from "../../utils/config";
 import { stripHTML } from "../../utils/stripHTML";
+import { urlFor } from "../../utils/urlFor";
 
 interface Props {
   slug?: string;
@@ -35,9 +36,9 @@ if (slug) {
   link = `${BASE_URL}/blog/${post.slug}`;
 
   if (cover === "auto") {
-    finalCover = post.data.cover || `${BASE_URL}${BANNER}`;
+    finalCover = post.data.cover || BANNER;
   } else {
-    finalCover = cover || post.data.cover || `${BASE_URL}${BANNER}`;
+    finalCover = cover || post.data.cover || BANNER;
   }
 
   description = post.data.excerpt || post.data.description || "";
@@ -83,7 +84,7 @@ if (slug) {
       ) : finalCover ? (
         <div class="post-link-card-cover-wrap">
           <img
-            src={finalCover}
+            src={urlFor(finalCover)}
             class="no-lightbox"
             title={finalTitle}
             alt={finalTitle}
