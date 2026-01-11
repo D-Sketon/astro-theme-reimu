@@ -76,4 +76,16 @@ export default {
     license_content_before: "All articles on this blog are licensed under the ",
     license_content_after: " license agreement unless otherwise stated. Please indicate the source when reprinting!",
   },
+
+  heatmap: {
+    no_articles: "No articles",
+    word: {
+      one: "%s word",
+      other: "%s words",
+    },
+    article: {
+      one: "%s article",
+      other: "%s articles",
+    },
+  },
 };

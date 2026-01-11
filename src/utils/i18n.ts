@@ -58,3 +58,7 @@ export const _p = (key: string, params: string | number): string => {
     return result?.other?.replace("%s", params) || key;
   }
 };
+
+export const getI18n = (): Record<string, any> => {
+  return i18n;
+};

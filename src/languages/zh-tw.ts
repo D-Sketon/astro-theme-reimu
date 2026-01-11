@@ -76,4 +76,16 @@ export default {
     license_content_before: "本部落格所有文章除特別聲明外，均採用 ",
     license_content_after: " 授權協議。轉載請註明出處！",
   },
+
+  heatmap: {
+    no_articles: "没有文章",
+    word: {
+      one: "%s 字",
+      other: "%s 字",
+    },
+    article: {
+      one: "共 %s 篇文章",
+      other: "共 %s 篇文章",
+    },
+  },
 };

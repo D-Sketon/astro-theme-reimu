@@ -76,4 +76,16 @@ export default {
     license_content_before: "本博客所有文章除特别声明外，均采用 ",
     license_content_after: " 许可协议。转载请注明出处！",
   },
+
+  heatmap: {
+    no_articles: "没有文章",
+    word: {
+      one: "%s 字",
+      other: "%s 字",
+    },
+    article: {
+      one: "共 %s 篇文章",
+      other: "共 %s 篇文章",
+    },
+  },
 };

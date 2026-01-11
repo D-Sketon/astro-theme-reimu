@@ -76,4 +76,16 @@ export default {
     license_content_before: "本ブログのすべての文書は、特に指定されていない限り、",
     license_content_after: " ライセンスに従っています。引用の際は出典を明記してください！",
   },
+
+  heatmap: {
+    no_articles: "記事がありません",
+    word: {
+      one: "%s 文字",
+      other: "%s 文字",
+    },
+    article: {
+      one: "%s 記事",
+      other: "%s 記事",
+    },
+  },
 };
