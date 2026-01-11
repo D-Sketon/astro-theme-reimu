@@ -1,0 +1,178 @@
+---
+interface Props {
+  active?: number;
+  center?: boolean;
+}
+
+const { active = 1, center = false } = Astro.props;
+const tabsId = `tabs-${Math.random().toString(36).substring(2, 11)}`;
+const navClass = center ? 'nav-tabs center' : 'nav-tabs';
+---
+
+<div class="tabs" id={tabsId} data-active={active}>
+  <ul class={navClass}>
+    <div class="tab-indicator"></div>
+  </ul>
+  <div class="tab-content">
+    <slot />
+  </div>
+</div>
+
+<style lang="stylus" is:global>
+ul.nav-tabs li.tab a {
+  cursor: pointer;
+}
+
+div.tabs {
+  display: block;
+  position: relative;
+  margin: 16px 0;
+
+  ul.nav-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 16px;
+    justify-content: flex-start;
+    margin: 0 0 24px 0;
+    line-height: 1.5;
+    position: relative;
+
+    &.center {
+      justify-content: center;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      border-bottom: 1px solid var(--color-h2-border);
+      bottom: -4px;
+      box-sizing: unset;
+      transition: 1s;
+    }
+
+    .tab-indicator {
+      position: absolute;
+      bottom: -7px;
+      left: 0;
+      height: 7px;
+      background: var(--color-h2-after);
+      border-radius: 8px;
+      box-shadow: var(--shadow-red-6-shadow);
+      transition: 0.3s;
+    }
+
+    li.tab {
+      list-style-type: none;
+      margin-top: 0;
+      margin-bottom: 0;
+      min-width: 40px;
+
+      a {
+        display: block;
+        padding: 8px 0;
+        text-align: center;
+        font-size: 0.875rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: var(--color-default);
+
+        i {
+          pointer-events: none;
+        }
+      }
+    }
+  }
+
+  .tab-content {
+    .tab-pane {
+      &:not(.active) {
+        display: none;
+      }
+
+      &.active {
+        display: block;
+      }
+    }
+  }
+}
+</style>
+
+<script is:inline define:vars={{ tabsId, active }}>
+  (function () {
+    const tabs = document.querySelector(`#${tabsId}`);
+    if (!tabs) return;
+
+    const navTabs = tabs.querySelector('.nav-tabs');
+    const tabContent = tabs.querySelector('.tab-content');
+    const tabPanes = Array.from(tabContent.querySelectorAll('.tab-pane'));
+    const indicator = navTabs.querySelector('.tab-indicator');
+
+    if (!tabPanes.length) return;
+
+    tabPanes.forEach((pane, index) => {
+      const title = pane.dataset.tabTitle || `Tab ${index + 1}`;
+
+      const li = document.createElement('li');
+      li.className = 'tab';
+
+      const a = document.createElement('a');
+      a.appendChild(document.createTextNode(title));
+      li.appendChild(a);
+      
+      navTabs.insertBefore(li, indicator);
+    });
+
+    const tabItems = Array.from(navTabs.querySelectorAll('.tab'));
+    let currentTab = active - 1;
+
+    function updateIndicator(index) {
+      const tab = tabItems[index];
+      if (tab && indicator) {
+        const left = tab.offsetLeft;
+        const width = tab.offsetWidth;
+        indicator.style.width = `${width}px`;
+        indicator.style.transform = `translateX(${left}px)`;
+      }
+    }
+
+    function switchTab(index) {
+      if (index < 0 || index >= tabItems.length) return;
+      
+      tabItems.forEach((item, i) => {
+        if (i === index) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+
+      tabPanes.forEach((pane, i) => {
+        if (i === index) {
+          pane.classList.add('active');
+        } else {
+          pane.classList.remove('active');
+        }
+      });
+
+      currentTab = index;
+      updateIndicator(index);
+    }
+
+    tabItems.forEach((tab, index) => {
+      tab.addEventListener('click', () => {
+        switchTab(index);
+      });
+    });
+
+    switchTab(currentTab);
+
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        updateIndicator(currentTab);
+      }, 100);
+    });
+  })();
+</script>
