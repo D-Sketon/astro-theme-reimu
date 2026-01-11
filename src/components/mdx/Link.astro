@@ -1,0 +1,208 @@
+---
+import { getCollection } from "astro:content";
+import "../../styles/container.stylus";
+import { Icon } from "astro-icon/components";
+
+import { BANNER, BASE_URL } from "../../utils/config";
+
+interface Props {
+  slug?: string;
+  url?: string;
+  title?: string;
+  cover?: string | "auto";
+}
+
+const { slug, url, title, cover } = Astro.props;
+
+const stripHTML = (html: string) => {
+  return html.replace(/<[^>]*>/g, "");
+};
+
+let finalTitle = "";
+let link = "";
+let description = "";
+let finalCover: string | undefined = undefined;
+let isExternal = false;
+let showAutoCover = false;
+
+if (slug) {
+  const allPosts = await getCollection("blog");
+  const post = allPosts.find((p) => p.slug === slug);
+
+  if (!post) {
+    throw new Error(`Post not found: "${slug}" for Link component`);
+  }
+
+  finalTitle = title || post.data.title || post.slug;
+
+  link = `${BASE_URL}/blog/${post.slug}`;
+
+  if (cover === "auto") {
+    finalCover = post.data.cover || `${BASE_URL}${BANNER}`;
+  } else {
+    finalCover = cover || post.data.cover || `${BASE_URL}${BANNER}`;
+  }
+
+  description = post.data.excerpt || post.data.description || "";
+  if (!description && post?.rendered?.html) {
+    description = stripHTML(post?.rendered.html).slice(0, 100);
+  }
+  description = description.replace(/\s/g, " ");
+} else if (url) {
+  isExternal = true;
+  link = url;
+  description = link;
+  finalTitle = title || link;
+
+  if (cover === "auto") {
+    showAutoCover = true;
+  } else {
+    finalCover = cover;
+  }
+} else {
+  throw new Error('Either "slug" or "url" is required for Link component');
+}
+---
+
+<div class="post-link-card-wrap">
+  <div class="post-link-card">
+    {
+      isExternal ? (
+        <a
+          href={link}
+          title={finalTitle}
+          rel="noopener nofollow noreferrer"
+          target="_blank"
+        />
+      ) : (
+        <a href={link} title={finalTitle} />
+      )
+    }
+    {
+      showAutoCover ? (
+        <div class="post-link-card-cover-wrap auto">
+          <Icon name="fa6-solid:globe" class="icon-globe" />
+        </div>
+      ) : finalCover ? (
+        <div class="post-link-card-cover-wrap">
+          <img
+            src={finalCover}
+            class="no-lightbox"
+            title={finalTitle}
+            alt={finalTitle}
+          />
+        </div>
+      ) : null
+    }
+    <div class="post-link-card-item-wrap">
+      <div class="post-link-card-title">
+        {finalTitle}
+      </div>
+      <div class="post-link-card-excerpt">
+        {isExternal && <Icon name="fa6-solid:link" class="icon-link" />}
+        {description}
+      </div>
+    </div>
+  </div>
+</div>
+
+<style lang="stylus" is:global>
+  .post-link-card-wrap {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+
+  .post-link-card {
+    display: flex;
+    padding: 8px;
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    transition: 0.3s;
+    box-shadow: var(--shadow-card);
+    width: 60%;
+
+    @media screen and (max-width: 767px) {
+      width: 95%;
+    }
+
+    &:hover {
+      transform: scale(1.015);
+      box-shadow: var(--shadow-card-hover);
+    }
+
+    a {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .post-link-card-cover-wrap {
+    height: 70px;
+    width: 70px;
+    padding-right: 20px;
+    flex-shrink: 0;
+    pointer-events: none;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+      box-shadow: var(--shadow-card);
+    }
+
+    &.auto {
+      background: var(--color-background);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      padding-right: 0;
+      margin-right: 20px;
+    }
+
+    .icon-globe {
+      font-size: 40px;
+    }
+
+    @media screen and (max-width: 767px) {
+      display: none !important;
+    }
+  }
+
+  .post-link-card-item-wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    gap: 4px;
+
+    div {
+      padding: 4px 0;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+
+  .post-link-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--red-1);
+  }
+
+  .post-link-card-excerpt {
+    font-size: 14px;
+    color: var(--grey-9);
+
+    .icon-link {
+      font-size: 12px;
+      vertical-align: bottom;
+    }
+  }
+</style>
