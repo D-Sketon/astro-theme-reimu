@@ -6,7 +6,7 @@ interface Props {
 
 const { active = 1, center = false } = Astro.props;
 const tabsId = `tabs-${Math.random().toString(36).substring(2, 11)}`;
-const navClass = center ? 'nav-tabs center' : 'nav-tabs';
+const navClass = center ? "nav-tabs center" : "nav-tabs";
 ---
 
 <div class="tabs" id={tabsId} data-active={active}>
@@ -103,27 +103,27 @@ div.tabs {
     const tabs = document.querySelector(`#${tabsId}`);
     if (!tabs) return;
 
-    const navTabs = tabs.querySelector('.nav-tabs');
-    const tabContent = tabs.querySelector('.tab-content');
-    const tabPanes = Array.from(tabContent.querySelectorAll('.tab-pane'));
-    const indicator = navTabs.querySelector('.tab-indicator');
+    const navTabs = tabs.querySelector(".nav-tabs");
+    const tabContent = tabs.querySelector(".tab-content");
+    const tabPanes = Array.from(tabContent.querySelectorAll(".tab-pane"));
+    const indicator = navTabs.querySelector(".tab-indicator");
 
     if (!tabPanes.length) return;
 
     tabPanes.forEach((pane, index) => {
       const title = pane.dataset.tabTitle || `Tab ${index + 1}`;
 
-      const li = document.createElement('li');
-      li.className = 'tab';
+      const li = document.createElement("li");
+      li.className = "tab";
 
-      const a = document.createElement('a');
+      const a = document.createElement("a");
       a.appendChild(document.createTextNode(title));
       li.appendChild(a);
-      
+
       navTabs.insertBefore(li, indicator);
     });
 
-    const tabItems = Array.from(navTabs.querySelectorAll('.tab'));
+    const tabItems = Array.from(navTabs.querySelectorAll(".tab"));
     let currentTab = active - 1;
 
     function updateIndicator(index) {
@@ -138,20 +138,20 @@ div.tabs {
 
     function switchTab(index) {
       if (index < 0 || index >= tabItems.length) return;
-      
+
       tabItems.forEach((item, i) => {
         if (i === index) {
-          item.classList.add('active');
+          item.classList.add("active");
         } else {
-          item.classList.remove('active');
+          item.classList.remove("active");
         }
       });
 
       tabPanes.forEach((pane, i) => {
         if (i === index) {
-          pane.classList.add('active');
+          pane.classList.add("active");
         } else {
-          pane.classList.remove('active');
+          pane.classList.remove("active");
         }
       });
 
@@ -160,7 +160,7 @@ div.tabs {
     }
 
     tabItems.forEach((tab, index) => {
-      tab.addEventListener('click', () => {
+      tab.addEventListener("click", () => {
         switchTab(index);
       });
     });
@@ -168,7 +168,7 @@ div.tabs {
     switchTab(currentTab);
 
     let resizeTimer;
-    window.addEventListener('resize', () => {
+    window.addEventListener("resize", () => {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(() => {
         updateIndicator(currentTab);

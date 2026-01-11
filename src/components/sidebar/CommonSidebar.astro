@@ -22,15 +22,10 @@ async function getStats() {
 const stats = await getStats();
 
 const currentPath = Astro.url.pathname;
-
 ---
 
 <div class="sidebar-author">
-  <img
-    loading="lazy"
-    src={urlFor(SIDEBAR.avatar)}
-    alt={SITE.author}
-  />
+  <img loading="lazy" src={urlFor(SIDEBAR.avatar)} alt={SITE.author} />
   <div class="sidebar-author-name">{SITE.author}</div>
   <div class="sidebar-description">{SITE.description}</div>
 </div>
@@ -49,19 +44,21 @@ const currentPath = Astro.url.pathname;
 <SocialList />
 
 <div class="sidebar-menu">
-  {MENU.map((item) => {
-    const itemUrl = `${BASE_URL}${item.url}`;
-    const isActive = currentPath === itemUrl;
-    return (
-      <div class={`sidebar-menu-link-wrap ${isActive ? 'link-active' : ''}`}>
-        <a class="sidebar-menu-link-dummy" href={itemUrl}></a>
-        <div class="sidebar-menu-icon">
-          <Icon name="fa6-solid:yin-yang" size={24} />
+  {
+    MENU.map((item) => {
+      const itemUrl = `${BASE_URL}${item.url}`;
+      const isActive = currentPath === itemUrl;
+      return (
+        <div class={`sidebar-menu-link-wrap ${isActive ? "link-active" : ""}`}>
+          <a class="sidebar-menu-link-dummy" href={itemUrl} />
+          <div class="sidebar-menu-icon">
+            <Icon name="fa6-solid:yin-yang" size={24} />
+          </div>
+          <div class="sidebar-menu-link">{__(item.name)}</div>
         </div>
-        <div class="sidebar-menu-link">{__(item.name)}</div>
-      </div>
-    );
-  })}
+      );
+    })
+  }
 </div>
 
 <style lang="stylus">

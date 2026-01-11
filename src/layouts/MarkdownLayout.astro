@@ -15,7 +15,7 @@ import Category from "../components/post/Category.astro";
 import BaseLayout from "./BaseLayout.astro";
 
 type Props = {
-  frontMatter: CollectionEntry<"blog">["data"];
+  frontmatter: CollectionEntry<"blog">["data"];
   headings?: Array<{
     depth: number;
     slug: string;
@@ -23,7 +23,7 @@ type Props = {
   }>;
 };
 
-const { frontMatter, headings = [] } = Astro.props;
+const { frontmatter, headings = [] } = Astro.props;
 
 const {
   title,
@@ -34,7 +34,7 @@ const {
   comment = true,
   categories = [],
   toc = true,
-} = frontMatter;
+} = frontmatter;
 ---
 
 <BaseLayout

@@ -22,29 +22,29 @@ const { headings = [] } = Astro.props;
 
 function buildTocTree(headings: typeof Astro.props.headings) {
   if (!headings || headings.length === 0) return [];
-  
+
   const tree: Heading[] = [];
   const stack: Heading[] = [];
-  
+
   headings.forEach((heading) => {
     const item = {
       ...heading,
       children: [],
     };
-    
+
     while (stack.length > 0 && stack[stack.length - 1].depth >= heading.depth) {
       stack.pop();
     }
-    
+
     if (stack.length === 0) {
       tree.push(item);
     } else {
       stack[stack.length - 1].children.push(item);
     }
-    
+
     stack.push(item);
   });
-  
+
   return tree;
 }
 
@@ -53,13 +53,15 @@ const tocTree = buildTocTree(headings);
 
 <div class="sidebar-toc-wrapper">
   <div class="toc-title">{__("toc")}</div>
-  {tocTree.length > 0 && (
-    <ol class="toc">
-      {tocTree.map((item) => (
-        <TocItem item={item} />
-      ))}
-    </ol>
-  )}
+  {
+    tocTree.length > 0 && (
+      <ol class="toc">
+        {tocTree.map((item) => (
+          <TocItem item={item} />
+        ))}
+      </ol>
+    )
+  }
 </div>
 
 <style lang="stylus" is:global>

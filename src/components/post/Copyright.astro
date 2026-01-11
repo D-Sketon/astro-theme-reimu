@@ -10,11 +10,11 @@ const { content, enable } = COPYRIGHT;
 const { author, link, title, date, updated, license, license_type } = content;
 
 type Props = {
-  frontMatter: CollectionEntry<"blog">["data"];
+  frontmatter: CollectionEntry<"blog">["data"];
   url: string;
 };
 
-const { frontMatter, url } = Astro.props;
+const { frontmatter, url } = Astro.props;
 ---
 
 {
@@ -23,7 +23,7 @@ const { frontMatter, url } = Astro.props;
       {author && (
         <p>
           <strong>{__("article_copyright.author")}</strong>
-          {frontMatter.author || SITE.author} @ {SITE.title}
+          {frontmatter.author || SITE.author} @ {SITE.title}
         </p>
       )}
       {link && (
@@ -37,19 +37,19 @@ const { frontMatter, url } = Astro.props;
       {title && (
         <p>
           <strong>{__("article_copyright.title")}</strong>
-          {frontMatter.title}
+          {frontmatter.title}
         </p>
       )}
       {date && (
         <p>
           <strong>{__("article_copyright.date")}</strong>
-          {dayjs(frontMatter.pubDate).format("YYYY-MM-DD HH:mm:ss")}
+          {dayjs(frontmatter.pubDate).format("YYYY-MM-DD HH:mm:ss")}
         </p>
       )}
       {updated && (
         <p>
           <strong>{__("article_copyright.updated")}</strong>
-          {dayjs(frontMatter.updatedDate).format("YYYY-MM-DD HH:mm:ss")}
+          {dayjs(frontmatter.updatedDate).format("YYYY-MM-DD HH:mm:ss")}
         </p>
       )}
       {license && (

@@ -19,11 +19,13 @@ const className = `toc-item toc-level-${item.depth}`;
   <a class="toc-link" href={`#${item.slug}`}>
     <span class="toc-text">{item.text}</span>
   </a>
-  {hasChildren && (
-    <ol class="toc-child">
-      {item.children.map((child) => (
-        <Astro.self item={child} />
-      ))}
-    </ol>
-  )}
+  {
+    hasChildren && (
+      <ol class="toc-child">
+        {item.children.map((child) => (
+          <Astro.self item={child} />
+        ))}
+      </ol>
+    )
+  }
 </li>

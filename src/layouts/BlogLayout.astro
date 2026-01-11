@@ -23,7 +23,7 @@ import MarkdownLayout from "./MarkdownLayout.astro";
 
 type Props = {
   post: CollectionEntry<"blog">;
-  frontMatter: CollectionEntry<"blog">["data"];
+  frontmatter: CollectionEntry<"blog">["data"];
   url: string;
   headings?: Array<{
     depth: number;
@@ -36,29 +36,29 @@ type Props = {
   };
 };
 
-const { post, nav, frontMatter, url, headings = [] } = Astro.props;
+const { post, nav, frontmatter, url, headings = [] } = Astro.props;
 
-const { title, tags = [] } = frontMatter;
+const { title, tags = [] } = frontmatter;
 const hasComment =
-  frontMatter.comment !== false &&
+  frontmatter.comment !== false &&
   ((VALINE.enable && VALINE.appId && VALINE.appKey) ||
     (WALINE.enable && WALINE.serverURL) ||
     (TWIKOO.enable && TWIKOO.envId) ||
     (DISQUS.enable && DISQUS.shortname && DISQUS.count));
 ---
 
-<MarkdownLayout frontMatter={frontMatter} headings={headings}>
+<MarkdownLayout frontmatter={frontmatter} headings={headings}>
   <Outdate
-    outdated={frontMatter.outdated}
-    updatedDate={frontMatter.updatedDate}
-    pubDate={frontMatter.pubDate}
+    outdated={frontmatter.outdated}
+    updatedDate={frontmatter.updatedDate}
+    pubDate={frontmatter.pubDate}
   />
   <slot />
   {
     (tags.length || COPYRIGHT.enable || hasComment) && (
       <footer class="article-footer" slot="footer">
-        <Copyright frontMatter={frontMatter} url={url} />
-        {SPONSOR?.enable && frontMatter.sponsor !== false && <Sponsor />}
+        <Copyright frontmatter={frontmatter} url={url} />
+        {SPONSOR?.enable && frontmatter.sponsor !== false && <Sponsor />}
         {SHARE?.length > 0 && <Share post={post} />}
         <Tag tags={tags} />
         {hasComment && (
