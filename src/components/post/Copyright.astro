@@ -4,9 +4,10 @@ import dayjs from "dayjs";
 import { Icon } from "astro-icon/components";
 
 import { COPYRIGHT, SITE, BASE_URL, SITE_URL } from "../../utils/config";
+import { __ } from "../../utils/i18n";
 
 const { content, enable } = COPYRIGHT;
-const { author, link, title, date, updated, license } = content;
+const { author, link, title, date, updated, license, license_type } = content;
 
 type Props = {
   post: CollectionEntry<"blog">["data"];
@@ -21,13 +22,13 @@ const { post, url } = Astro.props;
     <blockquote class="article-copyright">
       {author && (
         <p>
-          <strong>本文作者：</strong>
+          <strong>{__("article_copyright.author")}</strong>
           {SITE.author} @ {SITE.title}
         </p>
       )}
       {link && (
         <p>
-          <strong>本文链接：</strong>
+          <strong>{__("article_copyright.permalink")}</strong>
           <a
             href={`${SITE_URL}${BASE_URL}${url}/`}
           >{`${SITE_URL}${BASE_URL}${url}/`}</a>
@@ -35,30 +36,31 @@ const { post, url } = Astro.props;
       )}
       {title && (
         <p>
-          <strong>本文标题：</strong>
+          <strong>{__("article_copyright.title")}</strong>
           {post.title}
         </p>
       )}
       {date && (
         <p>
-          <strong>本文发布时间：</strong>
+          <strong>{__("article_copyright.date")}</strong>
           {dayjs(post.pubDate).format("YYYY-MM-DD HH:mm:ss")}
         </p>
       )}
       {updated && (
         <p>
-          <strong>本文修改时间：</strong>
+          <strong>{__("article_copyright.updated")}</strong>
           {dayjs(post.updatedDate).format("YYYY-MM-DD HH:mm:ss")}
         </p>
       )}
       {license && (
         <p>
-          <strong>本文版权：</strong>本博客所有文章除特别声明外，均采用{" "}
-          <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" rel="noopener external nofollow noreferrer" target="_blank">
-            <Icon name="fa6-brands:creative-commons" />
-            BY-NC-SA
-          </a>{" "}
-          许可协议。转载请注明出处！
+          <strong>{__("article_copyright.license")}</strong>
+          {__("article_copyright.license_content_before")}{" "}
+          <a class="article-copyright-license-link" href={`https://creativecommons.org/licenses/${license_type}/4.0/deed.zh`} rel="noopener external nofollow noreferrer" target="_blank">
+            <Icon name="fa6-brands:creative-commons"/>
+            {license_type.toUpperCase()}
+          </a>
+          {" "}{__("article_copyright.license_content_after")}
         </p>
         <Icon class="article-copyright-bg" name="fa6-brands:creative-commons" />
       )}
@@ -106,5 +108,11 @@ const { post, url } = Astro.props;
     position: absolute;
     right: -15px;
     bottom: -40px;
+  }
+
+  .article-copyright-license-link {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: bottom;
   }
 </style>

@@ -65,4 +65,15 @@ export default {
   outdate: {
     notice: "本文最后更新于 %s，请注意文中内容可能已不适用。",
   },
+
+  article_copyright: {
+    author: "本文作者：",
+    permalink: "本文链接：",
+    title: "本文标题：",
+    date: "本文发布时间：",
+    updated: "本文更新时间：",
+    license: "本文版权：",
+    license_content_before: "本博客所有文章除特别声明外，均采用 ",
+    license_content_after: " 许可协议。转载请注明出处！",
+  },
 };

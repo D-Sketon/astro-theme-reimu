@@ -184,6 +184,7 @@ export default {
       date: false,
       updated: false,
       license: true,
+      license_type: 'by-nc-sa',
     },
   },
 

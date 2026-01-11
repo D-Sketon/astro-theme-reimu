@@ -65,4 +65,15 @@ export default {
   outdate: {
     notice: "この記事は最終更新日：%s。記載内容が現在有効でない可能性がありますのでご注意ください。",
   },
+
+  article_copyright: {
+    author: "著者: ",
+    permalink: "パーマリンク: ",
+    title: "タイトル: ",
+    date: "公開日: ",
+    updated: "更新日: ",
+    license: "ライセンス: ",
+    license_content_before: "本ブログのすべての文書は、特に指定されていない限り、",
+    license_content_after: " ライセンスに従っています。引用の際は出典を明記してください！",
+  },
 };

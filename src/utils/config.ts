@@ -139,6 +139,7 @@ export interface CopyrightConfig {
     date: boolean;
     updated: boolean;
     license: boolean;
+    license_type: string;
   };
 }
 

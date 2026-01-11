@@ -65,4 +65,15 @@ export default {
   outdate: {
     notice: "This article was last updated on %s. Please note that the content may no longer be applicable.",
   },
+
+  article_copyright: {
+    author: "Author: ",
+    permalink: "Permalink: ",
+    title: "Title: ",
+    date: "Published: ",
+    updated: "Updated: ",
+    license: "License: ",
+    license_content_before: "All articles on this blog are licensed under the ",
+    license_content_after: " license agreement unless otherwise stated. Please indicate the source when reprinting!",
+  },
 };

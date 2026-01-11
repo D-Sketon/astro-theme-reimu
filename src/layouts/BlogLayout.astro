@@ -35,7 +35,7 @@ const { nav, post, url, headings = [] } = Astro.props;
 
 const { title, tags = [] } = post;
 const hasComment =
-  post.comment &&
+  post.comment !== false &&
   ((VALINE.enable && VALINE.appId && VALINE.appKey) ||
     (WALINE.enable && WALINE.serverURL) ||
     (TWIKOO.enable && TWIKOO.envId) ||
