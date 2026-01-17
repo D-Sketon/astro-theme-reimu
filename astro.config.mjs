@@ -25,7 +25,9 @@ export default defineConfig({
     // You can use any of the themes bundled with Shiki by name,
     // specify a path to JSON theme file, or pass an instance
     // of the `ExpressiveCodeTheme` class here:
-    themes: ['github-dark', 'github-dark'],
+    themes: ['github-light', 'github-dark'],
+    useDarkModeMediaQuery: false,
+    themeCssSelector: (theme) => `[data-theme='${theme.type}']`,
     shiki: {
       // You can pass additional plugin options here,
       // e.g. to load custom language grammars:
