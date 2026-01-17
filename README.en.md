@@ -31,7 +31,7 @@ This theme is an Astro port of [hexo-theme-reimu](https://github.com/D-Sketon/he
 <p align="center">
   <a href="https://pagespeed.web.dev/analysis/https-d-sketon-github-io-astro-theme-reimu/ur4yncrgnm?form_factor=desktop">
     <img width="710" alt="astro-theme-reimu Lighthouse Score" src="https://fastly.jsdelivr.net/gh/D-Sketon/astro-theme-reimu/psi.svg">
-  <a>
+  </a>
 </p>
 
 ## Features
@@ -41,6 +41,7 @@ This theme is an Astro port of [hexo-theme-reimu](https://github.com/D-Sketon/he
 - ✨ Complete blog functionality
 - 📱 Responsive layout
 - 🌙 Dark mode support
+- 🌍 Multi-language support (i18n)
 
 ### Code & Math
 
@@ -51,10 +52,14 @@ This theme is an Astro port of [hexo-theme-reimu](https://github.com/D-Sketon/he
 ### Search & Comments
 
 - 🔍 Local search (based on Fuse.js)
-- 💬 Multiple comment systems:
+- 💬 Multiple comment systems support:
   - Valine
   - Waline
+  - Twikoo
   - Gitalk
+  - Giscus
+  - Disqus
+  - Utterances
 
 ### Statistics & Analytics
 
@@ -67,10 +72,11 @@ This theme is an Astro port of [hexo-theme-reimu](https://github.com/D-Sketon/he
 
 ### Media & Interaction
 
-- 🖼️ Image lazy loading (lozad)
-- 🖼️ Image lightbox (baguetteBox)
+- 🖼️ Image lazy loading
+- 🖼️ Image lightbox
 - ⚡ Loading animation
 - 🎨 AOS scroll animation
+- 🎯 Mouse effects
 
 ### Navigation & Structure
 
@@ -80,8 +86,17 @@ This theme is an Astro port of [hexo-theme-reimu](https://github.com/D-Sketon/he
 ### Design & Customization
 
 - 🎨 Icon support (FontAwesome, Iconify)
+- 🔗 Built-in MDX components:
+  - Internal links
+  - External links
+  - Friend links
+  - Heat map
+  - Tag roulette
+  - Tabs
+  - Photo gallery
 - ©️ Article copyright notice
 - 🌐 Responsive banner (srcset)
+- 🎨 Share card functionality
 
 ## Installation & Usage
 
@@ -94,28 +109,22 @@ cd astro-theme-reimu
 
 # Install dependencies (pnpm recommended)
 pnpm install
-# or use npm
-npm install
 
-# Start dev server
+# Start development server
 pnpm run dev
-# or
-npm run dev
 
 # Build for production
 pnpm run build
-# or
-npm run build
 
 # Preview build
 pnpm run preview
-# or
-npm run preview
 ```
+
+> If you use npm, replace `pnpm` with `npm` in the commands above.
 
 ### Project Structure
 
-```txt
+```plain
 /
 ├── public/              # Static assets
 │   ├── images/
@@ -133,10 +142,10 @@ npm run preview
 │   │   └── config.ts    # Content collection config
 │   ├── hooks/           # React Hooks
 │   ├── languages/       # i18n language files
-│   │   ├── en.yml
-│   │   ├── zh-cn.yml
-│   │   ├── zh-tw.yml
-│   │   └── ja.yml
+│   │   ├── en.ts
+│   │   ├── zh-cn.ts
+│   │   ├── zh-tw.ts
+│   │   └── ja.ts
 │   ├── layouts/         # Page layouts
 │   ├── pages/           # Page routes
 │   │   ├── about.mdx    # About page
@@ -148,8 +157,8 @@ npm run preview
 │   ├── plugins/         # Markdown plugins
 │   ├── styles/          # Style files
 │   ├── utils/           # Utility functions
-│   ├── config.yml       # Theme config
-│   ├── covers.yml       # Cover images config
+│   ├── config.ts        # Theme config
+│   ├── covers.ts        # Cover images config
 │   └── env.d.ts
 ├── astro.config.mjs     # Astro config
 ├── package.json
@@ -161,246 +170,427 @@ All blog posts are stored in the `src/content/blog` directory, and the about pag
 
 ## Configuration
 
-### Basic Configuration
-
-Edit `src/config.yml` to configure the theme:
+Edit `src/config.ts` to configure the theme:
 
 <details>
-<summary>Site Information</summary>
+<summary>Basic Configuration</summary>
 
-```yaml
-site:
-  title: My Blog              # Site title
-  subtitle: My Blog Subtitle  # Site subtitle
-  description: Your blog description  # Site description
-  keywords: blog, astro, theme  # Keywords
-  author: Your Name           # Author name
-  language: zh-CN             # Site language (en | zh-CN | zh-TW | ja)
+##### Site Information
+
+```typescript
+export default {
+  site: {
+    title: "My Blog", // Site title
+    subtitle: "My Blog Subtitle", // Site subtitle
+    description: "Your blog description", // Site description
+    keywords: "blog, astro, theme", // Keywords
+    author: "Your Name", // Author name
+    language: "zh-CN", // Site language (en | zh-CN | zh-TW | ja)
+  },
+};
 ```
 
-</details>
+##### Sidebar
 
-<details>
-<summary>Sidebar</summary>
-
-```yaml
-sidebar:
-  avatar: /images/avatar.webp  # Avatar path (relative to public directory)
-  position: right              # Sidebar position (left | right)
+```typescript
+export default {
+  sidebar: {
+    avatar: "/images/avatar.webp", // Avatar path (relative to public directory)
+    position: "right", // Sidebar position (left | right)
+  },
+};
 ```
 
-</details>
+##### Sidebar Widgets
 
-<details>
-<summary>Menu Navigation</summary>
-
-```yaml
-menu:
-  - name: home        # Menu item name (corresponds to i18n translation)
-    url: /            # Link URL
-  - name: archives
-    url: /archives
-  - name: about
-    url: /about
+```typescript
+export default {
+  widgets: [
+    "category", // Categories
+    "tag", // Tags
+    "tagcloud", // Tag cloud
+    "archive", // Archives
+    "recent_posts", // Recent posts
+  ],
+};
 ```
 
-</details>
+##### Navigation Menu
 
-<details>
-<summary>Banner & Cover</summary>
-
-#### Banner Configuration
-
-```yaml
-banner: "/images/banner.webp"  # Banner path
-
-# Responsive banner (optional)
-banner_srcset:
-  enable: true
-  srcset:
-    - src: "/images/banner-600w.webp"
-      media: "(max-width: 479px)"
-    - src: "/images/banner-800w.webp"
-      media: "(max-width: 799px)"
-    - src: "/images/banner.webp"
-      media: "(min-width: 800px)"
+```typescript
+export default {
+  menu: [
+    { name: "home", url: "/" }, // Menu item name (corresponds to i18n translation)
+    { name: "archives", url: "/archives" },
+    { name: "about", url: "/about" },
+  ],
+};
 ```
 
-#### Cover Configuration
+##### Banner & Cover
 
-Configure random cover image list in `src/covers.yml`:
+###### Banner Configuration
 
-```yaml
-- https://example.com/cover1.webp
-- https://example.com/cover2.webp
-- https://example.com/cover3.webp
+```typescript
+export default {
+  banner: "/images/banner.webp", // Banner path
+
+  // Responsive banner (optional)
+  banner_srcset: {
+    enable: true,
+    srcset: [
+      { src: "/images/banner-600w.webp", media: "(max-width: 479px)" },
+      { src: "/images/banner-800w.webp", media: "(max-width: 799px)" },
+      { src: "/images/banner.webp", media: "(min-width: 800px)" },
+    ],
+  },
+};
+```
+
+###### Cover Configuration
+
+Configure random cover image list in `src/covers.ts`:
+
+```typescript
+export default [
+  "https://example.com/cover1.webp",
+  "https://example.com/cover2.webp",
+  "https://example.com/cover3.webp",
+];
 ```
 
 Article cover display logic:
+
 1. If `cover` is specified in the article's Front Matter, use the specified cover
-2. Otherwise, randomly select one from `covers.yml`
-3. If `covers.yml` is empty, use the banner as cover
+2. Otherwise, randomly select one from `covers.ts`
+3. If `covers.ts` is empty, use the banner as cover
 
-</details>
+##### Footer
 
-<details>
-<summary>Footer</summary>
+```typescript
+export default {
+  footer: {
+    since: 2020, // Start year (displays as 2020 - current year)
+    powered: true, // Show "Powered by Astro"
+    count: true, // Show article statistics
+    busuanzi: true, // Enable busuanzi visitor statistics
+    icp: {
+      icpnumber: "", // ICP license number
+      beian: "", // Public security record number
+      recordcode: "", // Public security record link recordcode parameter
+    },
+    moe_icp: {
+      icpnumber: "", // Moe ICP license number
+    },
+  },
+};
+```
 
-```yaml
-footer:
-  since: 2020      # Start year (displays as 2020 - current year)
-  powered: true    # Show "Powered by Astro"
-  count: true      # Show article statistics
-  busuanzi: true   # Enable busuanzi visitor statistics
+##### Social Links
+
+```typescript
+export default {
+  social: {
+    email: "mailto:your@email.com",
+    github: "https://github.com/yourname",
+    twitter: "https://twitter.com/yourname",
+    facebook: "https://www.facebook.com/yourname",
+    // More social platforms...
+  },
+};
 ```
 
 </details>
 
 <details>
-<summary>Social Links</summary>
+<summary>Comment Systems</summary>
 
-```yaml
-social:
-  email: mailto:your@email.com
-  github: https://github.com/yourname
-  twitter: https://twitter.com/yourname
-  facebook: https://www.facebook.com/yourname
-  # More platforms...
-```
-
-</details>
-
-### Comment System
-
-<details>
-<summary>Waline</summary>
+##### Waline
 
 [Waline](https://waline.js.org/) is a simple and secure comment system.
 
-```yaml
-waline:
-  enable: true
-  serverURL: your-server-url  # Waline server URL
-  lang: zh-CN                 # Language
-  locale: {}                  # Custom locale
-  emoji:                      # Emoji sets
-    - https://unpkg.com/@waline/emojis@1.2.0/weibo
-    - https://unpkg.com/@waline/emojis@1.2.0/bilibili
-  meta:                       # Commenter info
-    - nick
-    - mail
-    - link
-  requiredMeta:               # Required fields
-    - nick
-    - mail
-  wordLimit: 0                # Comment word limit (0 for unlimited)
-  pageSize: 10                # Comments per page
-  pageview: true              # Enable pageview statistics
+```typescript
+export default {
+  waline: {
+    enable: true,
+    serverURL: "your-server-url", // Waline server URL
+    lang: "zh-CN", // Language
+    locale: {}, // Custom locale
+    emoji: [
+      // Emoji sets
+      "https://unpkg.com/@waline/emojis@1.2.0/weibo",
+      "https://unpkg.com/@waline/emojis@1.2.0/bilibili",
+    ],
+    meta: ["nick", "mail", "link"], // Commenter info
+    requiredMeta: ["nick", "mail"], // Required fields
+    wordLimit: 0, // Comment word limit (0 for unlimited)
+    pageSize: 10, // Comments per page
+    pageview: true, // Enable pageview statistics
+  },
+};
 ```
 
-</details>
-
-<details>
-<summary>Valine</summary>
+##### Valine
 
 [Valine](https://valine.js.org/) is a fast, simple and efficient serverless comment system based on LeanCloud.
 
-```yaml
-valine:
-  enable: true
-  appId: your-app-id          # LeanCloud App ID
-  appKey: your-app-key        # LeanCloud App Key
-  pageSize: 10                # Comment list pagination
-  avatar: mp                  # Gravatar avatar style
-  lang: zh-cn                 # Language
-  placeholder: Just go go     # Comment box placeholder
-  guest_info: nick,mail,link  # Commenter info fields
-  recordIP: true              # Record commenter IP
-  highlight: true             # Highlight code blocks
-  visitor: false              # Show visitor count
-  serverURLs:                 # LeanCloud server URL (optional)
+```typescript
+export default {
+  valine: {
+    enable: true,
+    appId: "your-app-id", // LeanCloud App ID
+    appKey: "your-app-key", // LeanCloud App Key
+    pageSize: 10, // Comment list pagination
+    avatar: "mp", // Gravatar avatar style
+    lang: "zh-cn", // Language
+    placeholder: "Just go go", // Comment box placeholder
+    guest_info: "nick,mail,link", // Commenter info fields
+    recordIP: true, // Record commenter IP
+    highlight: true, // Highlight code blocks
+    visitor: false, // Show visitor count
+    serverURLs: "", // LeanCloud server URL (optional)
+  },
+};
 ```
 
-</details>
-
-<details>
-<summary>Gitalk</summary>
+##### Gitalk
 
 [Gitalk](https://gitalk.github.io/) is a modern comment component based on GitHub Issue and Preact.
 
-```yaml
-gitalk:
-  enable: true
-  clientID: your-client-id        # GitHub Application Client ID
-  clientSecret: your-client-secret # GitHub Application Client Secret
-  repo: your-repo                 # GitHub repository for storing comments
-  owner: your-name                # Repository owner
-  admin: your-name                # Repository admin (can be array)
+```typescript
+export default {
+  gitalk: {
+    enable: true,
+    clientID: "your-client-id", // GitHub Application Client ID
+    clientSecret: "your-client-secret", // GitHub Application Client Secret
+    repo: "your-repo", // GitHub repository for storing comments
+    owner: "your-name", // Repository owner
+    admin: ["your-name"], // Repository admin (can be array)
+  },
+};
+```
+
+##### Giscus
+
+[Giscus](https://giscus.app/en) is a comment system powered by GitHub Discussions.
+
+```typescript
+export default {
+  giscus: {
+    enable: true,
+    repo: "your-username/your-repo", // GitHub repository
+    repoId: "your-repo-id", // Repository ID
+    category: "your-category", // Category name
+    categoryId: "your-category-id", // Category ID
+    mapping: "pathname", // Comment mapping
+    strict: 0, // Strict mode
+    reactionsEnabled: 1, // Enable reactions
+    emitMetadata: 0, // Emit metadata
+    inputPosition: "bottom", // Input position
+  },
+};
+```
+
+##### Twikoo
+
+[Twikoo](https://twikoo.js.org/) supports multiple deployment methods for comment systems.
+
+```typescript
+export default {
+  twikoo: {
+    enable: true,
+    envId: "your-env-id", // Tencent Cloud environment ID；Vercel environment uses address (https://xxx.vercel.app)
+    region: "", // Tencent Cloud region (optional)
+  },
+};
+```
+
+##### Utterances
+
+[Utterances](https://utteranc.es/) is a lightweight comment component based on GitHub Issues.
+
+```typescript
+export default {
+  utterances: {
+    enable: true,
+    repo: "owner/repo", // GitHub repository
+    issue_term: "title", // Issue mapping
+    theme: "github-light", // Theme
+  },
+};
+```
+
+##### Disqus
+
+[Disqus](https://disqus.com/) is a global comment system.
+
+```typescript
+export default {
+  disqus: {
+    enable: true,
+    shortname: "your-shortname", // Disqus shortname
+    count: true, // Enable comment count statistics
+  },
+};
 ```
 
 </details>
 
-### Analytics & Statistics
-
 <details>
-<summary>Website Analytics</summary>
+<summary>Analytics & Statistics</summary>
 
-```yaml
-analytics:
-  baidu_analytics: your-baidu-id    # Baidu Analytics ID
-  google_analytics: your-ga-id      # Google Analytics ID
-  clarity: your-clarity-id          # Microsoft Clarity ID
-```
+##### Website Analytics
 
-</details>
-
-### Other Features
-
-<details>
-<summary>Copyright Notice</summary>
-
-```yaml
-copyright:
-  enable: true      # Enable copyright notice
-  content:
-    author: true    # Show author
-    link: true      # Show article link
-    title: true     # Show article title
-    date: false     # Show publish date
-    updated: false  # Show update date
-    license: true   # Show license
+```typescript
+export default {
+  analytics: {
+    baidu_analytics: "your-baidu-id", // Baidu Analytics ID
+    google_analytics: "your-ga-id", // Google Analytics ID
+    clarity: "your-clarity-id", // Microsoft Clarity ID
+  },
+};
 ```
 
 </details>
 
 <details>
-<summary>Loading Animation</summary>
+<summary>Other Features</summary>
 
-```yaml
-preloader:
-  enable: true              # Enable loading animation
-  text: 少女祈祷中...        # Loading text
-  rotate: true              # Rotate icon
+##### Copyright Notice
+
+```typescript
+export default {
+  copyright: {
+    enable: true, // Enable copyright notice
+    content: {
+      author: true, // Show author
+      link: true, // Show article link
+      title: true, // Show article title
+      date: false, // Show publish date
+      updated: false, // Show update date
+      license: true, // Show license
+      license_type: "by-nc-sa", // License type
+    },
+  },
+};
 ```
 
-</details>
+##### Loading Animation
 
-<details>
-<summary>Friend Links</summary>
+```typescript
+export default {
+  preloader: {
+    enable: true, // Enable loading animation
+    text: "少女祈祷中...", // Loading text
+    rotate: true, // Rotate icon
+  },
+};
+```
 
-```yaml
-friend:
-  - name: Friend Name       # Friend name
-    url: https://friend.com # Friend URL
-    desc: Description       # Friend description
-    avatar: /avatar.webp    # Friend avatar
+##### Friend Links
+
+```typescript
+export default {
+  friend: [
+    {
+      name: "Friend Name", // Friend name
+      url: "https://friend.com", // Friend URL
+      desc: "Description", // Friend description
+      avatar: "/avatar.webp", // Friend avatar
+    },
+  ],
+};
+```
+
+##### Home Category Cards
+
+```typescript
+export default {
+  home_categories: {
+    enable: true, // Enable home category cards
+    content: [
+      {
+        categories: "Blog", // Category name
+        cover: "/images/category-cover.webp", // Category cover (optional)
+      },
+    ],
+  },
+};
+```
+
+##### Share Functionality
+
+```typescript
+export default {
+  share: [
+    "weibo", // Weibo
+    "qq", // QQ
+    "weixin", // WeChat
+    // "twitter",  // Twitter
+    // "facebook", // Facebook
+    // "linkedin", // LinkedIn
+    // "reddit",   // Reddit
+  ],
+};
+```
+
+##### Sponsorship
+
+```typescript
+export default {
+  sponsor: {
+    enable: false, // Enable sponsorship
+    qr: [
+      { name: "Alipay", src: "/sponsor/alipay.jpg" },
+      { name: "WeChat", src: "/sponsor/wechat.png" },
+    ],
+  },
+};
+```
+
+##### Article Expiration Reminder
+
+```typescript
+export default {
+  outdate: {
+    enable: false, // Enable article expiration reminder
+    daysAgo: 180, // Days after which articles are considered expired
+  },
+};
+```
+
+##### Mouse Effects
+
+```typescript
+export default {
+  firework: {
+    enable: true, // Enable mouse effects
+    disable_on_mobile: false, // Disable on mobile
+    options: {
+      // Detailed configuration please refer to mouse-firework documentation
+    },
+  },
+};
+```
+
+##### Triangle Badge
+
+```typescript
+export default {
+  triangle_badge: {
+    enable: false,
+    type: "github", // Icon type
+    link: "https://github.com/yourname",
+  },
+};
 ```
 
 </details>
 
 ## Writing
 
-### Creating Articles
+<details>
+<summary>Creating Articles</summary>
 
 Create `.md` or `.mdx` files in the `src/content/blog/` directory:
 
@@ -421,28 +611,46 @@ categories:
 Your article content...
 ```
 
-### Front Matter Fields
+</details>
 
-| Field       | Description                   | Type               | Required | Default |
-| ----------- | ----------------------------- | ------------------ | -------- | ------- |
-| title       | Article title                 | string             | Yes      | -       |
-| description | Article description (for SEO) | string             | No       | -       |
-| keywords    | Article keywords (for SEO)    | string[] \| string | No       | []      |
-| pubDate     | Publish date                  | Date               | Yes      | -       |
-| updatedDate | Update date                   | Date               | No       | -       |
-| cover       | Cover image URL               | string             | No       | -       |
-| tags        | Tag list                      | string[]           | No       | []      |
-| categories  | Category list                 | string[]           | No       | []      |
-| excerpt     | Article excerpt               | string             | No       | -       |
-| comment     | Enable comment system         | boolean            | No       | true    |
+<details>
+<summary>Front Matter Fields</summary>
 
-### Math Formulas
+#### Front Matter Fields
+
+| Field       | Description                   | Type                 | Required | Default |
+| ----------- | ----------------------------- | -------------------- | -------- | ------- |
+| title       | Article title                 | `string`             | Yes      | -       |
+| description | Article description (for SEO) | `string`             | Yes      | -       |
+| keywords    | Article keywords (for SEO)    | `string[] \| string` | No       | `[]`    |
+| pubDate     | Publish date                  | `Date`               | Yes      | -       |
+| updatedDate | Update date                   | `Date`               | No       | -       |
+| cover       | Cover image URL               | `string`             | No       | -       |
+| tags        | Tag list                      | `string[]`           | No       | `[]`    |
+| categories  | Category list                 | `string[]`           | No       | `[]`    |
+| excerpt     | Article excerpt               | `string`             | No       | -       |
+| comment     | Enable comment system         | `boolean`            | No       | `true`  |
+| author      | Article author                | `string`             | No       | -       |
+| toc         | Show table of contents        | `boolean`            | No       | `true`  |
+| sponsor     | Show sponsorship info         | `boolean`            | No       | `false` |
+| outdated    | Article is outdated           | `boolean`            | No       | `false` |
+
+</details>
+
+<details>
+<summary>Math Formulas</summary>
 
 The theme has built-in KaTeX support. You can use LaTeX syntax directly in Markdown:
 
+#### Inline Formula
+
 ```markdown
 Inline formula: $E = mc^2$
+```
 
+#### Block Formula
+
+```markdown
 Block formula:
 
 $$
@@ -450,7 +658,10 @@ $$
 $$
 ```
 
-### Mermaid Flowcharts
+</details>
+
+<details>
+<summary>Mermaid Flowcharts</summary>
 
 The theme has built-in Mermaid support:
 
@@ -464,7 +675,10 @@ graph TD
 ```
 ````
 
-### Code Blocks
+</details>
+
+<details>
+<summary>Code Blocks</summary>
 
 Code blocks are implemented based on [Expressive Code](https://expressive-code.com/), supporting:
 
@@ -473,7 +687,17 @@ Code blocks are implemented based on [Expressive Code](https://expressive-code.c
 - Code folding (using `collapse` marker)
 - Copy button
 
-Example:
+#### Basic Code Block
+
+````markdown
+```javascript
+function hello() {
+  console.log("Hello, World!");
+}
+```
+````
+
+#### Code Folding
 
 ````markdown
 ```js collapse={1-5, 12-14}
@@ -487,6 +711,170 @@ const result = example();
 ```
 ````
 
+</details>
+
+<details>
+<summary>Built-in Components</summary>
+
+The theme provides rich built-in MDX components:
+
+#### Link Components
+
+##### Internal Links
+
+Creates beautiful link cards for other articles with cover images and summaries. Suitable for recommending related content or creating content navigation within articles.
+
+```markdown
+<Link slug="post-slug" title="Article Title" cover="Cover URL" />
+```
+
+**Props:**
+
+- `slug` (`string`, optional): Article slug
+- `url` (`string`, optional): External link URL
+- `title` (`string`, optional): Link title
+- `cover` (`string | "auto"`, optional): Cover image
+
+##### External Links
+
+Creates beautiful link cards for external websites, automatically recognized as external links. Suitable for sharing external resources or recommending other websites within articles.
+
+```markdown
+<Link url="https://github.com" title="GitHub" cover="auto" />
+```
+
+#### Content Components
+
+##### Friend Link Cards
+
+Displays a list of friend links, each containing avatar, name, and description. Suitable for showcasing partner websites on about pages or dedicated friend link pages.
+
+Friend link cards use the friend link list from global configuration:
+
+```markdown
+<FriendCard />
+```
+
+**Props:** None
+
+##### Heat Map Card
+
+Generates a heat map visualization based on visit data, showing content activity. Suitable for displaying visit data on personal homepages or statistical pages.
+
+```markdown
+<HeatMapCard levelStandard="1000,5000,10000" />
+```
+
+**Props:**
+
+- `levelStandard` (`string`, optional): Level standards, default "1000,5000,10000"
+
+##### Tag Roulette
+
+Displays a tag list in roulette form, allowing users to randomly select tags by clicking. Suitable for adding fun interaction on tag pages or sidebars.
+
+```markdown
+<TagRoulette tags="tag1,tag2,tag3" icon="🎯" />
+```
+
+**Props:**
+
+- `tags` (`string`, optional): Tag list separated by commas, defaults to preset tags
+- `icon` (`string`, optional): Button icon, default "🕹️"
+
+#### Layout Components
+
+##### Tabs
+
+Creates a multi-tab interface for displaying different content in the same area. Suitable for showing multiple aspects of related content or tabbed navigation.
+
+```markdown
+<Tabs active={1} center={false}>
+  <TabItem title="Tab 1">Content 1</TabItem>
+  <TabItem title="Tab 2">Content 2</TabItem>
+</Tabs>
+```
+
+**Tabs Props:**
+
+- `active` (`number`, optional): Default active tab, default 1
+- `center` (`boolean`, optional): Center alignment, default false
+
+**TabItem Props:**
+
+- `title` (`string`, required): Tab title
+
+##### Details
+
+Creates an expandable/collapsible content area to hide secondary information. Suitable for displaying detailed explanations, code examples, or long text content.
+
+```markdown
+<Details summary="Click to expand">
+  Content here
+</Details>
+```
+
+**Props:**
+
+- `summary` (`string`, required): Collapse title
+
+##### Grid Layout
+
+Creates a responsive grid layout for flexible content arrangement. Suitable for displaying card lists, image grids, or equal-width content blocks.
+
+```markdown
+<Grid col={3}>
+  <GridCell>Cell 1</GridCell>
+  <GridCell>Cell 2</GridCell>
+  <GridCell>Cell 3</GridCell>
+</Grid>
+```
+
+**Grid Props:**
+
+- `width` (`number`, optional): Minimum width, default 240
+- `col` (`number`, optional): Number of columns, takes precedence over width
+
+**GridCell Props:** None
+
+##### Photo Gallery
+
+Creates a beautiful image display wall with lightbox effects. Suitable for displaying multiple images in articles or creating image collection pages.
+
+```markdown
+<Gallery>
+  ![Image 1](image1.jpg)
+  ![Image 2](image2.jpg)
+</Gallery>
+```
+
+**Props:** None
+
+##### Alert Block
+
+Creates different types of prompt information boxes with various styles. Suitable for highlighting important information, warnings, or prompting user attention.
+
+```markdown
+<AlertBlockquote type="info" title="Tip">
+  This is an info tip
+</AlertBlockquote>
+
+<AlertBlockquote type="warning">
+  This is a warning tip
+</AlertBlockquote>
+
+<AlertBlockquote type="danger">
+  This is a danger tip
+</AlertBlockquote>
+```
+
+**Props:**
+
+- `type` (`"info" | "warning" | "danger" | "tip" | "important"`, optional): Alert type, default "info"
+- `title` (`string`, optional): Custom title, defaults to type in uppercase
+
+</details>
+
 ## Deployment
 
 ### Configure Site Information
@@ -495,8 +883,8 @@ Edit `astro.config.mjs`:
 
 ```javascript
 export default defineConfig({
-  site: 'https://yourusername.github.io',  // Your site URL
-  base: 'your-repo-name',                  // Subpath (for GitHub Pages deployment)
+  site: "https://yourusername.github.io", // Your site URL
+  base: "your-repo-name", // Subpath (for GitHub Pages deployment)
   // ...
 });
 ```
@@ -540,10 +928,10 @@ Style files are located in the `src/styles/` directory:
 
 Language files are located in the `src/languages/` directory. Supported languages:
 
-- `en.yml` - English
-- `zh-cn.yml` - Simplified Chinese
-- `zh-tw.yml` - Traditional Chinese
-- `ja.yml` - Japanese
+- `en.ts` - English
+- `zh-cn.ts` - Simplified Chinese
+- `zh-tw.ts` - Traditional Chinese
+- `ja.ts` - Japanese
 
 To add a new language, create a corresponding `.yml` file and refer to the structure of existing files.
 
