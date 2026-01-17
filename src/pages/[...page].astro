@@ -30,7 +30,8 @@ type Props = {
 
 export async function getStaticPaths({ paginate }: { paginate: Function }) {
   const posts = await getCollection("blog");
-  return paginate(posts, {
+  const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  return paginate(sortedPosts, {
     pageSize: 10,
   });
 }
