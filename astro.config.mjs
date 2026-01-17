@@ -7,19 +7,20 @@ import icon from "astro-icon";
 import react from "@astrojs/react";
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
-import remarkMermaidToHtml from './src/plugins/remarkMermaidToHtml.mjs';
-import rehypeAddImageClasses from './src/plugins/rehypeAddImageClasses.mjs';
 import Font from 'vite-plugin-font';
+import mermaid from 'astro-mermaid';
+
+import rehypeAddImageClasses from './src/plugins/rehypeAddImageClasses.mjs';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://example.com',
   markdown: {
-    remarkPlugins: [remarkMath, remarkMermaidToHtml],
+    remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex, rehypeAddImageClasses],
     syntaxHighlight: false
   },
-  integrations: [astroExpressiveCode({
+  integrations: [mermaid(), astroExpressiveCode({
     // You can use any of the themes bundled with Shiki by name,
     // specify a path to JSON theme file, or pass an instance
     // of the `ExpressiveCodeTheme` class here:
