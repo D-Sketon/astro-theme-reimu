@@ -3,21 +3,22 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import astroExpressiveCode from 'astro-expressive-code';
 import { pluginCollapsibleSections } from '@expressive-code/plugin-collapsible-sections';
+import { pluginLineNumbers } from '@expressive-code/plugin-line-numbers';
 import icon from "astro-icon";
 import react from "@astrojs/react";
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import Font from 'vite-plugin-font';
-import mermaid from 'astro-mermaid';
 
-import rehypeAddImageClasses from './src/plugins/rehypeAddImageClasses.mjs';
+import mermaid from './src/plugins/mermaid.mjs';
+import rehypeLazyLoadImage from './src/plugins/lazyLoadImage.mjs';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://example.com',
   markdown: {
     remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex, rehypeAddImageClasses],
+    rehypePlugins: [rehypeKatex, rehypeLazyLoadImage],
     syntaxHighlight: false
   },
   integrations: [mermaid(), astroExpressiveCode({
@@ -33,7 +34,7 @@ export default defineConfig({
         // JSON.parse(fs.readFileSync('./some-json-grammar.json', 'utf-8'))
       ]
     },
-    plugins: [pluginCollapsibleSections()]
+    plugins: [pluginCollapsibleSections(), pluginLineNumbers()]
   }), mdx(), sitemap(), icon(), react()],
   vite: {
     plugins: [

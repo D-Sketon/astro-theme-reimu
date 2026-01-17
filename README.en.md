@@ -120,8 +120,6 @@ pnpm run build
 pnpm run preview
 ```
 
-> If you use npm, replace `pnpm` with `npm` in the commands above.
-
 ### Project Structure
 
 ```plain

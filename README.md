@@ -120,8 +120,6 @@ pnpm run build
 pnpm run preview
 ```
 
-> 如果你使用 npm，请将上述命令中的 `pnpm` 替换为 `npm`。
-
 ### 项目结构
 
 ```plain
