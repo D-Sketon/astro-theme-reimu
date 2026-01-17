@@ -149,6 +149,11 @@
     }
   }
 
+  code.language-mermaid {
+    display: flex;
+    justify-content: center;
+  }
+
   .katex-display {
     overflow-x: auto;  
     overflow-y: hidden;
