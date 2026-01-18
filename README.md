@@ -11,7 +11,7 @@
 
 简体中文 | [English](https://github.com/D-Sketon/astro-theme-reimu/blob/main/README.en.md)
 
-<img src="https://cdn.jsdelivr.net/gh/D-Sketon/astro-theme-reimu@main/screenshot.png"/>
+<img src="https://cdn.jsdelivr.net/gh/D-Sketon/astro-theme-reimu/screenshot.png"/>
 </div>
 
 ---
@@ -25,14 +25,6 @@
 | [Astro](https://astro.build) | [astro-theme-reimu](https://github.com/D-Sketon/astro-theme-reimu) | <img alt="version" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgithub.com%2FD-Sketon%2Fastro-theme-reimu%2Fraw%2Fmain%2Fpackage.json&query=%24.version&label=version"> | <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/D-Sketon/astro-theme-reimu"> |
 
 **欢迎提交 ISSUE 和 PR！**
-
-## Lighthouse
-
-<p align="center">
-  <a href="https://pagespeed.web.dev/analysis/https-d-sketon-github-io-astro-theme-reimu/ur4yncrgnm?form_factor=desktop">
-    <img width="710" alt="astro-theme-reimu Lighthouse Score" src="https://fastly.jsdelivr.net/gh/D-Sketon/astro-theme-reimu/psi.svg">
-  </a>
-</p>
 
 ## 特性
 
