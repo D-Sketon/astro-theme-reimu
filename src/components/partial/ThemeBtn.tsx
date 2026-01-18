@@ -29,28 +29,30 @@ export default function ThemeToggle({ className }: { className?: string }) {
       })
     );
   };
+
+  const handleClick = () => {
+    if (theme === "dark") {
+      handleChange("light");
+    } else if (theme === "light") {
+      handleChange("dark");
+    } else {
+      handleChange("light");
+    }
+  };
+
   return (
-    <span className={className}>
+    <span 
+      className={className} 
+      onClick={handleClick}
+    >
       {theme === "dark" && (
-        <FontAwesomeIcon
-          icon={faMoon}
-          scale={20}
-          onClick={() => handleChange("light")}
-        />
+        <FontAwesomeIcon icon={faMoon} scale={20} />
       )}
       {theme === "light" && (
-        <FontAwesomeIcon
-          icon={faSun}
-          scale={20}
-          onClick={() => handleChange("dark")}
-        />
+        <FontAwesomeIcon icon={faSun} scale={20} />
       )}
       {theme === "auto" && (
-        <FontAwesomeIcon
-          icon={faCircleHalfStroke}
-          scale={20}
-          onClick={() => handleChange("light")}
-        />
+        <FontAwesomeIcon icon={faCircleHalfStroke} scale={20} />
       )}
     </span>
   );

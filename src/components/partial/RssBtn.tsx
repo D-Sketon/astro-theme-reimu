@@ -9,16 +9,14 @@ export default function RssBtn({
   className?: string;
 }) {
   return (
-    <span className={className}>
-      <a
-        href={`${url}/rss.xml`}
-        target="_blank"
-        aria-label="RSS"
-        style={{ color: "inherit" }}
-        rel="noreferrer"
-      >
-        <FontAwesomeIcon icon={faRss} scale={20} />
-      </a>
-    </span>
+    <a
+      href={`${url}/rss.xml`}
+      target="_blank"
+      aria-label="RSS"
+      rel="noreferrer"
+      className={className}
+    >
+      <FontAwesomeIcon icon={faRss} scale={20} />
+    </a>
   );
 }

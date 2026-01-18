@@ -19,8 +19,8 @@ export default function SearchBtn({ className }: { className?: string }) {
     document.documentElement.style.marginRight = scrollWidth + "px";
   }
   return (
-    <span className={className}>
-      <FontAwesomeIcon icon={faSearch} scale={20} onClick={handleSearch} />
+    <span className={className} onClick={handleSearch}>
+      <FontAwesomeIcon icon={faSearch} scale={20} />
     </span>
   );
 }
