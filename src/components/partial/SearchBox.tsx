@@ -1,6 +1,6 @@
 import "../../styles/search.stylus";
 import Fuse from "fuse.js";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
@@ -44,6 +44,19 @@ export default function SearchBox({
     document.documentElement.style.marginRight = "";
     document.querySelector<HTMLElement>("#header-nav")!.style.marginRight = "";
   }
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        handleClose();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <>

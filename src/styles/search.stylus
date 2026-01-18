@@ -50,6 +50,7 @@
   font-size: 20px;
   transition: 0.3s;
   margin: 4px 0;
+  cursor: pointer;
 
   &:hover {
     opacity: 0.8;
