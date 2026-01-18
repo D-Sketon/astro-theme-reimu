@@ -17,6 +17,8 @@ const blog = defineCollection({
     toc: z.boolean().optional(),
     author: z.string().optional(),
     sponsor: z.boolean().optional(),
+    copyright: z.boolean().optional(),
+    share: z.boolean().optional(),
 	}),
 });
 

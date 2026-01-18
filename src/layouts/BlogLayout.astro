@@ -59,8 +59,8 @@ const hasComment =
     (tags.length || categories.length || COPYRIGHT.enable || hasComment) && (
       <footer class="article-footer" slot="footer">
         <Copyright frontmatter={frontmatter} url={url} />
-        {SPONSOR?.enable && frontmatter.sponsor !== false && <Sponsor />}
-        {SHARE?.length > 0 && <Share post={post} />}
+        {(SPONSOR?.enable && frontmatter.sponsor !== false || frontmatter.sponsor) && <Sponsor />}
+        {SHARE?.length > 0 && frontmatter.share !== false && <Share post={post} />}
         <Category categories={categories} />
         <Tag tags={tags} />
         {hasComment && (
