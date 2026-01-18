@@ -1,6 +1,34 @@
+## 0.4.1
+
+**2026-01-18**
+
+### 修复
+
+- 修复 mermaid 图表不居中的问题
+- 修复侧边栏按钮不能正确高亮的问题
+- 修复顶部导航栏按钮热区过小的问题
+
+### 特性
+
+- 搜索弹窗支持通过 `Escape` 键关闭
+- frontmatter 新增 `sponsor`、`copyright` 和 `share` 配置项，可单独控制文章是否显示赞助信息、版权声明和分享按钮
+
+---
+
+### Fixes
+
+- Fixed the issue where Mermaid diagrams were not centered
+- Fixed the issue where sidebar buttons were not highlighted correctly
+- Fixed the issue where the top navigation bar button hotspot area was too small
+
+### Features
+
+- Search popup now supports closing via `Escape` key
+- Added `sponsor`, `copyright`, and `share` configuration options in frontmatter to individually control whether articles display sponsorship information, copyright notice, and share buttons
+
 ## 0.4.0
 
-**2025-01-17**
+**2026-01-17**
 
 ### 特性
 

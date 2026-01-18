@@ -630,7 +630,9 @@ Your article content...
 | comment     | Enable comment system         | `boolean`            | No       | `true`  |
 | author      | Article author                | `string`             | No       | -       |
 | toc         | Show table of contents        | `boolean`            | No       | `true`  |
-| sponsor     | Show sponsorship info         | `boolean`            | No       | `false` |
+| sponsor     | Show sponsorship info         | `boolean`            | No       | -       |
+| copyright   | Show copyright notice         | `boolean`            | No       | -       |
+| share       | Show share buttons            | `boolean`            | No       | -       |
 | outdated    | Article is outdated           | `boolean`            | No       | `false` |
 
 </details>
