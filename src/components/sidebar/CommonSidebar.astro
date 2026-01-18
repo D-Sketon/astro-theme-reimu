@@ -22,6 +22,9 @@ async function getStats() {
 const stats = await getStats();
 
 const currentPath = Astro.url.pathname;
+const normalizedPath = currentPath.endsWith('/') && currentPath.length > 1 
+  ? currentPath.slice(0, -1) 
+  : currentPath;
 ---
 
 <div class="sidebar-author">
@@ -47,7 +50,10 @@ const currentPath = Astro.url.pathname;
   {
     MENU.map((item) => {
       const itemUrl = `${BASE_URL}${item.url}`;
-      const isActive = currentPath === itemUrl;
+      const normalizedItemUrl = itemUrl.endsWith('/') && itemUrl.length > 1 
+        ? itemUrl.slice(0, -1) 
+        : itemUrl;
+      const isActive = normalizedPath === normalizedItemUrl;
       return (
         <div class={`sidebar-menu-link-wrap ${isActive ? "link-active" : ""}`}>
           <a class="sidebar-menu-link-dummy" href={itemUrl} />
