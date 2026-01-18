@@ -2,7 +2,6 @@
 import { type CollectionEntry } from "astro:content";
 
 import { BASE_URL } from "../utils/config";
-import { formatDate } from "../utils/formatDate";
 
 type Props = {
   page: {
@@ -53,7 +52,7 @@ posts.forEach((post) => {
                       datetime={post.data.pubDate.toISOString()}
                       itemprop="datePublished"
                     >
-                      {formatDate(post.data.pubDate)}
+                      {post.data.pubDate.getMonth() + 1}-{String(post.data.pubDate.getDate()).padStart(2, '0')}
                     </time>
                   </a>
                 </div>
