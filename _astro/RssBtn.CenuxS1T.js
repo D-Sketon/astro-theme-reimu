@@ -1,1 +1,0 @@
-import{j as r,F as a,a as t}from"./index.l1ztX2QQ.js";import"./index.C71KYPUq.js";import"./_commonjsHelpers.Cpj98o6Y.js";function l({url:s,className:e}){return r.jsx("span",{className:e,children:r.jsx("a",{href:`${s}/rss.xml`,target:"_blank","aria-label":"RSS",style:{color:"inherit"},rel:"noreferrer",children:r.jsx(a,{icon:t,scale:20})})})}export{l as default};
