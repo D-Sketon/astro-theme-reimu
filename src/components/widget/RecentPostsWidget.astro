@@ -23,7 +23,7 @@ const recentPosts = await getRecentPosts();
           <ul>
             {recentPosts.map((post) => (
               <li>
-                <a href={`${BASE_URL}/blog/${post.slug}`}>{post.data.title}</a>
+                <a href={`${BASE_URL}/blog/${post.id}`}>{post.data.title}</a>
               </li>
             ))}
           </ul>

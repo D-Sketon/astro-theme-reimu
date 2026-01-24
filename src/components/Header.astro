@@ -26,6 +26,7 @@ type Props = {
 
 const { title = SITE.title, cover } = Astro.props;
 const posts = await getCollection("blog");
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <div id="header-nav">
@@ -89,7 +90,7 @@ const posts = await getCollection("blog");
     </div>
   </div>
 </header>
-<SearchBox client:load searchList={posts} url={BASE_URL} />
+<SearchBox client:load searchList={sortedPosts} url={BASE_URL} />
 
 <script>
   let oldScrollTop = 0;

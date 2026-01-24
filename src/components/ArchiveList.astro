@@ -46,7 +46,7 @@ posts.forEach((post) => {
             return (
               <li class="archive-article">
                 <div class="archive-article-date-wrap">
-                  <a href={`${BASE_URL}/blog/${post.slug}`}>
+                  <a href={`${BASE_URL}/blog/${post.id}`}>
                     <time
                       class="dt-published"
                       datetime={post.data.pubDate.toISOString()}
@@ -59,7 +59,7 @@ posts.forEach((post) => {
                 <div class="archive-article-title-wrap">
                   <a
                     class="archive-article-title"
-                    href={`${BASE_URL}/blog/${post.slug}`}
+                    href={`${BASE_URL}/blog/${post.id}`}
                   >
                     {post.data.title}
                   </a>

@@ -20,7 +20,7 @@ const articlesData = allPosts.map((post) => {
     updated:
       post.data.updatedDate?.toISOString() || post.data.pubDate.toISOString(),
     wordcount,
-    url: `${BASE_URL}/blog/${post.slug}`,
+    url: `${BASE_URL}/blog/${post.id}`,
   };
 });
 

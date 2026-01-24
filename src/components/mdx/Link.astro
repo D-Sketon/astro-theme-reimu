@@ -25,15 +25,15 @@ let showAutoCover = false;
 
 if (slug) {
   const allPosts = await getCollection("blog");
-  const post = allPosts.find((p) => p.slug === slug);
+  const post = allPosts.find((p) => p.id === slug);
 
   if (!post) {
     throw new Error(`Post not found: "${slug}" for Link component`);
   }
 
-  finalTitle = title || post.data.title || post.slug;
+  finalTitle = title || post.data.title || post.id;
 
-  link = `${BASE_URL}/blog/${post.slug}`;
+  link = `${BASE_URL}/blog/${post.id}`;
 
   if (cover === "auto") {
     finalCover = post.data.cover || BANNER;

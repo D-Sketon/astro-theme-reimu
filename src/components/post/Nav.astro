@@ -23,7 +23,7 @@ const { prev, next } = Astro.props;
             src={urlFor(prev.data.cover || randomCover() || BANNER)}
             alt={prev.data.title}
           />
-          <a href={`${BASE_URL}/blog/${prev.slug}`} aria-label="Previos Post" />
+          <a href={`${BASE_URL}/blog/${prev.id}`} aria-label="Previos Post" />
           <div class="article-nav-caption">{__("newer")}</div>
           <h3 class="article-nav-title">{prev.data.title || "(no title)"}</h3>
         </div>
@@ -35,7 +35,7 @@ const { prev, next } = Astro.props;
             src={urlFor(next.data.cover || randomCover() || BANNER)}
             alt={next.data.title}
           />
-          <a href={`${BASE_URL}/blog/${next.slug}`} aria-label="Next Post" />
+          <a href={`${BASE_URL}/blog/${next.id}`} aria-label="Next Post" />
           <div class="article-nav-caption">{__("older")}</div>
           <h3 class="article-nav-title">{next.data.title || "(no title)"}</h3>
         </div>

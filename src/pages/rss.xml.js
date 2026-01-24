@@ -12,7 +12,7 @@ export async function GET(context) {
     site: context.site,
     items: sortedPosts.map((post) => ({
       ...post.data,
-      link: `${BASE_URL}/blog/${post.slug}/`,
+      link: `${BASE_URL}/blog/${post.id}/`,
     })),
   });
 }

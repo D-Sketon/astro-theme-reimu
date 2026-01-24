@@ -3,6 +3,7 @@ import Fuse from "fuse.js";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import type { InferEntrySchema, RenderedContent } from "astro:content";
 
 // Configs fuse.js
 // https://fusejs.io/api/options.html
@@ -17,7 +18,14 @@ export default function SearchBox({
   searchList,
   url,
 }: {
-  searchList: any[];
+  searchList: {
+    id: string;
+    body?: string;
+    collection: "blog";
+    data: InferEntrySchema<"blog">;
+    rendered?: RenderedContent;
+    filePath?: string;
+}[];
   url: string;
 }) {
   // User's input
@@ -104,7 +112,7 @@ export default function SearchBox({
                     <li className="reimu-hit-item" key={index}>
                       <a
                         className="reimu-hit-item-link"
-                        href={`${url}/blog/${post.slug}`}
+                        href={`${url}/blog/${post.id}`}
                       >
                         {post.data.title}
                       </a>

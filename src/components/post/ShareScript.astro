@@ -21,7 +21,7 @@ const { post } = Astro.props;
       stripHTML(post?.rendered?.html || "").slice(0, 100),
     cover: post.data.cover || `${SITE_URL}${BASE_URL}${BANNER}`,
     author: post.data.author || SITE.author,
-    url: `${SITE_URL}${BASE_URL}/blog/${post.slug}`,
+    url: `${SITE_URL}${BASE_URL}/blog/${post.id}`,
   }}
 >
   window.__REIMU_POST__ = {

@@ -66,8 +66,8 @@ const { page } = Astro.props;
           >
             <a
               class="post-link"
-              href={`${BASE_URL}/blog/${post.slug}`}
-              aria-label={post.slug}
+              href={`${BASE_URL}/blog/${post.id}`}
+              aria-label={post.id}
             />
             <div class:list={["post-cover", { right: index % 2 === 1 }]}>
               <img
@@ -86,12 +86,12 @@ const { page } = Astro.props;
                 <span>
                   <Icon name="fa6-solid:pen-nib" size={14} />
                   &nbsp;
-                  {_p("post.count", wordCount(post.body))}
+                  {_p("post.count", wordCount(post.body || ""))}
                 </span>
                 <span>
                   <Icon name="fa6-solid:hourglass-half" size={14} />
                   &nbsp;
-                  {_p("post.time", readingTime(post.body))}
+                  {_p("post.time", readingTime(post.body || ""))}
                 </span>
               </div>
               <h2 class="post-title">{post.data.title}</h2>
@@ -99,7 +99,7 @@ const { page } = Astro.props;
                 {post.data.excerpt ? (
                   <p>{post.data.excerpt}</p>
                 ) : (
-                  <p>{post.body.slice(0, 300)}</p>
+                  <p>{post.body?.slice(0, 300)}</p>
                 )}
               </article>
             </div>

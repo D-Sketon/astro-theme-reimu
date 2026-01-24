@@ -29,7 +29,7 @@ const shareMap = {
 };
 
 const getShareUrl = (platform: keyof typeof shareMap) => {
-  const url = encodeURIComponent(`${SITE_URL}${BASE_URL}/blog/${post.slug}`);
+  const url = encodeURIComponent(`${SITE_URL}${BASE_URL}/blog/${post.id}`);
   const title = encodeURIComponent(post.data.title);
   const desc = encodeURIComponent(
     post.data.excerpt || post.data.description || post.data.title

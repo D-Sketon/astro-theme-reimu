@@ -1,5 +1,5 @@
 import { getCollection } from "astro:content";
-import getReadingTime from 'reading-time';
+import getReadingTime from "reading-time";
 
 export const wordCount = (content: string) => {
   const totalWords = getReadingTime(content).words;
@@ -20,7 +20,7 @@ export const totalCount = async () => {
 
 const changeHourMinuteStr = (_str: string) => {
   if (_str !== "0" && _str !== "" && _str !== null) {
-    const str = Number(_str)
+    const str = Number(_str);
     return (
       (Math.floor(str / 60).toString().length < 2
         ? "0" + Math.floor(str / 60).toString()
@@ -42,7 +42,7 @@ export const readingTime = (content: string) => {
 export const totalReadingTime = async () => {
   const blogs = await getCollection("blog");
   const totalReadingTime = blogs.reduce((acc, post) => {
-    return acc + getReadingTime(post.body).minutes;
+    return acc + getReadingTime(post.body || "").minutes;
   }, 0);
   return changeHourMinuteStr(Math.round(totalReadingTime) + "");
-}
+};
