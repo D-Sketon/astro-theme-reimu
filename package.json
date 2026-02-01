@@ -65,7 +65,7 @@
     "postcss-preset-env": "^10.6.0",
     "reading-time": "^1.5.0",
     "stylus": "^0.64.0",
-    "unist-util-visit": "^5.0.0",
+    "unist-util-visit": "^5.1.0",
     "vite-plugin-font": "^5.1.2"
   },
   "engines": {
