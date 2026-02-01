@@ -32,7 +32,7 @@
     "astro-icon": "^1.1.5",
     "dayjs": "^1.11.19",
     "fuse.js": "^7.1.0",
-    "katex": "^0.16.27",
+    "katex": "^0.16.28",
     "mermaid": "^11.12.2",
     "mouse-firework": "^0.3.0-beta.1",
     "photoswipe": "^5.4.4",
