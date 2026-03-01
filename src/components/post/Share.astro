@@ -23,8 +23,8 @@ const shareMap = {
     `https://www.linkedin.com/shareArticle?url=${url}&title=${title}&summary=${desc}&mini=true&ro=true`,
   reddit: (url: string, title: string) =>
     `https://www.reddit.com/submit?url=${url}&title=${title}`,
-  qq: (url: unknown, title: string, desc: string, source: string) =>
-    `https://connect.qq.com/widget/shareqq/index.html?url=${"www.baidu.com"}&title=${title}&desc=${desc}&source=${source}`,
+  qq: (url: string, title: string, desc: string, source: string) =>
+    `https://connect.qq.com/widget/shareqq/index.html?url=${url}&title=${title}&summary=${desc}&source=${source}`,
   weixin: () => `javascript:;`,
 };
 
