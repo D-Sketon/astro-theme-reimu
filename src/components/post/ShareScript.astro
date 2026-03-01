@@ -1,7 +1,8 @@
 ---
 import type { CollectionEntry } from "astro:content";
 
-import { SITE_URL, BASE_URL, BANNER, SITE } from "../../utils/config";
+import { BANNER, SITE } from "../../utils/config";
+import { urlFor } from "../../utils/urlFor";
 import { stripHTML } from "../../utils/stripHTML";
 
 type Props = {
@@ -9,6 +10,8 @@ type Props = {
 };
 
 const { post } = Astro.props;
+const absoluteCoverUrl = urlFor(post.data.cover || BANNER, true);
+const postUrl = urlFor(`blog/${post.id}`, true);
 ---
 
 <script
@@ -19,9 +22,9 @@ const { post } = Astro.props;
       post.data.excerpt ||
       post.data.description ||
       stripHTML(post?.rendered?.html || "").slice(0, 100),
-    cover: post.data.cover || `${SITE_URL}${BASE_URL}${BANNER}`,
+    cover: absoluteCoverUrl,
     author: post.data.author || SITE.author,
-    url: `${SITE_URL}${BASE_URL}/blog/${post.id}`,
+    url: postUrl,
   }}
 >
   window.__REIMU_POST__ = {
