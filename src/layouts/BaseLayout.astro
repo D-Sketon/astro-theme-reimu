@@ -4,7 +4,7 @@ import "@reimujs/aos/dist/aos.css";
 
 import { ClientRouter } from "astro:transitions";
 
-import { SITE, SIDEBAR } from "../utils/config";
+import { PRELOADER, SITE, SIDEBAR } from "../utils/config";
 import { urlFor } from "../utils/urlFor";
 import CommonMeta from "../components/partial/CommonMeta.astro";
 import VendorScript from "../components/partial/VendorScript.astro";
@@ -62,7 +62,7 @@ const {
     <ClientRouter />
   </head>
   <body>
-    <Loader />
+    {PRELOADER.enable && <Loader />}
     <Header title={title} cover={cover}>
       <slot name="header" />
     </Header>
