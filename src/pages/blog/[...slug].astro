@@ -5,12 +5,15 @@ import BlogLayout from "../../layouts/BlogLayout.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map((post, index) => ({
+  const sortedPosts = posts.sort(
+    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+  );
+  return sortedPosts.map((post, index) => ({
     params: { slug: post.id },
     props: {
       post,
-      prev: posts[index - 1] || null,
-      next: posts[index + 1] || null,
+      prev: sortedPosts[index - 1] || null,
+      next: sortedPosts[index + 1] || null,
     },
   }));
 }
