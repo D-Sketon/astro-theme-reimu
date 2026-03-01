@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 
-import { BASE_URL } from "../../utils/config";
+import { urlFor } from "../../utils/urlFor";
 import { __ } from "../../utils/i18n";
 
 async function getTags() {
@@ -45,7 +45,7 @@ function getFontSize(count: number): number {
               .sort((a, b) => b[1] - a[1])
               .map(([tag, count]) => (
                 <a
-                  href={`${BASE_URL}/tags/${encodeURIComponent(tag)}`}
+                  href={urlFor(`tags/${encodeURIComponent(tag)}`)}
                   style={`font-size: ${getFontSize(count)}px;`}
                   data-pjax-state=""
                 >

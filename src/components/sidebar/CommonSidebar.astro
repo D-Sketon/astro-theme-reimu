@@ -2,7 +2,7 @@
 import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 
-import { SITE, MENU, SIDEBAR, BASE_URL } from "../../utils/config";
+import { SITE, MENU, SIDEBAR } from "../../utils/config";
 import { __ } from "../../utils/i18n";
 import SocialList from "../sidebar/SocialList.astro";
 import { urlFor } from "../../utils/urlFor";
@@ -49,7 +49,7 @@ const normalizedPath = currentPath.endsWith('/') && currentPath.length > 1
 <div class="sidebar-menu">
   {
     MENU.map((item) => {
-      const itemUrl = `${BASE_URL}${item.url}`;
+      const itemUrl = urlFor(item.url);
       const normalizedItemUrl = itemUrl.endsWith('/') && itemUrl.length > 1 
         ? itemUrl.slice(0, -1) 
         : itemUrl;

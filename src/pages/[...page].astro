@@ -4,7 +4,7 @@ import type { CollectionEntry } from "astro:content";
 import { Icon } from "astro-icon/components";
 
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { SITE, BASE_URL, HOME_CATEGORIES, BANNER } from "../utils/config";
+import { SITE, HOME_CATEGORIES, BANNER } from "../utils/config";
 import randomCover from "../utils/randomCover";
 import { _p } from "../utils/i18n";
 import { wordCount, readingTime } from "../utils/wordCount";
@@ -40,12 +40,12 @@ const { page } = Astro.props;
 
 <BaseLayout>
   <!-- Header -->
-  <HeaderTitle title={SITE.title} url=`${BASE_URL}/` slot="header" />
+  <HeaderTitle title={SITE.title} url={urlFor("/")} slot="header" />
   {
     SITE.subtitle && (
       <HeaderSubTitle
         subtitle={SITE.subtitle}
-        url={`${BASE_URL}/`}
+        url={urlFor("/")}
         slot="header"
       />
     )
@@ -66,7 +66,7 @@ const { page } = Astro.props;
           >
             <a
               class="post-link"
-              href={`${BASE_URL}/blog/${post.id}`}
+              href={urlFor(`blog/${post.id}`)}
               aria-label={post.id}
             />
             <div class:list={["post-cover", { right: index % 2 === 1 }]}>

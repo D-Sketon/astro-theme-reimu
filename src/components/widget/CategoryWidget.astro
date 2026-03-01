@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 
-import { BASE_URL } from "../../utils/config";
+import { urlFor } from "../../utils/urlFor";
 import { __ } from "../../utils/i18n";
 
 async function getCategories() {
@@ -32,7 +32,7 @@ const categories = await getCategories();
               .map(([category]) => (
                 <li>
                   <a
-                    href={`${BASE_URL}/categories/${encodeURIComponent(category)}`}
+                    href={urlFor(`categories/${encodeURIComponent(category)}`)}
                   >
                     {category}
                   </a>

@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 
-import { BASE_URL } from "../../utils/config";
+import { urlFor } from "../../utils/urlFor";
 
 type Props = {
   categories: string[];
@@ -22,7 +22,7 @@ const { categories } = Astro.props;
           />
           <a
             class="archives-category-list-link"
-            href={`${BASE_URL}/categories/${category}`}
+            href={urlFor(`categories/${category}`)}
           >
             {category}
           </a>

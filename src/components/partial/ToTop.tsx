@@ -4,7 +4,7 @@ import { faArrowUp } from "@fortawesome/free-solid-svg-icons";
 
 import "../../styles/top.stylus";
 
-export default function ToTop({ url }: { url: string }) {
+export default function ToTop({ imageUrl }: { imageUrl: string }) {
   const [opacity, setOpacity] = useState(0);
   const handleClick = useCallback(() => {
     window.scrollTo({
@@ -37,12 +37,7 @@ export default function ToTop({ url }: { url: string }) {
         opacity: opacity,
       }}
     >
-      <img
-        src={`${url}/images/taichi.png`}
-        height={50}
-        width={50}
-        alt="backtop"
-      />
+      <img src={imageUrl} height={50} width={50} alt="backtop" />
       <FontAwesomeIcon icon={faArrowUp} className="arrow-up" />
     </div>
   );

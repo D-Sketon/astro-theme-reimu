@@ -1,5 +1,5 @@
 ---
-import { BANNER, BASE_URL } from "../utils/config";
+import { BANNER } from "../utils/config";
 import randomCover from "../utils/randomCover";
 import { _p } from "../utils/i18n";
 import parseHomeCategories from "../utils/parseHomeCategories";
@@ -36,7 +36,7 @@ const parsedContent = (
         <div class="post-categories-wrap">
           <a
             class="post-link"
-            href={`${BASE_URL}${c.url}`}
+            href={urlFor(c.url)}
             aria-label={c.name}
             title={c.name}
           />

@@ -2,11 +2,13 @@
 import { Icon } from "astro-icon/components";
 
 import { totalCount, totalReadingTime } from "../utils/wordCount";
-import { SITE, FOOTER, BASE_URL } from "../utils/config";
+import { SITE, FOOTER } from "../utils/config";
+import { urlFor } from "../utils/urlFor";
 import { __ } from "../utils/i18n";
 
 const totalcount = await totalCount();
 const totalmin2read = await totalReadingTime();
+const taichiUrl = urlFor("images/taichi.png");
 ---
 
 <footer id="footer">
@@ -130,7 +132,7 @@ const totalmin2read = await totalReadingTime();
   </div>
 </footer>
 
-<style lang="stylus" define:vars={{ imageUrl: 'url('+`${BASE_URL}/images/taichi.png`+')' }}>
+<style lang="stylus" define:vars={{ imageUrl: `url('${taichiUrl}')` }}>
   #footer {
     background: linear-gradient(
       to top,

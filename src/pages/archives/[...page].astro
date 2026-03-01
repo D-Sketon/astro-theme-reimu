@@ -8,7 +8,7 @@ import TagList from "../../components/partial/TagList.astro";
 import ArchiveList from "../../components/ArchiveList.astro";
 import Pagination from "../../components/Pagination.astro";
 import HeaderTitle from "../../components/partial/HeaderTitle.astro";
-import { BASE_URL } from "../../utils/config";
+import { urlFor } from "../../utils/urlFor";
 import CategoryList from "../../components/partial/CategoryList.astro";
 
 export async function getStaticPaths({ paginate }: { paginate: Function }) {
@@ -66,7 +66,7 @@ posts.forEach((post) => {
   <!-- Header -->
   <HeaderTitle
     title={__("archive_a")}
-    url=`${BASE_URL}/archives`
+    url={urlFor("archives")}
     slot="header"
   />
   <!-- Content -->

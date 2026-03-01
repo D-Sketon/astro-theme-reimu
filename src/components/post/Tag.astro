@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 
-import { BASE_URL } from "../../utils/config";
+import { urlFor } from "../../utils/urlFor";
 
 type Props = {
   tags: string[];
@@ -21,7 +21,7 @@ const { tags } = Astro.props;
           />
           <a
             class="article-tag-list-link"
-            href={`${BASE_URL}/tags/${tag}`}
+            href={urlFor(`tags/${tag}`)}
             rel="tag"
           >
             {tag}

@@ -3,7 +3,7 @@ import { getCollection } from "astro:content";
 import "../../styles/container.stylus";
 import { Icon } from "astro-icon/components";
 
-import { BANNER, BASE_URL } from "../../utils/config";
+import { BANNER } from "../../utils/config";
 import { stripHTML } from "../../utils/stripHTML";
 import { urlFor } from "../../utils/urlFor";
 
@@ -33,7 +33,7 @@ if (slug) {
 
   finalTitle = title || post.data.title || post.id;
 
-  link = `${BASE_URL}/blog/${post.id}`;
+  link = urlFor(`blog/${post.id}`);
 
   if (cover === "auto") {
     finalCover = post.data.cover || BANNER;

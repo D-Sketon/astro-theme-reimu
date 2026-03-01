@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import getReadingTime from "reading-time";
 
-import { BASE_URL } from "../../utils/config";
+import { urlFor } from "../../utils/urlFor";
 import { getI18n } from "../../utils/i18n";
 
 interface Props {
@@ -20,7 +20,7 @@ const articlesData = allPosts.map((post) => {
     updated:
       post.data.updatedDate?.toISOString() || post.data.pubDate.toISOString(),
     wordcount,
-    url: `${BASE_URL}/blog/${post.id}`,
+    url: urlFor(`blog/${post.id}`),
   };
 });
 

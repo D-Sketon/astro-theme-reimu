@@ -16,7 +16,8 @@ const options = {
 
 export default function SearchBox({
   searchList,
-  url,
+  postUrlPrefix,
+  imageUrl,
 }: {
   searchList: {
     id: string;
@@ -26,7 +27,8 @@ export default function SearchBox({
     rendered?: RenderedContent;
     filePath?: string;
 }[];
-  url: string;
+  postUrlPrefix: string;
+  imageUrl: string;
 }) {
   // User's input
   const [query, setQuery] = useState("");
@@ -112,7 +114,7 @@ export default function SearchBox({
                     <li className="reimu-hit-item" key={index}>
                       <a
                         className="reimu-hit-item-link"
-                        href={`${url}/blog/${post.id}`}
+                        href={`${postUrlPrefix}/${post.id}`}
                       >
                         {post.data.title}
                       </a>
@@ -122,7 +124,7 @@ export default function SearchBox({
               </ul>
             </div>
           </div>
-          <img className="reimu-bg" src={`${url}/images/reimu.png`} />
+          <img className="reimu-bg" src={imageUrl} />
         </div>
       </div>
     </>

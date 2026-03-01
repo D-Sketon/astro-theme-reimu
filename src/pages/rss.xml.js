@@ -1,7 +1,8 @@
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 
-import { SITE, BASE_URL } from "../utils/config";
+import { SITE } from "../utils/config";
+import { urlFor } from "../utils/urlFor";
 
 export async function GET(context) {
   const posts = await getCollection("blog");
@@ -12,7 +13,7 @@ export async function GET(context) {
     site: context.site,
     items: sortedPosts.map((post) => ({
       ...post.data,
-      link: `${BASE_URL}/blog/${post.id}/`,
+      link: urlFor(`blog/${post.id}/`),
     })),
   });
 }

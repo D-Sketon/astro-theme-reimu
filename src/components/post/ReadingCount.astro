@@ -2,7 +2,8 @@
 import { Icon } from "astro-icon/components";
 
 import { __ } from "../../utils/i18n";
-import { VALINE, WALINE, BASE_URL } from "../../utils/config";
+import { VALINE, WALINE } from "../../utils/config";
+import { urlFor } from "../../utils/urlFor";
 
 type Props = {
   url: string;
@@ -15,7 +16,7 @@ const { url, title } = Astro.props;
 {
   VALINE.enable && VALINE.appId && VALINE.appKey && VALINE.visitor && (
     <span
-      id={`${BASE_URL}${url}/`}
+      id={urlFor(`${url}/`)}
       class="leancloud_visitors article-visitor-link"
       data-flag-title={title}
       data-aos="zoom-in"
@@ -36,7 +37,7 @@ const { url, title } = Astro.props;
         name="fa6-solid:book-open"
         style="margin-right: 8px; vertical-align: bottom;"
       />
-      <span class="waline-pageview-count" data-path={`${BASE_URL}${url}/`}>
+      <span class="waline-pageview-count" data-path={urlFor(`${url}/`)}>
         0
       </span>
       <em class="post-meta-item-text">{__("reading")}</em>

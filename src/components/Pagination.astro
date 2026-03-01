@@ -1,6 +1,6 @@
 ---
 import { __ } from "../utils/i18n";
-import { BASE_URL } from "../utils/config";
+import { urlFor } from "../utils/urlFor";
 
 type Props = {
   prevUrl: string | null;
@@ -18,14 +18,14 @@ const upperBound = currentPage + 2 < lastPage ? currentPage + 2 : lastPage;
 <nav id="page-nav" data-aos="fade-up">
   {
     prevUrl && (
-      <a href={`${BASE_URL}${prevUrl}`} class="extend prev" rel="prev">
+      <a href={urlFor(prevUrl)} class="extend prev" rel="prev">
         {"« " + __("prev")}
       </a>
     )
   }
   {
     lowerBound > 1 && (
-      <a href={`${BASE_URL}${url}/`} class="page-number">
+      <a href={urlFor(`${url}/`)} class="page-number">
         1
       </a>
     )
@@ -37,7 +37,7 @@ const upperBound = currentPage + 2 < lastPage ? currentPage + 2 : lastPage;
       (_, index) => index + lowerBound
     ).map((page) => (
       <a
-        href={page > 1 ? `${BASE_URL}${url}/${page}` : `${BASE_URL}${url}/`}
+        href={page > 1 ? urlFor(`${url}/${page}`) : urlFor(`${url}/`)}
         class={`page-number ${page === currentPage ? "current" : ""}`}
       >
         {page}
@@ -47,14 +47,14 @@ const upperBound = currentPage + 2 < lastPage ? currentPage + 2 : lastPage;
   {upperBound < lastPage - 1 && <span class="space">…</span>}
   {
     upperBound < lastPage && (
-      <a href={`${BASE_URL}${url}/${lastPage}`} class="page-number">
+      <a href={urlFor(`${url}/${lastPage}`)} class="page-number">
         {lastPage}
       </a>
     )
   }
   {
     nextUrl && (
-      <a href={`${BASE_URL}${nextUrl}`} class="extend next" rel="next">
+      <a href={urlFor(nextUrl)} class="extend next" rel="next">
         {__("next") + " »"}
       </a>
     )

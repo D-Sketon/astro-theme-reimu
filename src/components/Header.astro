@@ -5,7 +5,6 @@ import { Icon } from "astro-icon/components";
 import { __ } from "../utils/i18n";
 import {
   SITE,
-  BASE_URL,
   MENU,
   BANNER,
   BANNER_SRCSET,
@@ -33,7 +32,7 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
   <nav id="main-nav">
     {
       MENU.map((item) => (
-        <HeaderLink href={`${BASE_URL}${item.url}`} aria-label={item.name}>
+        <HeaderLink href={urlFor(item.url)} aria-label={item.name}>
           {__(item.name)}
         </HeaderLink>
       ))
@@ -48,7 +47,7 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
     </span>
   </nav>
   <nav id="sub-nav" aria-label="Secondary navigation">
-    <RssBtn client:load url={BASE_URL} className="nav-icon" />
+    <RssBtn client:load href={urlFor("rss.xml")} className="nav-icon" />
     <SearchBtn client:load className="nav-icon" />
     <ThemeBtn client:load className="nav-icon" />
   </nav>
@@ -90,7 +89,12 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
     </div>
   </div>
 </header>
-<SearchBox client:load searchList={sortedPosts} url={BASE_URL} />
+<SearchBox
+  client:load
+  searchList={sortedPosts}
+  postUrlPrefix={urlFor("blog")}
+  imageUrl={urlFor("images/reimu.png")}
+/>
 
 <script>
   let oldScrollTop = 0;

@@ -5,7 +5,7 @@ import "../styles/markdown.stylus";
 
 import type { CollectionEntry } from "astro:content";
 
-import { BASE_URL } from "../utils/config";
+import { urlFor } from "../utils/urlFor";
 import Footer from "../components/Footer.astro";
 import Date from "../components/post/Date.astro";
 import Comment from "../components/post/Comment.astro";
@@ -44,7 +44,7 @@ const {
   headings={headings}
   toc={toc}
 >
-  <HeaderTitle title={title} url=`${BASE_URL}/` slot="header" />
+  <HeaderTitle title={title} url={urlFor("/")} slot="header" />
   <section id="main" aria-label="Main content">
     <article
       class="article"

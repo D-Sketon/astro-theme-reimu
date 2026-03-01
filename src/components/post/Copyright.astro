@@ -3,7 +3,8 @@ import type { CollectionEntry } from "astro:content";
 import dayjs from "dayjs";
 import { Icon } from "astro-icon/components";
 
-import { COPYRIGHT, SITE, BASE_URL, SITE_URL } from "../../utils/config";
+import { COPYRIGHT, SITE } from "../../utils/config";
+import { urlFor } from "../../utils/urlFor";
 import { __ } from "../../utils/i18n";
 
 const { content, enable } = COPYRIGHT;
@@ -29,9 +30,7 @@ const { frontmatter, url } = Astro.props;
       {link && (
         <p>
           <strong>{__("article_copyright.permalink")}</strong>
-          <a
-            href={`${SITE_URL}${BASE_URL}${url}/`}
-          >{`${SITE_URL}${BASE_URL}${url}/`}</a>
+          <a href={urlFor(`${url}/`, true)}>{urlFor(`${url}/`, true)}</a>
         </p>
       )}
       {title && (

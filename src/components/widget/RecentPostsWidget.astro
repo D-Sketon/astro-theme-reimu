@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 
-import { BASE_URL } from "../../utils/config";
+import { urlFor } from "../../utils/urlFor";
 import { __ } from "../../utils/i18n";
 
 async function getRecentPosts(limit = 5) {
@@ -23,7 +23,7 @@ const recentPosts = await getRecentPosts();
           <ul>
             {recentPosts.map((post) => (
               <li>
-                <a href={`${BASE_URL}/blog/${post.id}`}>{post.data.title}</a>
+                <a href={urlFor(`blog/${post.id}`)}>{post.data.title}</a>
               </li>
             ))}
           </ul>

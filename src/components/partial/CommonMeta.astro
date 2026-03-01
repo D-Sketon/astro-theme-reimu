@@ -1,5 +1,6 @@
 ---
-import { BANNER, BASE_URL } from "../../utils/config";
+import { BANNER } from "../../utils/config";
+import { urlFor } from "../../utils/urlFor";
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 type Props = {
@@ -9,12 +10,8 @@ type Props = {
   image?: string;
 };
 
-const {
-  title,
-  description,
-  keywords = title,
-  image = `${BASE_URL}${BANNER}`,
-} = Astro.props;
+const { title, description, keywords = title, image = BANNER } = Astro.props;
+const resolvedImage = urlFor(image);
 ---
 
 <!-- Global Metadata -->
@@ -23,7 +20,7 @@ const {
   name="viewport"
   content="width=device-width, initial-scale=1, shrink-to-fit=no"
 />
-<link rel="shortcut icon" href=`${BASE_URL}/images/favicon.ico` />
+<link rel="shortcut icon" href={urlFor("images/favicon.ico")} />
 <meta name="generator" content={Astro.generator} />
 
 <!-- Canonical URL -->
@@ -43,11 +40,11 @@ const {
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:image" content={new URL(resolvedImage, Astro.url)} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<meta property="twitter:image" content={new URL(resolvedImage, Astro.url)} />

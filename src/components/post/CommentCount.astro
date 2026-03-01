@@ -2,7 +2,8 @@
 import { Icon } from "astro-icon/components";
 
 import { __ } from "../../utils/i18n";
-import { VALINE, WALINE, BASE_URL, TWIKOO, DISQUS } from "../../utils/config";
+import { VALINE, WALINE, TWIKOO, DISQUS } from "../../utils/config";
+import { urlFor } from "../../utils/urlFor";
 
 type Props = {
   url: string;
@@ -15,7 +16,7 @@ const { url } = Astro.props;
   VALINE.enable && VALINE.appId && VALINE.appKey && (
     <a
       data-aos="zoom-in"
-      href={`${BASE_URL}${url}#comments`}
+      href={urlFor(`${url}#comments`)}
       class="article-comment-link"
     >
       <Icon
@@ -24,7 +25,7 @@ const { url } = Astro.props;
       />
       <span
         class="post-comments-count valine-comment-count"
-        data-xid={`${BASE_URL}${url}/`}
+        data-xid={urlFor(`${url}/`)}
         itemprop="commentCount"
       />
       {__("comment")}
@@ -35,7 +36,7 @@ const { url } = Astro.props;
   WALINE.enable && WALINE.serverURL && WALINE.pageview && (
     <a
       data-aos="zoom-in"
-      href={`${BASE_URL}${url}#comments`}
+      href={urlFor(`${url}#comments`)}
       class="article-comment-link"
     >
       <Icon
@@ -44,7 +45,7 @@ const { url } = Astro.props;
       />
       <span
         class="post-comments-count waline-comment-count"
-        data-path={`${BASE_URL}${url}/`}
+        data-path={urlFor(`${url}/`)}
         itemprop="commentCount"
       />
       {__("comment")}
@@ -55,7 +56,7 @@ const { url } = Astro.props;
   TWIKOO.enable && TWIKOO.envId && (
     <a
       data-aos="zoom-in"
-      href={`${BASE_URL}${url}#comments`}
+      href={urlFor(`${url}#comments`)}
       class="article-comment-link"
     >
       <Icon
@@ -64,7 +65,7 @@ const { url } = Astro.props;
       />
       <span
         class="post-comments-count twikoo-comment-count"
-        data-path={`${BASE_URL}${url}/`}
+        data-path={urlFor(`${url}/`)}
         itemprop="commentCount"
       />
       {__("comment")}
@@ -75,7 +76,7 @@ const { url } = Astro.props;
   DISQUS.enable && DISQUS.shortname && DISQUS.count && (
     <a
       data-aos="zoom-in"
-      href={`${BASE_URL}${url}#disqus_thread`}
+      href={urlFor(`${url}#disqus_thread`)}
       class="article-comment-link"
       id="disqus-count"
     />

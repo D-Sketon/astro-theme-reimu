@@ -7,7 +7,7 @@ import Footer from "../../../components/Footer.astro";
 import CategoryList from "../../../components/partial/CategoryList.astro";
 import HeaderTitle from "../../../components/partial/HeaderTitle.astro";
 import ArchiveList from "../../../components/ArchiveList.astro";
-import { BASE_URL } from "../../../utils/config";
+import { urlFor } from "../../../utils/urlFor";
 
 export async function getStaticPaths({ paginate }: { paginate: Function }) {
   const posts = await getCollection("blog");
@@ -61,7 +61,7 @@ const { category } = Astro.params;
   <!-- Header -->
   <HeaderTitle
     title={`${__("category")}: ${category}`}
-    url=`${BASE_URL}/categories/${category}`
+    url={urlFor(`categories/${category}`)}
     slot="header"
   />
   <!-- Content -->

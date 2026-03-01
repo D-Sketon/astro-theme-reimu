@@ -2,15 +2,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRss } from "@fortawesome/free-solid-svg-icons";
 
 export default function RssBtn({
-  url,
+  href,
   className,
 }: {
-  url: string;
+  href: string;
   className?: string;
 }) {
   return (
     <a
-      href={`${url}/rss.xml`}
+      href={href}
       target="_blank"
       aria-label="RSS"
       rel="noreferrer"
