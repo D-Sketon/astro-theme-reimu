@@ -78,18 +78,19 @@ const galleryId = `photoWall-${Math.random().toString(36).substring(2, 11)}`;
       renderPhotoWall();
       loadImages();
 
-      if (window.ResizeObserver) {
-        const observer = new ResizeObserver((entries) => {
-          const newWidth = entries[0].contentRect.width;
-          if (Math.abs(newWidth - lastWidth) > 1) {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(renderPhotoWall, 250);
-          }
-        });
-        observer.observe(wall);
-      } else {
-        window.addEventListener("resize", handleResize);
-      }
+      const observer = new ResizeObserver((entries) => {
+        const newWidth = entries[0].contentRect.width;
+        if (Math.abs(newWidth - lastWidth) > 1) {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(renderPhotoWall, 250);
+        }
+      });
+      observer.observe(wall);
+      const cleanup = () => {
+        observer.disconnect();
+        document.removeEventListener("astro:before-swap", cleanup);
+      };
+      document.addEventListener("astro:before-swap", cleanup);
     }
 
     function loadImages() {
@@ -196,11 +197,6 @@ const galleryId = `photoWall-${Math.random().toString(36).substring(2, 11)}`;
       });
 
       document.dispatchEvent(new Event("reimu:image-updated"));
-    }
-
-    function handleResize() {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(renderPhotoWall, 250);
     }
 
     if (document.readyState === "loading") {

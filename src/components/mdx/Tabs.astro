@@ -167,12 +167,14 @@ div.tabs {
 
     switchTab(currentTab);
 
-    let resizeTimer;
-    window.addEventListener("resize", () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        updateIndicator(currentTab);
-      }, 100);
+    const observer = new ResizeObserver(() => {
+      updateIndicator(currentTab);
     });
+    observer.observe(navTabs);
+    const cleanup = () => {
+      observer.disconnect();
+      document.removeEventListener("astro:before-swap", cleanup);
+    };
+    document.addEventListener("astro:before-swap", cleanup);
   })();
 </script>

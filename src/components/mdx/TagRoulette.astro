@@ -114,5 +114,12 @@ const {
 
   rollTagRoulette();
 
-  rollButton?.addEventListener("click", rollTagRoulette);
+  if (rollButton) {
+    rollButton.addEventListener("click", rollTagRoulette);
+    const cleanup = () => {
+      rollButton.removeEventListener("click", rollTagRoulette);
+      document.removeEventListener("astro:before-swap", cleanup);
+    };
+    document.addEventListener("astro:before-swap", cleanup);
+  }
 </script>
