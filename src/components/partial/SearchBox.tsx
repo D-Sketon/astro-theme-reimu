@@ -25,19 +25,24 @@ type SearchItem = {
 
 export default function SearchBox({
   searchIndexUrl,
+  searchList: initialSearchList = [],
   postUrlPrefix,
   imageUrl,
 }: {
   searchIndexUrl: string;
+  searchList?: SearchItem[];
   postUrlPrefix: string;
   imageUrl: string;
 }) {
-  const [searchList, setSearchList] = useState<SearchItem[]>([]);
+  const [searchList, setSearchList] = useState<SearchItem[]>(
+    initialSearchList
+  );
   const fetchPromiseRef = useRef<Promise<void> | null>(null);
   // User's input
   const [query, setQuery] = useState("");
 
   const loadIndex = () => {
+    if (searchList.length > 0) return;
     if (fetchPromiseRef.current) return;
     fetchPromiseRef.current = window.fetch(searchIndexUrl)
       .then((res) => {
