@@ -1,0 +1,1 @@
+import{j as r,F as s,a as t}from"./index.BeHp6SEp.js";import"./index.BR1w_nJd.js";import"./_commonjsHelpers.D6-XlEtG.js";function l({href:a,className:e}){return r.jsx("a",{href:a,target:"_blank","aria-label":"RSS",rel:"noreferrer",className:e,children:r.jsx(s,{icon:t,scale:20})})}export{l as default};
