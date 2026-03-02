@@ -72,6 +72,8 @@ const { page } = Astro.props;
             <div class:list={["post-cover", { right: index % 2 === 1 }]}>
               <img
                 loading="lazy"
+                decoding="async"
+                fetchpriority="low"
                 src={urlFor(post.data.cover || randomCover() || BANNER)}
                 alt={post.data.title}
               />
