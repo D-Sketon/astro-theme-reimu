@@ -18,9 +18,6 @@ type Props = {
 
 const { page } = Astro.props;
 const posts = page.data;
-posts.sort((a, b) => {
-  return b.data.pubDate.getTime() - a.data.pubDate.getTime();
-});
 
 // group by year
 const postsByYear: Map<number, CollectionEntry<"blog">[]> = new Map();
