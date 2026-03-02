@@ -10,6 +10,7 @@ export default function SearchBtn({ className }: { className?: string }) {
 
     const popup = document.querySelector(".popup")! as HTMLDivElement;
     popup.classList.add("show");
+    document.dispatchEvent(new CustomEvent("reimu-search-open"));
     document
       .getElementById("reimu-search-input")!
       .querySelector("input")!

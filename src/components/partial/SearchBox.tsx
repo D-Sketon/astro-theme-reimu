@@ -1,9 +1,8 @@
 import "../../styles/search.stylus";
 import Fuse from "fuse.js";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
-import type { InferEntrySchema } from "astro:content";
 
 // Configs fuse.js
 // https://fusejs.io/api/options.html
@@ -14,32 +13,67 @@ const options = {
   threshold: 0.5,
 };
 
+type SearchItem = {
+  id: string;
+  data: {
+    title: string;
+    description: string;
+    keywords?: string | string[];
+    pubDate?: string;
+  };
+};
+
 export default function SearchBox({
-  searchList,
+  searchIndexUrl,
   postUrlPrefix,
   imageUrl,
 }: {
-  searchList: {
-    id: string;
-    collection: "blog";
-    data: InferEntrySchema<"blog">;
-}[];
+  searchIndexUrl: string;
   postUrlPrefix: string;
   imageUrl: string;
 }) {
+  const [searchList, setSearchList] = useState<SearchItem[]>([]);
+  const fetchPromiseRef = useRef<Promise<void> | null>(null);
   // User's input
   const [query, setQuery] = useState("");
 
-  const fuse = new Fuse(searchList, options);
+  const loadIndex = () => {
+    if (fetchPromiseRef.current) return;
+    fetchPromiseRef.current = window.fetch(searchIndexUrl)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Search index request failed: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setSearchList(data as SearchItem[]);
+        }
+      })
+      .catch(() => {
+        fetchPromiseRef.current = null;
+      });
+  };
+
+  const fuse = useMemo(
+    () => new Fuse<SearchItem>(searchList, options),
+    [searchList]
+  );
 
   // Set a limit to the posts: 5
-  const posts = fuse
-    .search(query)
-    .map((result) => result.item)
-    .slice(0, 5);
+  const posts: SearchItem[] = query.length > 1
+    ? fuse
+        .search(query)
+        .map((result) => result.item)
+        .slice(0, 5)
+    : [];
 
   function handleOnSearch({ target = { value: "" } }) {
     const { value } = target;
+    if (value.length > 1 && searchList.length === 0) {
+      loadIndex();
+    }
     setQuery(value);
   }
 
@@ -64,6 +98,16 @@ export default function SearchBox({
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
+
+  useEffect(() => {
+    const handleOpen = () => {
+      loadIndex();
+    };
+    document.addEventListener("reimu-search-open", handleOpen);
+    return () => {
+      document.removeEventListener("reimu-search-open", handleOpen);
+    };
+  }, [searchIndexUrl]);
 
   return (
     <>

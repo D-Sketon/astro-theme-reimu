@@ -1,5 +1,4 @@
 ---
-import { getCollection } from "astro:content";
 import { Icon } from "astro-icon/components";
 
 import { __ } from "../utils/i18n";
@@ -24,18 +23,6 @@ type Props = {
 };
 
 const { title = SITE.title, cover } = Astro.props;
-const posts = await getCollection("blog");
-const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const searchList = sortedPosts.map((post) => ({
-  id: post.id,
-  collection: post.collection,
-  data: {
-    title: post.data.title,
-    description: post.data.description,
-    pubDate: post.data.pubDate,
-    keywords: post.data.keywords,
-  },
-}));
 ---
 
 <div id="header-nav">
@@ -101,7 +88,7 @@ const searchList = sortedPosts.map((post) => ({
 </header>
 <SearchBox
   client:load
-  searchList={searchList}
+  searchIndexUrl={urlFor("search.json")}
   postUrlPrefix={urlFor("blog")}
   imageUrl={urlFor("images/reimu.png")}
 />
