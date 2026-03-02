@@ -3,7 +3,7 @@ import Fuse from "fuse.js";
 import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faTimesCircle } from "@fortawesome/free-solid-svg-icons";
-import type { InferEntrySchema, RenderedContent } from "astro:content";
+import type { InferEntrySchema } from "astro:content";
 
 // Configs fuse.js
 // https://fusejs.io/api/options.html
@@ -21,11 +21,8 @@ export default function SearchBox({
 }: {
   searchList: {
     id: string;
-    body?: string;
     collection: "blog";
     data: InferEntrySchema<"blog">;
-    rendered?: RenderedContent;
-    filePath?: string;
 }[];
   postUrlPrefix: string;
   imageUrl: string;
