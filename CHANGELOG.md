@@ -1,3 +1,57 @@
+## 0.4.2
+
+未发布
+
+### 修复
+
+- 修复文章上一页/下一页未按发布时间排序的问题
+- 修复 Utterances 评论 `issue_term` 配置项未生效的问题
+- 修复预加载组件未按配置开关渲染的问题
+- 修复 Gallery、Tabs、TagRoulette 的 resize 监听清理问题
+- 修复 QQ 分享链接未使用动态 URL 的问题
+
+### 特性
+
+- 新增搜索索引 `search.json` 路由，搜索打开时按需加载索引
+
+### 性能优化
+
+- 搜索框改为 `client:idle` 并避免重复加载索引
+- 归档列表移除不必要的排序逻辑
+- 首页分类与文章封面图启用 `decoding="async"` 和 `fetchpriority="low"` 提升加载效率
+
+### 重构
+
+- 迁移到 Astro v5
+- 更新 Node 引擎要求为 >=22.12.0
+- 统一使用 `urlFor` 处理组件链接并优化分享脚本 URL 逻辑，修复潜在的双斜杠问题
+
+---
+
+### Fixes
+
+- Fixed prev/next post ordering to follow publication date
+- Fixed Utterances `issue_term` configuration not being applied
+- Fixed preloader rendering to respect the config toggle
+- Fixed resize listener cleanup in Gallery, Tabs, and TagRoulette components
+- Fixed QQ share link not using the dynamic URL
+
+### Features
+
+- Added `search.json` index endpoint and on-demand index loading when search opens
+
+### Performance
+
+- Switched SearchBox to `client:idle` and avoided redundant index loads
+- Removed unnecessary sorting in archive list rendering
+- Enabled `decoding="async"` and `fetchpriority="low"` for home category and post cover images
+
+### Refactor
+
+- Migrated to Astro v5
+- Updated Node engine requirement to >=22.12.0
+- Standardized component URLs with `urlFor` and optimized ShareScript URL handling to prevent double slashes
+
 ## 0.4.1
 
 **2026-01-18**
