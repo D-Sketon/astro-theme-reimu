@@ -1,4 +1,4 @@
-<div align = center>
+<div align="center">
   <img src="https://fastly.jsdelivr.net/gh/D-Sketon/blog-img/icon.png"/>
   <h1>astro-theme-reimu</h1>
   <img alt="version" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgithub.com%2FD-Sketon%2Fastro-theme-reimu%2Fraw%2Fmain%2Fpackage.json&query=%24.version&label=version">
@@ -78,7 +78,7 @@
 ### 设计与自定义
 
 - 🎨 图标支持（FontAwesome、Iconify）
-- 🔗 内置 mdx 组件：
+- 🔗 内置 MDX 组件：
   - 内部链接
   - 外部链接
   - 友情链接
@@ -128,8 +128,8 @@ pnpm run preview
 ├── src/
 │   ├── components/      # Astro/React 组件
 │   ├── content/         # 内容集合
-│   │   ├── blog/        # 博客文章
-│   │   └── config.ts    # 内容集合配置
+│   │   └── blog/        # 博客文章
+│   ├── content.config.ts# 内容集合配置
 │   ├── hooks/           # React Hooks
 │   ├── languages/       # i18n 语言文件
 │   │   ├── en.ts
@@ -876,7 +876,7 @@ const result = example();
 ```javascript
 export default defineConfig({
   site: "https://yourusername.github.io", // 你的站点 URL
-  base: "your-repo-name", // 子路径（如部署到 GitHub Pages）
+  base: "/your-repo-name", // 子路径（如部署到 GitHub Pages）
   // ...
 });
 ```
@@ -891,7 +891,7 @@ pnpm run build
 
 2. 将 `dist/` 目录部署到 GitHub Pages
 
-或者配置 GitHub Actions 自动部署（推荐），具体可参考 [Github Pages](https://docs.astro.build/zh-cn/guides/deploy/github/)。
+或者配置 GitHub Actions 自动部署（推荐），具体可参考 [GitHub Pages](https://docs.astro.build/zh-cn/guides/deploy/github/)。
 
 ### Vercel / Netlify
 

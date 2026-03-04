@@ -1,4 +1,4 @@
-<div align = center>
+<div align="center">
   <img src="https://fastly.jsdelivr.net/gh/D-Sketon/blog-img/icon.png"/>
   <h1>astro-theme-reimu</h1>
   <img alt="version" src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgithub.com%2FD-Sketon%2Fastro-theme-reimu%2Fraw%2Fmain%2Fpackage.json&query=%24.version&label=version">
@@ -128,8 +128,8 @@ pnpm run preview
 ├── src/
 │   ├── components/      # Astro/React components
 │   ├── content/         # Content collections
-│   │   ├── blog/        # Blog posts
-│   │   └── config.ts    # Content collection config
+│   │   └── blog/        # Blog posts
+│   ├── content.config.ts# Content collection config
 │   ├── hooks/           # React Hooks
 │   ├── languages/       # i18n language files
 │   │   ├── en.ts
@@ -876,7 +876,7 @@ Edit `astro.config.mjs`:
 ```javascript
 export default defineConfig({
   site: "https://yourusername.github.io", // Your site URL
-  base: "your-repo-name", // Subpath (for GitHub Pages deployment)
+  base: "/your-repo-name", // Subpath (for GitHub Pages deployment)
   // ...
 });
 ```

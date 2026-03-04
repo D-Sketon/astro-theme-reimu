@@ -4,7 +4,7 @@ import "@reimujs/aos/dist/aos.css";
 
 import { ClientRouter } from "astro:transitions";
 
-import { PRELOADER, SITE, SIDEBAR } from "../utils/config";
+import { BANNER, PRELOADER, SITE, SIDEBAR } from "../utils/config";
 import { urlFor } from "../utils/urlFor";
 import CommonMeta from "../components/partial/CommonMeta.astro";
 import VendorScript from "../components/partial/VendorScript.astro";
@@ -40,6 +40,8 @@ const {
   headings = [],
   toc = true,
 } = Astro.props;
+
+const headerImage = cover || BANNER;
 ---
 
 <!doctype html>
@@ -47,6 +49,7 @@ const {
   <head>
     <ThemeScript />
     <CommonMeta title={title} description={description} keywords={keywords} />
+    <link rel="preload" as="image" href={urlFor(headerImage)} />
     <style>
       main {
         position: relative;
