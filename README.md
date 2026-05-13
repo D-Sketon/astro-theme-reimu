@@ -933,7 +933,7 @@ pnpm run build
 
 ## 赞助 💘
 
-[爱发电-afdian](https://afdian.tv/a/dsketon)
+[爱发电-afdian](https://afdian.com/a/dsketon)
 
 ## Star History
 
